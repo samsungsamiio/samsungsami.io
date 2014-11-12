@@ -1,4 +1,4 @@
-sami-simband-docs
+SAMI developer documentation
 =================
 
 ## Hola! 
