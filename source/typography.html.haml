@@ -1,0 +1,210 @@
+---
+title: 'Typography Styleguide'
+layout: 'styleguide'
+---
+
+%dl.styleguide
+  %dt.styleguide-title Source Sans Pro
+  %dd.styleguide-content.source-sans-pro
+    %p
+      %strong Headline tags
+    - (1..5).each do |i|
+      = content_tag "h#{i}" do
+        = "Header H#{i}"
+      = content_tag "hr", nil, class: 'typography'
+
+    %p
+      %strong Adjacent Headline Tags
+    - (2..4).each do |i|
+      = content_tag "h#{i}" do
+        = "Header H#{i}"
+      = content_tag "h#{i + 1}" do
+        = "Header H#{i + 1}"
+      = content_tag "hr", nil, class: 'typography'
+
+    %table
+      %thead
+        %tr
+          %th Table Heading
+      %tbody
+        %tr
+          %td Text in a Table Cell
+
+    %p.intro
+      Intro paragraph lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+      Phasellus hendrerit.
+
+  %dt.styleguide-title Meta Serif
+  %dd.styleguide-content.meta-serif.content
+    :markdown
+      **Bold** *italic* <del>strikethrough</del>
+
+      Body text lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+
+      Donec nec justo eget felis [inline link](#). Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
+
+      - Unordered list item
+      - Another unordered list item, showing how long texts wraps
+        with proper indentation and so forth
+
+      1. Ordered list item
+      2. Another ordered list item, showing how long texts wraps
+         with proper indentation and so forth
+
+      Definition list dt
+      : Definition list dd, lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat.
+
+      Definition list dt
+      : Definition list dd, lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
+      : Donec odio. Quisque volutpat.
+
+      > Blockquote lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+      >
+      >  Donec nec justo eget felis [inline link](#). Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis
+  %dt.styleguide-title
+    Blocks
+  %dd.styleguide-content.content
+    :markdown
+
+      Intro paragraph lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+      Phasellus hendrerit.
+      {: .intro}
+
+      You should normally just be able to skip to the “Check the system” section below; however, in case there is a problem loading the iSpy settings file, go through the following steps:
+      {: .info}
+
+      The call must be made either as an application (with a client credentials access token) or as an authenticated administrator of the application that the user will be created with.
+
+      Be careful! Lorem ipsum dolor sit amet, and also your computer explode.
+      {: .warning}
+
+
+      ![](#{lorem.image('800x200')})
+
+      ~~~ruby
+      require 'redcarpet'
+      markdown = Redcarpet.new("Hello World!")
+      puts markdown.to_html
+      ~~~
+
+      ~~~coffee
+      # this is a comment
+      Backbone.history.start
+        pushState: App.environment is 'production'
+      ~~~
+
+      ~~~json
+      {title: 'text'}
+      ~~~
+
+      ~~~ruby
+      # rubocop:disable FileName
+
+      # Setup our load paths
+      libdir = File.expand_path(File.dirname(__FILE__))
+      $LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
+
+      # Top-level Middleman namespace
+      module Middleman
+        # Backwards compatibility namespace
+        module Features; end
+      end
+
+      require 'middleman-core/version'
+      ~~~
+
+      ~~~ruby
+      def create_dir(dir)
+        return unless dir
+        Dir.mkdir(dir) unless Dir.exists?(dir)
+      end
+
+      def process_contents(tree, parent)
+        tree.keys.each do |dir|
+          directory = File.join(parent, dir.chomp('/'))
+          create_dir directory
+          tree[dir].each do |dir_content|
+            if dir_content.is_a? String
+              children = nil
+              if dir_content.split(' - ')[0].match(/index\.md/)
+                children = tree[dir]
+              end
+              create_md_file(dir_content, directory, children)
+            else
+              process_contents(dir_content, directory)
+            end
+          end
+        end
+      end
+      ~~~
+
+      ## In-line highlighting
+      
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi aliquam laoreet metus, id elementum tellus vulputate et. `Mauris eros est,` pulvinar vitae condimentum ac, laoreet tincidunt sem. 
+      
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi aliquam laoreet metus, id elementum tellus vulputate et. `Mauris eros est,`{:.param} pulvinar vitae condimentum ac, laoreet tincidunt sem. 
+
+      ## Request Parameters
+
+      | Parameter           | Description
+      | -------------       | -------------
+      | `name`{:.param}     | Username. Between 3 and 32 characters. Allowed: alphanumeric, “x”, “-“ and “_”. Must start with a letter.
+      | `email`{:.param}    | User email. Between 5 and 255 characters.
+      | `fullName`{:.param} | User full name. Between 5 and 64 characters.
+      | `password`{:.param} | User password. Between 6 and 64 characters.
+
+      ## Table Highlighting
+
+      | Cell           | Color
+      | -------------       | -------------
+      | Cell 1      | <span class="table_highlight highlight_red">Red Cell</span>
+      | Cell 2      | <span class="table_highlight highlight_blue">Blue Cell</span>
+      | Cell 3      | <span class="table_highlight highlight_green">Green Cell</span>
+      | Cell 4      | <span class="table_highlight highlight_orange">Orange Cell</span>
+
+      ## Photo Grids
+
+    .three-col
+      :markdown
+        ![](/images/docs/monk-board/IMG_20140905_181654.png)
+        ![](/images/docs/monk-board/IMG_20140908_164006.png)
+        ![](/images/docs/monk-board/IMG_20140905_181715.png)
+        ![](/images/docs/monk-board/IMG_20140905_181654.png)
+        ![](/images/docs/monk-board/IMG_20140908_164006.png)
+        ![](/images/docs/monk-board/IMG_20140905_181715.png)
+
+    .photo-grid
+      :markdown
+        ![](/images/docs/monk-board/IMG_20140905_181654.png)
+        ![](/images/docs/monk-board/IMG_20140908_164006.png)
+        ![](/images/docs/monk-board/IMG_20140905_181715.png)
+        ![](/images/docs/monk-board/IMG_20140905_181654.png)
+        ![](/images/docs/monk-board/IMG_20140908_164006.png)
+        ![](/images/docs/monk-board/IMG_20140905_181715.png)
+
+    :markdown
+      ![](/images/docs/monk-board/IMG_20140905_181654.png){:.left}
+      Intro paragraph lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+
+    :markdown
+      ![](/images/docs/monk-board/IMG_20140905_181654.png){:.right}
+      Intro paragraph lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+
+  %dt.styleguide-title Lightboxes
+  %dd.styleguide-content.meta-serif.content
+    :markdown
+
+      ## Inline Lightboxes
+      
+      ![Alt text sample](/images/docs/sensor-module/sensor-module-documentation/simsense-hardware-overview/Floyd_Angular_Top_View.png){:.lightbox}
+    
+      ![Alt text sample 2](/images/docs/sensor-module/sensor-module-documentation/simsense-hardware-overview/Floyd_Angular_Bottom_View.png){:.lightbox}
+      **Caption example**
+
+      ## Table Lightboxes
+
+      | Cell           | Color
+      | -------------       | -------------
+      | Cell 1      | ![](/images/docs/sensor-module/sensor-module-documentation/simsense-hardware-overview/Floyd_Angular_Top_View.png)
+      | Cell 2      | ![](/images/docs/sensor-module/sensor-module-documentation/simsense-hardware-overview/Floyd_Angular_Bottom_View.png)
+

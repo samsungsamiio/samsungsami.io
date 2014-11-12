@@ -1,0 +1,77 @@
+'sami/':
+  - 'nav.yml'
+  - 'index.md - SAMI Cloud Services'
+  - 'sami-documentation.md - SAMI documentation'
+'simbase/':
+  - 'index.yml'
+  - 'index.md - Simbase'
+  - 'simbase-documentation/':
+    - 'nav.yml'
+    - 'index.md - Simbase documentation'
+    - 'simband-101/':
+      - 'nav.yml'
+      - 'index.md - Simband 101'
+      - 'what-is-simband.md - What is Simband'
+      - 'simband-<3-sami.md - Simband <3 SAMI'
+      - 'setting-up-your-computer.md - Setting up your computer to work with Simband'
+      - 'setting-up-connectivity.md - Setting up connectivity'
+      - 'what-is-sami.md - What is SAMI'
+    - 'data-in-simband/':
+      - 'nav.yml'
+      - 'index.md - Data in Simband'
+      - "making-sense-of-simband-data.md - Making sense of SimBand's data"
+      - "simband-operating-modes.md - SimBand's operating modes"
+      - 'access-data-on-your-computer.md - Access data on your computer'
+      - 'using-the-data.md - Using the data you extracted'
+      - 'access-data-via-sami.md - Access data via SAMI'
+      - 'access-data-with-wifi.md - Access data on your computer with wifi'
+      - 'writing-algorithms-using-static-data.md - Writing algorithms using static data'
+    - 'analytics-with-sami/':
+      - 'nav.yml'
+      - 'index.md - Analytics with SAMI'
+      - 'writing-algorithms-for-sami-analytics.md - Writing algorithms for SAMI analytics'
+    - 'algorithms-on-simbase/':
+      - 'nav.yml'
+      - 'index.md - Algorithms on Simbase'
+      - 'writing-spot-algorithms-for-simbase.md - Writing spot algorithms for Simbase'
+      - 'simbase-data-api.md - Simbase data API'
+      - 'visualizing-data-on-simbase.md - Visualizing data on Simbase'
+    - 'anything-wrong/':
+      - 'nav.yml'
+      - 'index.md - Anything wrong?'
+      - 'faq.md - FAQ'
+    - 'how-to-articles.md - How-to articles'
+    - 'troubleshooting-articles.md - Troubleshooting articles'
+    - "simband-source-code.md - Simband's source code"
+    - 'analyze-data-with-sami.md - Analyze data with SAMI'
+    - 'analyze-simband-data-with-sami.md - Analyze Simband data with SAMI'
+    - 'prerecorded-data.md - Pre-recorded data'
+  - 'hardware-development-kits.md - Hardware Developer Kits'
+'sensor-module/':
+  - 'nav.yml'
+  - 'index.md - Sensor module'
+  - 'sensor-module-documentation/':
+    - 'nav.yml'
+    - 'index.md - Sensor module documentation'
+    - 'simsense-hardware-overview.md - SimSense hardware overview'
+    - 'constraints.md - Constraints'
+    - 'mechanical-overview.md - Mechanical Overview'
+    - 'electrical-overview.md - Electrical Overview'
+    - 'simbase-software-overview-for-simsense/':
+      - 'nav.yml'
+      - 'index.md - Simbase Software Overview For SimSense'
+      - 'sensor-module-communication-protocol.md - Sensor Module Communication Protocol'
+    - 'ingrid.md - INGRID: A Sensor Module Reference'
+    - 'schematics.md - Schematics'
+'community/':
+  - 'nav.yml'
+  - 'index.md - Community'
+'data/':
+  - 'nav.yml'
+  - 'index.md - Data'
+  - 'recorded-data-imec.md - Recorded data: imec'
+  - 'record-data-ssic/':
+    - 'nav.yml'
+    - 'index.md - Recorded data: SSIC'
+    - 'recorded-data-for-collectors.md - Recorded data: for data collectors'
+    - 'recorded-data-for-users.md - Recorded data: for data users'

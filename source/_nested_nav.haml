@@ -1,0 +1,10 @@
+- if sections
+  %ul.subsections
+    - sections.each do |child|
+      - path = "#{parent}/#{child}"
+      - page_resource = page_or_index(path)
+      - if page_resource
+        %li
+          = active_link_to page_title(page_resource), page_resource.url
+          - if page_data(page_resource)['nav'] and current_page.url.match(/#{page_resource.url}/)
+            = partial :nested_nav, :locals => {:sections => page_data(page_resource)['nav'], :parent => "#{path}"}

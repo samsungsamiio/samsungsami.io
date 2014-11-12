@@ -1,0 +1,73 @@
+body.index
+
+  .alpha.welcome
+    +source-sans
+    background: url('/images/landing/home_bg.png') no-repeat left 20%
+    background-size: 100%
+    padding: 30px 55px
+    h1
+      font-size: 24px
+      color: #00A9E0
+      font-weight: bold
+      margin-bottom: 8px
+    p
+      margin: 0
+
+  .welcome-section
+    +source-sans
+    color: #fff
+    font-size: 20px
+    overflow: hidden
+    text-align: center
+    span.learn-more
+      &:hover
+        border-bottom: 1px dotted #92FAFF
+    ul
+      +no-bullets
+      +reset-box-model
+      overflow: hidden
+    .section-image
+      line-height: 160px
+      margin-bottom: 20px
+      padding: 20px
+    h2
+      margin-bottom: 10px
+      font-size: 36px
+      +respond-to('tablet')
+        font-size: 50px
+    p
+      max-width: 75%
+      margin: 0 auto 12px auto
+      line-height: 1.6em
+      font-size: 16px
+      +respond-to('tablet')
+        font-size: 18px
+    img
+      display: inline-block
+      vertical-align: middle
+      float: none
+      margin: 0
+      max-width: 320px
+      max-height: 160px
+      width: auto
+    li
+      padding: 20px
+      margin: 0
+      border-bottom: 1px solid rgba(255,255,255,0.16)
+      +respond-to('tablet')
+        border-left: 1px solid rgba(255,255,255,0.16)
+        border-bottom: none
+        width: (100/3)*1%
+        float: left
+        &:first-child
+          border-left-color: transparent
+
+  .welcome-top
+    background-color: #00A9E0
+
+  .welcome-bottom
+    background-color: #685BC7
+    +respond-to('tablet')
+      li
+        width: 50%
+

@@ -1,0 +1,351 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Source+Code+Pro|Source+Serif+Pro)
+
+= meta-font-face($name, $variant)
+  // first for IE 4–8
+  @font-face
+    font-family: #{$name}-#{$variant}
+    src: url("/fonts/#{$name}-#{$variant}.eot")
+
+  // then for WOFF-capable browsers
+  @font-face
+    font-family: #{$name}-#{$variant}
+    src: url("/fonts/#{$name}-#{$variant}.woff") format("woff")
+
+$meta-font-names: 'MetaSerifWeb', 'MetaSerifScWeb'
+$meta-font-variants: 'Black', 'BlackItalic', 'Bold', 'BoldItalic', 'Book', 'BookItalic', 'Extrabold', 'ExtraboldItalic', 'Light', 'LightItalic', 'Medium', 'MediumItalic'
+
+@each $name in $meta-font-names
+  @each $variant in $meta-font-variants
+    +meta-font-face($name,$variant)
+
+*
+  +box-sizing(border-box)
+
+html, body
+  height: 100%
+
+body
+  +source-sans
+  color: #79808A
+  position: relative
+  &.menu-expanded
+    overflow: hidden
+
+h1, h2, h3, h4, h5, h6
+  margin: 0
+
+h1
+  +source-sans
+  font-size: 40px
+  font-weight: 300
+  line-height: 1em
+  margin-bottom: 1em
+
+h2
+  +source-sans
+  font-size: 30px
+  font-weight: 300
+  line-height: 1.1em
+  margin-top: 1.5em
+  margin-bottom: 0px
+
+h3
+  +source-sans
+  font-size: 24px
+  font-weight: 400
+  line-height: 1.2em
+  margin-top: 1.2em
+  margin-bottom: 1.2em
+
+
+
+table
+  +source-sans
+  font-size: 16px
+  line-height: 1.125em
+  -ms-word-break: normal
+  word-break: normal
+  th
+    font-size: 14px
+    font-weight: 600
+    letter-spacing: 1.6px
+    text-align: left
+    text-transform: uppercase
+    color: #79808A
+    padding: 1.625em 0 1.625em 0
+
+p.intro
+  +source-sans
+  font-size: 20px
+  font-style: italic
+  font-weight: 300
+  line-height: 1.5em
+
+
+%block-with-icon
+  +pie-clearfix
+  padding: 17px
+  padding-left: 78px
+  &:before
+    @extend .fa
+    +opacity(0.3)
+    float: left
+    font-size: 44px
+    margin: -10px 0 -10px -62px
+
+.warning, .info
+  @extend %block-with-icon
+
+.warning
+  background-color: #fcf7e4
+  color: #FF6900
+  &:before
+    @extend .fa-warning
+    color: #FFC601
+
+img.lightbox, td img
+  cursor: pointer
+
+.info
+  background-color: #e2f4fa
+  color: #00A9E0
+  &:before
+    @extend .fa-info-circle
+
+a
+  &, &:active, &:visited, &:hover
+    color: #00A9E0
+    text-decoration: none
+
+hr.typography
+  width: 50%
+  border: none
+  border-bottom: 1px solid #E1E4E6
+  display: inline-block
+
+.content
+  font-family: 'MetaSerifWeb-Book'
+  h2:target
+    color: #323F4A
+  a:hover
+    border-bottom: 1px dotted
+
+  h1, h2, h3, h4, h5, h6,
+  p, ul, ol, blockquote,
+  dl, img, hr
+    max-width: 620px
+    +landing-page
+      max-width: none
+  p img
+    overflow-x: auto
+  h2 + h3, h4 + h5
+    margin-top: 0.75em
+    margin-bottom: 0.75em
+  h3 + h4
+    margin-top: -0.75em
+    margin-bottom: 0.75em
+  img + strong
+    margin-bottom: 1.2em
+  hr
+    text-align: left
+    margin: 2em 0
+
+  p
+    clear: left
+    font-size: 16px
+    line-height: 1.625em
+    margin-bottom: 1em
+    &.intro
+      @extend p.intro
+    img + strong
+      font-family: Source Sans Pro
+      color: #949AA2
+      font-size: 12px
+      float: left
+      width: 100%
+      clear: both
+    code
+      +border-radius(3px)
+      color: #268bd2
+      display: inline-block
+      font-style: normal
+      line-height: 1
+      padding: 6px
+  
+  div.three-col + p strong, div.photo-grid + p strong
+    font-family: Source Sans Pro
+    color: #949AA2
+    font-size: 12px
+    float: left
+    width: 100%
+    clear: both
+  img.right + strong
+    float: right
+    text-align: right
+
+  .param
+    +border-radius(3px)
+    background-color: #e2f4fa
+    color: #009CA6
+    display: inline-block
+    font-family: inherit
+    font-style: normal
+    line-height: 1
+    padding: 6px
+
+  ul, ol, blockquote, .highlight, table
+    margin-bottom: 1.625em
+
+  table
+    font-size: 16px
+    +source-sans
+    border-top: 1px solid
+    border-left: 1px solid
+    border-color: #E1E4E6
+    border-width: collapse
+    td, th
+      border-width: 0px
+      border-right: 1px solid
+      border-bottom: 1px solid
+      border-color: #E1E4E6
+      padding: 0.75em 10px
+    th
+      +background(linear-gradient(#FFFFFF,#F0F2F4))
+    td
+      padding: 0.8em 10px
+      .param
+        background-color: #FFE8F0
+        color: #E4002B
+    img
+      max-width: 425px
+
+  .param
+    +border-radius(3px)
+    background-color: #e2f4fa
+    color: #009CA6
+    display: inline-block
+    font-family: inherit
+    font-style: normal
+    line-height: 1
+    padding: 6px
+
+  ol, ul
+    padding-left: 2.2em
+    ol, ul
+      margin-top: 1em
+    ol
+      list-style-type: lower-alpha
+
+  li
+    line-height: 1.625em
+    margin-bottom: 1em
+    code
+      +border-radius(3px)
+      color: #268bd2  
+
+  table
+    code
+      color: #268bd2  
+
+  dl
+    margin-bottom: 1.625em
+
+  dt
+    font-family: 'MetaSerifWeb-Bold'
+    margin-bottom: 0.625em
+
+  dt, dd
+    line-height: 1.625em
+
+  dd
+    margin-bottom: 1.625em
+    margin-left: 2.2em
+
+  blockquote
+    font-family: 'MetaSerifWeb-BookItalic'
+    border-left: 4px solid #E1E4E6
+    margin-left: 0px
+    padding-left: 32px
+
+  .left
+    float: left
+    margin-right: 2%
+    margin-bottom: 2%
+
+  .right
+    float: right
+    margin-left: 2%
+    margin-bottom: 2%
+
+  .photo-grid
+    overflow: hidden
+    img
+      width: 49%
+      float: left
+      margin-left: 2%
+      margin-bottom: 2%
+      &:nth-child(odd)
+        margin-left: 0
+        clear: left
+
+  .three-col
+    overflow: hidden
+    img
+      width: 32%
+      float: left
+      margin-left: 2%
+      margin-bottom: 2%
+      &:nth-child(3n+1)
+        margin-left: 0
+        clear: left
+
+.footer
+  +source-sans
+  padding: 20px 35px
+  border-top: 2px solid #E9EAEC
+  p, ul
+    +reset-box-model
+  li
+    // border-left: 1px solid
+    display: inline-block
+    font-size: 14px
+    a
+      color: inherit
+      padding: 0
+      &:before
+        content: ' | '
+        display: inline-block
+        margin: 0 7px 0 5px
+    &:first-child a
+      border-left: none
+      &:before
+        display: none
+  p
+    color: #C7CACE
+    font-size: 12px
+    margin: 0 0 24px 0
+  .feedback
+    padding: 25px 0
+    float: right
+    a
+      color: #C7CACE
+a.learn-more
+  color: #92FAFF
+  font-size: 16px
+  text-transform: uppercase
+  &:after
+    content: ' \00bb'
+a.button
+  color: #fff
+  text-decoration: none
+  &:hover
+    color: #92FAFF
+    border-bottom: none
+.button
+  +border-radius(4px)
+  background: #00A9E0
+  display: inline-block
+  padding: 15px 50px
+  color: #fff
+
+

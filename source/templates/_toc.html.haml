@@ -1,0 +1,6 @@
+%script#toc{type: 'text/html'}
+  %ul.table-of-contents-list.nav
+    {{#items}}
+    %li{ class: "{{className}}"}
+      %a{href: "\#{{href}}"} {{text}}
+    {{/items}}

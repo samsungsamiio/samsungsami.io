@@ -1,0 +1,232 @@
+.content
+  +landing_page
+    +source-sans
+    .landing-links
+      background: #F8F9FA
+      color: #79808A
+      ul
+        +reset-box-model
+        +no-bullets
+        position: relative
+        overflow: hidden
+      li
+        text-align: center
+        padding: 20px
+        padding-bottom: 80px
+        margin: 0
+        +respond-to('tablet')
+          float: left
+          width: 25%
+        span.learn-more
+          position: absolute
+          bottom: 40px
+          margin-left: -47px
+          color: #0057B8
+      .section-image
+        line-height: 100px
+        margin-bottom: 20px
+        padding: 20px
+      img
+        display: inline-block
+        vertical-align: middle
+        float: none
+        margin: 0
+        max-width: 100px
+        max-height: 100px
+        width: auto
+
+    .mask
+      padding: 70px
+
+    .landing-header
+
+      h1
+        font-size: 44px
+        font-weight: 300
+        color: #0057B8
+        margin-bottom: 14px
+        line-height: 1.3em
+      p
+        margin: 0
+        font-size: 30px
+        color: #525E68
+        font-weight: 300
+        line-height: 1.3em
+        margin-bottom: 28px
+      .button
+        font-size: 24px
+        font-weight: 300
+
+    .landing-subheader
+      background: #0057B8
+      color: #fff
+      padding: 28px
+      h2
+        margin: 0 0 12px 0
+      p
+        margin: 0 0 14px 0
+        font-size: 17px
+        line-height: 1.4em
+        +respond-to('tablet')
+          width: 66%
+      span.learn-more
+        &:hover
+          border-bottom: 1px dotted #92FAFF
+  
+  .landing-block
+    display: block
+    color: inherit
+    &:hover
+      border-bottom: none
+    span.learn-more
+      @extend a.learn-more
+      &:hover
+        border-bottom: 1px dotted #0057B8
+        margin-bottom: -1px
+
+
+body.sami_index .content, body.index .content
+  .landing-header .mask
+    padding: 115px 95px
+    +respond-to('tablet')
+      padding-right: 37.5%
+  .landing-header
+    background-image: url('/images/landing/sami_bg.jpg')
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: auto 100%
+    +at-media("only screen and (min-width: 900px)")
+      background-size: 100%
+    .mask
+      background: rgba(0,0,0, 0.7)
+      padding-bottom: 118px
+      +respond-to('tablet')
+        +background(linear-gradient(to right, rgba(0,0,0, 0.8) 30%, transparent))
+      h1, p
+        color: #fff
+      p
+        font-size: 26px
+        margin-bottom: 36px
+      .button
+        background: #F7971A
+        color: #fff
+        +respond-to('tablet')
+          padding-left: 95px
+          padding-right: 95px
+  .sami-subheader
+    padding: 0
+    ul
+      +reset-box-model
+      +no-bullets
+      overflow: hidden
+    li
+      padding: 40px 80px
+      +respond-to('tablet')
+        float: left
+        width: 50%
+    h2
+      img
+        width: auto
+        display: inline-block
+        float: none
+        vertical-align: baseline
+        +respond-to('desktop')
+          margin: -10px 0 0 0
+    p
+      width: 80%
+
+body.sensor-module_index .landing-links
+  border-top: 2px solid #E9EAEC
+
+body.sensor-module_index .content
+  .landing-header .mask
+    padding: 80px 90px
+    +respond-to('tablet')
+      padding-right: 37.5%
+  .landing-header
+    background: url('/images/landing/sensor_bg.png') no-repeat
+    background-position: center center
+    background-size: 100%
+    +respond-to('tablet')
+      background-position: center 0px
+    +respond-to('desktop')
+      background-position: center -90px
+    .mask
+      background: rgba(255,255,255, 0.7)
+      padding-bottom: 100px
+      a
+        background-color: #685BC7
+      +respond-to('tablet')
+        +background(linear-gradient(to right, rgba(255,255,255, 0.9) 60%, rgba(255,255,255,0)))
+
+body.simband_index .content
+  .landing-header .mask, .landing-subheader
+    +respond-to('tablet')
+      padding-left: 37.5%
+  .landing-header
+    background: url('/images/landing/simband-header.png') no-repeat 0 -15px
+    background-position: -170px -15px
+    +respond-to('tablet')
+      background-size: 100%
+      background-position: left center
+    +respond-to('desktop')
+      background-position: 0 -40px
+    .mask
+      background: rgba(255,255,255, 0.7)
+      +respond-to('tablet')
+        +background(linear-gradient(to right, rgba(255,255,255,0), #ffffff))
+  .landing-subheader
+    +respond-to('tablet')
+      background: #0057B8 url('/images/landing/sami.png') no-repeat 23% 35px
+      background-size: 15%
+
+
+.community-list
+  +border-radius(4px)
+  +box-shadow(1px 1px 0 transparentize(#E5E5E5, 0.1))
+  border: 1px solid #E1E4E6
+  display: inline-block
+  vertical-align: top
+  margin-right: 25px
+  margin-bottom: 25px
+  width: 100%
+  &:last-child
+    margin-right: 0
+  +respond-to('tablet')
+    width: 435px
+  +respond-to('desktop')
+    width: 435px
+  .community-list-header
+    &:after
+      content: ''
+      display: inline-block
+      width: 100%
+      height: 0
+      font-size: 0em
+      line-height: 0em
+    padding: 15px 20px 0 20px
+    border-bottom: 1px solid #E1E4E6
+    text-align: justify
+    h2, a
+      display: inline-block
+      vertical-align: middle
+      margin-top: 0
+      margin-bottom: 0
+    h2
+      font-weight: 400
+    a
+      +source-sans
+      padding-top: 1px
+      text-transform: uppercase
+      letter-spacing: 2px
+      font-size: 13px
+      font-weight: 600
+      border-bottom: 1px solid transparent
+  .community-list-body
+    min-height: 315px
+    padding: 15px 20px 15px 20px
+    ul
+      +no-bullets
+      +reset-box-model
+    a
+      font-weight: 600

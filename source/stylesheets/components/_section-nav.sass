@@ -1,0 +1,269 @@
+.toggle-menu
+  +border-radius(50%)
+  +transform(rotate(-90deg))
+  +source-sans
+  +transition-property(left, transform, opacity, height)
+  +transition-duration
+  +transition-timing-function
+  background: #fff
+  border: 3px solid #E1E4E6
+  color: #ABAFB6
+  display: none
+  height: 30px
+  left: 5px
+  line-height: 1.25em
+  position: absolute
+  text-align: center
+  top: 45px
+  vertical-align: 10px
+  width: 30px
+  z-index: 110
+  +opacity(1)
+  +respond-to('tablet')
+    display: block
+  +respond-to('desktop')
+    +opacity(0)
+    left: -30px
+  .sidebar-open &
+    left: $sidebar-width - 15px
+    +transform(rotate(90deg))
+  .fixed &
+    top: 45px
+    position: fixed
+
+
+.section-nav
+  -webkit-overflow-scrolling: touch
+  +source-sans
+  +transition-property(margin, left, top)
+  +transition-duration
+  +transition-timing-function
+  background-color: #323F4A
+  left: 0
+  overflow-y: auto
+  overflow-x: hidden
+  padding: 20px 20px 100px 20px
+  position: fixed
+  top: -100%
+  width: 100%
+  z-index: 10
+  .meta-section-nav-item
+    display: none
+  .menu-expanded &
+    height: 100%
+    left: 0
+    right: 0
+    top: 100px
+    width: auto
+    z-index: 10
+    .subsections
+      margin-bottom: 20px
+  +respond-to('tablet')
+    margin-left: - $sidebar-width
+    margin-top: auto
+    left: 20px
+    width: $sidebar-width
+    background-color: transparent
+    top: auto
+    position: absolute
+    .meta-section-nav-item
+      display: block
+  +respond-to('desktop')
+    margin-left: 0
+    left: 0
+  .section-nav-item
+    padding: 0 3px
+  .sidebar-open &
+    margin-left: 0
+    left: 0
+    a.active
+      color: #fff
+  .fixed &
+    +respond-to('tablet')
+      height: 100%
+      left: 20px
+      position: fixed
+      top: 0
+    +respond-to('desktop')
+      margin-left: 0
+      left: 0
+  .fixed .sidebar-open &
+    +respond-to('tablet')
+      margin-left: 0
+      left: 0
+
+  a
+    text-decoration: none
+    display: block
+    &.active
+      +transition-property(background, color)
+      +transition-duration
+      +transition-timing-function
+      color: #fff
+      background: #1caade
+      +respond-to('tablet')
+        background: transparent
+        .sidebar-open &
+          background: #1caade
+      +respond-to('desktop')
+        color: #fff
+        background: #1caade
+    &:hover
+      border-bottom: none
+  #feedback
+    display: inline-block
+  .section-title
+    color: #00A9E0
+    font-size: 13px
+    font-weight: 600px
+    letter-spacing: 1.6px
+    margin-bottom: 9px
+    margin-top: 27px
+    text-transform: uppercase
+  i.fa
+    display: inline-block
+    font-size: 1.25em
+    margin-right: 3px
+    vertical-align: -1px
+    width: 20px
+    &.fa-send-o
+      font-size: 1em
+  .section-nav-item
+    margin-bottom: 30px
+  ol, ul
+    +no-bullets
+    +reset-box-model
+    margin-top: 0
+    max-width: none
+    li
+      margin-bottom: 0
+    > ol, ul
+      font-size: 16px
+      margin-top: 0
+      li
+        margin-bottom: 0
+      a
+        color: #949AA2
+        padding: 5px 0
+        &.active
+          margin-left: -25px
+          margin-right: -23px
+          padding-left: 23px
+          padding-right: 25px
+      > ol, ul
+        padding-left: 13px
+        a.active
+          margin-left: -49px
+          margin-right: -23px
+          padding-left: 49px
+          padding-right: 25px
+        li:last-child
+          padding-bottom: 0
+
+  .section-nav-footer
+    @extend .footer
+    +transition-property(left, transform, opacity, height)
+    +transition-duration
+    +transition-timing-function
+    +background(linear-gradient(transparentize(#f8f9fa, 1),#f8f9fa 20%))
+    border-top: none
+    bottom: 0
+    color: #ABAFB6
+    left: 0
+    padding: 24px 0 20px 0
+    position: fixed
+    text-align: center
+    width: 100%
+    display: none
+    .feedback
+      display: none
+    +respond-to('tablet')
+      width: $sidebar-width
+      display: block
+      left: - $sidebar-width
+      .sidebar-open &
+        left: 0
+    +respond-to('desktop')
+      margin-left: 0
+      left: 0
+
+// Section Nav Exceptions
+
+.section-community
+  display: none
+
+.section-preview
+  display: none
+  padding-top: 20px
+  a
+    +source_sans
+    letter-spacing: 1px
+    text-transform: uppercase
+    font-size: 13px
+    font-weight: 600
+    +respond-to('tablet')
+      text-align: center
+      color: #fff
+      padding: 10px 50px  
+      display: inline-block
+      text-decoration: none
+      border-bottom: none
+      +border-radius(4px)
+      background: #00A9E0
+      font-weight: 300
+
+
+.data.data_index .side.content, .data.data_request .side.content, .community_index .side.content
+  .quick-search,
+  .section-nav-list
+    display: none
+  &.sidebar-open
+    +respond-to('tablet')
+      padding-left: 470px
+      .toggle-menu
+        left: 455px
+      .section-nav
+        margin-left: 0
+  +respond-to('tablet')
+    padding-left: 20px
+  +respond-to('desktop')
+    padding-left: 470px
+  .section-nav
+    @extend %wide-nav
+
+
+.data.data_index .side.content, .data.data_request .side.content
+  .section-preview
+    display: block
+  .paging-links
+    display: none
+  .section-nav
+    +respond-to('tablet')
+      text-align: center
+      background-image: url('/images/landing/data-center-icon@2x.png')
+      background-size: 277px auto
+      background-repeat: no-repeat
+      background-position: center 120px
+
+.community_index .side.content
+  .section-community
+    display: block
+  .section-nav
+    padding: 40px 40px 100px 40px
+
+%wide-nav
+  width: 100%
+  +respond-to('tablet')
+    width: 470px
+    margin-left: -470px
+  +respond-to('desktop')
+    margin-left: 0
+
+.uv-popover
+  position: fixed !important
+
+.simband_index .uv-popover,
+.sami_index .uv-popover,
+.sensor-module_index .uv-popover,
+.index .uv-popover,
+  position: absolute !important

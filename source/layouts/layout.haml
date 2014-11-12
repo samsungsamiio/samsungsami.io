@@ -1,0 +1,106 @@
+!!! 5
+%html
+  %head
+    %meta{:charset => "utf-8"}/
+    / Always force latest IE rendering engine or request Chrome Frame
+    %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "7KKHdMtxac0VSE44jGAu5B3kaBCax1YP2n-pulat2NU", :name => "google-site-verification"}/
+    / Use title if it's in the page YAML frontmatter
+    %meta{name: "viewport", content: "width=device-width, user-scalable=yes, initial-scale=1.0, minimum-scale=1.0"}/
+    %title= data.page.title || "SAMSUNG"
+    = partial :uservoice
+    = stylesheet_link_tag "application"
+    = javascript_include_tag  "manifest"
+  %body{:class => page_classes, data: {spy: 'scroll', target: '#toc'}}
+    - docs = sitemap.find_resource_by_path('index.html')
+    - landing_page = ['/', '/simband/', '/sensor-module/', '/sami/'].include? current_page.url
+    .container
+      %header.main-header
+        %a.toggle-nav{href: '#'}
+          %span.fa.fa-bars
+          %span.fa.fa-close
+        %form.quick-search
+          %label.search-input-wrapper
+            %input.search{type: 'search', placeholder: 'Search', name: 'q', id: 'swiftype-search' }
+        %nav.main-nav
+          .beta
+            %span Beta
+          %h1.logo= link_to '', '/'
+          %ul.nav-list
+            - children = page_data(docs)['nav']
+            - children.each do |child|
+              - page = page_or_index("/#{child}")
+              = nav_link_to page_title(page), page.url
+          %ul.offsite-nav-list
+            %li
+              %a{href: "http://devportal.samsungsami.io"} Developer Portal
+            %li
+              %a{href: "http://portal.samsungsami.io"} User Portal
+            %li
+              %a{href: "http://www.voiceofthebody.io"} voiceofthebody.io
+      .content.side
+        - unless landing_page
+          %a.toggle-menu{href: '#'}
+            &#8595;
+          %nav.section-nav
+            / Description for community landing
+            .section-community
+              %h1 Community
+              
+              %p Have a development question? Browse the issues that early Simband and SAMI developers are talking about, or ask a new question.
+              
+            %form.quick-search
+              %label.search-input-wrapper
+                %input.search{type: 'search', placeholder: 'Search', name: 'q', id: 'swiftype-search' }
+            %ul.section-nav-list
+              -# Current Subsection
+              - main_section_name = current_page.url.split('/')[1]
+              - main_section = sitemap.find_resource_by_path("/#{main_section_name}/index.html")
+              - if main_section
+                %li.section-nav-item
+                  %h4.section-title= page_title(main_section)
+                  = partial :nested_nav, :locals => {:sections => page_data(main_section)['nav'], :parent => "/#{main_section_name}"}
+              - else
+                - children = page_data(docs)['nav']
+                - children.each do |child|
+                  - page = page_or_index("/#{child}")
+                  %li.section-nav-item
+                    %h4.section-title= link_to page_title(page), page.url
+              -# Meta Subsection
+              %li.section-nav-item.meta-section-nav-item
+                %h4.section-title Contribute
+                %ul.subsections
+                  %li
+                    %a#feedback{href: '#feedback'}
+                      %i.fa.fa-send-o
+                      Feedback
+                  %li
+                    = github_link '<i class="fa fa-github"></i> Edit', current_page
+              %li.section-nav-footer
+                = partial :footer
+        #swiftype-results
+        %div.main.content{ data: {view: 'Content'}}
+          .main-content-interior
+            ~ yield
+            - if current_page.parent
+              - nearest = nearest_resource(current_page)
+              - unless landing_page
+                %ul.paging-links
+                  - prev_page = nearest[:prev]
+                  - if prev_page
+                    %li.prev-page= link_to "Prev: #{page_title(prev_page)}", prev_page.url
+
+                  - next_page = nearest[:next]
+                  - if next_page
+                    %li.next-page= link_to "Next: #{page_title(next_page)}", next_page.url
+
+    = partial "templates"
+    :plain
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-54296710-3', 'auto');
+        ga('send', 'pageview');
+      </script>

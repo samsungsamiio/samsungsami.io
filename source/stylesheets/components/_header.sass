@@ -1,0 +1,179 @@
+.main-header
+  +transition
+  background-color: #323f4a
+  color: #ffffff
+  height: 50px
+  overflow: hidden
+  position: fixed
+  top: 0
+  width: 100%
+  z-index: 100
+  .toggle-nav
+    +transition
+    display: inline-block
+    height: 50px
+    position: relative
+    width: 50px
+    .fa-close
+      +opacity(0)
+    .fa
+      +transition
+      height: 16px
+      width: 16px
+      position: absolute
+      left: 50%
+      top: 50%
+      margin-left: -8px
+      margin-top: -8px
+      text-align: center
+    .menu-expanded &
+      +rotate(180deg)
+  .menu-expanded &
+    height: 100px
+    +respond-to(tablet)
+      position: static
+      .toggle-nav
+        display: none
+    .fa-bars
+      +opacity(0)
+    .fa-close
+      +opacity(1)
+  +respond-to(tablet)
+    position: static
+    height: auto
+    .toggle-nav
+      display: none
+  a
+    color: #ffffff
+  .simband &
+    background-color: #685BC7
+  .sensor-module &
+    background-color: #00B140
+  .sami &
+    background-color: #00A9E0
+  .simbase &
+    background-color: #685ec4
+  .community &
+    background-color: #009CA6
+  .data &
+    background-color: #0057B8
+
+= mobile-nav($color)
+  background-color: darken(desaturate($color, 20%), 15%)
+  +respond-to('tablet')
+    background-color: transparent
+  
+.main-nav
+  background: #00A9E0
+  overflow-x: scroll
+  overflow-y: hidden
+  padding: 7px 24px 7px 24px
+  white-space: nowrap
+  position: relative
+  +respond-to('tablet')
+    overflow: hidden
+  .simband &
+    +mobile-nav(#685BC7)
+  .sensor-module &
+    +mobile-nav(#00B140)
+  .sami &
+    +mobile-nav(#00A9E0)
+  .simbase &
+    +mobile-nav(#685ec4)
+  .community &
+    +mobile-nav(#009CA6)
+  .data &
+    +mobile-nav(#0057B8)
+  .menu-expanded &
+    -webkit-overflow-scrolling: touch
+
+  +respond-to('tablet')
+    display: block
+    padding: 7px 24px 7px 24px
+    // Beta label padding
+    padding-left: 54px
+    white-space: normal
+    &:before
+      display: none
+
+  .beta
+    .index &
+      background-color: darken(desaturate(#00A9E0, 20%), 15%)
+    .sami &
+      background-color: darken(desaturate(#00A9E0, 20%), 15%)
+    .community &
+      background-color: darken(desaturate(#009CA6, 20%), 15%)
+    +source-sans
+    display: none
+    letter-spacing: 1px
+    text-transform: uppercase
+    position: absolute
+    left: 0
+    bottom: 0
+    color: rgba(white,0.5)
+    font-size: 15px
+    height: 100%
+    width: 26px
+    text-align: center
+    -webkit-font-smoothing: antialiased
+    +respond-to('tablet')
+      display: block
+    span
+      display: block
+      line-height: 88px
+      font-weight: 600
+      @include transform( rotate(90deg))
+      +respond-to('1025px')
+        line-height: 63px
+
+  .logo
+    +hidpi('layout/sami')
+    display: inline-block
+    vertical-align: middle
+    height: 32px
+    margin: 0 18px 0 0
+    width: 86px
+    background-size: 100%
+    +respond-to('tablet')
+      height: image-height('layout/sami.png')
+      margin: 0 18px 0 0
+      width: image-width('layout/sami.png')
+    a
+      display: block
+      height: 100%
+      width: 100%
+
+  .nav-list
+    @extend %inline-list
+    +reset-box-model
+    font-size: 13px
+    font-weight: 600
+    li
+      padding: 0 10px
+      &:last-child
+        padding-right: 0
+    a
+      +opacity(0.5)
+      text-decoration: none
+      text-transform: uppercase
+      letter-spacing: 1.6px
+    .nav-item.active a
+      +opacity(1)
+
+  .offsite-nav-list
+    @extend .nav-list
+    font-weight: 400
+    margin-left: 20px
+    +respond-to(tablet)
+      float: none
+      margin-left: 188px
+      padding: 4px 34px 3px 0
+      background: url('/images/layout/offsite.png') no-repeat center right
+      background-size: 24px
+      margin-top: -15px
+    +respond-to(desktop)
+      float: right
+      margin-left: 0
+      margin-top: 19px
+    li a
+      +opacity(1)

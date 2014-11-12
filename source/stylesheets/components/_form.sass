@@ -1,0 +1,74 @@
+.content
+  .fsBody
+    max-width: 620px
+    h1
+      margin-bottom: 1em
+    input[type="text"],input[type="number"],input[type="email"],textarea
+      +border-radius(4px)
+      +box-shadow(0px 1px 5px transparentize(#E5E5E5, 0.1) inset)
+      padding: 10px
+      border: 1px solid #CDCDCD
+    input[type="submit"]
+      +border-radius(4px)
+      +source-sans
+      color: #fff
+      background-color: #00A9E0
+      border: none
+      font-size: 13px
+      letter-spacing: 1px
+      padding: 8px 25px
+      text-transform: uppercase
+    .fsRowBody
+      padding-left: 0
+      padding-right: 0
+    .fsForm
+      .fsLabel
+        +source-sans
+        text-transform: uppercase
+        margin-bottom: 5px
+        font-size: 13px
+        letter-spacing: 1px
+        color: #949AA2
+      .fsSupporting
+        +source-sans
+        margin-top: 3px
+        max-width: 400px
+      .fsOptionLabel
+        +source-sans
+      .fsSectionHeader
+        padding: 0
+      .fsSubmit
+        text-align: left
+        padding-left: 0
+        padding-right: 0
+      .fsError
+        +source-sans
+        text-transform: uppercase
+        font-size: 13px
+        letter-spacing: 1px
+        color: #E3000B
+      .fsValidationError
+        background-color: transparent
+        input[type="text"],input[type="number"],input[type="email"],textarea
+          +box-shadow(0px 1px 5px transparentize(#FF0000, 0.75) inset)
+          border: 1px solid #FF0000
+      h2.fsSectionHeading
+        margin-top: 1.1em
+        font-size: 18px
+        font-weight: 600
+        line-height: 1.1em
+        margin-bottom: 1.1em
+        text-transform: none
+    // Two input rows
+    %two-input-row-split
+      display: inline-block
+      width: 222px
+      margin-right: 10px
+    #fsRow1867332-3, #fsRow1867332-4
+      @extend %two-input-row-split
+    #fsRow1867332-21, #fsRow1867332-22
+      @extend %two-input-row-split
+    #fsRow1867332-23, #fsRow1867332-24
+      @extend %two-input-row-split
+    #fsRow1867332-25, #fsRow1867332-26
+      @extend %two-input-row-split

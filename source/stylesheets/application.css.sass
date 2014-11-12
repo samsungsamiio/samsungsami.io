@@ -1,0 +1,256 @@
+@import 'base'
+@import 'lib/hidpi'
+@import 'lib/normalize'
+@import 'lib/respond-to'
+@import 'lib/arrow'
+@import 'lib/swiftype.autocomplete'
+@import 'lib/featherlight'
+@import 'font-awesome'
+@import 'globals'
+@import 'highlight'
+@import 'components/quick-search'
+@import 'components/section-nav'
+@import 'components/header'
+@import 'components/home'
+@import 'components/landing-pages'
+@import 'components/form'
+
+%inline-list
+  display: inline-block
+  li
+    display: inline-block
+
+.container
+  +transition
+  padding-top: 50px
+  +respond-to('tablet')
+    padding-top: 0
+
+
+.content
+  +transition-property(padding-left)
+  +transition-duration
+  +transition-timing-function
+  $toc-width: 258px
+  background-color: #f8f9fa
+  height: 100%
+  overflow: hidden
+  position: relative
+  +respond-to('tablet')
+    padding-left: 20px
+  +respond-to('desktop')
+    padding-left: $sidebar-width
+  &.sidebar-open
+    padding-left: $sidebar-width
+  +landing-page
+    padding-left: 0
+  &.main
+    .with-toc &
+      +respond-to('desktop')
+        padding-right: $toc-width + 52px
+
+  .table-of-contents
+    -webkit-overflow-scrolling: touch
+    border-left: 1px solid #E1E4E6
+    display: none
+    float: right
+    height: 100%
+    margin-top: -39px
+    overflow-y: auto
+    overflow-x: hidden
+    padding-left: 0
+    padding-top: 39px
+    position: absolute
+    right: 0
+    width: $toc-width
+    background-color: #FCFDFE
+    .interior-menu
+      margin: 0
+      padding: 0
+    +respond-to('desktop')
+      display: block
+    .fixed &
+      position: fixed
+      top: 0
+      margin-top: 0
+      z-index: 1
+    .table-of-contents-list
+      +reset-box-model
+      +no-bullets
+      +source-sans
+      li
+        margin-bottom: 0
+        a
+          width: 100%
+          display: inline-block
+          &:hover
+            border-bottom: none
+        &.level-1
+          margin-bottom: 0
+          a
+            padding: 8px
+            padding-left: 28px
+          &.active > a
+            color: #fff
+            background-color: #ABAFB6
+        &.level-2
+          a
+            padding-left: 41px
+          &.active > a
+            color: #323F4A
+        &.level-3
+          a
+            padding-left: 54px
+      a
+        color: #949AA2
+        
+    .table-of-contents-list .level-1 .interior-menu
+      display: none
+    .table-of-contents-list .level-1.active .interior-menu
+      display: block
+
+.swiftype-widget .autocomplete
+  +box-shadow(none)
+  border: 1px solid #E1E4E6
+  margin-bottom: 20px
+  ul
+    +source-sans
+    font-weight: normal
+    li
+      border: none
+      p.title
+        font-weight: normal
+        color: #1caade
+      &:first-child
+        border-top: none
+      &.active
+        +box-shadow(none)
+        background: #1caade
+        border: none
+        p.title
+          text-shadow: none
+
+
+#swiftype-results
+  position: relative
+  top: 0px
+  left: 0
+  border-left: 1px solid #E1E4E6
+  background: #fff
+  z-index: 10
+  padding: 19px 30px 30px 32px
+  &:empty
+    display: none
+  .fixed &
+    left: 0
+  &:before
+    content: ' '
+    display: block
+    +arrow($width: 15px, $direction: left, $color: #fff)
+    position: absolute
+    left: -15px
+  .title
+    font-size: 16px
+  blockquote
+    font-size: 12px
+    line-height: 1.68em
+    font-style: normal
+  em
+    background: transparentize(yellow, 0.8)
+    display: inline-block
+    padding: 0 0.2em
+    font-style: normal
+  .swiftype-result
+    margin-top: 2em
+    border-top: 1px dotted #E1E4E6
+    padding-top: 2em
+    &:first-child
+      margin-top: 0
+      border-top: none
+      padding-top: 0
+  .st-page
+    +source-sans
+    margin-top: 2em
+    padding-top: 2em
+    border-top: 1px dotted #E1E4E6
+    max-width: 620px
+    text-transform: capitalize
+    &:after
+      content: ""
+      display: block
+      height: 1px
+      width: 100%
+      clear: left
+    .st-prev
+      float: left
+    .st-next
+      float: right
+
+.table-wrapper
+  -webkit-overflow-scrolling: touch
+  overflow: auto
+  width: 100%
+  table td
+    min-width: 200px
+    vertical-align: top
+    +respond-to('tablet')
+      min-width: 100px
+
+%paging-link
+  +source-sans
+  display: block
+  letter-spacing: 1.6px
+  max-width: 48%
+  text-transform: uppercase
+  font-size: 14px
+  a
+    display: block
+  &:first-child:last-child
+    max-width: 100%
+
+// Centered Documentation Content
+.sami, .about
+  .main-content-interior
+    max-width: 100%
+    position: relative
+    margin: 0 auto
+    overflow: hidden
+    +respond-to('1200px')
+      max-width: 620px
+
+.main.content
+  background: #FCFDFE
+  border-left: 1px solid #E1E4E6
+  color: #525E68
+  float: left
+  min-height: 100%
+  width: 100%
+  padding: 39px 20px 50px 22px
+  h2.active, h3.active
+    font-weight: 600
+  +landing-page
+    padding: 0
+  +respond-to('tablet')
+    padding: 39px 50px 50px 52px
+  #st-content-cache + &
+    display: none
+  a
+    +force-wrapping
+  .paging-links
+    +no-bullets
+    +pie-clearfix
+    +reset-box-model
+    margin-top: 56px
+    width: 100%
+    .prev-page, .next-page
+      @extend %paging-link
+    .prev-page
+      float: left
+      a:before
+        content: '\00ab '
+    .next-page
+      float: right
+      text-align: right
+      a:after
+        content: ' \00bb'
+

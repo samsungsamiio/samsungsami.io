@@ -1,0 +1,68 @@
+.quick-search
+  $icon-width: 32px
+  background: transparent
+  color: #C7CACE
+  margin: 0
+  padding: 10px 10px 9px 10px
+  display: none
+  .main-header &
+    min-width: 120px
+    padding: 5px
+    position: fixed
+    right: 22px
+    top: 0px
+    width: 25%
+    z-index: 100
+    display: block
+    .search-input-wrapper:before
+      +opacity(0.5)
+    .search
+      +opacity(0.5)
+      +transition
+  +respond-to('tablet')
+    display: block
+    .main-header &
+      display: none
+    position: static
+    background: #F4F5F6
+    border-bottom: 1px solid #E1E4E6
+    margin: -20px -20px 20px -20px
+    width: auto
+    z-index: auto
+
+
+  .search-input-wrapper
+    padding-left: $icon-width
+    position: relative
+    display: inline-block
+    &:before
+      @extend .fa, .fa-search
+      display: inline-block
+      font-size: 20px
+      left: 14px
+      pointer-events: none
+      position: absolute
+      top: 10px
+      width: 10px
+
+  .search
+    +border-radius(40px)
+    background: none
+    border: none
+    color: #949AA2
+    display: inline-block
+    margin-left: - $icon-width
+    padding: 10px 10px 10px 10px+$icon-width
+    width: 100%
+    +placeholder
+      color: #ddd
+    +respond-to('tablet')
+      width: $sidebar-width - 40px - $icon-width
+    &:focus
+      +box-shadow(0px 1px 6px transparentize(#1caade, 0.6) inset)
+      background: #fff
+      outline: none
+      +placeholder
+        color: lighten(#949AA2, 30%)
+      .main-header &
+        +opacity(1)
