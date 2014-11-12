@@ -91,17 +91,25 @@ body.sami_index .content, body.index .content
     +respond-to('tablet')
       padding-right: 37.5%
   .landing-header
-    background-image: url('/images/landing/sami_bg.jpg')
+    background-color: #0057B8
+    background-image: url('/images/landing/sami_bg.png')
     background-repeat: no-repeat
-    background-position: center center
-    background-size: auto 100%
+    background-position: 90% center
+    +respond-to('tablet')
+      background-position: center right
+      background-size: auto 100%
     +at-media("only screen and (min-width: 900px)")
-      background-size: 100%
+      background-size: auto 100%
     .mask
-      background: rgba(0,0,0, 0.7)
-      padding-bottom: 118px
+      background: rgba(#0057B8, 0.8)
+      padding-bottom: 75px
+      padding-top: 75px
       +respond-to('tablet')
-        +background(linear-gradient(to right, rgba(0,0,0, 0.8) 30%, transparent))
+        padding-right: 40%
+        +background(linear-gradient(to right, rgba(#0057B8, 0.9) 40%, transparent))
+      +respond-to('desktop')
+        padding-right: 50%
+        +background(linear-gradient(to right, rgba(#0057B8, 0.8) 0%, transparent 70%))
       h1, p
         color: #fff
       p
@@ -115,6 +123,7 @@ body.sami_index .content, body.index .content
           padding-right: 95px
   .sami-subheader
     padding: 0
+    background-color: #323F4A
     ul
       +reset-box-model
       +no-bullets
