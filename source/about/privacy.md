@@ -6,10 +6,10 @@ alias: privacy/
 # Privacy Policy
 
 ##Your Information.  Your Rights.  Our Responsibilities.		           
-[Learn More](#samsung-simbandsamiio-platform-privacy-policy)
 
+**Last Updated: November 07, 2014**
 
-Samsung is committed to maintaining the privacy and security of your Personal Information, and we appreciate that medical information is particularly sensitive.  This Privacy Policy applies to the Samsung Simband/SAMIIO Platform, which includes any Samsung device, website or online application that refers or links to this Privacy Policy, the SAMIIO platform that will enable mobile devices like those based on Simband to upload information, and the following Samsung websites: developer.samsungsami.io, devportal.samsungsami.io, api.samsungsami.io, api.samsungsami.io/console, accounts.samsungsami.io, trial.samsungsami.io, and trial-admin.samsungsami.io (collectively, the “Platform”).
+Samsung is committed to maintaining the privacy and security of your Personal Information, and we appreciate that medical information is particularly sensitive.  This Privacy Policy applies to the Samsung Simband/SAMIIO Platform, which includes any Samsung device, website or online application that refers or links to this Privacy Policy, the SAMIIO platform that will enable mobile devices like those based on Simband to upload information, and the following Samsung websites: www.voiceofthebody.io, developer.samsungsami.io, devportal.samsungsami.io, api.samsungsami.io, api-console.samsungsami.io, accounts.samsungsami.io, trial.samsungsami.io, and trial-admin.samsungsami.io (collectively, the “Platform”).
 
 Any personal information that you provide when you use the Platform belongs to you and, in accordance with this Privacy Policy, we want you to understand how it may be collected, used and shared.
 
@@ -47,11 +47,8 @@ Email us at: VOTB@ssi.samsung.com
 Or write to us at: 
 
 SAMIIO
-
 Samsung Electronics Co., Ltd.
-
 2440 Sand Hill Road, Suite 302
-
 Menlo Park, CA 94025
 
 
@@ -143,14 +140,9 @@ Send an email to [VOTB@ssi.samsung.com](mailto:VOTB@ssi.samsung.com)
 
 Send a written request to:
 Privacy Officer
-
-
 SAMIIO
-
 Samsung Electronics Co., Ltd.
-
 2440 Sand Hill Road, Suite 302
-
 Menlo Park, CA 94025
 
 ##Questions?
