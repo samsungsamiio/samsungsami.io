@@ -287,7 +287,7 @@ This is the helper class used in the tutorial. You can also [download](/sami/dow
 <?php
 /**
  * sami-helper.php
- * SAMI helper class that communicates to SAMI using user/pass and implicit grant
+ * SAMI helper class that communicates to SAMI
  * */
 class SAMI {
     # General Configuration
