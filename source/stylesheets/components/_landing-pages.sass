@@ -11,12 +11,30 @@
         overflow: hidden
       li
         text-align: center
-        padding: 20px
-        padding-bottom: 80px
+        padding: 10px
         margin: 0
+        border-bottom: 1px solid #E9EAEC
+        position: relative
+        +respond-to('tablet')
+          position: static
+        &:last-child
+          border-bottom: none
         +respond-to('tablet')
           float: left
           width: 25%
+          padding: 20px
+          padding-bottom: 80px
+          border-bottom: none
+        h2
+          margin: 0
+        p
+          width: 80%
+          margin: 10px 10%
+          padding-bottom: 55px
+          +respond-to('tablet')
+            margin: 0
+            margin: 10px 0
+            width: auto
         span.learn-more
           position: absolute
           bottom: 40px
@@ -24,8 +42,9 @@
           color: #0057B8
       .section-image
         line-height: 100px
-        margin-bottom: 20px
         padding: 20px
+        +respond-to('tablet')
+          margin-bottom: 20px
       img
         display: inline-block
         vertical-align: middle
@@ -41,21 +60,24 @@
     .landing-header
 
       h1
-        font-size: 44px
+        font-size: 26px
         font-weight: 300
         color: #0057B8
         margin-bottom: 14px
         line-height: 1.3em
       p
         margin: 0
-        font-size: 30px
+        font-size: 18px
         color: #525E68
         font-weight: 300
         line-height: 1.3em
         margin-bottom: 28px
       .button
-        font-size: 24px
+        font-size: 20px
         font-weight: 300
+        padding: 15px 20px
+        width: 100%
+        text-align: center
 
     .landing-subheader
       background: #0057B8
@@ -85,46 +107,67 @@
         margin-bottom: -1px
 
 
-body.sami_index .content, body.index .content
-  .landing-header .mask
-    padding: 115px 95px
-    +respond-to('tablet')
-      padding-right: 37.5%
+body.sami_index .content, body.index .content    
   .landing-header
-    background-image: url('/images/landing/sami_bg.jpg')
-    background-repeat: no-repeat
-    background-position: center center
-    background-size: auto 100%
+    background-color: #0057B8
+    +respond-to('tablet')
+      background-image: url('/images/landing/sami_bg.png')
+      background-position: center right
+      background-size: auto 100%
+      h1
+        font-size: 44px
+      p
+        font-size: 30px
+      .button
+        font-size: 24px
+        padding: 15px 50px
+        width: auto
     +at-media("only screen and (min-width: 900px)")
-      background-size: 100%
+      background-size: auto 100%
     .mask
-      background: rgba(0,0,0, 0.7)
-      padding-bottom: 118px
+      background: rgba(#0057B8, 0.8)
+      padding: 25px 20px
       +respond-to('tablet')
-        +background(linear-gradient(to right, rgba(0,0,0, 0.8) 30%, transparent))
+        padding: 75px 95px
+        padding-right: 37.5%
+        p
+          font-size: 26px
+        padding-right: 40%
+        +background(linear-gradient(to right, rgba(#0057B8, 0.9) 40%, transparent))
+      +respond-to('desktop')
+        padding-right: 50%
+        +background(linear-gradient(to right, rgba(#0057B8, 0.8) 0%, transparent 70%))
       h1, p
         color: #fff
       p
-        font-size: 26px
+        font-size: 18px
         margin-bottom: 36px
       .button
         background: #F7971A
         color: #fff
-        +respond-to('tablet')
-          padding-left: 95px
-          padding-right: 95px
+       
   .sami-subheader
     padding: 0
+    background-color: #323F4A
     ul
       +reset-box-model
       +no-bullets
       overflow: hidden
     li
-      padding: 40px 80px
+      padding: 20px 20px
+      text-align: center
+      &:first-child
+        border-bottom: 1px solid #525D66
       +respond-to('tablet')
+        padding: 40px 80px
         float: left
         width: 50%
+        &:first-child
+          border-bottom: none
     h2
+      font-size: 24px
+      +respond-to('tablet')
+        font-size: 30px
       img
         width: auto
         display: inline-block
@@ -133,7 +176,15 @@ body.sami_index .content, body.index .content
         +respond-to('desktop')
           margin: -10px 0 0 0
     p
-      width: 80%
+      width: 100%
+      margin: 0 auto
+      position: relative
+      font-size: 15px
+      margin-bottom: 10px
+      +respond-to('tablet')
+        font-size: 17px
+        margin-bottom: 0
+        width: 80%
 
 body.sensor-module_index .landing-links
   border-top: 2px solid #E9EAEC

@@ -303,6 +303,9 @@ hr.typography
   +source-sans
   padding: 20px 35px
   border-top: 2px solid #E9EAEC
+  text-align: center
+  +respond-to('tablet')
+    text-align: left
   p, ul
     +reset-box-model
   li
@@ -325,8 +328,11 @@ hr.typography
     font-size: 12px
     margin: 0 0 24px 0
   .feedback
+    display: none
     padding: 25px 0
     float: right
+    +respond-to('tablet')
+      display: block
     a
       color: #C7CACE
 a.learn-more

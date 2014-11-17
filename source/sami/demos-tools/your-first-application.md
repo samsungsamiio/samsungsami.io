@@ -5,7 +5,7 @@ title: "Your first Web app"
 
 # Your first Web app
 
-Our first tutorial uses PHP with a little JavaScript. These should interest anyone building a Web app or any service using SAMI. 
+Our first tutorial uses PHP with a little JavaScript. These should interest anyone building a Web app or any service using SAMI.
 
 We assume you know or understand the basics of PHP, HTML and JavaScript.
 {:.info}
@@ -81,7 +81,7 @@ Great! You now have the client (application) ID and the device ID, which will be
 <p>Please <a href="https://accounts.samsungsami.io/authorize?response_type=token&client_id=xxxxx">login</a></p>
 ~~~
 
-- Change `CLIENT_ID`{:.param} and `DEVICE_ID`{:.param} to your real client and device IDs in the following lines in `sami-helper.php`.
+- Change `CLIENT_ID`{:.param} and `DEVICE_ID`{:.param} to your real client and device IDs in the following lines in `SamiConnector.php`.
 
 ~~~php
 <?php
@@ -105,7 +105,7 @@ Before we dig in, here's a preview of how our simple Web app will work.
 
 ## Implementation Details
 
-This sample application consists of four PHP files. `sami-helper.php` contains a helper class, and the other PHP files communicate to SAMI via the helper.
+This sample application consists of four PHP files. `SamiConnector.php` contains a helper class, and the other PHP files communicate to SAMI via the helper.
 
 ### Warm-up
 
@@ -163,13 +163,13 @@ In `hello-sami.php`, create a helper instance and set the access token to it.
 
 ~~~php
 <?php
-require('sami-helper.php');
-$sami = new SAMI();
+require('SamiConnector.php');
+$sami = new SamiConnector();
 $sami->setAccessToken($_SESSION['access_token']);
 ?>
 ~~~
 
-Please see details of [**sami-helper.php**](#sami-helper-class-code) at the end of the document or [**download**](/sami/downloads/sami-demo-firstwebapp.zip) the attached source code.
+Please see details of [**SamiConnector.php**](#sami-helper-class-code) at the end of the document or [**download**](/sami/downloads/sami-demo-firstwebapp.zip) the attached source code.
 {:.info}
 
 #### Send a message to SAMI
@@ -210,11 +210,11 @@ Here is what `post-message.php` looks like. It uses the helper class to construc
 ~~~php
 <?php
 session_start();
-require('sami-helper.php');
-$sami = new SAMI();
+require('SamiConnector.php');
+$sami = new SamiConnector();
 $sami->setAccessToken($_SESSION["access_token"]);
 $data ='{"stepCount":7994,"heartRate":94,"description":"rbpro","state":0,"activity":2}'; // sami_gear_fit device
-$payload = '{"sdid":"'.SAMI::DEVICE_ID.'", "data":'.$data.'}';
+$payload = '{"sdid":"'.SamiConnector::DEVICE_ID.'", "data":'.$data.'}';
 $response = $sami->sendMessage($payload);
 header('Content-Type: application/json');
 echo json_encode($response);
@@ -267,11 +267,11 @@ Here is what `get-message.php` looks like. It uses the helper class to construct
 ~~~php
 <?php
 session_start();
-require('sami-helper.php');
-$sami = new SAMI();
+require('SamiConnector.php');
+$sami = new SamiConnector();
 $sami->setAccessToken($_SESSION["access_token"]);
 $messageCount = 1;
-$response = $sami->getMessagesLast(SAMI::DEVICE_ID, $messageCount);
+$response = $sami->getMessagesLast(SamiConnector::DEVICE_ID, $messageCount);
 header('Content-Type: application/json');
 echo json_encode($response);
 ?>
@@ -286,13 +286,12 @@ This is the helper class used in the tutorial. You can also [download](/sami/dow
 ~~~php
 <?php
 /**
- * sami-helper.php
- * SAMI helper class that communicates to SAMI using user/pass and implicit grant
+ * SAMI helper class that communicates to SAMI
  * */
-class SAMI {
+class SamiConnector {
     # General Configuration
-    const CLIENT_ID = "YOUR_CLIENT_ID";
-    const DEVICE_ID = "YOUR_DEVICE_ID";
+    const CLIENT_ID = "xxxxx";
+    const DEVICE_ID = "xxxxx";
     const API_URL = "https://api.samsungsami.io/v1.1";
     const WEBSOCKET_URL = "wss://api.samsungsami.io/v1.1";
     const ACCOUNTS_URL = "https://accounts.samsungsami.io/";
@@ -319,14 +318,14 @@ class SAMI {
      * Returns the URL to login in SAMI Accounts
      */
     public function getLoginUrl(){
-        return SAMI::ACCOUNTS_URL.SAMI::API_AUTHORIZE."?response_type=token&client_id=".SAMI::CLIENT_ID;
+        return SamiConnector::ACCOUNTS_URL.SamiConnector::API_AUTHORIZE."?response_type=token&client_id=".SamiConnector::CLIENT_ID;
     }
      
     /**
      * Returns the URL to logout from SAMI Accounts
      */
     public function getLogoutUrl(){
-        return SAMI::ACCOUNTS_URL.SAMI::API_LOGOUT."?redirect_uri=".SAMI::REDIRECT_URI;
+        return SamiConnector::ACCOUNTS_URL.SamiConnector::API_LOGOUT."?redirect_uri=".SamiConnector::REDIRECT_URI;
     }
      
     /**
@@ -334,7 +333,7 @@ class SAMI {
      * Ex: /v1.1/live?userId=<USER_ID>&Authorization=bearer+<ACCESS_TOKEN>
      */
     public function getLiveWebsocketUrl(){
-        return SAMI::WEBSOCKET_URL . SAMI::API_LIVE . '?userId=' . $this->user->data->id . '&Authorization=bearer+' . $this->token;
+        return SamiConnector::WEBSOCKET_URL . SamiConnector::API_LIVE . '?userId=' . $this->user->data->id . '&Authorization=bearer+' . $this->token;
     }
      
     /**
@@ -401,44 +400,44 @@ class SAMI {
      * GET /users/self API
      */
     public function getUsersSelf(){
-        return $this->getCall(SAMI::API_URL . SAMI::API_USERS_SELF);
+        return $this->getCall(SamiConnector::API_URL . SamiConnector::API_USERS_SELF);
     }
      
     /**
      * GET /users/uid/devices API
      */
     public function getUserDevices($userId){
-        return $this->getCall(SAMI::API_URL . str_replace("<USER_ID>", $userId, SAMI::API_USERS_DEVICES));
+        return $this->getCall(SamiConnector::API_URL . str_replace("<USER_ID>", $userId, SamiConnector::API_USERS_DEVICES));
     }
      
     /**
      * POST /message API
      */
     public function sendMessage($payload){
-        return $this->postCall(SAMI::API_URL . SAMI::API_MESSAGES_POST, $payload);
+        return $this->postCall(SamiConnector::API_URL . SamiConnector::API_MESSAGES_POST, $payload);
     }
      
     /**
      * GET /historical/normalized/messages/last API
      */
     public function getMessagesLast($deviceCommaSeparatedList, $countByDevice){
-        $apiPath = SAMI::API_MESSAGES_LAST;
+        $apiPath = SamiConnector::API_MESSAGES_LAST;
         $apiPath = str_replace("<DEVICES>", $deviceCommaSeparatedList, $apiPath);
         $apiPath = str_replace("<COUNT>", $countByDevice, $apiPath);
-        return $this->getCall(SAMI::API_URL.$apiPath);
+        return $this->getCall(SamiConnector::API_URL.$apiPath);
     }
      
     /**
      * GET /historical/normalized/messages API
      */
     public function getMessages($sdid, $count, $startDate, $endDate, $order){
-        $apiPath = SAMI::API_MESSAGES;
+        $apiPath = SamiConnector::API_MESSAGES;
         $apiPath = str_replace("<DEVICE_ID>", $sdid, $apiPath);
         $apiPath = str_replace("<COUNT>", $count, $apiPath);
         $apiPath = str_replace("<START_DATE>", $startDate, $apiPath);
         $apiPath = str_replace("<END_DATE>", $endDate, $apiPath);
         $apiPath = str_replace("<ORDER>", $order, $apiPath);
-        return $this->getCall(SAMI::API_URL.$apiPath);
+        return $this->getCall(SamiConnector::API_URL.$apiPath);
     }
      
     /**

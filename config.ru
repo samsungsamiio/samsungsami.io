@@ -28,10 +28,6 @@ module Rack
   end
 end
 
-use Rack::Auth::Basic, "Restricted Area" do |username, password|
-  [username, password] == ['developer', 'samiwich']
-end
-
 use Rack::Deflater
 use Rack::TryStatic, :root => "build", :urls => %w[/], :try => ['.html', 'index.html', '/index.html']
 
