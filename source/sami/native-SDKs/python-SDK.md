@@ -21,13 +21,13 @@ The Python SDK is for version 2.7 and 3.x. It was tested with version 2.7.
 
 ### Source code
 
-The source code for the Python SDK is located [on GitHub.](https://github.com/samiio/sami-python)
+The source code for the Python SDK is located [on GitHub.](https://github.com/samsungsamiio/sami-python)
 
 ## Installation
 
 Once you have installed the required libraries, add the scripts to your project.
 
-For a more complete list of examples, see our demo application at [https://github.com/samiio/sami-python-demo](https://github.com/samiio/sami-python-demo).
+For a more complete list of examples, see our demo application at [https://github.com/samsungsamiio/sami-python-demo](https://github.com/samsungsamiio/sami-python-demo).
 
 ## More about SAMI
 
@@ -39,6 +39,6 @@ To create and manage your services and devices on SAMI, visit the [Developer Por
 
 ## Licence and copyright
 
-Licensed under the Apache License. See [LICENCE.](https://github.com/samiio/sami-python/blob/master/LICENSE)
+Licensed under the Apache License. See [LICENCE.](https://github.com/samsungsamiio/sami-python/blob/master/LICENSE)
 
 Copyright (c) 2014 Samsung Electronics Co., Ltd.

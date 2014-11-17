@@ -20,7 +20,7 @@ The SDK was developed with Eclipse and Maven and tested with Android 4.4.2. Buil
 
 ## Source code
 
-The source code for the Java/Android SDK is located [on GitHub.](https://github.com/samiio/sami-android)
+The source code for the Java/Android SDK is located [on GitHub.](https://github.com/samsungsamiio/sami-android)
 
 ## Installation
 
@@ -172,6 +172,6 @@ https://accounts.samsungsami.io/logout?redirect_uri
 
 ## License and copyright
 
-Licensed under the APACHE license. See [LICENSE.](https://github.com/samiio/sami-android/blob/master/LICENSE)
+Licensed under the APACHE license. See [LICENSE.](https://github.com/samsungsamiio/sami-android/blob/master/LICENSE)
 
 Copyright (c) Samsung Electronics Co., Ltd.

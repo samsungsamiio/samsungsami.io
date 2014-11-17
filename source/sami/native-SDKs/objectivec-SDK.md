@@ -17,7 +17,7 @@ The SDK supports iOS version 6 and higher. The sample application was written fo
 
 ### Source code
 
-The source code for the Objective-C/iOS SDK is located [on GitHub.](https://github.com/samiio/sami-ios)
+The source code for the Objective-C/iOS SDK is located [on GitHub.](https://github.com/samsungsamiio/sami-ios)
 
 ## Installation
 
@@ -227,6 +227,6 @@ https://accounts.samsungsami.io/logout?redirect_uri
 
 ## License and copyright
 
-Licensed under the APACHE license. See [LICENSE.](https://github.com/samiio/sami-ios/blob/master/LICENSE)
+Licensed under the APACHE license. See [LICENSE.](https://github.com/samsungsamiio/sami-ios/blob/master/LICENSE)
 
 Copyright (c) Samsung Electronics Co., Ltd.

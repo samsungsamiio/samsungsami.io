@@ -16,7 +16,7 @@ The PHP SDK was tested with version 5.4.
 
 ### Source code
 
-The source code for the PHP SDK is located [on GitHub.](https://github.com/samiio/sami-php)
+The source code for the PHP SDK is located [on GitHub.](https://github.com/samsungsamiio/sami-php)
 
 ## Installation
 
@@ -24,7 +24,7 @@ No specific installation process is required. Add the scripts to your project an
 
 ## Usage
 
-The easiest way to start using the SAMI PHP SDK is to look at our demo scripts. These will give you a good overview of what you can do, and how to do it. Read more at [https://github.com/samiio/sami-php-demo](https://github.com/samiio/sami-php-demo).
+The easiest way to start using the SAMI PHP SDK is to look at our demo scripts. These will give you a good overview of what you can do, and how to do it. Read more at [https://github.com/samsungsamiio/sami-php-demo](https://github.com/samsungsamiio/sami-php-demo).
 
 ## More about SAMI
 
@@ -36,6 +36,6 @@ To create and manage your services and devices on SAMI, visit the [Developer Por
 
 ## Licence and copyright
 
-Licensed under the Apache License. See [LICENCE.](https://github.com/samiio/sami-php/blob/master/LICENSE)
+Licensed under the Apache License. See [LICENCE.](https://github.com/samsungsamiio/sami-php/blob/master/LICENSE)
 
 Copyright (c) 2014 Samsung Electronics Co., Ltd.
