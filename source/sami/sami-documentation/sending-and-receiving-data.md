@@ -254,3 +254,18 @@ In the below example, `ddid`{:.param} refers to the device ID of the device conn
   }
 }       
 ~~~
+
+### WebSocket errors
+
+|Code |Error message |Condition
+|-----|-------|-----
+|400 | Bad Request |Invalid JSON
+|400 | Missing sdid value |Missing `sdid`
+|400 |Missing ddid value |Missing `ddid`
+|400 |Invalid ts value |Invalid timestamp or timestamp less than 0
+|400 |Invalid ts value (in future) |Timestamp greater than `FUTURE_GRACE_PERIOD`
+|401 |Please provide a valid authorization header |Missing auth token
+|401 |Device not registered |Unregistered sdid
+|403 |You do not have the right permission: devices |No WRITE permission
+|403 |Wrong cid |Mismatch `cid`
+|429 |Rate limit exceeded |Rate limit exceeded

@@ -11,7 +11,7 @@ The SAMI API provides access to the SAMI platform.
  The API is continually being developed and refined. Stay in touch with the SAMI team for any questions and updates.
  {: .warning}
 
-See [**Validation and Errors**](#validation-errors) for a list of error
+See [**Validation and errors**](#validation-and-errors) for a list of error
 codes that can be returned.
 {:.info}
 
@@ -473,7 +473,6 @@ Modifies a device's parameters.
   "name":"New Office Samsung lamp 2",
   "manifestVersion":3,
   "manifestVersionPolicy":"DEVICE",
-  "needProviderAuth": true
 }
           
 ~~~~
@@ -1136,12 +1135,12 @@ Returns raw (original format) messages.
 
 
 
-## Validation and Errors
+## Validation and errors
 
 
 **Responses**
 
-| Http Status | Code | Message                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Notes                                                                               |
+| Http Status | Code | Error message                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Condition                                                                               |
 |-------------|------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
 | `200`{:.param}         | -    | Request successful.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |                                                                                     |
 | `400`{:.param}         | 4001 | Possible messages:Invalid emailMinimum length {0}Maximum length {0}Numeric field onlyText field onlyBoolean field onlyInvalid user name (characters allowed: alphanumeric, ".", "-" and "_" - must start with a letter)Required parameterThe manifest content is invalidThe manifest content is invalid - Details: {0}The manifest content cannot be emptyInvalid ruleMinimum value {0}Maximum value {0}The rule identifier "{1}" does not match with the URL parameter "{0}" | Validation error.                                                                   |

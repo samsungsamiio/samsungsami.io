@@ -109,7 +109,7 @@ The code can be exchanged for an access token within 60 seconds before expiring.
   |`access_token`{:.param}   |The final access token that can be used with API calls.
   |`token_type`{:.param}     |Always `bearer` for now.
   |`expires_in`{:.param}     |In seconds, indicates how long the access token will expire.
-  |`refresh_token`{:.param}  |(Ignore for now) A refresh token is used to obtain short-lived tokens. However, these are not yet implemented in SAMI.
+  |`refresh_token`{:.param}  |A refresh token is used to obtain short-lived tokens. 
 
 ### Implicit method
 
@@ -189,12 +189,53 @@ This type of access token allows an application to authenticate itself in situat
   |`token_type`{:.param}    |Always `bearer` for now.
   |`expires_in`{:.param}    |In seconds, indicates in how long the access token will expire.
 
+### Refresh a token
+
+This call issues a new `access_token` by using a previously issued `refresh_token` from the same authenticated client. The endpoint is expected to be called from the client app server. 
+
+The call must be authenticated with a valid Authorization header. 
+
+~~~
+POST /token
+~~~
+
+**Example**
+
+    https://accounts.samsungsami.io/token?grant_type=refresh_token&refresh_token=tGzv3JOkF0XG5Qx2TlKWIA
+
+**Request parameters**
+
+|Parameter |Description
+|---------|----------
+|`grant_type`{:.param} |Must be set to value `refresh_token`.
+|`refresh_token`{:.param} |The refresh token issued to the client.
+
+**Example response**
+
+~~~
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Cache-Control: no-store
+Pragma: no-cache
+{
+  "access_token":"2YotnFZFEjr1zCsicMWpAA",
+  "token_type":"bearer",
+  "expires_in":3600,
+  "refresh_token":"tGzv3JOkF0XG5Qx2TlKWIA",
+  "scope": "the_scope"
+}
+~~~
+
+
+
+
+
 ### /authorize errors
 
 For authorization code grants, the error code is
 included as an "error" query string parameter. For implicit grants, the error code is included as an "error" fragment parameter.
 
-  |Http Status   |Error                                                                  |Condition                                                                                                                                                                         Notes
+  |Http Status   |Error message                                                              |Condition                                                                                                                                                                         
   |------------- |---------------------------------------------------------------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------------------
   |`400`{:.param}        |Invalid parameter: redirect_uri                                       |The provided redirect_uri does not match the registered redirect_uri for the client application.                                                                                
   |`302`{:.param}        |server_error                                                          |Unexpected server error                                                                                                                                                           Sent to "redirect_uri", includes the state param.
@@ -218,7 +259,7 @@ Pragma: no-cache
 }
 ~~~~
 
-  |Http Status   |Error                      |Condition                                                                                                                                                                          |Notes |
+  |Http Status   |Error message                      |Condition                                                                                                                                                                           |
   |------------- |-------------------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |-------
   |`400`{:.param}        |server_error              |Unexpected server error.                                                                                                                                                           |
   |`400`{:.param}        |invalid_request           |The request is missing a required parameter (other than `redirect_uri`), includes an unsupported parameter value, includes a parameter more than once, or is otherwise malformed.  |
