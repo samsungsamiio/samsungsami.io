@@ -22,7 +22,7 @@ SAMI defines a new paradigm for developers to create services and applications. 
 
 - Clients can access and aggregate historical data from different sources, thus opening a new perspective on big data.
 - Clients that subscribe to a WebSocket can receive data in real-time, enabling different devices and applications to talk to each other.
-- SAMI is the only service that gives users complete control over their data. By granting access to devices and applications, users promote an ecosystem of services around data.`
+- SAMI is the only service that gives users complete control over their data. By granting access to devices and applications, users promote an ecosystem of services around data.
 - Through the definition of a Manifest, developers can support diverse devices and data.
 
 ## What this documentation covers
