@@ -68,10 +68,6 @@ https://accounts.samsungsami.io/authorize
 
 After the request is submitted via the WebView, the Android app needs to implement a callback to capture the accessToken.
 
-## OAuth2 flow - Web app
-
-Web apps require the use of Authorization Code grant for authentication. See [Authorization](/sami/sami-documentation/authentication.html#authorization-code-method) in the SAMI documentation.
-
 ## Get user info
 
 The first task is to use the access token to obtain the user's information: ID, full name, email, etc.
