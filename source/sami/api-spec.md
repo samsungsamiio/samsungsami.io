@@ -1053,6 +1053,18 @@ Exports normalized messages, according to one of the following parameter combina
 | `startDate`{:.param} | Time of earliest (oldest) item to return, in milliseconds since epoch.
 | `uid`{:.param}       | (Optional) The owner's user ID of the messages being searched. If not specified, defaults to the current authenticated user (if the current authentication context is not an application). If specified, it must be that of a user to which the current authenticated user (or the application) has read access.
 
+**Example response**
+
+~~~
+{
+  "exportId":"f2fcf3e0-4425-11e4-be99-0002a5d5c51b",
+  "sdid":"heart_monitor_123",
+  "startDate":1378425600000,
+  "endDate": 2378425600000,
+  "order": "asc",
+  "format": "json"
+}
+~~~
 
 ### Check export status
 
@@ -1068,6 +1080,17 @@ Returns the status of the messages export.
   |----------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   |`exportID`{:.param}     |The Export ID of the export query.
 
+**Example response**
+
+~~~
+{
+  "exportId":"f2fcf3e0442511e4be990002a5d5c51b",
+  "status":"Served",
+  "md5": "12345",
+  "ttl": "2014-11-11T06:35:44.000-08:00"
+}
+~~~
+
 
 ### Get export result
 
@@ -1075,7 +1098,7 @@ Returns the status of the messages export.
 GET /messages/export/<exportID>/result
 ~~~
 
-Returns the result of the export query. The result call returns the response in tgz format. The tar file may contain one or more files with the results.
+Returns the result of the export query. The result call returns the response in tgz format. 
 
 **Request parameters**
 
@@ -1083,6 +1106,30 @@ Returns the result of the export query. The result call returns the response in 
   |----------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   |`exportID`{:.param}     |The Export ID of the export query.
 
+The tar file may contain one or more files in the following format:
+
+**Example response**
+
+~~~
+{
+  "uids": [ "06282de0442611e491800002a5d5c51b"],
+  "sdids": [ "hueID_dev_2"],
+  "ddids": [],
+  "order": "desc",
+  "startDate": 123456,
+  "endDate": 223456,
+  "size": 1,
+  "data": [
+    {
+    "ts": 1377206303000,
+    "cts": 1377206303000,
+    "sdid": "hueID_dev_2",
+    "mid": "20442c0b-70b5-4670-b712-32f8b78393bf",
+    "data": "{\"status\":{\"state\":{\"bri\":254}}}"
+    }
+  ]
+}
+~~~
 
 ### Get raw messages
 

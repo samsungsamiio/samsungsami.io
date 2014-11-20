@@ -193,11 +193,19 @@ This type of access token allows an application to authenticate itself in situat
 
 This call issues a new `access_token` by using a previously issued `refresh_token` from the same authenticated client. The endpoint is expected to be called from the client app server. 
 
-The call must be authenticated with a valid Authorization header. 
-
 ~~~
 POST /token
 ~~~
+
+The call must be authenticated with a valid Authorization header. Because you will not have a valid `access_token` to use as an Authorization header, you can provide `client_id` and `client_secret` by using HTTP Basic authentication. Pass the Authorization header as follows on your HTTP call:
+
+**Example**
+
+~~~
+Authorization: Basic czZCaGRSa3F0Mzo3RmpmcDBaQnIxS3REUmJuZlZkbUl3
+~~~
+
+The query parameters may be passed as follows.
 
 **Example**
 
