@@ -293,48 +293,17 @@ class SamiConnector {
     const CLIENT_ID = "xxxxx";
     const DEVICE_ID = "xxxxx";
     const API_URL = "https://api.samsungsami.io/v1.1";
-    const WEBSOCKET_URL = "wss://api.samsungsami.io/v1.1";
-    const ACCOUNTS_URL = "https://accounts.samsungsami.io/";
-    const REDIRECT_URI = "http://localhost:81/samidemo/index.php";
  
     # SAMI API paths
     const API_USERS_SELF = "/users/self";
-    const API_USERS_DEVICES = "/users/<USER_ID>/devices";
     const API_MESSAGES_LAST = "/messages/last?sdids=<DEVICES>&count=<COUNT>"; 
-    const API_MESSAGES = "/messages?sdid=<DEVICE_ID>&count=<COUNT>&startDate=<START_DATE>&endDate=<END_DATE>&order=<ORDER>";
     const API_MESSAGES_POST = "/messages";
-    const API_WEBSOCKET = "/websocket";
-    const API_LIVE = "/live";
-    const API_AUTHORIZE = "/authorize";
-    const API_LOGOUT = "/logout";
      
     # Members
     public $token = null;
     public $user = null;
      
     public function __construct(){ }
-     
-    /**
-     * Returns the URL to login in SAMI Accounts
-     */
-    public function getLoginUrl(){
-        return SamiConnector::ACCOUNTS_URL.SamiConnector::API_AUTHORIZE."?response_type=token&client_id=".SamiConnector::CLIENT_ID;
-    }
-     
-    /**
-     * Returns the URL to logout from SAMI Accounts
-     */
-    public function getLogoutUrl(){
-        return SamiConnector::ACCOUNTS_URL.SamiConnector::API_LOGOUT."?redirect_uri=".SamiConnector::REDIRECT_URI;
-    }
-     
-    /**
-     * Returns the URL to connect to the /live websocket endpoint
-     * Ex: /v1.1/live?userId=<USER_ID>&Authorization=bearer+<ACCESS_TOKEN>
-     */
-    public function getLiveWebsocketUrl(){
-        return SamiConnector::WEBSOCKET_URL . SamiConnector::API_LIVE . '?userId=' . $this->user->data->id . '&Authorization=bearer+' . $this->token;
-    }
      
     /**
      * Sets the access token and looks for the user profile information
@@ -404,13 +373,6 @@ class SamiConnector {
     }
      
     /**
-     * GET /users/uid/devices API
-     */
-    public function getUserDevices($userId){
-        return $this->getCall(SamiConnector::API_URL . str_replace("<USER_ID>", $userId, SamiConnector::API_USERS_DEVICES));
-    }
-     
-    /**
      * POST /message API
      */
     public function sendMessage($payload){
@@ -425,28 +387,6 @@ class SamiConnector {
         $apiPath = str_replace("<DEVICES>", $deviceCommaSeparatedList, $apiPath);
         $apiPath = str_replace("<COUNT>", $countByDevice, $apiPath);
         return $this->getCall(SamiConnector::API_URL.$apiPath);
-    }
-     
-    /**
-     * GET /historical/normalized/messages API
-     */
-    public function getMessages($sdid, $count, $startDate, $endDate, $order){
-        $apiPath = SamiConnector::API_MESSAGES;
-        $apiPath = str_replace("<DEVICE_ID>", $sdid, $apiPath);
-        $apiPath = str_replace("<COUNT>", $count, $apiPath);
-        $apiPath = str_replace("<START_DATE>", $startDate, $apiPath);
-        $apiPath = str_replace("<END_DATE>", $endDate, $apiPath);
-        $apiPath = str_replace("<ORDER>", $order, $apiPath);
-        return $this->getCall(SamiConnector::API_URL.$apiPath);
-    }
-     
-    /**
-     * SAMI has milliseconds based timestamps, returns the current date
-     */
-    function currentTimeMillis() {
-        $microtime = microtime();
-        $comps = explode(' ', $microtime);
-        return sprintf('%d%03d', $comps[1], $comps[0] * 1000);
     }
 }
 ~~~
