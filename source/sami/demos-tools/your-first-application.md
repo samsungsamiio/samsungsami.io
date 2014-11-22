@@ -35,7 +35,7 @@ For the sake of simplicity in this tutorial, you take the role of both the appli
 
 Follow [these instructions](/sami/sami-documentation/developer-user-portals.html#creating-an-application) to create an application using the Developer Portal. For this tutorial, select the following:
 
-- Set "Redirect URL" for your application to `http://localhost:81/samidemo/index.php`.
+- Set "Redirect URL" for your application to `http://localhost:8000/samidemo/index.php`.
 - Choose "Client Credentials Flow & Implicit Flow" and both "Read" and "Write".
 
 [Make a note of your client ID.](/sami/sami-documentation/developer-user-portals.html#how-to-find-your-application-id) This is your application ID, which you will need later.
@@ -68,9 +68,9 @@ Great! You now have the client (application) ID and the device ID, which will be
 
 ### Setup your local machine 
 
-- Install a Web server and configure it to open port 81 on localhost.
+- Install a Web server and configure it to open port 8000 on localhost.
 - Install PHP and enable cURL in PHP.
-- Create a directory `samidemo` that is accessible via `http://localhost:81/samidemo`. For example, set up `http://localhost:81/` to access C:\MyWebsites on your Windows machine. Then create `samidemo` under C:\MyWebsites.
+- Create a directory `samidemo` that is accessible via `http://localhost:8000/samidemo`. For example, set up `http://localhost:8000/` to access C:\MyWebsites on your Windows machine. Then create `samidemo` under C:\MyWebsites.
 
 ### Prepare the sample application files
 
@@ -94,7 +94,7 @@ const DEVICE_ID = "xxxxx";
 
 Before we dig in, here's a preview of how our simple Web app will work.
 
-- Load  [http://localhost:81/samidemo/index.php](http://localhost:81/samidemo/index.php) in your browser. You will see the following page:
+- Load  [http://localhost:8000/samidemo/index.php](http://localhost:8000/samidemo/index.php) in your browser. You will see the following page:
 ![SAMI first Web app](/images/docs/sami/demos-tools/sampleWebAppLoginScreen.png)
 - Click "Login" and authenticate with the account you used so far.
 - Once you complete authentication, you will be redirected to `hello-sami.php`. Now you can play with SAMI.
@@ -130,7 +130,7 @@ We'll start with a basic HTML page. Our `index.php` initially looks like the fol
 Now let's enhance `index.php` and add `hello-sami.php` to get the SAMI authorization token. This sample application uses the OAuth2 [implicit grant flow.](/sami/sami-documentation/authentication.html#implicit-method) After a successful login, SAMI calls back the redirect URL we set in the Developer Portal. The URL contains the access token, as seen in the following example:
 
 ~~~
-http://localhost:81/samidemo/index.php#expires_in=1209600&amp;token_type=bearer&amp;access_token=e77d0e4fc3e144429e062021f70894d3
+http://localhost:8000/samidemo/index.php#expires_in=1209600&amp;token_type=bearer&amp;access_token=e77d0e4fc3e144429e062021f70894d3
 ~~~
 
 Insert the following lines of JavaScript within the document body of `index.php`. After SAMI calls back, the script replaces the # with a ? and then reloads a new page `hello-sami.php`.
@@ -279,10 +279,13 @@ echo json_encode($response);
 
 If everything works, the latest message shows up on the screen.
 
-### SAMI helper class code
+### SAMI helper class
 
-This is the helper class used in the tutorial. You can also [download](/sami/downloads/sami-demo-firstwebapp.zip) all the files used in this sample application.
+This is the helper class used in the tutorial. You can also [download](/sami/downloads/sami-demo-firstwebapp.zip) all the files used in this sample application. This helper uses `[cURL](http://php.net/manual/en/intro.curl.php)` functions to construct HTTP requests and then communicate with SAMI.
 
+The next section will show you a simpler way to implement this helper class. That approach is based on [SAMI PHP SDK][1]. You do not need to handle `cURL` directly in approach.
+
+Below is the source code of the helper class that does not use PHP SDK.
 ~~~php
 <?php
 /**
@@ -389,4 +392,91 @@ class SamiConnector {
         return $this->getCall(SamiConnector::API_URL.$apiPath);
     }
 }
+?>
 ~~~
+
+### Simplify SAMI helper class using PHP SDK
+
+This section shows you another way to implement the helper class `SamiConnector`, which is much simplier due to using [PHP SDK][1].
+
+You need a bit setup to use this newer version:
+
+- Create directory `sdk` under your directory `samidemo`.
+- Follow the instructions at [PHP SDK][1] to get the SDK source code. Copy all source code to `samidemo/sdk`
+- Replace `SamiConnector.php` that you have used above by [this one](/sami/downloads/SamiConnector.php).
+- Change `CLIENT_ID`{:.param} and `DEVICE_ID`{:.param} to your real client and device IDs in `SamiConnector.php` 
+
+Now you are ready to play the newer version of the app. This version has been tested on MAC machines.
+
+Below is the source code of `SamiConnector.php` using PHP SDK. There is no need to deal with the details of `cURL` in this version compared to [the older version](#sami-helper-class-code). PHP SDK handles that for you. The code becomes shorter and simpler. 
+
+~~~php
+<?php
+/**
+ * SAMI helper class that communicates to SAMI via SAMI PHP SDK
+ * */
+require_once(dirname(__FILE__) .'/sdk/Swagger.php');
+swagger_autoloader('MessagesApi');
+
+class SamiConnector {
+    # General Configuration
+    const CLIENT_ID = "xxxxx";
+    const DEVICE_ID = "xxxxx";
+    const API_URL = "https://api.samsungsami.io/v1.1";
+ 
+    # Members
+    public $token = null;
+    public $apiClient = null; 
+
+    public function __construct(){ }
+     
+    /**
+     * Sets the access token and looks for the user profile information
+     */
+    public function setAccessToken($someToken){
+      $this->token = $someToken;
+      $authHeader = 'bearer ' .$this->token;
+      $this->apiClient = new APIClient(SamiConnector::CLIENT_ID, SamiConnector::API_URL, $authHeader);
+    }
+     
+    /**
+     * GET /historical/normalized/messages/last API
+     */
+    public function getMessagesLast($srcDeviceId, $countByDevice){
+      try {
+        $callAPI = new MessagesApi($this->apiClient);
+        $method = 'getNormalizedMessagesLast';
+        $params = array(
+            "sdids"         => $srcDeviceId,
+            "fieldPresence" => NULL,
+            "count"         => $countByDevice
+        );
+        $result = call_user_func_array(array($callAPI, $method), array_values($params));
+      } catch (Exception $e) {
+        $result = '{"getMessageLast_exception":"'.$e->getMessage().'"}';
+      }
+      return $result;
+    }
+    
+    /**
+     * POST /message API
+     */
+    public function sendMessage($payload){
+      try {
+        $callAPI = new MessagesApi($this->apiClient);
+        $method = 'postMessage';
+        $params = array(
+          "postParams" => $payload,
+          );
+        
+        $result = call_user_func_array(array($callAPI, $method), array_values($params));
+      } catch (Exception $e) {
+          $result = "{sendMessage_exception:".$e->getMessage()."}";
+      }
+        return $result;
+    }
+}
+?>
+~~~
+
+[1]: /sami/native-SDK/php-SDK.html#php-sdk "SAMI PHP SDK"
