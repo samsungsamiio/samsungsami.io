@@ -169,7 +169,7 @@ $sami->setAccessToken($_SESSION['access_token']);
 ?>
 ~~~
 
-Please see details of [**SamiConnector.php**](#sami-helper-class-code) at the end of the document or [**download**](/sami/downloads/sami-demo-firstwebapp.zip) the attached source code.
+Please see details of [**SamiConnector.php**](#sami-helper-class) at the end of the document or [**download**](/sami/downloads/sami-demo-firstwebapp.zip) the attached source code.
 {:.info}
 
 #### Send a message to SAMI
@@ -409,7 +409,7 @@ You need a bit setup to use this new approach:
 
 Now you are ready to play the newer version of the app. This version has been tested on MAC machines.
 
-Below is the source code of `SamiConnector.php` using PHP SDK. There is no need to deal with the details of `cURL` in this version compared to [the older version](#sami-helper-class-code). PHP SDK handles that for you. The code becomes shorter and simpler. 
+Below is the source code of `SamiConnector.php` using PHP SDK. There is no need to deal with the details of `cURL` in this version compared to [the older version](#sami-helper-class). PHP SDK handles that for you. The code becomes shorter and simpler. 
 
 ~~~php
 <?php
@@ -482,4 +482,4 @@ class SamiConnector {
 
 `SamiConnector.php` shows how to call `MessagesApi`'s methods to get and post messages to SAMI. Browse the files under directory `sdk`. You will see much more API methods that are handy for you to use.
 
-[1]: /sami/native-SDK/native-SDK.html#php-sdk "SAMI PHP SDK"
+[1]: /sami/native-SDKs/php-SDK.html "SAMI PHP SDK"
