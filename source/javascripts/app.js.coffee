@@ -103,6 +103,6 @@ $ ->
   $('#mailing-list').each ()->
     $(this).on 'click', (e)->
       e.preventDefault()
-      $.featherlight($("#mailing-list-container"), {type: 'image', variant: 'mailing-list', closeOnClick: false});
+      $.featherlight($("#mailing-list-container"), {type: 'image', variant: 'mailing-list', closeOnClick: 'background'});
 
   UserVoice.push(['addTrigger', '#feedback', { mode: 'contact' }])
