@@ -559,13 +559,13 @@ Returns the access token of a device.
 }
 ~~~~
 
-### Update a device's token
+### Create device token
 
 ~~~
 PUT /devices/<deviceID>/tokens
 ~~~
 
-Updates the access token of a device.
+Creates a new access token for a device.
 
 **Request parameters**
 
@@ -1029,7 +1029,7 @@ Returns presence of normalized messages.
 GET /messages/export
 ~~~
 
-Exports normalized messages, according to one of the following parameter combinations:
+Exports normalized messages from up to 30 days, according to one of the following parameter combinations. The maximum duration between `startDate`{:.param} and `endDate`{:.param} is 30 days.
 
 |Combination |Required Parameters
 |------------|---------
@@ -1043,10 +1043,6 @@ Exports normalized messages, according to one of the following parameter combina
 |Parameter |Description
 |----------|------------
 | `endDate`{:.param}   | Time of latest (newest) item to return, in milliseconds since epoch.
-| `fieldPresence`{:.param}      | (Optional) String representing a field from the specified device ID.
-| `filter`{:.param} | (Optional) An additional request property that can be used to accurately locate specific messages.
-| `mid`{:.param}   | (Optional) The SAMI message ID being searched.
-| `offset`{:.param} | (Optional) A string that represents the starting item; should be the value of 'next' field received in the last response (required for pagination).
 |`order`{:.param}     | (Optional) Desired sort order: `asc` or `desc` (default: `asc`)
 | `format`{:.param}     | (Optional) Format the export will be returned as: `json`, `csv` or `xml` (default: `json`)
 | `sdid`{:.param}      | (Optional) Source device ID of the messages being searched.
@@ -1112,12 +1108,6 @@ The tar file may contain one or more files in the following format:
 
 ~~~
 {
-  "uids": [ "06282de0442611e491800002a5d5c51b"],
-  "sdids": [ "hueID_dev_2"],
-  "ddids": [],
-  "order": "desc",
-  "startDate": 123456,
-  "endDate": 223456,
   "size": 1,
   "data": [
     {
