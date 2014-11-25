@@ -220,7 +220,7 @@ The query parameters may be passed as follows.
 
 **Example response**
 
-~~~
+~~~json
 HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
 Cache-Control: no-store
