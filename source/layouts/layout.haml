@@ -88,14 +88,8 @@
               %li.section-nav-footer
                 = partial :footer
         .lightbox-content
-          #mailing-list-container
-            .mailing-list-top
-              %h3 Join the mailing list
-              %p Be the first to know when we add features and improvements. We will never spam you or give your email to any third parties.
-            .mailing-list-bottom
-              %label{:for => "your_email"} Your Email Address
-              %input{:type => "text", :name => "your_email", :id => "your_email"}/
-              %input{:type => "submit", :value => "Join Now", :class => "btn"}/
+          = partial :mailing_list
+
         #swiftype-results
         %div.main.content{ data: {view: 'Content'}}
           .main-content-interior
