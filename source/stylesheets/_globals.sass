@@ -329,12 +329,30 @@ hr.typography
     margin: 0 0 24px 0
   .feedback
     display: none
-    padding: 25px 0
+    padding: 20px 0
     float: right
     +respond-to('tablet')
       display: block
     a
-      color: #C7CACE
+      margin-right: 30px
+      text-decoration: none
+      border-bottom: none
+      i:before 
+        margin-right: 3px
+    #mailing-list
+      color: #949AA2
+    #follow-us
+      color: #00A9E0
+    #feedback
+      color: #949AA2
+    .larger-icon i:before
+      font-size: 160%
+      position: relative
+      top: 4px
+    .large-icon i:before
+      font-size: 130%
+      position: relative
+      top: 3px
 a.learn-more
   color: #92FAFF
   font-size: 16px

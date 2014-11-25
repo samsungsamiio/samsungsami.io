@@ -1,0 +1,59 @@
+.lightbox-content
+  display: none
+.mailing-list
+  &:last-of-type
+    background: rgba(#323F4A, 0.8)
+  .featherlight-content
+    padding: 0
+    border-bottom: 0
+  .featherlight-close-icon
+    width: 50px
+    height: 50px
+    right: 15px
+    top: 15px
+    line-height: 50px
+    color: #79808A
+    font-size: 22px
+#mailing-list-container
+  +border-radius(3px)
+  overflow: hidden
+  max-width: 600px
+  background-color: #FFFFFF
+  h3
+    margin: 0
+    margin-bottom: 20px
+  p
+    margin: 0
+    font-family: 'MetaSerifWeb-Book'
+    line-height: 32px
+  .mailing-list-top
+    padding: 30px
+    border-bottom: 1px solid #E0E0E0
+  .mailing-list-bottom
+    padding: 30px
+    label, input
+      display: block
+    label
+      +source-sans
+      text-transform: uppercase
+      margin-bottom: 5px
+      font-size: 13px
+      letter-spacing: 1px
+      color: #949AA2
+    input[type="text"]
+      +border-radius(4px)
+      +box-shadow(0px 1px 5px transparentize(#E5E5E5, 0.1) inset)
+      padding: 8px
+      border: 1px solid #CDCDCD
+      width: 100%
+      margin-bottom: 15px
+    input[type="submit"]
+      +border-radius(4px)
+      +source-sans
+      color: #fff
+      background-color: #00A9E0
+      border: none
+      font-size: 13px
+      letter-spacing: 1px
+      padding: 8px 45px
+      text-transform: uppercase
