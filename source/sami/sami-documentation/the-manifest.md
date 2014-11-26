@@ -91,9 +91,90 @@ The data that can be correctly processed by the above Manifest looks like:
 
 ## Manifest certification
 
-Manifests are submitted when [creating new device types in the Developer Portal.](/sami/sami-documentation/developer-user-portals.html#creating-a-device-type) The SAMI team reviews your submitted Manifests. On approval or rejection, you will receive an email with any necessary feedback on resubmitting your Manifest. Manifests are tested not only for consistency, but also for compliance to SAMI standards of data categorization and performance. 
+The process of certifying Manifests is in active development. Any changes to the process will be reflected here. 
+{:.info}
 
-To improve the chance that your Manifest gets accepted, we strongly encourage that you [test the Manifest before submitting it.](/sami/demos-tools/manifest-sdk.html) You may use the Manifest SDK as a command-line tool to validate your Manifest or use its testing APIs to write Manifest tests.
+Manifests are submitted when [creating new device types in the Developer Portal.](/sami/sami-documentation/developer-user-portals.html#creating-a-device-type) The SAMI team reviews your submitted Manifests. You should receive a response within 1 business day of submitting your Manifest. If the response is taking longer than expected, please use the [Feedback](#feedback) link to send us a message.
+
+On approval or rejection, you will receive an email with any necessary feedback on resubmitting your Manifest. Manifests are tested not only for consistency, but also for compliance to SAMI standards of data categorization and performance. 
+
+In general, your Manifest code should be clean and efficient. Because you may eventually want to [publish your device type](/sami/sami-documentation/developer-user-portals.html#creating-a-device-type) for other developers to use, please write your Manifest bearing in mind that it may become a tool for the public.
+
+Some typical reasons a Manifest can be rejected:
+
+- Not processing or returning data, due to being incomplete.
+- Having a name that is too generic to be published, or uses the names "Samsung" or "SAMI."
+- Including `printIn` or log.
+- Attempting anything malicious.
+- Attempting to use local resources (files) or remote resources (network calls).
+- Consuming too much memory or generating memory leaks (unreleased references).
+
+We also strongly encourage you to [test the Manifest before submitting it.](/sami/demos-tools/manifest-sdk.html) You may use the Manifest SDK as a command-line tool to validate your Manifest or use its testing APIs to write Manifest tests.
+
+### What to do
+
+The following is a list of best practices to keep in mind when writing your Manifest. Please check your Manifest against this list before you submit. This will eliminate time needed to make basic corrections and focus the SAMI team on helping you resolve more complex issues (if any) with your Manifest. 
+
+#### printout
+
+Avoid including standard output such as `printIn` or logs in your Manifest.
+
+#### Field descriptors
+
+`FieldDescriptor` names should follow the convention of [Java variable names.](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/variables.html) Avoid using the `$` character in the name. For example, use `new FieldDescriptor("activeSteps")` rather than `new FieldDescriptor("active_steps")`.
+
+Standard fields, or aliases of standard fields, should be reused whenever possible. For example, use `StandardFields.TEMPERATURE`, or define the following to use a type different from the standard double type:
+
+~~~
+public final static FieldDescriptor TEMP_INTEGER = TEMPERATURE.alias(Integer.class)
+~~~
+
+The `FieldDescriptor` must also be created so that it may be returned by the `getFieldDescriptors()` method rather than the `normalize()` method. This is because not all the data returned by `normalize()` can be described.
+
+For example, you would implement the following:
+
+~~~
+public final static FieldDescriptor TEMP_INTEGER = TEMPERATURE.alias(Integer.class)
+normalize(){
+return [ new Field(TEMP_INTEGER, value)]
+}
+getFieldDescritors(){
+return [TEMP_INTEGER]
+}
+~~~
+
+Instead of:
+
+~~~
+normalize(){
+return [ new Field(new FieldDescriptor("temp1", ...), value)]
+}
+getFieldDescritors(){
+return [???]
+}
+~~~
+
+#### Units
+
+Units should be specified wherever appropriate. For example, specify units with distance or weight count, but not with step count, which is a quantity. 
+
+Standard units, defined in the `JScience` package or in the `StandardUnits` class, should be reused whenever possible. 
+
+#### Conversions 
+
+The Manifest library can perform unit conversions for you. Rather than write a conversion from input unit to expected output unit, when creating an instance of a `Field` you can usually pass the unit that the value is expressed into. For example:
+
+~~~
+new Field(MIN_TEMPERATURE,NonSI.FAHRENHEIT, Double.parseDouble((String)json.minTemp)))
+~~~
+
+#### Utilities
+
+To make your life easier, we recommend that you use the JSON utility classes, such as the [Groovy utilities](#groovy-utilities), when parsing JSON or other string-based input.
+
+#### normalize() method
+
+`nomalize()` must capture some data or fail, rather than send an empty result.
 
 ## About the Manifest SDK
 
