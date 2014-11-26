@@ -187,6 +187,32 @@
       margin-left: 0
       left: 0
 
+// Image based icons
+i.img
+  display: inline-block
+  font-size: 1.25em
+  margin-right: 3px
+  vertical-align: -1px
+  width: 20px
+  &:before
+    content: " "
+
+i.img.mailing-list-large
+  background-image: url('/images/layout/mailing-list-large.png')
+  background-size: 37px 18px
+  background-repeat: no-repeat
+  background-position: center left
+  width: 37px
+  position: relative
+  top: 1px
+
+i.img.mailing-list-small
+  +hidpi('layout/mailing-list-small')
+  background-repeat: no-repeat
+  background-position: center left
+  width: 20px
+  height: 14px
+
 // Section Nav Exceptions
 
 .section-community
