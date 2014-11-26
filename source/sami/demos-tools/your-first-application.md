@@ -396,20 +396,20 @@ class SamiConnector {
 ?>
 ~~~
 
-### Simplify SAMI helper class using PHP SDK
+### Simplify SAMI helper class with PHP SDK
 
-This section shows you another way to implement the helper class `SamiConnector`, which is much simplier due to using [PHP SDK][1].
+This section shows you a simpler way to implement the helper class `SamiConnector`, using the [PHP SDK][1].
 
-You need a bit setup to use this new approach:
+First you'll need to do a bit of setup:
 
-- Create directory `sdk` under your directory `samidemo`.
-- Follow the instructions at [PHP SDK][1] to get the SDK source code. Copy all source code to `samidemo/sdk`.
-- Replace `SamiConnector.php` that you have used before by [the new one](/sami/downloads/SamiConnector.php).
-- Change `CLIENT_ID`{:.param} and `DEVICE_ID`{:.param} to your real client and device IDs in `SamiConnector.php` 
+- Create a directory `sdk` under your directory `samidemo`.
+- Follow the instructions at [PHP SDK][1] to get the SDK source code. Copy all the source code to `samidemo/sdk`.
+- Replace `SamiConnector.php` with [the new one.](/sami/downloads/SamiConnector.php)
+- Change `CLIENT_ID`{:.param} and `DEVICE_ID`{:.param} to your real client and device IDs in `SamiConnector.php`.
 
-Now you are ready to play the newer version of the app. This version has been tested on MAC machines.
+Now you are ready to play with the newer version of the app. This version has been tested on Mac systems.
 
-Below is the source code of `SamiConnector.php` using PHP SDK. There is no need to deal with the details of `cURL` in this version compared to [the older version](#sami-helper-class). PHP SDK handles that for you. The code becomes shorter and simpler. 
+Below is the shorter and simpler source code of `SamiConnector.php` using the PHP SDK. There is no need to deal with the details of `cURL` in this version compared to [the older version](#sami-helper-class), since the PHP SDK handles that for you. 
 
 ~~~php
 <?php
@@ -480,6 +480,6 @@ class SamiConnector {
 ?>
 ~~~
 
-`SamiConnector.php` shows how to call `MessagesApi`'s methods to get and post messages to SAMI. Browse the files under directory `sdk`. You will see much more API methods that are handy for you to use.
+`SamiConnector.php` shows how to call the `MessagesApi` methods to get and post messages to SAMI. Browse the files under the directory `sdk`. You'll find many more API methods that are handy to use.
 
 [1]: /sami/native-SDKs/php-SDK.html "SAMI PHP SDK"
