@@ -154,20 +154,18 @@ Location: http://example.com/cb#access_token=2YotnFZFEjr1zCsicMWpAA&state=xyz&to
 
 ### Client Credentials method
 
-This type of access token allows an application to authenticate itself in situations where no user is directly involved. This is a call that must be done server-side because it requires passing `client_secret`.
+This type of access token allows an application to authenticate itself in situations where no user is directly involved. This is a call that must be done server-side because it requires passing `client_secret`. For more information, [see below.](#sending-clientid-and-clientsecret)
 
 	POST /token
 
 **Example**
 
-    https://accounts.samsungsami.io/token?client_id=9628eef2a00d43d89b757b8d34373588&client_secret=0ea24090297b4108ae1338c39f25c118&grant_type=client_credentials&scope=read,write  
+    https://accounts.samsungsami.io/token?grant_type=client_credentials&scope=read,write  
 
 **Request parameters**
 
   |Parameter         |Description
   |----------------- |-----------------------------------------------------------------------------------------------------------------
-  |`client_id`{:.param}      |Your application ID.
-  |`client_secret`{:.param}  |Your application secret.
   |`grant_type`{:.param}     |The type of token being requested, in this case, we are requesting a 'client credentials' type of access token.
   |`code`{:.param}           |The authorization code returned by the authorize call.
 
@@ -197,15 +195,7 @@ This call issues a new `access_token` by using a previously issued `refresh_toke
 POST /token
 ~~~
 
-The call must be authenticated with a valid Authorization header. Because you will not have a valid `access_token` to use as an Authorization header, you can provide `client_id` and `client_secret` by using HTTP Basic authentication. Pass the Authorization header as follows on your HTTP call:
-
-**Example**
-
-~~~
-Authorization: Basic czZCaGRSa3F0Mzo3RmpmcDBaQnIxS3REUmJuZlZkbUl3
-~~~
-
-The query parameters may be passed as follows.
+The call must be authenticated with a valid Authorization header. Because you will not have a valid `access_token` to use as an Authorization header, you must provide `client_id` and `client_secret`. For more information, [see below.](#sending-clientid-and-clientsecret)
 
 **Example**
 
@@ -235,7 +225,43 @@ Pragma: no-cache
 ~~~
 
 
+### Sending client_id and client_secret
 
+There are three ways to send `client_id` and `client_secret`. This is necessary when authorizing with the [Client Credentials method](#client-credentials-method) and when [refreshing an access token.](#refresh-a-token) 
+ 
+HTTP Basic authentication is the recommended way. You can pass an Authorization header with "application/x-www-form-urlencoded" encoded client ID and password as follows:
+
+**Example**
+
+~~~
+Authorization: Basic czZCaGRSa3F0Mzo3RmpmcDBaQnIxS3REUmJuZlZkbUl3
+~~~
+
+You can also include the client credentials directly in the query string. This is not recommended.
+
+**Request parameters**
+
+ |Parameter |Description
+  |---------|----------
+  |`client_id`{:.param}      |Your application ID.
+  |`client_secret`{:.param}  |Your application secret.
+
+**Example**
+
+    https://accounts.samsungsami.io/token?client_id=9628eef2a00d43d89b757b8d34373588&client_secret=0ea24090297b4108ae1338c39f25c118&grant_type=client_credentials&scope=read,write  
+
+Finally, the credentials can be included in the request body (**not** the request URI). This should only be used when HTTP Basic authentication, or another password-based HTTP authentication method, is not possible. 
+
+**Example**
+
+~~~
+     POST /token HTTP/1.1
+     Host: server.example.com
+     Content-Type: application/x-www-form-urlencoded
+
+     grant_type=refresh_token&refresh_token=tGzv3JOkF0XG5Qx2TlKWIA
+     &client_id=s6BhdRkqt3&client_secret=7Fjfp0ZBr1KtDRbnfVdmIw
+~~~
 
 
 ### /authorize errors
