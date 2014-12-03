@@ -227,7 +227,7 @@ Pragma: no-cache
 
 ### Sending client_id and client_secret
 
-There are three ways to send `client_id` and `client_secret`. This is necessary when authorizing with the [Client Credentials method](#client-credentials-method) and when [refreshing an access token.](#refresh-a-token) 
+Sending `client_id` and `client_secret` is necessary when authorizing with the [Client Credentials method](#client-credentials-method) and when [refreshing an access token.](#refresh-a-token) 
  
 HTTP Basic authentication is the recommended way. You can pass an Authorization header with "application/x-www-form-urlencoded" encoded client ID and password as follows:
 
@@ -237,7 +237,7 @@ HTTP Basic authentication is the recommended way. You can pass an Authorization 
 Authorization: Basic czZCaGRSa3F0Mzo3RmpmcDBaQnIxS3REUmJuZlZkbUl3
 ~~~
 
-You can also include the client credentials directly in the query string. This is not recommended.
+The credentials can also be included in the request body (**not** the request URI). This should only be used when HTTP Basic authentication, or another password-based HTTP authentication method, is not possible. 
 
 **Request parameters**
 
@@ -245,12 +245,6 @@ You can also include the client credentials directly in the query string. This i
   |---------|----------
   |`client_id`{:.param}      |Your application ID.
   |`client_secret`{:.param}  |Your application secret.
-
-**Example**
-
-    https://accounts.samsungsami.io/token?client_id=9628eef2a00d43d89b757b8d34373588&client_secret=0ea24090297b4108ae1338c39f25c118&grant_type=client_credentials&scope=read,write  
-
-Finally, the credentials can be included in the request body (**not** the request URI). This should only be used when HTTP Basic authentication, or another password-based HTTP authentication method, is not possible. 
 
 **Example**
 
