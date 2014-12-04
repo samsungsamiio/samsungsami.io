@@ -24,8 +24,7 @@ $ ->
     headerHeight = $header.outerHeight()
     minHeight = windowHeight+1
 
-    $('.main.content, #swiftype-results').css minHeight: minHeight  - headerHeight
-    $('.section-nav').css minHeight: windowHeight - headerHeight, maxHeight: windowHeight - headerHeight
+    $('.main.content, #swiftype-results').css minHeight: minHeight - headerHeight
 
   lastPosition = -1
 
