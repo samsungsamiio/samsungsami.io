@@ -206,6 +206,8 @@
   font-size: 14px
   a
     display: block
+    position: relative
+    word-break: normal
   &:first-child:last-child
     max-width: 100%
 
@@ -252,11 +254,27 @@
       @extend %paging-link
     .prev-page
       float: left
+      a
+        padding-left: 15px
       a:before
         content: '\00ab '
+        display: block
+        width: 15px
+        left: 0
+        top: 0
+        position: absolute
+        height: 100%
     .next-page
       float: right
       text-align: right
+      a
+        padding-right: 15px
       a:after
         content: ' \00bb'
+        display: block
+        width: 15px
+        right: 0
+        top: 0
+        position: absolute
+        height: 100%
 
