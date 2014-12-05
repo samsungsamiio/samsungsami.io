@@ -26,6 +26,10 @@ $ ->
 
     $('.main.content, #swiftype-results').css minHeight: minHeight - headerHeight
 
+  clearClasses = ()->
+    $body.removeClass('menu-expanded')
+    $('.content').removeClass('sidebar-open')
+
   lastPosition = -1
 
   scrollLoop = ()->
@@ -48,6 +52,7 @@ $ ->
       el: el
 
   $(window).on 'resize', _.debounce setMinHeight, 200
+  $(window).on 'resize', _.debounce clearClasses, 200
 
   $('.toggle-menu').on 'click', (e)-> e.preventDefault(); $(this).parent('.content').toggleClass('sidebar-open')
   $('.main-header .toggle-nav').on 'click', (e)->
