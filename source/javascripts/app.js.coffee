@@ -93,6 +93,10 @@ $ ->
     classes = $(this).attr('class')
     $(this).parent().addClass classes
 
+  # Set up param specific tables
+  $('table .param').each ()->
+    $(this).parent().siblings().addClass('param-companion')
+    
   # Lightbox behavior
   $.featherlight.defaults.closeOnClick = 'anywhere'
   $('table img, img.lightbox').each ()->
