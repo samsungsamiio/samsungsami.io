@@ -12,10 +12,11 @@ class App.Views.Content extends Backbone.View
     headers =  @$el.children('.main-content-interior').children('h2, h3')
     headers = [] if @$el.attr('data-no-toc') isnt undefined
 
-    $toc = new App.Views.TableOfContents
-      items: headers
+    if @$el.siblings('.section-nav').length > 0
+      $toc = new App.Views.TableOfContents
+        items: headers
 
-    @$el.prepend($toc.$el)
+      @$el.prepend($toc.$el)
 
     if headers.not('h3').length > 2
       $('#toc').on 'activate.bs.scrollspy', (e)->
