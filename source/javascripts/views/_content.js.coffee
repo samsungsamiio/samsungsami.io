@@ -1,6 +1,5 @@
 class App.Views.Content extends Backbone.View
   initialize: (opt)->
-    $('body').removeClass('with-toc')
     @render()
 
   groupImages: ()->
@@ -11,11 +10,14 @@ class App.Views.Content extends Backbone.View
 
   createTableOfContents: ()->
     headers =  @$el.children('.main-content-interior').children('h2, h3')
+    headers = [] if @$el.attr('data-no-toc') isnt undefined
+
+    $toc = new App.Views.TableOfContents
+      items: headers
+
+    @$el.prepend($toc.$el)
+
     if headers.not('h3').length > 2
-      $('body').addClass 'with-toc'
-      $toc = new App.Views.TableOfContents
-        items: headers
-      @$el.prepend($toc.$el)
       $('#toc').on 'activate.bs.scrollspy', (e)->
         headers.filter('.active').removeClass('active')
         target = $(e.target).find('a').attr('href')
@@ -45,3 +47,4 @@ class App.Views.Content extends Backbone.View
     @wrapTableOfContents()
     @parseTables()
     return @
+

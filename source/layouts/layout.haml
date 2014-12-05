@@ -91,7 +91,7 @@
           = partial :mailing_list
 
         #swiftype-results
-        %div.main.content{ data: {view: 'Content'}}
+        %div.main.content{ data: {view: 'Content', 'no-toc' => page_data(current_page)['no_toc']}}
           .main-content-interior
             ~ yield
             - if current_page.parent

@@ -32,7 +32,6 @@
   +transition-property(padding-left)
   +transition-duration
   +transition-timing-function
-  $toc-width: 258px
   background-color: #f8f9fa
   height: 100%
   overflow: hidden
@@ -45,10 +44,6 @@
     padding-left: $sidebar-width
   +landing-page
     padding-left: 0
-  &.main
-    .with-toc &
-      +respond-to('desktop')
-        padding-right: $toc-width + 52px
 
   .table-of-contents
     -webkit-overflow-scrolling: touch
@@ -240,6 +235,8 @@
     padding: 0
   +respond-to('tablet')
     padding: 39px 50px 50px 52px
+  +respond-to('desktop')
+    padding-right: $toc-width + 52px
   #st-content-cache + &
     display: none
   a
