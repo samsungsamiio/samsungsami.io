@@ -26,7 +26,7 @@
         %nav.main-nav
           .beta
             %span Beta
-          %h1.logo= link_to '', '/'
+          %h1.logo= link_to data.page.title, '/'
           %ul.nav-list
             - children = page_data(docs)['nav']
             - children.each do |child|
