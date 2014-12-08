@@ -16,7 +16,7 @@ Welcome to the Samsung SAMIIO Platform (the “Platform”). Samsung Electronics
 
 2. ***Privacy and Protection of your Personal Data.***
   
-    2.1 Our Privacy Policy, located at [www.voiceofthebody.io/privacy](http://www.voiceofthebody.io/privacy), explains how Samsung handles your personal data and information and protects your privacy when you use the Platform and the Services. By using the Platform or the Services, you agree that any personal data and information that you provide to us are subject to our Privacy Policy.
+    2.1 Our Privacy Policy, located at [http://www.voiceofthebody.io/privacy](http://www.voiceofthebody.io/privacy), explains how Samsung handles your personal data and information and protects your privacy when you use the Platform and the Services. By using the Platform or the Services, you agree that any personal data and information that you provide to us are subject to our Privacy Policy.
 
 3. ***Other Applicable Terms.*** We offer a variety of Services, and you may use the Services to locate, browse and/or download applications, data files, services and other content, that may be offered by third parties that are not affiliated with Samsung (collectively, “Third Party Products”).  Additional terms of service may apply to some of our Services or to some Third Party Products. If you use any Services or Third Party Products that require additional terms of service (“Special Terms”), you will need to agree to those Special Terms. If any Special Terms are inconsistent with these Terms of Service, the Special Terms will control.
 
@@ -270,7 +270,7 @@ any software licensed from a third party, or
 
     5.3 ***Collection and Use of Personal and Non-Personal Data.***
 
-      * Our Privacy Policy, located at [www.voiceofthebody.io/privacy](www.voiceofthebody.io/privacy), explains how Samsung handles your personal data and information and protects your privacy when you use the Developer Kit and Platform. By using the Developer Kit and Platform, you agree that any personal data and information that you provide to us are subject to our Privacy Policy.
+      * Our Privacy Policy, located at [http://www.voiceofthebody.io/privacy](www.voiceofthebody.io/privacy), explains how Samsung handles your personal data and information and protects your privacy when you use the Developer Kit and Platform. By using the Developer Kit and Platform, you agree that any personal data and information that you provide to us are subject to our Privacy Policy.
       * You agree that Samsung and its affiliates may collect and use technical and related information that is gathered periodically, including but not limited to information about your Developer Products, computer, system software, other software and peripherals. Samsung may use this information, as long as it is in a form that does not personally identify you, to improve the Developer Kit, to provide services, if any, related to the Developer Kit, verify compliance with this Agreement or for other business purposes.  You agree to obtain all consents from the users of your Developer Products necessary for Samsung to use this information.
 
 6. **Ownership of Intellectual Property**

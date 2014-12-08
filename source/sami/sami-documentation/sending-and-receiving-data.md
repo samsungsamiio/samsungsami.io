@@ -236,7 +236,7 @@ SAMI sends a ping every 30 seconds to the client. If a ping is not received, the
 
 ### Sending messages
 
-Sending a message to SAMI or another device works as it does in the [REST API.](/sami/sami-documentation/sami-basics/sending-and-receiving-data.html#posting-a-message)
+Sending a message to SAMI or another device works as it does in the [REST API.](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message)
 
 ### Receiving messages
 
