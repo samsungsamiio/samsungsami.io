@@ -36,7 +36,8 @@ For the sake of simplicity in this tutorial, you take the role of both the appli
 Follow [these instructions](/sami/sami-documentation/developer-user-portals.html#creating-an-application) to create an application using the Developer Portal. For this tutorial, select the following:
 
 - Set "Redirect URL" for your application to `http://localhost:8000/samidemo/index.php`.
-- Choose "Client Credentials Flow & Implicit Flow" and both "Read" and "Write".
+- Choose "Client Credentials Flow & Implicit Flow".
+- Under "PERMISSIONS", click "Add Device Type" button. Choose "Sami Gear Fit" as the device type. Check both "Read" and "Write" permissions for this device type.
 
 [Make a note of your client ID.](/sami/sami-documentation/developer-user-portals.html#how-to-find-your-application-id) This is your application ID, which you will need later.
 
