@@ -214,7 +214,7 @@ session_start();
 require('SamiConnector.php');
 $sami = new SamiConnector();
 $sami->setAccessToken($_SESSION["access_token"]);
-$data ='{"stepCount":7994,"heartRate":94,"description":"rbpro","state":0,"activity":2}'; // sami_gear_fit device
+$data ='{"stepCount":7994,"heartRate":100,"description":"Run","activity":2}'; // sami_gear_fit device
 $payload = '{"sdid":"'.SamiConnector::DEVICE_ID.'", "data":'.$data.'}';
 $response = $sami->sendMessage($payload);
 header('Content-Type: application/json');

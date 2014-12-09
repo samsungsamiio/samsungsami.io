@@ -219,10 +219,9 @@ class PostMsgInBackground extends AsyncTask<MessagesApi, Void, MessageIDEnvelope
       HashMap<String, Object> data = new HashMap<String, Object>();
       data.put("stepCount", 4393);
       data.put("heartRate", 110);
-      data.put("description", "xllktrih");
-      data.put("state", 1);
-      data.put("activity", 0);
-        
+      data.put("description", "Run");
+      data.put("activity", 2);
+
       Message msg = new Message();
       msg.setSdid(DEVICE_ID);
       msg.setData(data);
