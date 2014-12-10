@@ -14,6 +14,12 @@ class App.Views.TableOfContents extends Backbone.View
     @$el.find('.level-2.active').removeClass('active')
     $(e.currentTarget).addClass('active')
 
+    $('h3.active').removeClass('active')
+    $selector = $( $(e.currentTarget).find('a').attr('href') )
+    setTimeout ->
+      $selector.addClass('active')
+    , 50
+
   initialize: (opt)->
     @parent = opt?.parent
     @items = _.map opt?.items, (item)->
