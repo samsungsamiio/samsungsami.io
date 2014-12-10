@@ -23,19 +23,6 @@ class App.Views.Content extends Backbone.View
         target = $(e.target).find('a').attr('href')
         $(target).addClass('active')
 
-      # Special event for loading a section right
-      # before the section starts
-      $('#toc li a').on 'click', (event)->
-        event.preventDefault()
-        history.pushState {}, '', $(this).attr('href')
-
-        headline = $($(this).attr('href'))[0]
-        headline.scrollIntoView()
-        scrollBy(0, -20)
-
-        # $('h2.active, h3.active').removeClass('active')
-        # $(headline).addClass('active')
-
   parseTables: ->
     tables = @$el.children('.main-content-interior').children('table')
     tables.wrap('<div class="table-wrapper"></div>')
