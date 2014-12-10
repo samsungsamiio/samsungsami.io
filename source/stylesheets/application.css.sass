@@ -102,9 +102,11 @@
         color: #949AA2
         
     .table-of-contents-list .level-1 .interior-menu
-      display: none
+      max-height: 0
+      overflow: hidden
+      +transition
     .table-of-contents-list .level-1.active .interior-menu
-      display: block
+      max-height: 1000px
 
 .swiftype-widget .autocomplete
   +box-shadow(none)

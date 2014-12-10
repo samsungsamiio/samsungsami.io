@@ -12,7 +12,7 @@
     = partial :uservoice
     = stylesheet_link_tag "application"
     = javascript_include_tag  "manifest"
-  %body{:class => page_classes, data: {spy: 'scroll', target: '#toc'}}
+  %body{:class => page_classes, data: {spy: 'scroll', target: '#toc', offset: 50}}
     - docs = sitemap.find_resource_by_path('index.html')
     - landing_page = ['/', '/simband/', '/sensor-module/', '/sami/'].include? current_page.url
     .container

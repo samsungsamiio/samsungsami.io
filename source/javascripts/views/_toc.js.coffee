@@ -15,6 +15,7 @@ class App.Views.TableOfContents extends Backbone.View
     $(e.currentTarget).addClass('active')
 
   initialize: (opt)->
+    @parent = opt?.parent
     @items = _.map opt?.items, (item)->
       currentLevel = "level-#{parseFloat(item.tagName.replace(/^h/i, ''), 10) - 1}"
       return {
@@ -26,6 +27,17 @@ class App.Views.TableOfContents extends Backbone.View
     @render()
     @
 
+  wrapContents: ->
+    $(".level-2").each ->
+      return if $(@parentNode).hasClass("interior-menu")
+      $(this).nextUntil(":not(.level-2)").andSelf().wrapAll "<ul class=\"interior-menu dropdown-menu\">"
+    $(".interior-menu").each ()->
+      $(this).prev().addClass 'dropdown'
+      $(this).insertAfter($(this).prev().find('a'))
+    $(".level-1").eq(0).addClass('active')
+
   render: ->
     @$el.html ich.toc items: @items
+    @parent.prepend(@$el)
+    @wrapContents()
     @
