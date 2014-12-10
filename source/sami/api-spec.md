@@ -317,6 +317,13 @@ Returns the device types owned by a user.
   |----------------- |-----------
   |`userID`{:.param}   |User ID.
 
+**Available URL query parameters**
+
+  |Parameter |Descrption
+  |--------- |-----------
+  |`count`{:.param} |(Optional) Number of items to return per query.
+  |`offset`{:.param} |(Optional) A string that represents the starting item, should be the value of 'next' field received in the last response (required for pagination).
+  |`includeShared`{:.param} |(Optional) Boolean (true/false). Also returns device types shared by other users. If not specified, defaults to false and returns only the user's device types. 
 
 **Example response**
 
@@ -351,7 +358,7 @@ Returns the device types owned by a user.
   |`name`{:.param}           |Device type name.
   |`published`{:.param}      |Device type published.
   |`latestVersion`{:.param}  |Device type latest manifest version available.
-  |`uniqueName`{:.param}     |Device type unique name in the system (will be used for manifest package naming) has to be a valid JAVA package name.
+  |`uniqueName`{:.param}     |Device type unique name in the system (used for Manifest package naming). Has to be a valid JAVA package name.
 
 
 ## Devices
@@ -1048,7 +1055,7 @@ Exports normalized messages from up to 30 days, according to one of the followin
 |----------|------------
 | `endDate`{:.param}   | Time of latest (newest) item to return, in milliseconds since epoch.
 |`order`{:.param}     | (Optional) Desired sort order: `asc` or `desc` (default: `asc`)
-| `format`{:.param}     | (Optional) Format the export will be returned as: `json`, `csv` or `xml` (default: `json`)
+| `format`{:.param}     | (Optional) Format the export will be returned as: `json`, `csv` or `xml` (currently `json` is implemented)
 | `sdid`{:.param}      | (Optional) Source device ID of the messages being searched.
 | `startDate`{:.param} | Time of earliest (oldest) item to return, in milliseconds since epoch.
 | `uid`{:.param}       | (Optional) The owner's user ID of the messages being searched. If not specified, defaults to the current authenticated user (if the current authentication context is not an application). If specified, it must be that of a user to which the current authenticated user (or the application) has read access.
@@ -1124,6 +1131,9 @@ The tar file may contain one or more files in the following format:
   ]
 }
 ~~~
+
+Each file in the tar file has the following format:  `id-date.json` where `id` is either a `uid` or `sdid`, and `date` is a timestamp in milliseconds (the `ts` date of the first message in the file). If the result of a `uid` or `sdid` search is empty, the result will be a single file with the filename `id0.json` (`id` is either a `uid` or `sdid`).
+
 
 ### Get raw messages
 
