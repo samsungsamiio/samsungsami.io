@@ -71,7 +71,11 @@ Great! You now have the client (application) ID and the device ID, which will be
 
 - Install a Web server and configure it to open port 8000 on localhost.
 - Install PHP and enable cURL in PHP.
+- If you have a Windows machine, it is very likely that you need to add a CA certificate for SAMI and point cURL to it. Below is the example of the steps performed on Windows:
+  - Download [certification authortity file](http://www.symantec.com/content/en/us/enterprise/verisign/roots/Class-3-Public-Primary-Certification-Authority.pem) and save it to C: as `cacert.pem`.
+  - Modify `php.ini` by adding curl.cainfo = "C:\cacert.pem".
 - Create a directory `samidemo` that is accessible via `http://localhost:8000/samidemo`. For example, set up `http://localhost:8000/` to access C:\MyWebsites on your Windows machine. Then create `samidemo` under C:\MyWebsites.
+
 
 ### Prepare the sample application files
 
@@ -323,8 +327,6 @@ class SamiConnector {
      */
     public function getCall($url){
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,false);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -349,8 +351,6 @@ class SamiConnector {
      */
     public function postCall($url, $payload){
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, (String) $payload);
@@ -408,7 +408,7 @@ First you'll need to do a bit of setup:
 - Replace `SamiConnector.php` with [the new one.](/sami/downloads/SamiConnector.php)
 - Change `CLIENT_ID`{:.param} and `DEVICE_ID`{:.param} to your real client and device IDs in `SamiConnector.php`.
 
-Now you are ready to play with the newer version of the app. This version has been tested on Mac systems.
+Now you are ready to play with the newer version of the app. This version has been tested on Mac and Windows systems.
 
 Below is the shorter and simpler source code of `SamiConnector.php` using the PHP SDK. There is no need to deal with the details of `cURL` in this version compared to [the older version](#sami-helper-class), since the PHP SDK handles that for you. 
 
