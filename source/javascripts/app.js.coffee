@@ -106,7 +106,13 @@ $ ->
   $.featherlight.defaults.closeOnClick = 'anywhere'
   $('table img, img.lightbox').each ()->
     $(this).on 'click', ()->
-      $.featherlight($(this), {type: 'image'});
+      # Mobile users should see the image
+      # in a new window, desktop users
+      # should see a lightbox
+      if $(window).width() > 568
+        $.featherlight($(this), {type: 'image'});
+      else
+        window.open($(this).attr('src'));
 
   $('#mailing-list').each ()->
     $(this).on 'click', (e)->
