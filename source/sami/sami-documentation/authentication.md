@@ -65,7 +65,7 @@ The authorization code method is done in multiple legs. First, your application 
   |`state`{:.param}          |(Optional) A value (must be URL-safe) that is passed back to you when the flow is over. This is useful to keep a state and can be whatever you wish.
   |`scope`{:.param}          |(Optional) The type of permissions the application is requesting over the user's data, as a comma-separated list. For example: `read`. If omitted its default value is `read,write`.
 
-The user is sent to SAMI Accounts, where she may sign in or create a new account. If the login is successful, the user will be asked to grant specific permissions on her data.
+The user is sent to Samsung Accounts, where she may sign in or create a new account. If the login is successful, the user will be asked to grant specific permissions on her data.
 
 When the user clicks "Grant", she will be redirected to your server (at the `redirect_uri`) with an authorization code.
 
