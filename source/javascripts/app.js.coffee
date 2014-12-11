@@ -120,3 +120,4 @@ $ ->
       $.featherlight($("#mailing-list-container"), {type: 'image', variant: 'mailing-list', closeOnClick: 'background'});
 
   UserVoice.push(['addTrigger', '#feedback', { mode: 'contact' }])
+  UserVoice.push(['addTrigger', '#feedback-side', { mode: 'contact', position: 'right' }])
