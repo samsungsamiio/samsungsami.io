@@ -29,7 +29,7 @@ A user or application must first obtain an access token from SAMI to make API ca
     authenticated user. There is no signin/signup nor user interface
     involved. The access token can then directly be used in our API
     calls that accept this kind of token. This method is suitable for
-    server-side code, as it requires the application secret to be passed.
+    server-side code, as it requires the application secret to be passed. Before making API calls to access data of a user using the access token obtained by this method, [Authorization code method](#authorization-code-method) or [Implicit method](/sami/sami-documentation/authentication.html#implicit-method) must have been used. The user must have granted this application the access to the data on a UI shown in the Authorization code method or Implicit method.
 
 All of our API calls need to be authenticated either as a user or as an
 application. The authentication is done by obtaining an access token
@@ -73,15 +73,7 @@ When the user clicks "Grant", she will be redirected to your server (at the `red
 
     https://myapp.com/callback?code=0ee7fcd0abed470182b02cd649ec1c98&state=abcdefgh
 
-The code can be exchanged for an access token within 60 seconds before expiring. For security, this should be done server-side. The request parameters should be passed in the POST body:
-
-	POST /token
-
-**Example**
-
-~~~
-client_id=9628eef2a00d43d89b757b8d34373588&client_secret=0ea24090297b4108ae1338c39f25c118&grant_type=authorization_code&code=0ee7fcd0abed470182b02cd649ec1c98&redirect_uri=https://myapp.com/callback&state=abcdefgh&scope=read,write
-~~~
+The code can be exchanged for an access token within 60 seconds before expiring. For security, this should be done server-side. Among the request parameters below, `client_id` and `client_secret` are included in HTTP authorization header and the rest of the parameters should be passed in the POST body. Consult [Sending client ID and client secret](#sending-client_id-and-client_secret) for details and options about how to include them in a HTTP POST request.
 
 **Request parameters**
 
@@ -92,6 +84,17 @@ client_id=9628eef2a00d43d89b757b8d34373588&client_secret=0ea24090297b4108ae1338c
   |`grant_type`{:.param}     |The type of token being requested. In this case, we are requesting an authorization code type of access token.
   |`redirect_uri`{:.param}   |(Optional) The redirect URI you supplied to us for your application.
   |`code`{:.param}           |The authorization code returned by the authorize call.
+
+**Example request** 
+
+~~~
+POST /token HTTP/1.1
+Host: accounts.samsungsami.io
+Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=authorization_code&code=SplxlOBeZQQYbYS6WxSbIA&redirect_uri=https://myapp.com/callback&state=abcdefgh&scope=read,write
+~~~
 
 **Example response**
 
@@ -156,24 +159,30 @@ Location: http://example.com/cb#access_token=2YotnFZFEjr1zCsicMWpAA&state=xyz&to
 
 ### Client Credentials method
 
-This type of access token allows an application to authenticate itself in situations where no user is directly involved. This is a call that must be done server-side because it requires passing `client_secret`. The request parameters should be passed in the POST body:
+This type of access tokens allows an application to authenticate itself in situations where no user is directly involved. However, before the application can use this method to access the data of a user, it should have asked the user to grant such access via UI using the [Authorization code method](#authorization-code-method) or the [Implicit method](#implicit method).
 
-	POST /token
-
-**Example**
-
-~~~ 
-client_id=9628eef2a00d43d89b757b8d34373588&client_secret=0ea24090297b4108ae1338c39f25c118&grant_type=client_credentials&scope=read,write
-~~~
+This is a HTTP POST call that must be done server-side because it requires passing `client_secret`. Among the request parameters below, `client_id` and `client_secret` are included in HTTP authorization header and the rest of the parameters should be passed in the POST body. Consult [Sending client ID and client secret](#sending-client_id-and-client_secret) for details and options about how to include them in a HTTP POST request.
 
 **Request parameters**
 
   |Parameter         |Description
   |----------------- |-----------------------------------------------------------------------------------------------------------------
-  |`grant_type`{:.param}     |The type of token being requested, in this case, we are requesting a 'client credentials' type of access token.
   |`client_id`{:.param}      |Your application ID.
   |`client_secret`{:.param}  |Your application secret.
+  |`grant_type`{:.param}     |The type of token being requested, in this case, we are requesting a 'client credentials' type of access token.
   |`scope`{:.param}          |(Optional) The type of permissions the application is requesting over the user's data, as a comma-separated list. For example: `read`. If omitted its default value is `read,write`.
+
+**Example request**
+
+~~~ 
+POST /token HTTP/1.1
+Host: accounts.samsungsami.io
+Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&scope=read,write
+
+~~~
 
 **Example response**
 
@@ -195,27 +204,7 @@ client_id=9628eef2a00d43d89b757b8d34373588&client_secret=0ea24090297b4108ae1338c
 
 ### Refresh a token
 
-This call issues a new `access_token` by using a previously issued `refresh_token` from the same authenticated client. The endpoint is expected to be called from the client app server. 
-
-~~~
-POST /token
-~~~
-
-The call must be authenticated with a valid Authorization header. Because you will not have a valid `access_token` to use as an Authorization header, you must provide `client_id` and `client_secret`. HTTP Basic authentication is the recommended way. You can pass an Authorization header with "application/x-www-form-urlencoded" encoded client ID and password as follows:
-
-**Example**
-
-~~~
-Authorization: Basic czZCaGRSa3F0Mzo3RmpmcDBaQnIxS3REUmJuZlZkbUl3
-~~~
-
-The parameters can be passed in the request body:
-
-**Example**
-
-~~~
-grant_type=refresh_token&refresh_token=tGzv3JOkF0XG5Qx2TlKWIA
-~~~
+This POST call issues a new `access_token` by using a previously issued `refresh_token` from the same authenticated client. The endpoint is expected to be called from the client app server. Among the request parameters below, `client_id` and `client_secret` are included in HTTP authrozation header and the rest of the parameters should be passed in the POST body. Consult [Sending client ID and client secret](#sending-client_id-and-client_secret) for details and options about how to include them in a HTTP POST request.
 
 **Request parameters**
 
@@ -223,6 +212,17 @@ grant_type=refresh_token&refresh_token=tGzv3JOkF0XG5Qx2TlKWIA
 |---------|----------
 |`grant_type`{:.param} |Must be set to value `refresh_token`.
 |`refresh_token`{:.param} |The refresh token issued to the client.
+
+**Example request**
+
+~~~
+POST /token HTTP/1.1
+Host: accounts.samsungsami.io
+Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=refresh_token&refresh_token=tGzv3JOkF0XG5Qx2TlKWIA
+~~~
 
 **Example response**
 
@@ -238,6 +238,43 @@ Pragma: no-cache
   "refresh_token":"tGzv3JOkF0XG5Qx2TlKWIA",
   "scope": "the_scope"
 }
+~~~
+
+### Sending client_id and client_secret
+
+Sending `client_id` and `client_secret` is necessary
+- when obtaining an access token using the [Authorization code method](#authorization-code-method)
+- when obtaining an access token using the [Client Credentials method](#client-credentials-method)
+- when [refreshing an access token.](#refresh-a-token) 
+
+HTTP Basic authentication is the recommended way. You can pass an Authorization header with Base64 encoded `client_id` and `client_secret` as follows:
+
+**Example**
+
+~~~
+Authorization: Basic czZCaGRSa3F0Mzo3RmpmcDBaQnIxS3REUmJuZlZkbUl3
+~~~
+
+The credentials (`client_id` and `client_secret`) can also be included in the request body (**not** the request URI). This should only be used when HTTP Basic authentication is not possible. 
+
+**Request parameters**
+
+ |Parameter |Description
+  |---------|----------
+  |`client_id`{:.param}      |Your application ID.
+  |`client_secret`{:.param}  |Your application secret.
+
+**Example**
+
+The following example illustrates that, when refreshing an access token, HTTP request includes `client_id` and `client_secret` in the request body instead of in authroization header. Please note this is not a recommended way and use HTTP Basic authentication whenever possible.
+
+~~~
+     POST /token HTTP/1.1
+     Host: server.example.com
+     Content-Type: application/x-www-form-urlencoded
+
+     grant_type=refresh_token&refresh_token=tGzv3JOkF0XG5Qx2TlKWIA
+     &client_id=s6BhdRkqt3&client_secret=7Fjfp0ZBr1KtDRbnfVdmIw
 ~~~
 
 ### /authorize errors
