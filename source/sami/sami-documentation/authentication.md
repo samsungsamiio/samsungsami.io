@@ -243,6 +243,7 @@ Pragma: no-cache
 ### Sending client_id and client_secret
 
 Sending `client_id` and `client_secret` is necessary
+
 - when obtaining an access token using the [Authorization code method](#authorization-code-method)
 - when obtaining an access token using the [Client Credentials method](#client-credentials-method)
 - when [refreshing an access token.](#refresh-a-token) 
@@ -266,7 +267,7 @@ The credentials (`client_id` and `client_secret`) can also be included in the re
 
 **Example**
 
-The following example illustrates that, when refreshing an access token, HTTP request includes `client_id` and `client_secret` in the request body instead of in authroization header. Please note this is not a recommended way and use HTTP Basic authentication whenever possible.
+The following example illustrates that, when refreshing an access token, HTTP request includes `client_id` and `client_secret` in the request body instead of in authorization header. Please note this is not a recommended way and use HTTP Basic authentication whenever possible.
 
 ~~~
      POST /token HTTP/1.1
