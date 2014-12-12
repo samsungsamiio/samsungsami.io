@@ -888,7 +888,7 @@ Returns normalized messages, according to one of the following parameter combina
 | `count`{:.param}     | Number of items to return per query.
 | `endDate`{:.param}   | (Optional) Time of latest (newest) item to return, in milliseconds since epoch.
 | `fieldPresence`{:.param}      | (Optional) String representing a field from the specified device ID.
-| `filter`{:.param} | (Optional) An additional request property that can be used to accurately locate specific messages.
+| `filter`{:.param} | (Optional) Filter messages by fields (attributes) and values separated by colon. Fields defined in Manifests should be lowercased when using filters, e.g., ecg:80, ecg:>=80.
 | `mid`{:.param}   | (Optional) The SAMI message ID being searched.
 | `offset`{:.param} | (Optional) A string that represents the starting item; should be the value of 'next' field received in the last response (required for pagination).
 |`order`{:.param}     | (Optional) Desired sort order: `asc` or `desc` (default: `asc`)
@@ -939,7 +939,7 @@ Returns the sum, minimum, maximum, count or average of message fields that are n
   |Parameter   |Description
   |----------- |---------------------------------------------------------
   |`endDate`{:.param}    |Time of latest (newest) item to return, in milliseconds since epoch.
-  |`field`{:.param}    |Field.
+  |`field`{:.param}    |Message field being queried for analytics.
   |`sdid`{:.param} |Source device ID of the messages being searched.
   |`startDate`{:.param} |Time of earliest (oldest) item to return, in milliseconds since epoch.
 
