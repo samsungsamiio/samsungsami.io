@@ -158,7 +158,7 @@ Location: http://example.com/cb#access_token=2YotnFZFEjr1zCsicMWpAA&state=xyz&to
 
 ### Client Credentials method
 
-This type of access token allows an application to authenticate itself in situations where no user is directly involved. However, before the application can use this method to access a user's data, it should have asked the user to grant such access via UI, using the [Authorization code method](#authorization-code-method) or the [Implicit method.](#implicit method)
+This type of access token allows an application to authenticate itself in situations where no user is directly involved. However, before the application can use this method to access a user's data, it should have asked the user to grant such access via UI, using the [Authorization Code method](#authorization-code-method) or the [Implicit method.](#implicit method)
 
 This is an HTTP POST call that must be done server-side because it requires passing `client_secret`. Among the request parameters below, `client_id` and `client_secret` should be included in an HTTP Authorization header, and the remaining parameters should be passed in the POST body. Consult [Sending client ID and client secret](#sending-clientid-and-clientsecret) for details on how to include them in an HTTP POST request.
 
@@ -242,7 +242,7 @@ Pragma: no-cache
 
 Sending `client_id` and `client_secret` is necessary when:
 
-- Obtaining an access token using the [Authorization code method.](#authorization-code-method)
+- Obtaining an access token using the [Authorization Code method.](#authorization-code-method)
 - Obtaining an access token using the [Client Credentials method.](#client-credentials-method)
 - [Refreshing an access token.](#refresh-a-token) 
 
