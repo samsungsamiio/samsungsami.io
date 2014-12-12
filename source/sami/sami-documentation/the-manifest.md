@@ -94,7 +94,7 @@ The data that can be correctly processed by the above Manifest looks like:
 The process of certifying Manifests is in active development. Any changes to the process will be reflected here. 
 {:.info}
 
-Manifests are submitted when [creating new device types in the Developer Portal.](/sami/sami-documentation/developer-user-portals.html#creating-a-device-type) The SAMI team reviews your submitted Manifests. You should receive a response within 1 business day of submitting your Manifest. If the response is taking longer than expected, please use the [Feedback](#feedback) link to send us a message.
+Manifests are submitted when [creating new device types in the Developer Portal.](/sami/sami-documentation/developer-user-portals.html#creating-a-device-type) The SAMI team reviews your submitted Manifests. You should receive a response within 1 business day of submitting your Manifest. If the response is taking longer than expected, please use the Feedback link on the left to send us a message.
 
 On approval or rejection, you will receive an email with any necessary feedback on resubmitting your Manifest. Manifests are tested not only for consistency, but also for compliance to SAMI standards of data categorization and performance. 
 
