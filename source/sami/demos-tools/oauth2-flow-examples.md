@@ -9,15 +9,15 @@ OAuth2 is a protocol that lets external apps request authorization to private de
 
 ## Web application
 
-A real world web application contains frontend components and backend servers. To improve scurity, it is recommended that the app uses the [Authorization Code method](/sami/sami-documentation/authentication.html#authorization-code-method) initially for an user to grant the app to access to her data on SAMI. Later on, the app could use [Client Credentials method](/sami/sami-documentation/authentication.html#client-credentials-method) in the backend to get tokens to access the data without requiring users' involvement.
+A real world web application contains frontend components and backend servers. To improve security, it is recommended that the app uses the [Authorization Code method](/sami/sami-documentation/authentication.html#authorization-code-method) initially for an user to grant the app to access to her data on SAMI. Later on, the app could use the [Client Credentials method](/sami/sami-documentation/authentication.html#client-credentials-method) in the backend to get tokens to access the data without requiring users' further involvement.
 
 ### Obtain an access token by interacting with users
 
-The [Authorization Code method] is divided to two steps. First, the front end sends a HTTP request to get an authroization code. Then, the back end sends a HTTP request with the client credentials to get an access token. 
+The Authorization Code method has two steps. First, the front end sends a HTTP request to get an authorization code. Then, the back end sends a HTTP request with client credentials and the obtained code to get an access token. 
 
 #### Obtain an authorization code
 
-The web app presents a UI for an user to login to SAMI. After the login button is clicked, the app makes the HTTP call to request an authorization code from SAMI. Below is the example of HTTP GET request call:
+The web app presents a UI for an user to login to SAMI. After the login button is clicked, the app makes the HTTP call to request an authorization code from SAMI. Below is the example of a HTTP GET request call:
 
     https://accounts.samsungsami.io/authorize?client_id=9628eef2a00d43d89b757b8d34373588&response_type=code&redirect_uri=https://myapp.com/callback&state=abcdefgh&scope=read,write
 
@@ -53,11 +53,11 @@ grant_type=authorization_code&code=SplxlOBeZQQYbYS6WxSbIA&redirect_uri=https://m
 }
 ~~~~
 
-Now your web application use the token to make API calls to SAMI until the token is revoked or expires.
+Now your web application uses the token to make API calls to SAMI to access the correpsonding user's data until the token is revoked or expires.
 
-In the future, you could continue to use this flow to get an access token of a user by involving her to interact with UI of your web app. The future interaction via UI only requires the user to login, and does not require the user to grant the permission again unless she revokes the permission.
+In the future, you could continue to use this flow to get an access token of a user by involving her to interact with UI of your web app. The future interaction via UI only requires the user to login, and does not require the user to grant the permission again unless she revokes or changes the permission.
 
-It is a better way that the web app performs API calls to SAMI on behalf of a user without showing login UI to the user. This method is elaborated in the next section.
+It is better that the web app performs API calls to SAMI on behalf of a user without showing login UI to this user again. This method is elaborated in the next section.
 
 ### Obtain an access token without user's further interaction
 
@@ -113,12 +113,7 @@ Please consult [Your first Android app](/sami/demos-tools/your-first-android-app
 
 If your mobile application can work with your backend servers, your app is likely more secure. The client secret can be stored in the backend server. You use one of the following options to do the initial authentication and permission grant depending on your preference:
 
-- Use [Authorization Code method](/sami/sami-documentation/authentication.html#authorization-code-method) like the [web application] (#web-application) above. In this way, the mobile app acts like the frontend of the web application.
+- Use the [Authorization Code method](/sami/sami-documentation/authentication.html#authorization-code-method) like the [web application](#web-application) above. In this way, the mobile app acts like the frontend of a web application.
 - Use the [Implicit method](/sami/sami-documentation/authentication.html#implicit-method) as the [above mobile app](#mobile-application-without-backend-servers) that does not have backend servers to depend on.
 
-After an user grants the permission to your mobile app on UI during one of the above authentication workflows, the backend server of the app can use the [Client Credentials method](/sami/sami-documentation/authentication.html#client-credentials-method) to get access tokens to perform API calls without users's futher interactions just like what the above (web app)[#obtain-an-access-token-without-users-further-interaction] does.
-
-[1]: /sami/demos-tools/your-first-application.html#initial-setup "Initial setup to use sample apps"
-[2]: /sami/demos-tools/your-first-application.html#create-an-application "Create an application"
-[3]: /sami/demos-tools/your-first-application.html#connect-a-device "Connect a device"
-[4]: /sami/demos-tools/your-first-application.html#use-the-api-console "Use the API Console"
+After an user grants the permission to your mobile app on UI during one of the above authentication workflows, the backend server of the app can use the [Client Credentials method](/sami/sami-documentation/authentication.html#client-credentials-method) to get access tokens to perform API calls without user's futher interactions just like the above [web app](#obtain-an-access-token-without-users-further-interaction) does.
