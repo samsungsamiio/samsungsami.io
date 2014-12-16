@@ -762,19 +762,6 @@ Returns the properties for a specific Manifest version. This will return metadat
 ~~~~
 {
   "data":{
-    "manifest":"import com.samsung.sami.manifest.Manifest
-                import com.samsung.sami.manifest.fields.Field
-                import com.samsung.sami.manifest.fields.FieldDescriptor
-                public class SamsungCamManifest implements Manifest {
-                  @Override
-                  List<Field> normalize(String input) {
-                    return []
-                  }
-                  @Override
-                  List<FieldDescriptor> getFields() {
-                    return []
-                  }
-                }",
     "properties" : {
       "fields": {
         "location":{
