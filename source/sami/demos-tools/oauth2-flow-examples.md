@@ -86,9 +86,13 @@ grant_type=client_credentials&scope=read,write
 }
 ~~~~
 
-## Mobile application without backend servers
+## Mobile application
 
-A mobile application, which does not have backend servers to work with, is less secure and cannot protect the client secret enough. Therefore, it is recommended to use the [Implicit method](/sami/sami-documentation/authentication.html#implicit-method) in this type of applications.
+Depending on if you have backend servers to work with your mobile application, you have different options to design your authentiction flows.
+
+### Without backend servers
+
+Lets call a mobile application that does not have backend servers to work with the standalone mobile app. This type of application is less secure and cannot protect the client secret enough. Therefore, it is recommended to use the [Implicit method](/sami/sami-documentation/authentication.html#implicit-method) in a standalone mobile app.
 
 The Implicit method is straightforward to use. It takes one step for a mobile app to get the access token. Please consult the [Implicit method](/sami/sami-documentation/authentication.html#implicit-method) for more details. The following are the examples of HTTP GET request sent by the mobile app:
 
@@ -109,11 +113,11 @@ Instead of redirecting, the mobile app extracts the access token from the above 
 
 Please consult [Your first Android app](/sami/demos-tools/your-first-android-app.html) and [iOS app demo](https://github.com/samsungsamiio/sami-ios-demo) for the examples of using the Implicit method.
 
-## Mobile application with backend servers
+### With backend servers
 
 If your mobile application can work with your backend servers, your app is likely more secure. The client secret can be stored in the backend server. You use one of the following options to do the initial authentication and permission grant depending on your preference:
 
 - Use the [Authorization Code method](/sami/sami-documentation/authentication.html#authorization-code-method) like the [web application](#web-application) above. In this way, the mobile app acts like the frontend of a web application.
-- Use the [Implicit method](/sami/sami-documentation/authentication.html#implicit-method) as the [above mobile app](#mobile-application-without-backend-servers) that does not have backend servers to depend on.
+- Use the [Implicit method](/sami/sami-documentation/authentication.html#implicit-method) as the above [standalone mobile app](#without-backend-servers).
 
 After an user grants the permission to your mobile app on UI during one of the above authentication workflows, the backend server of the app can use the [Client Credentials method](/sami/sami-documentation/authentication.html#client-credentials-method) to get access tokens to perform API calls without user's futher interactions just like the above [web app](#obtain-an-access-token-without-users-further-interaction) does.
