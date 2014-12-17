@@ -13,7 +13,7 @@ We found an issue with the Device Simulator and we updated it. Download the late
 
 ## December 09, 2014
 
-Minor update to the Native SDKs today involving a change to a parameter name in the Messages API. Check out our GitHub page at [https://github.com/samsungsamiio/]
+Minor update to the Native SDKs today involving a change to a parameter name in the Messages API. Check out our GitHub page at [https://github.com/samsungsamiio/](https://github.com/samsungsamiio/)
 
 ## November 12, 2014
 
