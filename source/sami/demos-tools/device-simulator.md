@@ -13,7 +13,7 @@ The Device Simulator's primary goal is to make it easy to connect to SAMI and se
 
 
 
-To use the commands in this article, [**download the Device Simulator.**](https://github.com/samsungsamiio/samsungsami.io/blob/master/source/sami/downloads/device-simulator20141028.zip) <br /><br />Java JDK v8 update 25 or higher is required.
+To use the commands in this article, [**download the Device Simulator.**](https://github.com/samsungsamiio/samsungsami.io/blob/master/source/sami/downloads/device-simulator20141212.zip) <br /><br />Java JDK v8 update 25 or higher is required.
 {:.info}
 
 
