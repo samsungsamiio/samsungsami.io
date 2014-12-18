@@ -32,6 +32,10 @@ in the path.
 
 All timestamps are in milliseconds since epoch.
 
+### Rate limits
+
+The rate limits for the API calls are documented [here.](/sami/sami-documentation/rate-limiting.html)
+
 ## API Console
 
 The SAMI API Console is found at [https://api-console.samsungsami.io/sami.](https://api-console.samsungsami.io/sami) In order to use the Console, you must first authenticate with your Samsung account. If you don’t have a Samsung account, you can create it during the process. 
