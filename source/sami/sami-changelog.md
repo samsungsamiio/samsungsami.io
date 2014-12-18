@@ -7,6 +7,10 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+## December 17, 2014
+
+Rate limiting is [now documented.](/sami/sami-documentation/rate-limiting.html)
+
 ## December 16, 2014
 
 We found an issue with the Device Simulator and we updated it. Download the latest file from [Device Simulator](/sami/demos-tools/device-simulator.html)
