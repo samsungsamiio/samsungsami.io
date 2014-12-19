@@ -6,6 +6,7 @@ nav:
    - 'authentication'
    - 'administrative-apis'
    - 'sending-and-receiving-data'
+   - 'rate-limiting'
    - 'the-manifest'
    - 'developer-user-portals'
 ---
