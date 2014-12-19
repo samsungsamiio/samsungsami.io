@@ -202,7 +202,7 @@ grant_type=client_credentials&scope=read,write
 
 ### Refresh a token
 
-This POST call issues a new `access_token` by using a previously issued `refresh_token` from the same authenticated client. The endpoint is expected to be called from the client app server. Among the request parameters below, `client_id` and `client_secret` should be included in an HTTP Authorization header, and the remaining parameters should be passed in the POST body. Consult [Sending client ID and client secret](#sending-clientid-and-clientsecret) for details on how to include them in an HTTP POST request.
+If an application obtains an access token using the [Authorization Code method](#authorization-code-method), it can refresh the token after the token expires. The application makes a POST call at the server side using a previously issued `refresh_token`. Among the request parameters below, `client_id` and `client_secret` should be included in an HTTP Authorization header, and the remaining parameters should be passed in the POST body. Consult [Sending client ID and client secret](#sending-clientid-and-clientsecret) for details on how to include them in an HTTP POST request.
 
 **Request parameters**
 
