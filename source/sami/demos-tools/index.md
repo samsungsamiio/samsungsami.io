@@ -7,7 +7,8 @@ nav:
   - 'manifest-sdk'
   - 'manifest-advanced-example'
   - 'oauth2-flow-examples'
-  - 'device-simulator'  
+  - 'device-simulator'
+  - 'api-console'
  
 ---
 # Demos and tools
