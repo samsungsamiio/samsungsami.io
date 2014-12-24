@@ -38,7 +38,7 @@ Device IDs are needed for calls in the Devices category. You can view all of you
 - Paste your user ID into the required field and click "Try It!"
 - Your devices will be listed in the response body.
 	- The device ID for each device is `id`.
-	- The device type ID is `dtid`. For another way to locate a device type ID, see below.
+	- The device type ID is `dtid`. For other ways to locate a device type ID, see the next section.
 ![API Console](/images/docs/sami/demos-tools/apiConsoleGetUserDevices.png)
 
 
@@ -46,7 +46,7 @@ Device IDs are needed for calls in the Devices category. You can view all of you
  
 If you want to create a new device for a user, you’ll need the device type ID. These are the most direct ways to find a device type ID:
  
-- You can enter a device ID in `GET /devices/{deviceId}`. You can If you have connected an instance of the device type to SAMI.
+- If an instance of the device type is already connected to SAMI, you can enter its device ID in `GET /devices/{deviceId}`. 
 	- The device type ID is `dtid` in the response body.
 ![API Console](/images/docs/sami/demos-tools/apiConsoleGetDevice.png)
 
@@ -58,9 +58,15 @@ If you want to create a new device for a user, you’ll need the device type ID.
  
 Using the API Console, you can conveniently retrieve historical messages from a device or user. 
  
-- Find the call `GET / messages`.
+- Find the call `GET /messages`.
 - Note that you can use various parameter combinations to retrieve messages.
 - Since `startDate` and `endDate` are already filled, try entering the device ID under `sdid`. This will pull up a list of messages in that date range for the source device.
  
- 
+## Get the last messages sent by a device
 
+This call returns a device's most recent messages irrespective of duration, and is useful for debugging. 
+
+- Find the call `GET /messages/last`.
+- Next to `count`, enter the number of messages to return (default is 10).
+- Enter the source device ID. Note that you can enter multiple device IDs separated by commas.
+- The last messages sent by each device are returned.
