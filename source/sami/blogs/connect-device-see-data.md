@@ -11,7 +11,7 @@ SAMI is a data exchange platform that enables any device or sensor or applicatio
 
 This is a baby step in the journey of SAMI exploration. For this step, I do not need to write one line of code in order to gain a bit tangible understanding of SAMI.
 
-## Access the User Portal to connect the device
+## Connect the device
 
 I use a Withings smart scale in this exploration. Withings devices are just one of hundreds of device types that have been supported in SAMI.
 
@@ -35,7 +35,7 @@ After I successfully login, I connect my smart scale to SAMI as follows:
 - Name this device (for example scale).
 - Click the "Connect Device..." button.
 
-Now this scale appears as one of the connected devices in the User Portal. Depending on the type, some devices require the user to authorize SAMI to get device data from the 3rd party cloud servers. For example, Withings and Fitbit devices require authorization while Vital Connect Module devices do not. You only need to do authorization once for such a device if authorization is needed.
+Now this scale appears as one of the connected devices in the User Portal. Depending on the type, some devices require the user to authorize SAMI to get device data from the 3rd party cloud. For example, Withings and Fitbit devices require authorization while Vital Connect Module devices do not. You only need to do authorization once for such a device if authorization is needed.
 
 I follow the steps below to authorize SAMI to get my scale's data from Withings's server:
 
