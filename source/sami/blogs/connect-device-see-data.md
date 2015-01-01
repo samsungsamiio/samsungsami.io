@@ -9,13 +9,13 @@ title: "Peek into SAMI first time"
 
 SAMI is a data exchange platform that enables any device or sensor or application to push its data to the cloud. Applications, services and devices can then use that data through simple APIs. At the first step to explore SAMI, I will show you how to connect a device to SAMI, and then visualize its data on SAMI.
 
-This is a baby step in the journey of SAMI exploration. For this step, I do not need to write one line of code in order to gain a bit tangible understanding of SAMI.
+This is a baby step in the journey of SAMI exploration. For this step, I do not need to write a single line of code in order to gain a bit tangible understanding of SAMI.
 
 ## Connect the device
 
 I use a Withings smart scale in this exploration. Withings devices are just one of hundreds of device types that have been supported in SAMI.
 
-Users and developers can access a couple of portals to manage and modify the applications and devices. I only need to use the User Portal for this exploration.
+Users and developers can access a couple of web portals to manage and modify applications and devices. I only need to use the User Portal for this exploration.
 
 I go to the User Portal located at [portal.samsungsami.io.](http://portal.samsungsami.io) to connect the device. Since this is my first time to login to the portal, I need to follow the following steps to create an account.
 
@@ -59,6 +59,6 @@ Now I am ready to see the data of my Withings scale on SAMI.
 
 I can see the near real time update of the data in the following way:
 
-- Click play button in SAMI.Data Visualization tool. Now the chart shows data within 30s window and keeps freshing to show new data.
+- Click play button in SAMI.Data Visualization tool. Now the chart shows data within 30s window and refreshs to show new data.
 - Make sure the scale connects to the Internet. Step on the scale and a new measurement will be sent to Withings cloud.
 - Shortly I see the new weight data appears in the chart of SAMI.Data Visualization tool.
