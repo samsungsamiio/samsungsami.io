@@ -29,9 +29,9 @@ Get the source code of the [Objective-C/iOS SDK](https://github.com/samsungsamii
 3. Import the SAMI SDK into the Xcode project: 
   * Download [SAMI iOS SDK](https://github.com/samsungsamiio/sami-ios)
   * Open Xcode project and drag the `client` folder of SAMI iOS SDK from the Finder window into `SAMIClient` group in Xcode.
-  ![iOS SAMI Demo setup](/images/docs/sami/native-sdks/ios-demo-modify-appid.png){:.lightbox}
+  ![iOS SAMI Demo setup](/images/docs/sami/native-SDKs/ios-demo-add-sdk-to-prj.png){:.lightbox}
 4. Copy the Application Client ID obtained in Step 1 into SamiConstants.h, to replace <YOUR CLIENT APP ID>
-![iOS SAMI Demo setup](/images/docs/sami/native-sdks/ios-demo-modify-appid.png){:.lightbox}
+![iOS SAMI Demo setup](/images/docs/sami/native-SDKs/ios-demo-modify-appid.png){:.lightbox}
 
 Now you can build and run the project.
 
