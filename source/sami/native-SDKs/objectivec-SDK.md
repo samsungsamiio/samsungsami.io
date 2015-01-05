@@ -5,32 +5,35 @@ title: "Objective-C/iOS SDK"
 
 #Objective-C/iOS SDK (beta)
 
-This SDK helps you connect your iOS apps to SAMI. The SDK helps authenticating with SAMI, exposes a number of methods to easily execute REST API calls to SAMI, and supports a WebSockets controller.
+This SDK helps you connect your iOS apps to SAMI. It exposes a number of methods to easily execute REST API calls to SAMI.
+
+To help you learn the SDK, we will talk about our iOS demo app that uses the SDK. We will walk through the steps to setup the iOS demo app and explain the code that calls SDK APIs to interact with SAMI.
 
 ## Prerequisites
 
 - [Xcode v6.1](https://developer.apple.com/xcode/) or above
-- AFNetworking
-- SocketRocket
+- [Cocoapods](http://guides.cocoapods.org/using/getting-started.html)
 
 The SDK supports iOS version 6 and higher. The sample application was written for and tested in iOS 8. These instructions are for a Mac that is running Xcode v6.1 and above.
 
 ### Source code
 
-The source code for the Objective-C/iOS SDK is located [on GitHub.](https://github.com/samsungsamiio/sami-ios)
+Get the source code of the [Objective-C/iOS SDK](https://github.com/samsungsamiio/sami-ios) and the [iOS demo app](https://github.com/samsungsamiio/sami-ios-demo) from GitHub.
 
-## Installation
+## Setup and installation
 
-Install CocoaPods. See [this page](http://guides.cocoapods.org/using/getting-started.html) for instructions. From a terminal window, locate the SamihubClient directory, and run `pod install`. This installs all the prerequisites like AFNetworking and SocketRocket.
-
-Import the SAMI SDK into the project by dragging the `client` folder from the Finder window into Xcode. 
-
-Finally, update the application's client ID with your application's ID. Ensure that your application has a redirect URL of `ios-app://redirect`.
-
-![Objective-C SDK installation](/images/docs/sami/demos-tools/objectivec-sdk-installation.png){:.lightbox}
+1. Create an Application in devportal.samsungsami.io:
+  * The Redirect URI is set to 'ios-app://redirect'.
+  * Choose "Client credentials, auth code, implicit" for OAuth 2.0 flow.
+2. Install CocoaPods. See [this page](http://guides.cocoapods.org/using/getting-started.html) for instructions. From a terminal window, locate the SAMIClient directory of the demo app, and run `pod install`. This installs all the prerequisites like AFNetworking and SocketRocket.
+3. Import the SAMI SDK into the Xcode project: 
+  * Download [SAMI iOS SDK](https://github.com/samsungsamiio/sami-ios)
+  * Open Xcode project and drag the `client` folder of SAMI iOS SDK from the Finder window into `SAMIClient` group in Xcode.
+  ![iOS SAMI Demo setup](/images/docs/sami/native-sdks/ios-demo-modify-appid.png){:.lightbox}
+4. Copy the Application Client ID obtained in Step 1 into SamiConstants.h, to replace <YOUR CLIENT APP ID>
+![iOS SAMI Demo setup](/images/docs/sami/native-sdks/ios-demo-modify-appid.png){:.lightbox}
 
 Now you can build and run the project.
-
 
 ## OAuth2 flow
 
@@ -116,13 +119,13 @@ The first task is to use the access token to obtain the user's information: ID, 
 
 This is accomplished using the `SamiUsersApi.h` class in the SAMI Objective-C library. The API calls are executed asynchronously, and the error or response needs to be retrieved in the completion block, as below:
 
-**SamiUserController.m**
+**SamiViewController.m**
 
 ~~~
 #import "SamiUsersApi.h"
   
   
-@implementation SamiUserController
+@implementation SamiViewController
   
 - (void) validateAccessToken: (NSString *) accessToken {
   SamiUsersApi *usersApi = [[SamiUsersApi alloc] init];
@@ -144,7 +147,7 @@ After obtaining the user's ID, other user information like the user's devices, d
 
 To 'register' the iPhone as a device, the iOS app needs to use the `SamiDevicesApi.h` addDevice call, passing the appropriate device type ID, below:
 
-**SamiUserDevicesController.m**
+**SamiDevicesTableViewController.m**
 
 ~~~
 - (IBAction)registerPhoneAsDevice:(id)sender {
@@ -170,42 +173,43 @@ To 'register' the iPhone as a device, the iOS app needs to use the `SamiDevicesA
 
 Once the device is created and the deviceId is known, the iOS app can post messages. The message data, needs to match the Manifest information. The message data needs to be marshaled within NSDictionary.
 
-**PostMessagesController.m**
+**SamiSynchPedometerViewController.m**
 
 ~~~
-- (IBAction)addMessage:(id)sender {
-    NSString *deviceId = @"<SAMI Device ID>";
-    NSString* authorizationHeader = @"Bearer " + self.accessToken;
-     
-    SamiMessagesApi * api = [SamiMessagesApi apiWithHeader:authorizationHeader key:OAUTH_AUTHORIZATION_HEADER];
-     
-    SamiMessage *message = [[SamiMessage alloc] init];
-    message.sdid = deviceId;
-    message.data = @{ @"numberOfSteps": @([self.stepsField.text integerValue]),
-                            @"floorsAscended": @([self.floorsAscField.text integerValue]),
-                            @"floorsDescended": @([self.floorsDescField.text integerValue]),
-                            @"distance": @([self.distanceField.text floatValue])};
-     
-    [api postMessageWithCompletionBlock:message completionHandler:^(SamiMessageIDEnvelope *output, NSError *error) {
-        if (!error) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
-                                                            message:[@"Message added " stringByAppendingString:output.data.mid]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-        } else {
-            NSLog(@"%@", error);
-             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                            message:error.localizedDescription
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-        }
-    }];
+- (void) showPedometer {
+    self.label.text = [NSString stringWithFormat:@"StepCounting: %d\nDistance: %d\nFloorCounting: %d", [CMPedometer isStepCountingAvailable], [CMPedometer isDistanceAvailable], [CMPedometer isFloorCountingAvailable]];
+    NSLog(@"Something");
+    
+    self.pedometer = [[CMPedometer alloc] init];
+    
+    [self.pedometer startPedometerUpdatesFromDate:[NSDate date] withHandler:^(CMPedometerData *pedometerData, NSError *error) {
+        dispatch_async( dispatch_get_main_queue(), ^{
+            NSString* authorizationHeader = [SamiUserSession sharedInstance].bearerToken;
+            SamiMessagesApi * api = [SamiMessagesApi apiWithHeader:authorizationHeader key:OAUTH_AUTHORIZATION_HEADER];
+            
+            SamiMessage *message = [[SamiMessage alloc] init];
+            message.ts = @([pedometerData.startDate timeIntervalSince1970]*1000);
+            message.sdid = [SamiUserSession sharedInstance].currentDeviceId;
+            
+            if (pedometerData) {
+                message.data = @{ @"numberOfSteps": pedometerData.numberOfSteps,
+                                     @"floorsAscended": pedometerData.floorsAscended,
+                                     @"floorsDescended": pedometerData.floorsDescended,
+                                     @"distance": pedometerData.distance};
+            }
+            
+            [api postMessageWithCompletionBlock:message completionHandler:^(SamiMessageIDEnvelope *output, NSError *error) {
+                self.lastUpdatedLabel.text = [NSString stringWithFormat:@"Last Updated: %@", pedometerData.startDate];
+                if (error) {
+                    self.label.text = [error localizedDescription];
+                } else {
+                    self.label.text = [NSString stringWithFormat:@"Steps: %d\nDistance: %.2f\nfloorsAscended: %.2f\nfloorsDescended: %.2f", pedometerData.numberOfSteps.intValue, pedometerData.distance.floatValue, pedometerData.floorsAscended.floatValue, pedometerData.floorsDescended.floatValue];
+                }
+            }];
+        });
+    }];
 }
+
 ~~~
 
 In the code block above, the data of the message represents the pedometer data that has 4 numerical fields:
