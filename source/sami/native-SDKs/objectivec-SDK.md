@@ -171,40 +171,40 @@ To 'register' the iPhone as a device, the iOS app needs to use the `SamiDevicesA
 
 Once the device is created and the deviceId is known, the iOS app can post messages. The message data, needs to match the Manifest information. The message data needs to be marshaled within NSDictionary.
 
-**SamiSynchPedometerViewController.m**
+**SamiAddMessageViewController.m**
 
 ~~~
-- (void) showPedometer {
-    self.label.text = [NSString stringWithFormat:@"StepCounting: %d\nDistance: %d\nFloorCounting: %d", [CMPedometer isStepCountingAvailable], [CMPedometer isDistanceAvailable], [CMPedometer isFloorCountingAvailable]];
-    NSLog(@"Something");
+- (IBAction)addMessage:(id)sender {
+    NSString *deviceId = [SamiUserSession sharedInstance].currentDeviceId;
+    NSString* authorizationHeader = [SamiUserSession sharedInstance].bearerToken;
     
-    self.pedometer = [[CMPedometer alloc] init];
+    SamiMessagesApi * api2 = [SamiMessagesApi apiWithHeader:authorizationHeader key:OAUTH_AUTHORIZATION_HEADER];
     
-    [self.pedometer startPedometerUpdatesFromDate:[NSDate date] withHandler:^(CMPedometerData *pedometerData, NSError *error) {
-        dispatch_async( dispatch_get_main_queue(), ^{
-            NSString* authorizationHeader = [SamiUserSession sharedInstance].bearerToken;
-            SamiMessagesApi * api = [SamiMessagesApi apiWithHeader:authorizationHeader key:OAUTH_AUTHORIZATION_HEADER];
+    SamiMessage *message = [[SamiMessage alloc] init];
+    message.sdid = deviceId;
+    message.data = @{ @"numberOfSteps": @([self.stepsField.text integerValue]),
+                      @"floorsAscended": @([self.floorsAscField.text integerValue]),
+                      @"floorsDescended": @([self.floorsDescField.text integerValue]),
+                      @"distance": @([self.distanceField.text floatValue])};
+    
+    [api2 postMessageWithCompletionBlock:message completionHandler:^(SamiMessageIDEnvelope *output, NSError *error) {
+        if (!error) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                            message:[@"Message added " stringByAppendingString:output.data.mid]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        } else {
+            NSLog(@"%@", error);
             
-            SamiMessage *message = [[SamiMessage alloc] init];
-            message.ts = @([pedometerData.startDate timeIntervalSince1970]*1000);
-            message.sdid = [SamiUserSession sharedInstance].currentDeviceId;
-            
-            if (pedometerData) {
-                message.data = @{ @"numberOfSteps": pedometerData.numberOfSteps,
-                                     @"floorsAscended": pedometerData.floorsAscended,
-                                     @"floorsDescended": pedometerData.floorsDescended,
-                                     @"distance": pedometerData.distance};
-            }
-            
-            [api postMessageWithCompletionBlock:message completionHandler:^(SamiMessageIDEnvelope *output, NSError *error) {
-                self.lastUpdatedLabel.text = [NSString stringWithFormat:@"Last Updated: %@", pedometerData.startDate];
-                if (error) {
-                    self.label.text = [error localizedDescription];
-                } else {
-                    self.label.text = [NSString stringWithFormat:@"Steps: %d\nDistance: %.2f\nfloorsAscended: %.2f\nfloorsDescended: %.2f", pedometerData.numberOfSteps.intValue, pedometerData.distance.floatValue, pedometerData.floorsAscended.floatValue, pedometerData.floorsDescended.floatValue];
-                }
-            }];
-        });
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:error.localizedDescription
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
     }];
 }
 
