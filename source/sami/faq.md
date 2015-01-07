@@ -33,3 +33,6 @@ Is there any notion of a heartbeat between SAMI and a device for monitoring?
 
 Can I search for a message with a specific key/value pair?
 : SAMI allows you to query messages based on a start and end time, or querying the last *N* messages. A search functionality to extract messages with specific values is currently not implemented.
+
+Can I upload images to SAMI?
+: SAMI is designed to store and manage data that can be shared and reused by multiple applications and services. Some of the data might also be converted from one unit to another. At this time binary data such as images and videos don't meet our goals and require a lot of physical space. We recommend that you use a storage system that is optimized for this type of data.
