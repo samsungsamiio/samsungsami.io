@@ -1,6 +1,11 @@
 %script#toc{type: 'text/html'}
-  %ul.table-of-contents-list.nav
-    {{#items}}
-    %li{ class: "{{className}}"}
-      %a{href: "\#{{href}}"} {{text}}
-    {{/items}}
+  %div
+    {{#title}}
+    %h2.table-of-contents-title
+      %a{href:"\#{{href}}"} {{ text }}
+    {{/title}}
+    %ul.table-of-contents-list.nav
+      {{#items}}
+      %li{ class: "{{className}}"}
+        %a{href: "\#{{href}}"} {{text}}
+      {{/items}}

@@ -21,6 +21,7 @@ class App.Views.TableOfContents extends Backbone.View
     , 50
 
   initialize: (opt)->
+    @title = opt?.title
     @parent = opt?.parent
     @items = _.map opt?.items, (item)->
       currentLevel = "level-#{parseFloat(item.tagName.replace(/^h/i, ''), 10) - 1}"
@@ -43,7 +44,9 @@ class App.Views.TableOfContents extends Backbone.View
     $(".level-1").eq(0).addClass('active')
 
   render: ->
-    @$el.html ich.toc items: @items
+    @$el.html ich.toc
+      items: @items
+      title: @title
     @parent.prepend(@$el)
     @wrapContents()
     @

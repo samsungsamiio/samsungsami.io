@@ -47,16 +47,17 @@
     padding-left: 0
 
   .table-of-contents
+    $toc-top-padding: 39px
     -webkit-overflow-scrolling: touch
     border-left: 1px solid #E1E4E6
     display: none
     float: right
     height: 100%
-    margin-top: -39px
+    margin-top: -$toc-top-padding
     overflow-y: auto
     overflow-x: hidden
     padding-left: 0
-    padding-top: 39px
+    padding-top: $toc-top-padding - 18px
     position: absolute
     right: 0
     width: $toc-width
@@ -71,10 +72,21 @@
       top: 0
       margin-top: 0
       z-index: 1
+    .table-of-contents-title
+      +reset-box-model
+      +source-sans
+      font-size: 16px
+      font-weight: 600
+      padding: 5px
+      padding-left: 28px
+      margin-bottom: 8px
+      a
+        color: #949AA2
     .table-of-contents-list
       +reset-box-model
       +no-bullets
       +source-sans
+      font-weight: 300
       li
         margin-bottom: 0
         a
@@ -85,7 +97,7 @@
         &.level-1
           margin-bottom: 0
           a
-            padding: 8px
+            padding: 5px
             padding-left: 28px
           &.active > a
             color: #fff
@@ -100,11 +112,12 @@
             padding-left: 54px
       a
         color: #949AA2
-        
+
     .table-of-contents-list .level-1 .interior-menu
       max-height: 0
       overflow: hidden
       +transition
+
     .table-of-contents-list .level-1.active .interior-menu
       max-height: 1000px
 
@@ -228,14 +241,14 @@
   float: left
   min-height: 100%
   width: 100%
-  padding: 39px 20px 50px 22px
+  padding: $content-top-padding 20px 50px 22px
   h2.active, h3.active
     font-weight: 600
   +landing-page
     padding: 0
     border-left: none
   +respond-to('tablet')
-    padding: 39px 50px 50px 52px
+    padding: $content-top-padding 50px 50px 52px
   +respond-to('desktop')
     padding-right: $toc-width + 52px
   #st-content-cache + &
