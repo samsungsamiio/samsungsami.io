@@ -53,7 +53,7 @@ Now I am ready to see the data of my Withings scale on SAMI.
 - Click "+/- CHARTS" button on the tool screen and check "Weight" of the scale in order to see weight data chart.
 - Dismiss the chart selection screeen.
 - Click "5w" to see the chart of the weight data (in kg) for the past 5 weeks.<br /><br />
-![Weight Chart](/images/docs/sami/blogs/intro-weight-chart.png)
+![Weight Chart](/images/docs/sami/blogs/intro-weight-chart.png){:.lightbox}
 - I can customize the annotation to see the chart in different formats like curves, dots and bars.
 - I can choose different time windows like "10s" and "1d" to see the data in different durations.
 

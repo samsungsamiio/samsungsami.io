@@ -38,7 +38,7 @@ Now you can build and run the project.
 
 ## OAuth2 flow
 
-iOS apps require the use of Implicit Grant flows. This involves launching a `UIWebView` and submitting a `GET` request to the Authorization endpoint: `https://accounts.samihub.com/authorize` with the following parameters URL-encoded:
+iOS apps require the use of Implicit Grant flows. This involves launching a `UIWebView` and submitting a `GET` request to the Authorization endpoint: `https://accounts.samsungsami.io/authorize` with the following parameters URL-encoded:
 
 |Name |Value
 |--- |---
