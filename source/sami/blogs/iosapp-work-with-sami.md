@@ -191,7 +191,7 @@ Again, I implement the functionality by calling a method of `SamiUsersApi` class
 
 Once obtaining the list of devices back from SAMI, `UserInfoViewController` stores the first device whose device type matchs Withings device type. Later on, the app will get weight data of this device.
 
-#### Get weight data
+### Get weight data
 
 `DataTableViewController` is in charge of enquiring SAMI to obtain messages from the Withings device, parsing the response, and finally presenting weight data.
 
