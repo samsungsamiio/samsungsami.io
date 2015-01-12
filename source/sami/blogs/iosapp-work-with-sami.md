@@ -72,7 +72,7 @@ At the high level, I need to implement five functionalities:
  
 ### Authenticate user
 
-SAMI supports multiple OAuth 2.0 workflows. After consulting the [workflow examples](http://developer.samsungsami.io/sami/demos-tools/oauth2-flow-examples.html) on SAMI developer documentation site, I chose to implement the [Implicit method[(http://developer.samsungsami.io/sami/sami-documentation/authentication.html#implicit-method). The method is straightforward to implement and sufficient for a mobile app.
+SAMI supports multiple OAuth 2.0 workflows. After consulting the [workflow examples](http://developer.samsungsami.io/sami/demos-tools/oauth2-flow-examples.html) on SAMI developer documentation site, I chose to implement the [Implicit method](http://developer.samsungsami.io/sami/sami-documentation/authentication.html#implicit-method). It is straightforward to implement this method. In addition, the method is sufficient for my mobile app.
 
 The authentication functionality is implemented in `LoginViewController`.
 The controller contains a `UIWebView`, which submits a `GET` request to the Authorization endpoint: `https://accounts.samsungsami.io/authorize` during `viewDidLoad`. Note that the request contains the client id and redirect url, which are configured or obtained in the previous [app registration](#register-the-app) phase.
@@ -189,9 +189,9 @@ Again, I implement the functionality by calling a method of `SamiUsersApi` class
 }
 ~~~
 
-Once obtaining the list of devices from SAMI, `UserInfoViewController` identifies the first Withings device, and later on will get weight data of this device.  
+Once obtaining the list of devices from SAMI, `UserInfoViewController` identifies the first Withings device, and later on the app will get weight data of this device.  
 
-To find out which device is a Withings device, I use the device type. The device type of each device in the list is compared against the Withings device type `kDeviceTypeID_Withings`. Please consult the [appendix](#appendix) to learn how I obtained the string value. 
+To find out which device is a Withings device, I use the device type. The device type of each device in the list is compared against the Withings device type `kDeviceTypeID_Withings`. Please consult the [appendix](#appendix) to learn how I obtained the string. 
 
 ### Get weight data
 
@@ -268,12 +268,12 @@ Ok, you are done with a simple iOS app that presents historical weight data from
 
 In SAMI terminology, any source of data in SAMI is called a device and a device type defines a category of device. A device type is actually a long string. In order to parse through the device list and identify a Withing device, I need Withings device type to define variable `kDeviceTypeID_Withings` in `SamiConstants.m`.
 
-On http://developer.samsungsami.io/, I did not find a page that lists device types for the supported 3rd party devices. However, I was able to find out the Withings device type using the [SAMI API Console](http://developer.samsungsami.io/sami/demos-tools/api-console.html).
+On [http://developer.samsungsami.io](http://developer.samsungsami.io), I did not find a page that lists device types for the supported 3rd party devices. However, I was able to find out the Withings device type using the [SAMI API Console](http://developer.samsungsami.io/sami/demos-tools/api-console.html).
 
-I logged on https://api-console.samsungsami.io/ as the SAMI user, who connected his Withings device on SAMI User Portal. I first made "GET Current User Profile" call to get my user ID. Then I made "Get User Devices" call with the user ID to get my device info as the following screen shot illustrates: 
+I logged on [https://api-console.samsungsami.io](https://api-console.samsungsami.io/) as the SAMI user, who connected his Withings device on the User Portal. I first made "GET Current User Profile" call to get my user ID. Then I made "Get User Devices" call with the user ID to get my device info as the following screenshot illustrates: 
 ![SAMIHMonitor V1](/images/docs/sami/blogs/iosapp/v1-misc-apiconsole-devicetype.png)
 
-In the response body section of the above screen shot, I have a device named as "Withings Scale". The string value of `dtid` field is the Withings device type that I was looking for. I copied the string into `SamiConstants.m` as the following:
+In the response body section of the above screenshot, there is a device named "Withings Scale". The string value of `dtid` field is the Withings device type that I was looking for. I copied the string into `SamiConstants.m` as the following:
 
 ~~~
 NSString *const kDeviceTypeID_Withings = @"dt29673f0481b4401bb73a622353b96150";
