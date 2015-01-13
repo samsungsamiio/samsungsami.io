@@ -19,7 +19,9 @@ My development of this iOS app is primarily to test the feasibility that SAMI al
 
 Before digging in, here's a preview of how the first version of the app will work.
 
-- Start SAMIHMonitor and then you will be presented the login screen like this:
+- Start SAMIHMonitor.
+![SAMIHMonitor V1](/images/docs/sami/blogs/iosapp/v1-demo-0-starting.png)
+- Click "CONNECT" and then you will be presented the login screen like this:
 ![SAMIHMonitor V1](/images/docs/sami/blogs/iosapp/v1-demo-1-login.png)
 - Enter your user name and password to login.
 - Click "Allow" when the app asks you to give it the permission to read your Withings data on SAMI.
