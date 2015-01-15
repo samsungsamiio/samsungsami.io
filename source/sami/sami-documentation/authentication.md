@@ -37,6 +37,9 @@ calls, either as an HTTP Authorization header (preferred method), or as
 a URL parameter for WebSocket calls, as these normally do not support HTTP
 headers.
 
+For examples of how to build OAuth2 flows in your applications, see [**OAuth2 flow examples**](/sami/demos-tools/oauth2-flow-examples.html).
+{:.info}
+
 ## Get an application ID
 
 In order to obtain access tokens, you will need an application ID and

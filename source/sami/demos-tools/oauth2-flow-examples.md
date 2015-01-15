@@ -69,14 +69,14 @@ You can continue to use Authorization Code flow to get the user's access token. 
 
 However, it is preferable to have the web app perform API calls on behalf of a user without prompting another login. We describe how in the next section.
 
-### Obtain an access token without user interaction
+### Obtain an access token without further user interaction
 
 Once a user has granted your web app permission to access her data, the back-end server of the app can request an access token without further interaction from the user. This can be done two ways: 
 
 - Refreshing a token. 
 - Using the Client Credentials method. 
 
-In each method, HTTP calls must be performed by the back-end server because it requires passing the credentials (`client_id` and `client_secret`). The credentials are encoded in an HTTP Authorization header. Consult [Sending client ID and client secret](/sami/sami-documentation/authentication.html#sending-clientid-and-clientsecret) for details on how to include them in a HTTP request.
+In each method, we recommend that HTTP calls be performed by the back-end server because it requires passing the credentials (`client_id` and `client_secret`). The credentials are encoded in an HTTP Authorization header. Consult [Sending client ID and client secret](/sami/sami-documentation/authentication.html#sending-clientid-and-clientsecret) for details on how to include them in a HTTP request.
 
 The token obtained by refreshing a token can access data of a specific user. The token obtained using the Client Credentials method can access data of all users that have granted permissions to the application.
 {:.info}
@@ -114,7 +114,7 @@ grant_type=client_credentials&scope=read,write
 
 ## Standalone mobile applications
 
-Let's call a mobile application that does not have back-end servers. An standalone mobile application without back-end servers is less secure, and cannot protect the client secret. Therefore, it is recommended that you use the [Implicit method](/sami/sami-documentation/authentication.html#implicit-method) in a standalone mobile app.
+A mobile application that does not work with back-end servers (standalone mobile application) is less secure and cannot protect the client secret. Therefore, it is recommended that you use the [Implicit method](/sami/sami-documentation/authentication.html#implicit-method) in a standalone mobile app.
 
 The Implicit method is straightforward to use. It takes one step for a mobile app to get the access token. Please consult the [Authentication](/sami/sami-documentation/authentication.html#implicit-method) for more details on this flow. The following is an example of the HTTP `GET` request sent by the mobile app:
 
@@ -142,4 +142,4 @@ If your mobile application can work with your back-end servers, your app is like
 - Use the [Authorization Code method](/sami/sami-documentation/authentication.html#authorization-code-method) like in the [web application](#web-applications) described above. In this case, the mobile app acts like the front end of a web application.
 - Use the [Implicit method](/sami/sami-documentation/authentication.html#implicit-method) like in the above [standalone mobile app](#standalone-mobile-applications).
 
-After a user grants permissions to your mobile app during one of the above authentication workflows, the back-end server of the app can perform API calls without prompting the user to login again. This is done by refreshing tokens or using the Client Credentials method, just like in the above [web application](#obtain-an-access-token-without-user-interaction).
+After a user grants permissions to your mobile app during one of the above authentication workflows, the back-end server of the app can perform API calls without prompting the user to login again. This is done by refreshing tokens or using the Client Credentials method, just like in the above [web application](#obtain-an-access-token-without-further-user-interaction).
