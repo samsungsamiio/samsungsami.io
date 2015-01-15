@@ -163,7 +163,7 @@ In order to get an access token, `LoginViewController` needs to capture the call
 
 ### Get Withings device info
 
-In `UserInfoViewController`, I need to enquire SAMI twice to get Withings device info. The first enquiry is to get the device type ID of Withings devices. The second enquiry is to get a list of the devices that the user owns and then checks if the user has any Withings device using the device type ID. Based on that piece of information, "See Weight" button is enabled or disabled on the screen.
+In `UserInfoViewController`, I need to enquire SAMI twice to get Withings device info. The first enquiry is to get the device type ID of Withings devices. The second enquiry is to get a list of the devices that the user owns. Then I look for Withings devices in the list using the device type ID. Based on that piece of information, "See Weight" button is enabled or disabled on the screen.
 
 When enquiring for the device type ID, I need to pass in the device type name of Withings device. The name is the one shown in the User Portal. I define it in `SamiConstants.m` as the following code: 
 
