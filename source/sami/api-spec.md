@@ -294,7 +294,6 @@ Returns the devices registered to a user.
 
 **Response parameters**
 
-
 |Parameter   |Description    |
 |----------- |---------------|
 |`id`{:.param}   | Device ID.  |
@@ -302,6 +301,10 @@ Returns the devices registered to a user.
 |`name`{:.param} | Device name.    |
 |`manifestVersion`{:.param} | Device's manifest version that is used to parse the messages it sends to SAMI. |
 |`manifestVersionPolicy`{:.param} | Device's policy that will be applied to the messages sent by this device. <ul><li> LATEST means it will use the most recent manifest created.</li><li>DEVICE means it will use a specific version of the manifest regardless if newer versions are available.</li></ul> |
+|`needProviderAuth`{:.param} | If `false` the device needs authentication and is authenticated. If `true` the device needs authentication and is not authenticated.
+|`total`{:.param} |Total number of items.
+|`offset`{:.param} |String required for pagination.
+|`count`{:.param} |Number of items returned on the page.
 
 ### Get a user's device types
 
@@ -357,8 +360,11 @@ Returns the device types owned by a user.
   |`uid`{:.param}            |Owner's user ID.
   |`name`{:.param}           |Device type name.
   |`published`{:.param}      |Device type published.
-  |`latestVersion`{:.param}  |Device type latest manifest version available.
+  |`latestVersion`{:.param}  |Device type latest Manifest version available.
   |`uniqueName`{:.param}     |Device type unique name in the system (used for Manifest package naming). Has to be a valid JAVA package name.
+  |`total`{:.param} |Total number of items.
+  |`offset`{:.param} |String required for pagination.
+  |`count`{:.param} |Number of items returned on the page.
 
 
 ## Devices
@@ -410,8 +416,8 @@ Returns a specific device.
 |`dtid`{:.param} | Device Type ID. |
 |`name`{:.param} | Device name.    |
 |`manifestVersion`{:.param} | Device's manifest version that is used to parse the messages it sends to SAMI. |
-|`manifestVersionPolicy`{:.param} | Device's policy that will be applied to the messages sent by this device. <ul><li> `LATEST` means it will use the most recent manifest created.</li><li>`DEVICE` means it will use a specific version of the manifest regardless if newer versions are available.</li></ul> 
-
+|`manifestVersionPolicy`{:.param} | Device's policy that will be applied to the messages sent by this device. <ul><li> `LATEST` means it will use the most recent manifest created.</li><li>`DEVICE` means it will use a specific version of the manifest regardless if newer versions are available.</li></ul>
+|`needProviderAuth`{:.param} | If `false` the device needs authentication and is authenticated. If `true` the device needs authentication and is not authenticated.
 
 
 ### Create a device
@@ -663,8 +669,9 @@ Returns the device type of a device.
   |`uid`{:.param}            |Owner's user ID.
   |`name`{:.param}           |Device Type name.
   |`published`{:.param}      |Device type published.
-  |`latestVersion`{:.param}  |Device type latest manifest version available.
-  |`uniqueName`{:.param}     |Device type unique name in the system (will be used for manifest package naming). Has to be a valid JAVA package name.
+  |`approved`{:.param} |Device type latest Manifest approved by SAMI team.
+  |`latestVersion`{:.param}  |Device type latest Manifest version available.
+  |`uniqueName`{:.param}     |Device type unique name in the system (will be used for Manifest package naming). Has to be a valid JAVA package name.
 
 ### Get device types
 
@@ -704,6 +711,21 @@ Returns a list of device types.
     "count": 1
 }
 ~~~~
+
+**Response parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`id`{:.param}             |Device Type ID.
+|`uid`{:.param}            |Owner's user ID.
+|`name`{:.param}           |Device Type name.
+|`published`{:.param}      |Device type published.
+|`approved`{:.param} |Device type latest Manifest approved by SAMI team.
+|`latestVersion`{:.param}  |Device type latest Manifest version available.
+|`uniqueName`{:.param}     |Device type unique name in the system (will be used for Manifest package naming). Has to be a valid JAVA package name.
+|`total`{:.param} |Total number of items.
+|`offset`{:.param} |String required for pagination.
+|`count`{:.param} |Number of items returned on the page.
 
 ### Get latest Manifest properties
 
@@ -888,30 +910,47 @@ Returns normalized messages, according to one of the following parameter combina
 
 ~~~~
 {
-  "uid":"10022",
-  "sdid":"cf1b01690f7c41df80e01482c6246a6e",
-  "order": "asc",
-  "startDate": 1,
-  "endDate": 1402434042000,
-  "count": 1,
-  "size": 1,
-  "offset": "",
-  "next": "",
-  "data": [
-    {
-      "sdtid": "dt6172aca4919f40a4a96afbd27cee09c8",
-      "sdid":"cf1b01690f7c41df80e01482c6246a6e",
-      "data": {
-        "state": "off"
-      },
-      "mid": "80bff72064614fd5b5b05cb66c1ccfda",
-      "ts": 1377303199000,
-      "cts": 1377303199000,
-      "uid": "10022"
-    }
-  ]
-}           
+    "uid": "7b202300eb904149b36e9739574962a5",
+    "sdid": "4697f11336c540a69ffd6f445061215e",
+    "startDate": 1421281794212,
+    "endDate": 1421281794230,
+    "count": 100,
+    "order": "asc",
+    "size": 1,
+    "data": [
+        {
+            "mid": "057a407d4f814cbc874f3f7a0485af3b",
+            "data": {
+                "dateMicro": 1421281794211000,
+                "ecg": -73
+            },
+            "ts": 1421281794212,
+            "sdtid": "vitalconnect_module",
+            "cts": 1421281794212,
+            "uid": "7b202300eb904149b36e9739574962a5",
+            "mv": 1,
+            "sdid": "4697f11336c540a69ffd6f445061215e"
+        }
+    ]
+}
 ~~~~
+
+**Response parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`uid`{:.param} |User ID.
+|`sdid`{:.param} |Source device ID.
+|`startDate`{:.param} |Time of earliest message requested.
+|`endDate`{:.param} |Time of latest message requested.
+|`count`{:.param} |Number of items requested.
+|`order``{:.param} |Sort order.
+|`size`{:.param} |Number of items received.
+|`mid`{:.param} |Message ID.
+|`ts`{:.param} |Timestamp from source.
+|`sdtid`{:.param} |Source device type ID.
+|`cts`{:.param} |Timestamp from SAMI.
+|`mv`{:.param} |Manifest version.
 
 ### Get normalized message aggregates
 
@@ -1081,10 +1120,20 @@ Returns the status of the messages export.
   "exportId":"f2fcf3e0442511e4be990002a5d5c51b",
   "status":"Served",
   "md5": "12345",
-  "ttl": "2014-11-11T06:35:44.000-08:00"
+  "ttl": "1234567890"
+  "expirationDate": 1234567890
 }
 ~~~
 
+**Response parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`exportId`{:.param} | Export ID.
+|`status`{:.param} | Status of the export query (`Received`, `In-progress`, `Success`, `Failure`, `Served`, `Expired`). 
+|`md5`{:.param} |Checksum of the file returned.
+|`ttl`{:.param} |Expiration date.
+|`expirationDate`{:.param} |Expiration date.
 
 ### Get export result
 
@@ -1171,6 +1220,19 @@ Returns raw (original format) messages.
 }
 ~~~~
 
+**Response parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`sdid`{:.param} |Source device ID.
+|`startDate`{:.param} |Time of earliest message requested.
+|`endDate`{:.param} |Time of latest message requested.
+|`count`{:.param} |Number of items requested.
+|`order``{:.param} |Sort order.
+|`size`{:.param} |Number of items received.
+|`cts`{:.param} |Timestamp from SAMI.
+|`ts`{:.param} |Timestamp from source.
+|`mid`{:.param} |Message ID.
 
 
 ## Validation and errors
