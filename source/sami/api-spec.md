@@ -1121,7 +1121,6 @@ Returns the status of the messages export.
   "status":"Served",
   "md5": "12345",
   "ttl": "1234567890"
-  "expirationDate": 1234567890
 }
 ~~~
 
@@ -1130,10 +1129,9 @@ Returns the status of the messages export.
 |Parameter   |Description
 |----------- |-------------
 |`exportId`{:.param} | Export ID.
-|`status`{:.param} | Status of the export query (`Received`, `In-progress`, `Success`, `Failure`, `Served`, `Expired`). 
+|`status`{:.param} | Status of the export query (`Received`, `In-progress`, `Success`, `Failure`, `Served`). 
 |`md5`{:.param} |Checksum of the file returned.
 |`ttl`{:.param} |Expiration date.
-|`expirationDate`{:.param} |Expiration date.
 
 ### Get export result
 
