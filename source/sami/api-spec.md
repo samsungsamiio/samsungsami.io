@@ -944,7 +944,7 @@ Returns normalized messages, according to one of the following parameter combina
 |`startDate`{:.param} |Time of earliest message requested.
 |`endDate`{:.param} |Time of latest message requested.
 |`count`{:.param} |Number of items requested.
-|`order``{:.param} |Sort order.
+|`order`{:.param} |Sort order.
 |`size`{:.param} |Number of items received.
 |`mid`{:.param} |Message ID.
 |`ts`{:.param} |Timestamp from source.
@@ -1129,7 +1129,7 @@ Returns the status of the messages export.
 |Parameter   |Description
 |----------- |-------------
 |`exportId`{:.param} | Export ID.
-|`status`{:.param} | Status of the export query (`Received`, `In-progress`, `Success`, `Failure`, `Served`). 
+|`status`{:.param} | Status of the export query. Values include `Received`, `In-progress`, `Success`, `Failure`, `Served`.
 |`md5`{:.param} |Checksum of the file returned.
 |`ttl`{:.param} |Expiration date.
 
@@ -1226,7 +1226,7 @@ Returns raw (original format) messages.
 |`startDate`{:.param} |Time of earliest message requested.
 |`endDate`{:.param} |Time of latest message requested.
 |`count`{:.param} |Number of items requested.
-|`order``{:.param} |Sort order.
+|`order`{:.param} |Sort order.
 |`size`{:.param} |Number of items received.
 |`cts`{:.param} |Timestamp from SAMI.
 |`ts`{:.param} |Timestamp from source.
