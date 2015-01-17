@@ -1,5 +1,6 @@
 ---
-title: "Peek into SAMI first time"
+title: "A developer's journey of playing with SAMI 
+        --- Peek into SAMI first time"
 
 ---
 
