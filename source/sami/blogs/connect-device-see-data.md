@@ -71,5 +71,6 @@ I can see the near real time update of the data in the following way:
 
 In the future exploration, I will develop an app to understand how to:
 
-- get user's data from different sources
-- connect a user's devices to SAMI within the app without requiring user to do that in User Portal
+- connect a user's Withings scale to SAMI within the app without requiring the user to connect in the User Portal
+- get user's data from his Withings scale via SAMI
+- get user's data from multiple data sources via SAMI
