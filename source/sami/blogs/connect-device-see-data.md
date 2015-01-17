@@ -7,15 +7,19 @@ title: "Peek into SAMI first time"
 
 ## Introduction
 
-SAMI is a data exchange platform that enables any device or sensor or application to push its data to the cloud. Applications, services and devices can then use that data through simple APIs. At the first step to explore SAMI, I will show you how to connect a device to SAMI, and then visualize its data on SAMI.
+SAMI is a data exchange platform that enables any device or sensor or application to push its data to the cloud. Applications, services and devices can then use that data through simple APIs.
 
-This is a baby step in the journey of SAMI exploration. For this step, I do not need to write a single line of code in order to gain a bit tangible understanding of SAMI.
+As an app developer, I can see the huge benefits for a single app to access the data of a user from diverse data sources. In that way, the app can provide more relevant service for the user. It is also important that integration with other data sources requires minimum efforts. I am very interested in exploring SAMI to understand how it helps me develop an app to easily get data from diverse data sources.
+
+At the first step of the exploration journey, I would like to see how I can connect my own device to SAMI, and then visualize its data on SAMI. For this baby step, I do not write a single line of code. I act more like a SAMI user than a developer. However this exploration helps me believe that I can access the data from SAMI as a developer after seeing how a user can connect his devices to SAMI.
+
+After I gain intuitive understanding about SAMI, the next steps are to  develop an app to interact with it. My future exploration will test how SAMI helps a 3rd party app to not just store the data but also get data from diverse sources easily.
 
 ## Connect the device
 
-I use a Withings smart scale in this exploration. Withings devices are just one of hundreds of device types that have been supported in SAMI.
+I have a Withings smart scale and will use it as an example in this exploration. The Withings smart scale is one of many devices supported in SAMI.
 
-Users and developers can access a couple of web portals to manage and modify applications and devices. I only need to use the User Portal for this exploration.
+Users and developers can access a couple of web portals to manage and modify applications and devices. I only need to use the User Portal in this exploration.
 
 I go to the User Portal located at [portal.samsungsami.io.](http://portal.samsungsami.io) to connect the device. Since this is my first time to login to the portal, I need to follow the following steps to create an account.
 
@@ -35,16 +39,16 @@ After I successfully login, I connect my smart scale to SAMI as follows:
 - Name this device (for example scale).
 - Click the "Connect Device..." button.
 
-Now this scale appears as one of the connected devices in the User Portal. Depending on the type, some devices require the user to authorize SAMI to get device data from the 3rd party cloud. For example, Withings and Fitbit devices require authorization while Vital Connect Module devices do not. You only need to do authorization once for such a device if authorization is needed.
+Now this scale appears as one of the connected devices in the User Portal. Many devices are connected directly to SAMI and data can be consumed directly. Some devices like Withings and Fitbits where they have their own cloud and API, require a user to give SAMI the permission when connecting the first time. Over time, there will be more cloud services connected to SAMI, which will be discussed in other posts on this blog.
 
-I follow the steps below to authorize SAMI to get my scale's data from Withings's server:
+For the device that requires a user's authorization, there is an authorization button on that device. I perform the following steps to authorize SAMI to get my scale's data from Withings' cloud:
 
 - Click "Authorize" button of my Withings scale on the User Portal.
-- After the page is redirected to Withings login page, fill out my user name and password.
+- After the page is redirected to Withings login page, fill out my Withing's user name and password.
 - After login suceeds, click "Allow" on Withings authorization page to authorize Samsung SAMI to use my Withings account.
 - I am returned to the SAMI User Portal. 
 
-Now I am ready to see the data of my Withings scale on SAMI.  
+Note that I only need to do authorization with Withings' cloud once for this device. Now I am ready to see the data of my Withings scale on SAMI.  
 
 ## Visualize the data
 
@@ -62,3 +66,10 @@ I can see the near real time update of the data in the following way:
 - Click play button in SAMI.Data Visualization tool. Now the chart shows data within 30s window and refreshs to show new data.
 - Make sure the scale connects to the Internet. Step on the scale and a new measurement will be sent to Withings cloud.
 - Shortly I see the new weight data appears in the chart of SAMI.Data Visualization tool.
+
+## What is the next?
+
+In the future exploration, I will develop an app to understand how to:
+
+- get user's data from different sources
+- connect a user's devices to SAMI within the app without requiring user to do that in User Portal
