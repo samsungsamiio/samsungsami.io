@@ -29,12 +29,13 @@ Get the source code of the [Objective-C/iOS SDK](https://github.com/samsungsamii
   * The Redirect URI is set to 'ios-app://redirect'.
   * Choose "Client credentials, auth code, implicit" for OAuth 2.0 flow.
 2. Install CocoaPods. See [this page](http://guides.cocoapods.org/using/getting-started.html) for instructions. From a terminal window, locate the SAMIClient directory of the demo app, and run `pod install`. This installs all the prerequisites like AFNetworking.
-3. Import the SAMI SDK into the Xcode project of the demo app. Open Xcode project and drag the `client` folder of SAMI iOS SDK from the Finder window into `SAMIClient` group in Xcode.
+3. Double click `SAMIClient.xcworkspace` (not `SAMIClient.xcodeproj`) to open the Xcode project.
+4. Import the SAMI SDK into the Xcode project of the demo app. In the Xcode project, drag the `client` folder of SAMI iOS SDK from the Finder window into `SAMIClient` group in Xcode.
 ![iOS SAMI Demo setup](/images/docs/sami/native-SDKs/ios-demo-add-sdk-to-prj.png){:.lightbox}
-4. Copy the Application Client ID obtained in Step 1 into `SamiConstants.h` to replace `YOUR CLIENT APP ID`
+5. Copy the Application Client ID obtained in Step 1 into `SamiConstants.h` to replace `YOUR CLIENT APP ID`
 ![iOS SAMI Demo setup](/images/docs/sami/native-SDKs/ios-demo-modify-appid.png){:.lightbox}
-
-Now you can build and run the project.
+6. Build the Application in XCode.
+7. Run the Application in iOS Simulator.
 
 ## OAuth2 flow
 
