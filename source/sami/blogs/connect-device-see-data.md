@@ -53,7 +53,7 @@ For devices that require user authorization, there is an authorization button ne
 
 Note that I only need to do authorization with Withings' cloud once for this device. 
 
-## Visualize the data
+## Visualizing the data
 
 Now I am ready to see the data of my Withings smart scale on SAMI, using the [data visualization features](https://blog.samsungsami.io/portals/dataviz/2015/01/09/opening-the-user-portal.html) of the User Portal.
 
