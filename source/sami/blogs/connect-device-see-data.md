@@ -55,10 +55,10 @@ Note that I only need to do authorization with Withings' cloud once for this dev
 
 ## Visualizing the data
 
-Now I am ready to see the data of my Withings smart scale on SAMI, using the [data visualization features](https://blog.samsungsami.io/portals/dataviz/2015/01/09/opening-the-user-portal.html) of the User Portal.
+Now I am ready to see the data of my Withings smart scale on SAMI, using the [Data Visualization](https://blog.samsungsami.io/portals/dataviz/2015/01/09/opening-the-user-portal.html) features of the User Portal.
 
 - Click the "View your data" icon in the SAMI User Portal (upper-left corner).
-- This opens the data visualization tool in a pop-up window.
+- This opens Data Visualization in a pop-up window.
 - Click the "+/- CHARTS" button in the pop-up and check "Weight" underneath "Withings Device".
 - Dismiss the chart selection screeen.
 - Click "5w" (to the right of the "+/- CHARTS" button) to view the weight data (in kg) for the past 5 weeks.<br /><br />
@@ -68,9 +68,9 @@ Now I am ready to see the data of my Withings smart scale on SAMI, using the [da
 
 I can see the Withings data update in near-real-time in the following way:
 
-- Click the "Play" button in the data visualization tool. Now the chart shows data within a 30s window and periodically refreshes to show new data.
+- Click the "Play" button in Data Visualization. Now the chart shows data within a 30s window and periodically refreshes to show new data.
 - Make sure the Withings smart scale is connected to the Internet. Step on the scale, and a new measurement will be sent to Withings' cloud.
-- Shortly after, I see the new weight data appear in data visualization chart.
+- Shortly after, I see the new weight data appear in a Data Visualization chart.
 
 ## What comes next?
 
