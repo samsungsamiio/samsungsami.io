@@ -6,7 +6,6 @@ nav:
   - 'your-first-android-app'
   - 'manifest-sdk'
   - 'manifest-advanced-example'
-  - 'oauth2-flow-examples'
   - 'device-simulator'
   - 'api-console'
  

@@ -4,6 +4,7 @@ title: "Documentation"
 nav:
    - 'sami-basics'
    - 'authentication'
+   - 'oauth2-flow-examples'
    - 'administrative-apis'
    - 'sending-and-receiving-data'
    - 'rate-limiting'
