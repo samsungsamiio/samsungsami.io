@@ -36,6 +36,10 @@ All timestamps are in milliseconds since epoch.
 
 The rate limits for the API calls are documented [here.](/sami/sami-documentation/rate-limiting.html)
 
+### Message limits
+
+Any message sent to SAMI may not be bigger than 10 KB.
+
 ## API Console
 
 The SAMI API Console is found at [https://api-console.samsungsami.io/sami.](https://api-console.samsungsami.io/sami) In order to use the Console, you must first authenticate with your Samsung account. If you don’t have a Samsung account, you can create it during the process. 
@@ -1121,6 +1125,7 @@ Returns the status of the messages export.
   "status":"Served",
   "md5": "12345",
   "ttl": "1234567890"
+  "expirationDate": 1234567890
 }
 ~~~
 
@@ -1129,9 +1134,10 @@ Returns the status of the messages export.
 |Parameter   |Description
 |----------- |-------------
 |`exportId`{:.param} | Export ID.
-|`status`{:.param} | Status of the export query. Values include `Received`, `In-progress`, `Success`, `Failure`, `Served`.
+|`status`{:.param} | Status of the export query. Values include `Received`, `In-progress`, `Success`, `Failure`, `Served`, `Expired`.
 |`md5`{:.param} |Checksum of the file returned.
 |`ttl`{:.param} |Expiration date.
+|`expirationDate`{:.param} |Expiration date.
 
 ### Get export result
 
