@@ -89,8 +89,6 @@
                       Mailing List
               %li.section-nav-footer
                 = partial :footer
-        .lightbox-content
-          = partial :mailing_list
 
         #swiftype-results
         %div.main.content{ data: {view: 'Content', 'no-toc' => page_data(current_page)['no_toc']}}
@@ -107,6 +105,9 @@
                   - next_page = nearest[:next]
                   - if next_page
                     %li.next-page= link_to "Next: #{page_title(next_page)}", next_page.url
+
+        .lightbox-content
+          = partial :mailing_list
 
     = partial "templates"
     = javascript_include_tag  "manifest"
