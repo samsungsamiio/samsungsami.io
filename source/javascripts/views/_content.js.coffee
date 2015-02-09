@@ -10,7 +10,7 @@ class App.Views.Content extends Backbone.View
 
   createTableOfContents: ()->
     headers =  @$el.children('.main-content-interior').children('h2, h3')
-    showNavItems = headers.not('h3').length > 2 and @$el.attr('data-no-toc') is undefined
+    showNavItems = headers.length > 0 and @$el.attr('data-no-toc') is undefined
     $title =  @$el.children('.main-content-interior').children('h1:first-child').first()
     if @$el.siblings('.section-nav').length > 0
       $toc = new App.Views.TableOfContents
