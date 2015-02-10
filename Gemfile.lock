@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/sxtxixtxcxh/middleman-swiftype
-  revision: 8ec0509b61a31ea1501ad5fafa8264d3fdddd456
+  revision: e750cd4de73263e342762099b30e2e742964d759
   specs:
-    middleman-swiftype (0.0.1)
+    middleman-swiftype (0.0.2)
       middleman-core (>= 3.0)
       swiftype (>= 0.0.4)
 
@@ -161,7 +161,7 @@ DEPENDENCIES
   middleman-alias
   middleman-dotenv
   middleman-livereload
-  middleman-swiftype!
+  middleman-swiftype (~> 0.0.2)!
   middleman-syntax
   nokogiri
   puma
