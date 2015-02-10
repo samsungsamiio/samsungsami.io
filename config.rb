@@ -65,7 +65,7 @@ set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
 
-set :site_domain, 'http://voiceofthebody.io/'
+set :site_domain, 'http://samsungsami.io/'
 
 # Build-specific configuration
 configure :build do
