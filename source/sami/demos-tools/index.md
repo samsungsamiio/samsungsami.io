@@ -22,5 +22,4 @@ Keep an eye on this page—more is on the way!
 *   [Your first Android app](/sami/demos-tools/your-first-android-app.html "Your first Android app")
 *   [Validate your Manifest](/sami/demos-tools/manifest-sdk.html)
 *   [Advanced Manifest examples](/sami/demos-tools/manifest-advanced-example.html)
-*   [OAuth2 flow examples](/sami/demos-tools/oauth2-flow-examples.html)
 *   [Device Simulator](/sami/demos-tools/device-simulator.html)
