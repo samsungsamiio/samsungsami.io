@@ -14,6 +14,7 @@
     height: 50px
     position: relative
     width: 50px
+    float: right
     .fa-close
       +opacity(0)
     .fa
@@ -41,8 +42,7 @@
   +respond-to(tablet)
     position: static
     height: auto
-    .toggle-nav
-      display: none
+
   a
     color: #ffffff
   .simband &
@@ -63,6 +63,35 @@
   +respond-to('tablet')
     background-color: transparent
   
+.logo
+  +hidpi('layout/sami')
+  display: inline-block
+  vertical-align: middle
+  height: 32px
+  margin: 0 18px 0 0
+  width: 86px
+  background-size: 100% auto
+  text-indent: -100000px
+  +respond-to('retina')
+    background-size: 100% auto
+  +respond-to('tablet')
+    height: image-height('layout/sami.png')
+    margin: 0 18px 0 0
+    width: image-width('layout/sami.png')
+  a
+    display: block
+    height: 100%
+    width: 100%
+
+.mobile-nav
+  height: 50px
+  .logo
+    vertical-align: top
+    margin-left: 10px
+    margin-top: 9px
+  +respond-to('tablet')
+    display: none
+
 .main-nav
   background: #00A9E0
   overflow-x: scroll
@@ -70,8 +99,16 @@
   padding: 7px 24px 7px 24px
   white-space: nowrap
   position: relative
+  padding-top: 14px
+  height: 50px
   +respond-to('tablet')
     overflow: hidden
+    height: auto
+    padding-top: 0
+  .logo
+    display: none
+    +respond-to('tablet')
+      display: inline-block
   .simband &
     +mobile-nav(#685BC7)
   .sensor-module &
@@ -125,26 +162,6 @@
       @include transform( rotate(270deg))
       +respond-to('1080px')
         line-height: 88px
-
-  .logo
-    +hidpi('layout/sami')
-    display: inline-block
-    vertical-align: middle
-    height: 32px
-    margin: 0 18px 0 0
-    width: 86px
-    background-size: 100% auto
-    text-indent: -100000px
-    +respond-to('retina')
-      background-size: 100% auto
-    +respond-to('tablet')
-      height: image-height('layout/sami.png')
-      margin: 0 18px 0 0
-      width: image-width('layout/sami.png')
-    a
-      display: block
-      height: 100%
-      width: 100%
 
   .nav-list
     @extend %inline-list

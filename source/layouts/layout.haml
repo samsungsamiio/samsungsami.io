@@ -17,12 +17,14 @@
     - landing_page = ['/', '/simband/', '/sensor-module/', '/sami/'].include? current_page.url
     .container
       %header.main-header
-        %a.toggle-nav{href: '#'}
-          %span.fa.fa-bars
-          %span.fa.fa-close
-        %form.quick-search
-          %label.search-input-wrapper
-            %input.search{type: 'search', placeholder: 'Search', name: 'q', id: 'swiftype-search' }
+        %nav.mobile-nav
+          %h1.logo= link_to data.page.title, '/'
+          %form.quick-search
+            %label.search-input-wrapper
+              %input.search{type: 'search', placeholder: 'Search', name: 'q', id: 'swiftype-search' }
+          %a.toggle-nav{href: '#'}
+            %span.fa.fa-bars
+            %span.fa.fa-close
         %nav.main-nav
           .beta
             %span Beta
