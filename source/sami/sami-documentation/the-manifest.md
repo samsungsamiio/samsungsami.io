@@ -89,6 +89,8 @@ The data that can be correctly processed by the above Manifest looks like:
 }
 ~~~
 
+We have created a sample device type "Manifest SDK Sample Device". If you just want to try SAMI APIs, you can use this sample device type instead of creating your own one. Consult [how to connect your device](/sami/sami-documentation/developer-user-portals.html/#connecting-a-device) to connect a device of this sample device type. The Manifest of this sample device type `TestJsonUtilGroovyManifest` is discussed in [Manifest Advance Examples](/sami/demos-tools/manifest-advanced-example/#manifest-example-using-jsonutil).
+
 ## Manifest certification
 
 The process of certifying Manifests is in active development. Any changes to the process will be reflected here. 

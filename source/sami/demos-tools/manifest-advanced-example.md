@@ -11,7 +11,7 @@ Make sure you have read the basics of the [**Manifest**](/sami/sami-documentatio
 
 ## Manifest example using JsonUtil
 
-This example shows how to use the [`JsonUtil`][2] methods of [Groovy utilities][1]. The data to be processed by the Manifest looks like:
+This example shows how to use the [`JsonUtil`][2] methods of [Groovy utilities][1]. As mentioned in [Peek into the basics](sami/sami-documentation/the-manifest.html#peek-into-the-basics), this Manifest is for sample device type "Manifest SDK Sample Device". The data to be processed by the Manifest looks like:
 
 ~~~json
 {
