@@ -15,6 +15,10 @@ Here we'll be posting regular updates about SAMI and updates to the documentatio
 
 Expiration date and status "Expired" were added to the [`GET /messages/export/<exportID>/status`{:.param}](/sami/api-spec.html#check-export-status) response.
 
+### January 22, 2015
+
+Added a note about byte size limits for SAMI messages. See the [API spec.](/sami/api-spec.html#message-limits)
+
 ### January 21, 2015
 
 We've posted [an article](/sami/sami-documentation/oauth2-flow-examples.html) that covers use cases of OAuth 2.0 for third-party applications.
