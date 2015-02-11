@@ -112,6 +112,23 @@ helpers do
     prefix + link_to(link, url, opts) + "</li>"
   end
 
+  def is_current(url)
+    if current_page.url.chomp('/').match(/^#{url.chomp('/')}/)
+      true
+    end
+  end
+
+  def display_current(list)
+    current_page = 'Menu'
+    for link in list do
+      page = page_or_index("/#{link}")
+      if is_current(page.url)
+        current_page = page_title(page)
+      end
+    end
+    current_page
+  end
+
   def active_link_to(link, url, opts={})
     if current_page.url.chomp('/') == url.chomp('/')
       opts = { class: 'active' }

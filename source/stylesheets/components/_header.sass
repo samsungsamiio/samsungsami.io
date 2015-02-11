@@ -42,7 +42,9 @@
   +respond-to(tablet)
     position: static
     height: auto
-
+    overflow: visible
+  +respond-to(desktop)
+    overflow: hidden
   a
     color: #ffffff
   .simband &
@@ -102,9 +104,11 @@
   padding-top: 14px
   height: 50px
   +respond-to('tablet')
-    overflow: hidden
     height: auto
     padding-top: 0
+    overflow: visible
+  +respond-to(desktop)
+    overflow: hidden    
   .logo
     display: none
     +respond-to('tablet')
@@ -159,10 +163,131 @@
       display: block
       line-height: 112px
       font-weight: 600
+      line-height: 88px
       @include transform( rotate(270deg))
-      +respond-to('1080px')
-        line-height: 88px
 
+  .nav-container
+    display: inline-block
+    position: relative
+    .navigation-shroud
+      display: none
+    .current-page
+      display: none
+      font-size: 13px
+      font-weight: 600
+      text-decoration: none
+      text-transform: uppercase
+      letter-spacing: 1.6px
+    +respond-to('tablet')
+      display: block
+      float: right
+      margin-top: 22px
+      .navigation-shroud
+        z-index: 99
+        left: 0
+        top: 0
+        right: 0
+        bottom: 0
+        width: 100%
+        height: 100%
+        display: none
+        position: fixed
+      .current-page
+        display: block
+        padding-right: 20px
+        padding-bottom: 13px
+        z-index: 101
+        position: relative
+        cursor: pointer
+        &:before
+          +arrow(23px, 10px, up, #fff)
+          content: ''
+          right: 55%
+          position: absolute
+          bottom: 0
+          display: none
+        &:after
+          +arrow(9px, 5px, down, #fff)
+          content: ''
+          display: inline-block
+          position: relative
+          bottom: 2px
+      &.open .current-page:before
+        display: block
+      .nav-list-container
+        position: absolute
+        background: #fff
+        border: #C7CACE
+        padding: 17px
+        z-index: 100
+        right: 0
+        top: 30px
+        display: none
+        +box-shadow(0 0 7px transparentize(#000, 0.8))
+        +border-radius(3px)
+        .nav-list, .offsite-nav-list
+          display: block
+          font-size: 18px
+          font-weight: 400
+        .nav-list li, .offsite-nav-list li
+          display: block
+          padding: 0
+          margin-bottom: 10px
+        .offsite-nav-list li
+          &:last-child
+            margin-bottom: 0
+          a:after
+            content: "»"
+            padding-left: 3px
+        .nav-list li a, .offsite-nav-list li a
+          +opacity(1)
+          text-transform: none
+          letter-spacing: 0
+          color: #00A9E0
+      &.open .nav-list-container
+        display: block
+      &.open .navigation-shroud
+        display: block
+    +respond-to('desktop')
+      display: inline-block
+      width: calc(100% - 188px)
+      float: none
+      margin-top: 0
+      .navigation-shroud
+        display: none
+      .current-page
+        display: none
+      .nav-list-container
+        position: inherit
+        background: none
+        border: none
+        padding: 0
+        z-index: inherit
+        right: inherit
+        top: inherit
+        display: block
+        +border-radius(0)
+        +box-shadow(none)
+        .nav-list, .offsite-nav-list
+          display: inline-block
+          font-size: 13px
+          font-weight: 600
+        .nav-list li, .offsite-nav-list li
+          display: inline-block
+          padding: 0 10px
+          margin-bottom: 0
+          &:last-child
+            padding-right: 0
+        .offsite-nav-list li
+          a:after
+            display: none
+        .nav-list li a, .offsite-nav-list li a
+          +opacity(0.5)
+          text-transform: uppercase
+          letter-spacing: 1.6px
+          color: #fff
+        .nav-item.active a
+          +opacity(1)
   .nav-list
     @extend %inline-list
     +reset-box-model
@@ -186,14 +311,11 @@
     margin-left: 20px
     +respond-to(tablet)
       float: none
-      margin-left: 188px
+      margin-left: 0      
+    +respond-to('desktop')
       padding: 4px 34px 3px 0
       background: url('/images/layout/offsite.png') no-repeat center right
       background-size: 24px
-      margin-top: -15px
-    +respond-to(desktop)
       float: right
-      margin-left: 0
-      margin-top: 19px
     li a
       +opacity(1)

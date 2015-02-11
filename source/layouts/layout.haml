@@ -29,20 +29,25 @@
           .beta
             %span Beta
           %h1.logo= link_to data.page.title, '/'
-          %ul.nav-list
+          .nav-container
             - children = page_data(docs)['nav']
-            - children.each do |child|
-              - page = page_or_index("/#{child}")
-              = nav_link_to page_title(page), page.url
-          %ul.offsite-nav-list
-            %li
-              %a{href: "https://blog.samsungsami.io/"} Blog
-            %li
-              %a{href: "https://devportal.samsungsami.io"} Developer Portal
-            %li
-              %a{href: "https://portal.samsungsami.io"} User Portal
-            %li
-              %a{href: "http://www.voiceofthebody.io"} voiceofthebody.io
+            .navigation-shroud
+            .current-page
+              = display_current children
+            .nav-list-container
+              %ul.nav-list
+                - children.each do |child|
+                  - page = page_or_index("/#{child}")
+                  = nav_link_to page_title(page), page.url
+              %ul.offsite-nav-list
+                %li
+                  %a{href: "https://blog.samsungsami.io/"} Blog
+                %li
+                  %a{href: "https://devportal.samsungsami.io"} Developer Portal
+                %li
+                  %a{href: "https://portal.samsungsami.io"} User Portal
+                %li
+                  %a{href: "http://www.voiceofthebody.io"} voiceofthebody.io
       .content.side
         - unless landing_page
           %a.toggle-menu{href: '#'}

@@ -54,6 +54,9 @@ $ ->
   $(window).on 'resize', _.debounce setMinHeight, 200
   $(window).on 'resize', _.debounce clearClasses, 200
 
+  $('.current-page').on 'click', (e)-> $(this).parent('.nav-container').toggleClass('open')
+  $('.navigation-shroud').on 'click', (e)-> $(this).parent('.nav-container').toggleClass('open')
+
   $('.toggle-menu').on 'click', (e)-> e.preventDefault(); $(this).parent('.content').toggleClass('sidebar-open')
   $('.main-header .toggle-nav').on 'click', (e)->
     e.preventDefault()
