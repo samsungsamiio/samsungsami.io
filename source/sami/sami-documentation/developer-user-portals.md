@@ -49,7 +49,7 @@ You will need your application ID (called a client ID in the Developer Portal) t
 
 ### Creating a device type
 
-If you are a device maker, creating and publishing a device type makes it available to all developers. 
+Creating and publishing a device type makes it available to all developers that want to store data in SAMI using a client of this device type.
 
 You will also need to [learn how to write a Manifest](/sami/sami-documentation/the-manifest.html) for your device type. 
 
