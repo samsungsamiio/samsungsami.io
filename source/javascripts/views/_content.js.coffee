@@ -34,9 +34,26 @@ class App.Views.Content extends Backbone.View
         .replace(/&lt;/g, '<')
         .replace(/&gt;/g, '>'))
 
+  parseAPIparams: ->
+    codeBlocks = @$el.children('.main-content-interior').find('.param.http')
+    codeBlocks.each (i, el)=>
+      $code = $(el)
+      exploded = $code.text().split(' ')
+      $code.html @renderAPIBlock exploded...
+      $code.addClass exploded[0].toLowerCase()
+
+  renderAPIBlock: (method, description..., url)->
+    ich.apiParam {
+      method: method
+      description: description.join(' ')
+      url: url
+      type: method.toLowerCase()
+    }
+
   render: ()->
     @groupImages()
     @createTableOfContents()
     @parseTables()
+    @parseAPIparams()
     return @
 

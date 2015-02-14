@@ -246,6 +246,36 @@ hr.typography
     font-style: normal
     line-height: 1
     padding: 6px
+    &.http
+      background: #F0F2F4
+      color: #77858E
+      display: block
+      padding: 18px
+      &.get
+        .method, .url
+          color: #009CA6
+        .method
+          background-color: transparentize(#009CA6, 0.9)
+      &.post
+        .method, .url
+          color: #1EBB32
+        .method
+          background-color: transparentize(#1EBB32, 0.9)
+      &.delete
+        .method, .url
+          color: #E4002B
+        .method
+          background-color: transparentize(#E4002B, 0.9)
+      &.put
+        .method, .url
+          color: #FF6900
+        .method
+          background-color: transparentize(#FF6900, 0.9)
+      .method
+        +border-radius(3px)
+        line-height: 1
+        padding: 6px
+
 
   ol, ul
     padding-left: 2.2em
