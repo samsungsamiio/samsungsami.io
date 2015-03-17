@@ -270,7 +270,7 @@ any software licensed from a third party, or
 
     5.3 ***Collection and Use of Personal and Non-Personal Data.***
 
-      * Our Privacy Policy, located at [http://www.voiceofthebody.io/privacy](www.voiceofthebody.io/privacy), explains how Samsung handles your personal data and information and protects your privacy when you use the Developer Kit and Platform. By using the Developer Kit and Platform, you agree that any personal data and information that you provide to us are subject to our Privacy Policy.
+      * Our Privacy Policy, located at [http://www.voiceofthebody.io/privacy](http://www.voiceofthebody.io/privacy), explains how Samsung handles your personal data and information and protects your privacy when you use the Developer Kit and Platform. By using the Developer Kit and Platform, you agree that any personal data and information that you provide to us are subject to our Privacy Policy.
       * You agree that Samsung and its affiliates may collect and use technical and related information that is gathered periodically, including but not limited to information about your Developer Products, computer, system software, other software and peripherals. Samsung may use this information, as long as it is in a form that does not personally identify you, to improve the Developer Kit, to provide services, if any, related to the Developer Kit, verify compliance with this Agreement or for other business purposes.  You agree to obtain all consents from the users of your Developer Products necessary for Samsung to use this information.
 
 6. **Ownership of Intellectual Property**
