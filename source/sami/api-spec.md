@@ -66,7 +66,6 @@ Returns the current user's profile. The user must be authenticated with a bearer
     "name":"tuser",
     "email":"tuser@ssi.samsung.com",
     "fullName":"Test User",
-    "saIdentity": "gut9amj3ld",
     "createdOn": 1403042304, // unix time in milliseconds
     "modifiedOn": 1403042305 // unix time in milliseconds
   }
@@ -303,7 +302,7 @@ Returns the devices registered to a user.
 |`id`{:.param}   | Device ID.  |
 |`dtid`{:.param} | Device Type ID. |
 |`name`{:.param} | Device name.    |
-|`manifestVersion`{:.param} | Device's manifest version that is used to parse the messages it sends to SAMI. |
+|`manifestVersion`{:.param} | Device's Manifest version that is used to parse the messages it sends to SAMI. |
 |`manifestVersionPolicy`{:.param} | Device's policy that will be applied to the messages sent by this device. <ul><li> LATEST means it will use the most recent manifest created.</li><li>DEVICE means it will use a specific version of the manifest regardless if newer versions are available.</li></ul> |
 |`needProviderAuth`{:.param} | If `false` the device needs authentication and is authenticated. If `true` the device needs authentication and is not authenticated.
 |`total`{:.param} |Total number of items.
@@ -352,8 +351,7 @@ Returns the device types owned by a user.
   "total": 1,
   "offset": 0,
   "count": 1  
-}
-            
+}            
 ~~~~
 
 **Response parameters**
@@ -419,7 +417,7 @@ Returns a specific device.
 |`uid`{:.param}  | User ID.    |
 |`dtid`{:.param} | Device Type ID. |
 |`name`{:.param} | Device name.    |
-|`manifestVersion`{:.param} | Device's manifest version that is used to parse the messages it sends to SAMI. |
+|`manifestVersion`{:.param} | Device's Manifest version that is used to parse the messages it sends to SAMI. |
 |`manifestVersionPolicy`{:.param} | Device's policy that will be applied to the messages sent by this device. <ul><li> `LATEST` means it will use the most recent manifest created.</li><li>`DEVICE` means it will use a specific version of the manifest regardless if newer versions are available.</li></ul>
 |`needProviderAuth`{:.param} | If `false` the device needs authentication and is authenticated. If `true` the device needs authentication and is not authenticated.
 
@@ -432,7 +430,7 @@ POST /devices
 
 Adds a device.
 
-**Example Request**
+**Example request**
 
 ~~~~
 {
@@ -452,7 +450,7 @@ Adds a device.
   |`uid`{:.param}  |User ID. String representation of a User ID.
   |`dtid`{:.param} |Device Type ID.
   |`name`{:.param} |Device name. Between 5 and 36 characters.
-  |`manifestVersion`{:.param} | (Optional) Numeric greater than 0 (zero). Device's manifest version that is used to parse the messages it sends to SAMI.
+  |`manifestVersion`{:.param} | (Optional) Numeric greater than 0 (zero). Device's Manifest version that is used to parse the messages it sends to SAMI.
   |`manifestVersionPolicy`{:.param} |(Optional) String. Device's policy that will be applied to the messages sent by this device. Only 2 values available. If not sent, defaults to `LATEST`. <ul><li>`LATEST` means it will use the most recent manifest created.</li> <li>`DEVICE` means it will use a specific version of the manifest regardless if newer versions are available. `manifestVersion`{:.param} will stay with this version.
 
 **Example response**
@@ -485,7 +483,7 @@ Modifies a device's parameters.
   |------------ |-------------
   |`deviceID`{:.param} |Device ID.
 
-**Example Request**
+**Example request**
 
 ~~~~
 {
@@ -505,7 +503,7 @@ Modifies a device's parameters.
   |`uid`{:.param}  |User ID. String representation of a User ID.
   |`dtid`{:.param} |Device Type ID.
   |`name`{:.param} |Device name. Between 5 and 36 characters.
-  |`manifestVersion`{:.param} |Numeric greater than 0 (zero). Device's manifest version that is used to parse the messages it sends to SAMI.
+  |`manifestVersion`{:.param} |Numeric greater than 0 (zero). Device's Manifest version that is used to parse the messages it sends to SAMI.
   |`manifestVersionPolicy`{:.param} |(Optional) String. Device's policy that will be applied to the messages sent by this device. Only 2 values available. If not sent, defaults to `LATEST`. <ul><li>`LATEST` means it will use the most recent manifest created.</li> <li>`DEVICE` means it will use a specific version of the manifest regardless if newer versions are available. `manifestVersion`{:.param} will stay with this version.
 
 **Example response**
@@ -652,17 +650,20 @@ Returns the device type of a device.
 
 ~~~~
 {
-  "data":{
-    "id":"d1d04e4cb18a4757b5481901e3665a34",
-    "uid":"1",
-    "name":"Samsung Web Camera XYZ",
-    "published":true,
-    "approved":true,
-    "latestVersion":5,
-    "uniqueName":"com.samsung.web.camera"
+  "data": {
+    "id": "dt71c282d4fad94a69b22fa6d1e449fbbb",
+    "uid": "650a7c8b6ca44730b077ce849af64e90",
+    "name": "SAMI Example Smart Light",
+    "published": true,
+    "approved": true,
+    "latestVersion": 1,
+    "uniqueName": "io.samsungsami.example.smart_light",
+    "vid": "0",
+    "rsp": false,
+    "issuerDn": null,
+    "description": null
   }
 }
-          
 ~~~~
 
 **Response parameters**
@@ -676,6 +677,10 @@ Returns the device type of a device.
   |`approved`{:.param} |Device type latest Manifest approved by SAMI team.
   |`latestVersion`{:.param}  |Device type latest Manifest version available.
   |`uniqueName`{:.param}     |Device type unique name in the system (will be used for Manifest package naming). Has to be a valid JAVA package name.
+  |`vid`{:.param} | Vendor ID.
+  |`rsp`{:.param} | Boolean (true/false). Requires secure protocol.
+  |`issuerDn`{:.param} | Issuer of the client certificate. Used in conjunction with `rsp`.
+  |`description`{:.param} | Custom description of the device type. String max 1500 characters.
 
 ### Get device types
 
@@ -697,22 +702,26 @@ Returns a list of device types.
 
 ~~~~
 {
-    "data": {
-        "deviceTypes": [
-            {
-                "id": "basis_watch",
-                "uid": "10023",
-                "name": "Basis Watch",
-                "published": true,
-                "approved": true,
-                "latestVersion": 1,
-                "uniqueName": "basis_watch"
-            }
-        ]
-    },
-    "total": 1,
-    "offset": 0,
-    "count": 1
+  "data": {
+    "deviceTypes": [
+      {
+        "id": "basis_watch",
+        "uid": "10023",
+        "name": "Basis Watch",
+        "published": true,
+        "approved": true,
+        "latestVersion": 1,
+        "uniqueName": "basis_watch",
+        "vid": "0",
+        "rsp": false,
+        "issuerDn": null,
+        "description": null
+      }
+    ]
+  },
+  "total": 1,
+  "offset": 0,
+  "count": 1
 }
 ~~~~
 
@@ -727,6 +736,11 @@ Returns a list of device types.
 |`approved`{:.param} |Device type latest Manifest approved by SAMI team.
 |`latestVersion`{:.param}  |Device type latest Manifest version available.
 |`uniqueName`{:.param}     |Device type unique name in the system (will be used for Manifest package naming). Has to be a valid JAVA package name.
+|`vid`{:.param} | Vendor ID.
+|`rsp`{:.param} | Boolean (true/false). Requires secure protocol. If not specified, defaults to TK.
+|`issuerDn`{:.param} | Issuer of the client certificate. Used in conjunction with `rsp`.
+|`description`{:.param} | Custom description of the device type. String max 1500 characters.
+|`description`{:.param} |TK
 |`total`{:.param} |Total number of items.
 |`offset`{:.param} |String required for pagination.
 |`count`{:.param} |Number of items returned on the page.
@@ -753,16 +767,22 @@ Returns the properties for the latest Manifest version. This will return metadat
   "data":{
     "properties" : {
       "fields": {
-        "location":{
-          "x": { "type": "Double", "unit": ""},
-          "y": { "type": "Double", "unit": ""}
+        "calories": {
+          "type": "Double",
+          "unit": "J*4.184",
+          "isCollection": false,
+          "description": "calories"
         },
-        "weight": {
-          { "type": "Double", "unit": "kg"}
-        }
+        "heartRate": {
+          "type": "Integer",
+          "unit": "b/min",
+          "isCollection": false,
+          "description": "heartRate"
+        },
+        ...
       }
     },
-    "version":5
+    "actions": {}
   }
 }
 ~~~~
@@ -790,16 +810,22 @@ Returns the properties for a specific Manifest version. This will return metadat
   "data":{
     "properties" : {
       "fields": {
-        "location":{
-          "x": { "type": "Double", "unit": ""},
-          "y": { "type": "Double", "unit": ""}
+        "calories": {
+          "type": "Double",
+          "unit": "J*4.184",
+          "isCollection": false,
+          "description": "calories"
         },
-        "weight": {
-          { "type": "Double", "unit": "kg"}
-        }
+        "heartRate": {
+          "type": "Integer",
+          "unit": "b/min",
+          "isCollection": false,
+          "description": "heartRate"
+        },
+        ...
       }
     },
-    "version":2
+    "actions": {}
   }
 }
 ~~~~
@@ -840,7 +866,7 @@ POST /message
 
 Sends data with a timestamp to SAMI or another device.
 
-**Example Request**
+**Example request**
 
 ~~~~
 {
@@ -891,7 +917,7 @@ Returns normalized messages, according to one of the following parameter combina
 |Get by device |`sdid`{:.param}, `endDate`{:.param}, `startDate`{:.param}
 |Get by message ID |`mid`{:.param}
 |Get by device and field presence |`sdid`{:.param}, `fieldPresence`{:.param}
-|Get by device and filter |`sdid`{:.param}, `filter`{:.param}
+|Get by device, filter and date range |`sdid`{:.param}, `filter`{:.param}, `endDate`{:.param}, `startDate`{:.param}
 |Common parameters |`order`{:.param}, `count`{:.param}, `offset`{:.param}
 
 **Available URL query parameters**
@@ -985,7 +1011,7 @@ Returns the most recent normalized messages from a device or devices.
 
   |Parameter   |Description
   |----------- |---------------------------------------------------------
-  |`sdids`{:.param}    |Comma separated list of source device IDs (minimum: 1).
+  |`sdids`{:.param}    |Comma-separated list of source device IDs (minimum: 1).
   |`count`{:.param}    |Number of items to return per query. Limited to 100.
   |`fieldPresence`{:.param} |(Optional) String representing a field from the specified device ID.
 
@@ -1064,117 +1090,6 @@ Returns presence of normalized messages.
 }
 ~~~~
 
-### Export normalized messages
-
-~~~
-GET /messages/export
-~~~
-
-Exports normalized messages from up to 30 days, according to one of the following parameter combinations. The maximum duration between `startDate`{:.param} and `endDate`{:.param} is 30 days.
-
-|Combination |Required Parameters
-|------------|---------
-|Get by user |`uid`{:.param}, `endDate`{:.param}, `startDate`{:.param}
-|Get by device |`sdid`{:.param}, `endDate`{:.param}, `startDate`{:.param}
-|Common parameters |`order`{:.param}, `format`{:.param}
-
-
-**Available URL query parameters**
-
-|Parameter |Description
-|----------|------------
-| `endDate`{:.param}   | Time of latest (newest) item to return, in milliseconds since epoch.
-|`order`{:.param}     | (Optional) Desired sort order: `asc` or `desc` (default: `asc`)
-| `format`{:.param}     | (Optional) Format the export will be returned as: `json`, `csv` or `xml` (currently `json` is implemented)
-| `sdid`{:.param}      | (Optional) Source device ID of the messages being searched.
-| `startDate`{:.param} | Time of earliest (oldest) item to return, in milliseconds since epoch.
-| `uid`{:.param}       | (Optional) The owner's user ID of the messages being searched. If not specified, defaults to the current authenticated user (if the current authentication context is not an application). If specified, it must be that of a user to which the current authenticated user (or the application) has read access.
-
-**Example response**
-
-~~~
-{
-  "exportId":"f2fcf3e0-4425-11e4-be99-0002a5d5c51b",
-  "sdid":"heart_monitor_123",
-  "startDate":1378425600000,
-  "endDate": 2378425600000,
-  "order": "asc",
-  "format": "json"
-}
-~~~
-
-### Check export status
-
-~~~
-GET /messages/export/<exportID>/status
-~~~
-
-Returns the status of the messages export.
-
-**Request parameters**
-
-  |Parameter   |Description
-  |----------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  |`exportID`{:.param}     |The Export ID of the export query.
-
-**Example response**
-
-~~~
-{
-  "exportId":"f2fcf3e0442511e4be990002a5d5c51b",
-  "status":"Served",
-  "md5": "12345",
-  "ttl": "1234567890"
-  "expirationDate": 1234567890
-}
-~~~
-
-**Response parameters**
-
-|Parameter   |Description
-|----------- |-------------
-|`exportId`{:.param} | Export ID.
-|`status`{:.param} | Status of the export query. Values include `Received`, `In-progress`, `Success`, `Failure`, `Served`, `Expired`.
-|`md5`{:.param} |Checksum of the file returned.
-|`ttl`{:.param} |Expiration date.
-|`expirationDate`{:.param} |Expiration date.
-
-### Get export result
-
-~~~
-GET /messages/export/<exportID>/result
-~~~
-
-Returns the result of the export query. The result call returns the response in tgz format. 
-
-**Request parameters**
-
-  |Parameter   |Description
-  |----------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  |`exportID`{:.param}     |The Export ID of the export query.
-
-The tar file may contain one or more files in the following format:
-
-**Example response**
-
-~~~
-{
-  "size": 1,
-  "data": [
-    {
-    "ts": 1377206303000,
-    "cts": 1377206303000,
-    "sdid": "hueID_dev_2",
-    "mid": "20442c0b-70b5-4670-b712-32f8b78393bf",
-    "data": "{\"status\":{\"state\":{\"bri\":254}}}"
-    }
-  ]
-}
-~~~
-
-Each file in the tar file has the following format:  `id-date.json` where `id` is either a `uid` or `sdid`, and `date` is a timestamp in milliseconds (the `ts` date of the first message in the file). If the result of a `uid` or `sdid` search is empty, the result will be a single file with the filename `id0.json` (`id` is either a `uid` or `sdid`).
-
-
 ### Get raw messages
 
 ~~~
@@ -1238,6 +1153,883 @@ Returns raw (original format) messages.
 |`ts`{:.param} |Timestamp from source.
 |`mid`{:.param} |Message ID.
 
+## Trials
+
+### Create a trial
+
+~~~
+POST /trials
+~~~
+
+Adds a trial. 
+
+Device types and invitations may be included in the call. See [Add a trial device type](/sami/api-spec.html#add-a-trial-device-type) and [Create a trial invitation](/sami/api-spec.html#create-a-trial-invitation) for the request formats.
+
+**Example request**
+
+~~~
+{
+  "name": "test trial",
+  "description": "this is a test trial",
+  "deviceTypes": [
+    {
+      "dtid": "181a0d34621f4a4d80a43444a4658150"
+    },
+    {
+      "dtid": "vitalconnect_module"
+    }
+ ],
+  "invitations": [
+    {
+      "email": "john@email.com",
+      "invitationType": "participant"
+    }
+ ]
+}
+~~~
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`description`{:.param} |Description of the trial. String max 1500 characters.
+|`name`{:.param} |Name of the trial.
+|`deviceTypes`{:.param} |(Optional) Device types to add to the trial.
+|`invitations`{:.param} |(Optional) Invitations to be sent for the trial.
+
+**Example response**
+
+~~~
+{
+  "data":{
+    "id": "b5f1fd9954b348a3a6999fbd698a4928",
+    "ownerId": "7b202300eb904149b36e9739574962a5",
+    "name": "test trial",
+    "description": "this is a test trial",
+    "aid": "62bb65ceaa304f7989922fefb6a45814",
+    "clientSecret": "e02a63d400b44d798b1f9962d7a8b09b",
+    "startDate": 1396224000000,
+    "endDate": null
+  }
+} 
+~~~
+
+**Response parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`id`{:.param} |Trial ID.
+|`ownerId`{:.param} |User ID of trial creator.
+|`name`{:.param} |Trial name.
+|`description`{:.param} |Trial description. String max 1500 characters.
+|`aid`{:.param} |Application ID of the associated application.
+|`clientSecret`{:.param} |Client secret.
+|`startDate`{:.param} |Start date of the trial (in milliseconds since epoch). Set to the current date-time when the trial is created.
+|`endDate`{:.param} |End date of the trial (in milliseconds since epoch). Set to the current date-time when the trial is stopped.
+
+### Delete a trial
+
+~~~
+DELETE /trials/<trialID>
+~~~
+
+Deletes a trial and its invitations, administrators, participants and connected devices. 
+
+Can be called by a trial administrator only.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialID`{:.param} |Trial ID.
+
+**Example response**
+
+~~~
+{
+  "data":{
+    "id": "b5f1fd9954b348a3a6999fbd698a4928",
+    "ownerId": "7b202300eb904149b36e9739574962a5",
+    "name": "test trial",
+    "description": "this is a test trial",
+    "aid": "62bb65ceaa304f7989922fefb6a45814",
+    "clientSecret": "e02a63d400b44d798b1f9962d7a8b09b",
+    "startDate": 1396224000000,
+    "endDate": null
+  }
+}
+~~~
+
+### Find a trial
+
+~~~
+GET /trials/<trialID>
+~~~
+
+Returns a trial.
+
+Can be called by trial administrators and participants. Only administrators will see `aid` and `clientSecret`.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialID`{:.param} |Trial ID.
+
+**Example response**
+
+~~~
+{
+  "data":{
+    "id": "b5f1fd9954b348a3a6999fbd698a4928",
+    "ownerId": "7b202300eb904149b36e9739574962a5",
+    "name": "test trial",
+    "description": "this is a test trial",
+    "aid": "62bb65ceaa304f7989922fefb6a45814",
+    "clientSecret": "e02a63d400b44d798b1f9962d7a8b09b",
+    "startDate": 1396224000000,
+    "endDate": null
+  }
+}
+~~~
+
+### Update a trial
+
+~~~
+PUT /trials/<trialID>
+~~~
+
+Modifies the parameters of a trial. 
+
+Can be called by a trial administrator only.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialID`{:.param} |Trial ID.
+
+**Example request**
+
+~~~
+{
+  "name": "new trial name",
+  "description": "this is a new trial description"
+}
+~~~
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`description`{:.param} |Description of the trial. String max 1500 characters.
+|`name`{:.param} |Name of the trial.
+
+The `status` field can be updated to `stop`. This sets the end date of the trial. Pending invitations for the trial will be deleted, and updates to the stopped trial are disallowed.
+
+**Example request**
+
+~~~
+{
+  "status": "stop"
+}
+~~~
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`status`{:.param} |Trial invitation status. Must be `stop`.
+
+**Example response**
+
+~~~
+{
+  "data":{
+    "id": "b5f1fd9954b348a3a6999fbd698a4928",
+    "ownerId": "7b202300eb904149b36e9739574962a5",
+    "name": "new trial name",
+    "description": "this is a new trial description",
+    "aid": "62bb65ceaa304f7989922fefb6a45814",
+    "clientSecret": "e02a63d400b44d798b1f9962d7a8b09b",
+    "startDate": 1396224000000,
+    "endDate": 1426874500000
+  }
+}
+~~~
+
+### Update trial application
+
+~~~
+PUT /trials/<trialID>/application
+~~~
+
+Updates the trial with a new application. This can be used if the client secret of the existing application is exposed. 
+
+Can be called by a trial administrator only.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialID`{:.param} |Trial ID.
+
+**Example response**
+
+~~~
+{
+  "data":{
+    "id": "b5f1fd9954b348a3a6999fbd698a4928",
+    "ownerId": "7b202300eb904149b36e9739574962a5",
+    "name": "test trial",
+    "description": "this is a test trial",
+    "aid": "c619c96c78b14c6289ee4644be0625c4",
+    "clientSecret": "a95f631146b14c589de82db47d8496ab",
+    "startDate": 1396224000000,
+    "endDate": null
+  }
+}
+~~~
+
+## Trials - Devices
+
+### Add a trial device type
+
+~~~
+POST /trials/<trialID>/devicetypes
+~~~
+
+Add a device type to the trial device types list. 
+
+Can be called by a trial administrator only.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialID`{:.param} |Trial ID.
+
+**Example request**
+
+~~~
+{
+  "dtid": "dta38d91dfd9164e96a5dc74ef2305af43" 
+}
+~~~
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`dtid`{:.param} |Device type ID.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "tid": "unique_trial_id",
+    "dtid": "dta38d91dfd9164e96a5dc74ef2305af43"
+  }
+}
+~~~
+
+### Connect a user device
+
+~~~
+POST /trials/<trialID>/participants/<userID>/devices
+~~~
+
+Connects a participant device to the trial.
+
+Can be called by a trial participant only.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialID`{:.param} |Trial ID.
+|`userID`{:.param} |User ID.
+
+**Example request**
+
+~~~
+{
+  "did": "4697f11336c540a69ffd6f445061215e"
+}
+~~~
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`did`{:.param} |Participant device ID.
+
+**Example response**
+
+~~~
+{
+  "data":{
+    "tid": "unique_trial_id",
+    "uid": "7b202300eb904149b36e9739574962a5"
+    "did": "4697f11336c540a69ffd6f445061215e"
+  }
+}
+~~~
+
+### Disconnect a user device
+
+~~~
+DELETE /trials/<trialID>/participants/<userID>/devices/<deviceID>
+~~~
+
+Disconnects a participant device from the trial.
+
+Can be called by a trial participant only.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`deviceID`{:.param} |Participant device ID.
+|`trialID`{:.param} |Trial ID.
+|`userID`{:.param} |User ID.
+
+**Example response**
+
+~~~
+{
+  "data":{
+    "tid": "unique_trial_id",
+    "uid": "7b202300eb904149b36e9739574962a5"
+    "did": "4697f11336c540a69ffd6f445061215e"
+  }
+}
+~~~
+
+### Get trial connected devices
+
+~~~
+GET /trials/<trialID>/devices
+~~~
+
+Returns all devices connected to a trial.
+
+Can be called by a trial administrator only.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialID`{:.param} |Trial ID.
+
+**Available URL query parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`count`{:.param} |(Optional) Number of items to return per query. Default and max is "100".
+|`offset`{:.param} |(Optional) A string that represents the starting item. Should be the value of 'next' field received in the last response (required for pagination). Default is "0".
+
+**Example response**
+
+~~~
+{ 
+   "data":{ 
+      "devices":[ 
+         { 
+            "id":"65ee0eae038b4f538d93faf97d044e12",
+            "uid":"90cb4ef84c7d41d3b691241c392b2e42",
+            "dtid":"dt11cfee3a5d294019b5e9afda11a93668",
+            "name":"Device d8cb1e09b6b04fb",
+            "manifestVersion":1,
+            "manifestVersionPolicy":"LATEST",
+            "connected_on":1411447202000
+         }
+      ]
+   },
+   "total":1,
+   "offset":0,
+   "count":1
+}
+~~~
+
+**Response parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`id`{:.param}   | Device ID.  |
+|`uid`{:.param}  | User ID.    |
+|`dtid`{:.param} | Device type ID. |
+|`name`{:.param} | Device name.    |
+|`manifestVersion`{:.param} | Device's Manifest version that is used to parse the messages it sends to SAMI. |
+|`manifestVersionPolicy`{:.param} | Device's policy that will be applied to the messages sent by this device. <ul><li> `LATEST` means it will use the most recent Manifest created.</li><li>`DEVICE` means it will use a specific version of the manifest regardless if newer versions are available.</li></ul>
+|`connected_on`{:.param} | Date the device was connected to the trial (in milliseconds since epoch).
+|`total`{:.param} |Total number of items.
+|`offset`{:.param} |String required for pagination. Default is "0".
+|`count`{:.param} |Number of items returned on the page. Default and max is "100".
+
+### Get trial device types
+
+~~~
+GET /trials/<trialID>/devicetypes
+~~~
+
+Returns all device types in a trial.
+
+Can be called by trial administrators and participants.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialID`{:.param} |Trial ID.
+
+**Available URL query parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`count`{:.param} |(Optional) Number of items to return per query. Default and max is "100".
+|`offset`{:.param} |(Optional) A string that represents the starting item. Should be the value of 'next' field received in the last response (required for pagination). Default is "0".
+
+**Example response**
+
+~~~~
+{
+  "data": {
+    "deviceTypes": [
+      {
+        "id":"dta38d91dfd9164e96a5dc74ef2305af43",
+        "uid": "12345",
+        "name":"Samsung Web Camera XYZ",
+        "published":true,
+        "latestVersion":5,
+        "uniqueName":"com.samsung.web.camera"
+      },
+      ...
+    ]
+  },
+  "total": 1,
+  "offset": 0,
+  "count": 1  
+}            
+~~~~
+
+**Response parameters**
+
+  |Parameter         |Description
+  |------------------|-----------
+  |`id`{:.param}             |Device type ID.
+  |`uid`{:.param}            |Owner's user ID.
+  |`name`{:.param}           |Device type name.
+  |`published`{:.param}      |Device type published.
+  |`latestVersion`{:.param}  |Device type latest Manifest version available.
+  |`uniqueName`{:.param}     |Device type unique name in the system (used for Manifest package naming). Has to be a valid JAVA package name.
+  |`total`{:.param} |Total number of items.
+  |`offset`{:.param} |String required for pagination. Default is "0".
+  |`count`{:.param} |Number of items returned on the page. Default and max is "100".
+
+### Get user connected devices
+
+~~~
+GET /trials/<trialID>/participants/<userID>/devices
+~~~
+
+Returns all devices connected by a participant to a trial.
+
+Can be called by trial administrators and participants.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialID`{:.param} |Trial ID.
+|`userID`{:.param} |User ID.
+
+**Available URL query parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`count`{:.param} |(Optional) Number of items to return per query. Default and max is "100".
+|`offset`{:.param} |(Optional) A string that represents the starting item. Should be the value of 'next' field received in the last response (required for pagination). Default is "0".
+
+**Example response**
+
+~~~
+{ 
+   "data":{ 
+      "devices":[ 
+         { 
+            "id":"65ee0eae038b4f538d93faf97d044e12",
+            "uid":"90cb4ef84c7d41d3b691241c392b2e42",
+            "dtid":"dt11cfee3a5d294019b5e9afda11a93668",
+            "name":"Device d8cb1e09b6b04fb",
+            "manifestVersion":1,
+            "manifestVersionPolicy":"LATEST",
+            "connected_on":1411447202000
+         }
+      ]
+   },
+   "total":1,
+   "offset":0,
+   "count":1
+}
+~~~
+
+## Trials - Members
+
+### Create a trial invitation
+
+~~~
+POST /trials/<trialID>/invitations
+~~~
+
+Sends a new trial invitation. The invitation will be active for 24 hours. 
+
+Can be called by a trial administrator only.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialID`{:.param} |Trial ID.
+
+**Example request**
+
+~~~
+{
+  "email": "john@email.com",
+  "invitationType": "participant"
+}
+~~~
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`email`{:.param} |User's email address.
+|`invitationType`{:.param} |User role. Can be `participant` or `administrator`.
+
+**Example response**
+
+~~~
+{
+  "data":{
+    "id": "f252c2e77a68419eb6322a8fbae37bc9",
+    "tid": "f5fc7af5fa6d4480b597e340bfff4450",
+    "email": "john@email.com",
+    "invitationType": "participant",
+    "sentDate": "1395705600000",
+    "acceptedDate": null,
+    "expirationDate": "1395878400000",
+    "revokedDate": null,
+    "status": "sent"
+  }
+} 
+~~~
+
+**Response parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`id`{:.param} |Invitation ID.
+|`tid`{:.param} |Trial ID.
+|`email`{:.param} |User's email address.
+|`invitationType`{:.param} |User role. Can be `participant` or `administrator`.
+|`sentDate`{:.param} |Date the invitation was sent (in milliseconds since epoch).
+|`acceptedDate`{:.param} |Date the invitation was accepted (in milliseconds since epoch).
+|`expirationDate`{:.param} |Date the invitation expires (in milliseconds since epoch).
+|`revokedDate`{:.param} |Date the invitation was revoked (in milliseconds since epoch). 
+|`status`{:.param} |Invitation status. Can be `accepted`, `expired` or `sent`.
+
+### Delete a trial administrator
+
+~~~
+DELETE /trials/<trialID>/administrators/<userID>
+~~~
+
+Removes an administrator from a trial.
+
+Can be called by a trial administrator only.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialID`{:.param} |Trial ID.
+|`userID`{:.param} |User ID.
+
+**Example response**
+
+~~~
+{
+  "data":{
+    "tid":"unique_trial_id",
+    "uid":"03c99e714b78420ea836724cedcebd49"
+  }
+}
+~~~
+
+### Delete a trial invitation
+
+~~~
+DELETE /trials/<trialID>/invitations/<invitationID>
+~~~
+
+Removes an invitation from a trial. This only applies to invitations with a `status` of `sent`. 
+
+Can be called by a trial administrator only.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`invitationID`{:.param} |Invitation ID.
+|`trialID`{:.param} |Trial ID.
+
+**Example response**
+
+~~~
+{
+  "data":{
+    "id": "f252c2e77a68419eb6322a8fbae37bc9",
+    "tid": "f5fc7af5fa6d4480b597e340bfff4450",
+    "email": "john@email.com",
+    "invitationType": "participant",
+    "sentDate": "1395705600000",
+    "acceptedDate": null,
+    "expirationDate": "1395878400000",
+    "revokedDate": null,
+    "status": "sent"
+  }
+} 
+~~~
+
+### Delete a trial participant
+
+~~~
+DELETE /trials/<trialID>/participants/<userID>
+~~~
+
+Removes a participant from a trial and disconnects their devices. Participant's data can no longer be accessed by trial administrators. 
+
+Can be called by a trial administrator only.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialID`{:.param} |Trial ID.
+|`userID`{:.param} |User ID.
+
+**Example response**
+
+~~~
+{
+  "data":{
+    "tid":"unique_trial_id",
+    "uid":"03c99e714b78420ea836724cedcebd49"
+  }
+}
+~~~
+
+### Get trial administrators
+
+~~~
+GET /trials/<trialID>/administrators
+~~~
+
+Returns all the administrators of a trial.
+
+Can be called by a trial administrator only.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialID`{:.param} |Trial ID.
+
+**Available URL query parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`count`{:.param} |(Optional) Number of items to return per query. Default and max is "100".
+|`offset`{:.param} |(Optional) A string that represents the starting item, should be the value of 'next' field received in the last response (required for pagination). Default is "0".
+
+**Example response**
+
+~~~
+{
+  "data":{
+    "id":"db2e64c653b94f519dbca8f157f73b79",
+    "name":"tuser",
+    "email":"tuser@ssi.samsung.com",
+    "fullName":"Test User",
+    "createdOn":1403042304,
+    "modifiedOn":1403042305
+  }
+},
+"total":1,
+"offset":0,
+"count":1
+~~~
+
+**Response parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`id`{:.param} |User ID.
+|`name`{:.param} |User name.
+|`email`{:.param} |Administrator's email address.
+|`fullName`{:.param} |Administrator's name.
+|`createdOn`{:.param} |Date user was created.
+|`modifiedOn`{:.param} |Date user was last modified.
+
+### Find trial invitations
+
+~~~
+GET /trials/<trialID>/invitations
+~~~
+
+Returns invitations for a trial that match a status. 
+
+Can be called by a trial administrator only.
+
+**Available URL query parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`count`{:.param} |(Optional) Number of items to return per query. Default and max is "100".
+|`offset`{:.param} |(Optional) A string that represents the starting item. Should be the value of 'next' field received in the last response (required for pagination). Default is "0".
+|`status`{:.param} |Trial invitation status. Can be `sent`, `accepted`, `revoked` or `expired`.
+|`trialID`{:.param} |Trial ID.
+
+**Example response**
+
+~~~
+{
+  "data":{
+    "invitations": [
+      {
+        "id": "f252c2e77a68419eb6322a8fbae37bc9",
+        "tid": "f5fc7af5fa6d4480b597e340bfff4450",
+        "email": "john@email.com",
+        "invitationType": "participant",
+        "sentDate": "1395705600000",
+        "acceptedDate": "1395792000000",
+        "expirationDate": "1395878400000",
+        "revokedDate": null,
+        "status": "accepted"
+      }
+    ]
+  },
+  "total": 1,
+  "offset": 0,
+  "count": 1
+}
+~~~
+
+### Get trial participants
+
+~~~
+GET /trials/<trialID>/participants
+~~~
+
+Returns all the participants of a trial. 
+
+Can be called by a trial administrator only.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialID`{:.param} |Trial ID.
+
+**Available URL query parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`count`{:.param} |(Optional) Number of items to return per query. Default and max is "100".
+|`offset`{:.param} |(Optional) A string that represents the starting item. Should be the value of 'next' field received in the last response (required for pagination). Default is "0".
+
+**Example response**
+
+~~~
+{
+  "data":{
+    "id":"db2e64c653b94f519dbca8f157f73b79",
+    "name":"tuser",
+    "email":"tuser@ssi.samsung.com",
+    "fullName":"Test User",
+    "createdOn":1403042304,
+    "modifiedOn":1403042305
+  }
+},
+"total":1,
+"offset":0,
+"count":1
+~~~
+
+**Response parameters**
+
+**Response parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`id`{:.param} |User ID.
+|`name`{:.param} |User name.
+|`email`{:.param} |Participant's email address.
+|`fullName`{:.param} |Participant's name.
+|`createdOn`{:.param} |Date user was created.
+|`modifiedOn`{:.param} |Date user was last modified.
+
+### Update a trial invitation
+
+~~~
+PUT /trials/<trialID>/invitations/<invitationID>
+~~~
+
+Modifies an invitation status.
+
+Can be called by trial administrators and participants. Only administrators may revoke; only invitees may accept.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`invitationID`{:.param} |Invitation ID.
+|`trialID`{:.param} |Trial ID.
+
+**Example request**
+
+~~~
+{
+  "status": "accepted"
+}
+~~~
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`status`{:.param} |Trial invitation status. Can be `accepted` or `revoked`.
+
+**Example response**
+
+~~~
+{
+  "data":{
+    "id": "f252c2e77a68419eb6322a8fbae37bc9",
+    "tid": "f5fc7af5fa6d4480b597e340bfff4450",
+    "email": "john@email.com",
+    "invitationType": "participant",
+    "sentDate": "1395705600000",
+    "acceptedDate": null,
+    "expirationDate": "1395878400000",
+    "revokedDate": 1424802260000,
+    "status": "revoked"
+  }
+} 
+~~~
 
 ## Validation and errors
 
