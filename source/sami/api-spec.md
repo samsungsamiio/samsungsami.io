@@ -740,7 +740,6 @@ Returns a list of device types.
 |`rsp`{:.param} | Boolean (true/false). Requires secure protocol. If not specified, defaults to TK.
 |`issuerDn`{:.param} | Issuer of the client certificate. Used in conjunction with `rsp`.
 |`description`{:.param} | Custom description of the device type. String max 1500 characters.
-|`description`{:.param} |TK
 |`total`{:.param} |Total number of items.
 |`offset`{:.param} |String required for pagination.
 |`count`{:.param} |Number of items returned on the page.
@@ -1152,6 +1151,174 @@ Returns raw (original format) messages.
 |`cts`{:.param} |Timestamp from SAMI.
 |`ts`{:.param} |Timestamp from source.
 |`mid`{:.param} |Message ID.
+
+## Export
+
+### Create an export request
+
+~~~
+GET /messages/export
+~~~
+
+Exports normalized messages from up to 30 days, according to one of the following parameter combinations. The maximum duration between `startDate`{:.param} and `endDate`{:.param} is 31 days. A confirmation message is emailed when the export request has been processed.
+
+Data can be exported in JSON or "simple" CSV. CSV exports sort the message metadata into separate columns and the data payload into a unique column.
+
+|Combination |Required Parameters
+|------------|---------
+|Get by users |`uids`{:.param}
+|Get by devices |`sdids`{:.param}
+|Get by device types |`uids`{:.param}, `sdtids`{:.param}
+|Get by trial |`trialId`{:.param}
+|Get by combination of parameters |`uids`{:.param}, `sdids`{:.param}, `sdtids`{:.param}
+|Common parameters |`startDate`{:.param}, `endDate`{:.param}, `order`{:.param}, `format`{:.param}, `url`{:.param}, `csvHeaders`{:.param}
+
+**Request parameters**
+
+|Parameter |Description
+|----------|------------
+|`csvHeaders`{:.param} |(Optional) Adds a header to a CSV export. Accepted values are `true`, `false`, `1`, `0`. Defaults to `true` if `format` = `csv1`.
+|`endDate`{:.param}   | Time of latest (newest) item to return, in milliseconds since epoch.
+|`format`{:.param}     | (Optional) Format the export will be returned as: `json` (JSON) or `csv1` (simple CSV). Defaults to `json` if not specified.
+|`order`{:.param}     | (Optional) Desired sort order: `asc` or `desc` (default: `asc`).
+|`sdids`{:.param}      | (Optional) Comma-separated list of source device IDs. Max 30 device IDs.
+|`startDate`{:.param} | Time of earliest (oldest) item to return, in milliseconds since epoch.
+|`stdids`{:.param} |(Optional) Comma-separated list of source device type IDs.
+|`trialId`{:.param} |(Optional) Trial ID being searched for messages.
+|`uids`{:.param}       | (Optional) Comma-separated list of user IDs. The current authenticated user must have read access to each user in the list.
+|`url`{:.param} |(Optional) URL to include in email confirmation message.
+
+**Example response**
+
+~~~
+{
+  "data":{
+    "exportId": "f2fcf3e0-4425-11e4-be99-0002a5d5c51b",
+    "startDate": 1378425600000,
+    "endDate": 2378425600000,
+    "order": "asc",
+    "format": "json"
+  }
+}
+~~~
+
+### Check export status
+
+~~~
+GET /messages/export/<exportID>/status
+~~~
+
+Returns the status of the messages export.
+
+**Request parameters**
+
+  |Parameter   |Description
+  |----------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  |`exportID`{:.param}     |The Export ID of the export query.
+
+**Example response**
+
+~~~
+{
+  "exportId": "52f921fac0f841e384de8bef438adf07",
+  "status": "Served",
+  "md5": "f73f0a2a69d0f2ca3f986f8b31f60b00",
+  "expirationDate": 1426367261000,
+  "fileSize": 189,
+  "totalMessages": 0
+}
+~~~
+
+**Response parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`exportId`{:.param} | Export ID.
+|`status`{:.param} | Status of the export query. Values include `Received`, `InProgress`, `Success`, `Failure`, `Served`, `Expired`.
+|`md5`{:.param} |Checksum of the file returned.
+|`expirationDate`{:.param} |Expiration date.
+|`fileSize`{:.param} |File size in bytes.
+|`totalMessages`{:.param} |Number of messages in the export.
+
+### Get export result
+
+~~~
+GET /messages/export/<exportID>/result
+~~~
+
+Returns the result of the export query. The result call returns the response in tgz format. 
+
+**Request parameters**
+
+  |Parameter   |Description
+  |----------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  |`exportID`{:.param}     |The Export ID of the export query.
+
+The tar file may contain one or more files in the following format:
+
+**Example response**
+
+~~~
+{
+  "size": 1,
+  "data": [
+    {
+    "ts": 1377206303000,
+    "cts": 1377206303000,
+    "sdid": "hueID_dev_2",
+    "mid": "20442c0b-70b5-4670-b712-32f8b78393bf",
+    "data": "{\"status\":{\"state\":{\"bri\":254}}}"
+    }
+  ]
+}
+~~~
+
+Each file in the tar file has the following format:  `id-date.json` or `id-date.csv` where `id` is either a `uid` or `sdid`, and `date` is a timestamp in milliseconds (the `ts` date of the first message in the file). If the result of a `uid` or `sdid` search is empty, the result will be a single file with the filename `id-0.json` or `id-0.csv` (`id` is either a `uid` or `sdid`).
+
+### Get export history
+
+~~~
+GET /messages/export/history
+~~~
+
+Returns a list of export queries that have been performed.
+
+**Available URL query parameters**
+
+|Parameter |Description
+|--------- |-----------
+|`count`{:.param} |(Optional) Number of items to return per query. Default and max is "100".
+|`offset`{:.param} |(Optional) A string that represents the starting item. Should be the value of 'next' field received in the last response (required for pagination). Default is "0".
+|`trialId`{:.param} |(Optional) Trial ID.
+
+**Example response**
+
+~~~
+{
+  "count": 1,
+  "offset": 0,
+  "total": 1,
+  "data": {
+    "exports": [
+      {
+        "exportId": "52f921fac0f841e384de8bef438adf07",
+        "request": {
+          "requestDate": 1426280834731,
+          "startDate": 1426273692267,
+          "endDate": 1426277292267,
+          "order": "asc",
+          "format": "json"
+        },
+        "status": "Success",
+        "md5": "f73f0a2a69d0f2ca3f986f8b31f60b00",
+        "expirationDate": 1426367261000,
+        "fileSize": 189,
+        "totalMessages": 0
+      }
+    ]
+  }
+}
+~~~
 
 ## Trials
 
