@@ -1,5 +1,5 @@
 ---
-title: "Demos and tools"
+title: "Tools and tutorials"
 
 nav:
   - 'your-first-application' 
