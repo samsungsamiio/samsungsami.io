@@ -4,14 +4,14 @@ title: "Sending and receiving data"
 
 # Sending and receiving data
 
-This is an overview of how your devices and applications can send and receive messages on SAMI, using both REST and WebSocket APIs. Using this information, you will be able to post messages to SAMI, retrieve historical data, and use WebSockets to set up a real-time data stream.
+This is an overview of how your devices and applications can send and receive messages on SAMI, using both REST and WebSocket APIs. Using this information, you will be able to post messages to SAMI, retrieve historical data, and use WebSockets to set up a real-time data stream. When posting messages, you could put actions in messages so that destination devices can perform the specified actions. 
 
 Any message sent to SAMI may not be bigger than 10 KB.
 {:.info}
 
 ## REST API
 
-With SAMI's REST API, you can send and retrieve historical data according to a specific timestamp or range. This allows you to perform analytics on various scenarios and contexts.
+With SAMI's REST API, you can send and retrieve historical data according to a specific timestamp or range. This allows you to perform analytics on various scenarios and contexts. You also can send actions to SAMI, which will be routed to the destination device to perform these actions.
 
 ## Posting a message
 
@@ -19,7 +19,7 @@ With SAMI's REST API, you can send and retrieve historical data according to a s
 POST /message
 ~~~
 
-When sending a message, only the source device ID (`sdid`{:.param}) and payload are required. If you plan to send data to another device, you must also include the destination device ID (`ddid`{:.param}).
+When sending a message that only contains data instead of actions, only the source device ID (`sdid`{:.param}) and payload are required. If you plan to send data to another device, you must also include the destination device ID (`ddid`{:.param}). There is `type`{:.param} field, whose value is `message` by default. However, we strongly suggest you to explicitly set `type`{:.param} to `message` so that your app is future-proof. 
 
 Using the timestamp parameter (`ts`{:.param}), you can specify a timestamp for the message in milliseconds. Values up to the current server timestamp grace period are valid. If you omit `ts`{:.param}, the message defaults to the current time.
 
@@ -30,6 +30,7 @@ Using the timestamp parameter (`ts`{:.param}), you can specify a timestamp for t
   "sdid": "HIuh2378jh",
   "ddid": "298HUI210987",
   "ts": 1388179812427,
+  "type": "message",
   "data": [payload]
 }           
 ~~~
@@ -45,6 +46,48 @@ You'll then receive a message ID (`mid`{:.param}) that you can use to query this
   }
 }     
 ~~~
+
+## Posting a message with actions
+
+~~~
+POST /message
+~~~
+
+When sending a message with actions, you must include the destination device ID (`ddid`{:.param}) and a payload that contains actions. In addition, you must set the value of `type`{:.param} to "action". By default, its value is "message". The source device ID (`sdid`{:.param}) is optional.
+
+**Example Request**
+
+~~~json
+{
+  "ddid": "9f06411ad3174a4f98444a374447fe10",
+  "ts": 1388179812427,
+  "type": "action",
+  "data": {
+    "actions": [
+      {
+        "name": "setOn",
+        "parameters": {}
+      },
+      {
+        "name": "setColorAsRGB",
+        "parameters": {
+          "colorRGB": {
+              "r": 192,
+              "g": 180,
+              "b": 45
+          },
+          "intensity": 55
+        }
+      }
+    ]
+  }
+}
+~~~
+
+In the above example, the message contains two actions, `setOn` and `setColorAsRGB`. You'll then receive a response that is similar to the response of a message that does not contain actions.
+
+Any message with actions should only contain "actions" in the payload.
+{:.info}
 
 ## Getting normalized messages
 
@@ -239,7 +282,7 @@ SAMI sends a ping every 30 seconds to the client. If a ping is not received, the
 
 ### Sending messages
 
-Sending a message to SAMI or another device works as it does in the [REST API.](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message)
+Sending a message to SAMI or another device works as it does in [Posting a message](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message) and [Posting a message with actions](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message-with-actions). 
 
 ### Receiving messages
 

@@ -4,7 +4,9 @@ title: "The Manifest"
 
 # The Manifest
 
-SAMI is designed to communicate with any device regardless of how data is structured. Devices can upload data to SAMI in any format that works for them. Data is contained in a [message.](/sami/sami-documentation/sami-basics.html#messages) SAMI uses what we call the Manifest to interpret the content and store it properly. Once you define the Manifest for a given device type, SAMI can make its data available to other services and devices.
+SAMI is designed to communicate with any device regardless of how data is structured. Devices can upload data to SAMI in any format that works for them, and can send data to targeted devices via SAMI in any format that works for the targeted devices. Data is contained in a [message.](/sami/sami-documentation/sami-basics.html#messages) 
+
+SAMI uses what we call the **Manifest** to interpret the content so that it can be stored properly, or be sent to targeted devices correctly. Once you define the Manifest for a given device type, SAMI can make its data available to other services and devices.
 
 Manifests are written in [Groovy](http://groovy.codehaus.org/) to process messages as they come in one-by-one. Messages are structured to contain a single package of data (no batch uploads) that goes through the Manifest. This keeps data organization and processing straightforward.
 
@@ -12,6 +14,8 @@ When [**defining or updating a device type**](/sami/sami-documentation/developer
 {:.info}
 
 ## Peek into the basics
+
+### Simplest Manifest
 
 Manifests are created using the [Manifest SDK.](#about-the-manifest-sdk) Your Manifest is a derived class of the `Manifest` base class. In that class, you must define a list of fields that composes your data and complete two methods: `normalize`{:.param} and `getFieldDescriptors`{:.param}.
 
@@ -54,7 +58,7 @@ import groovy.json.JsonSlurper
 import com.samsung.sami.manifest.Manifest
 import com.samsung.sami.manifest.fields.*
 
-public class TestGroovyManifest2 implements Manifest {
+public class SimpleManifest implements Manifest {
 
   // Custom FieldDesc
   // The device sends a single data point and it's a String that describes its status
@@ -89,7 +93,79 @@ The data that can be correctly processed by the above Manifest looks like:
 }
 ~~~
 
-We have created a sample device type "Manifest SDK Sample Device". If you just want to try SAMI APIs, you can use this sample device type instead of creating your own one. Consult [Connecting a device](/sami/sami-documentation/developer-user-portals.html#connecting-a-device) to connect a device of this sample device type to SAMI. The Manifest of this sample device type `TestJsonUtilGroovyManifest` is discussed in [Advanced Manifest examples](/sami/demos-tools/manifest-advanced-example.html#manifest-example-using-jsonutil).
+We have created a sample device type "Manifest SDK Sample Device". If you just want to try the SAMI APIs, you can use this sample device type instead of creating your own. Its Manifest `TestJsonUtilGroovyManifest` is discussed in [Advanced Manifest examples](/sami/demos-tools/manifest-advanced-example.html#manifest-example-using-jsonutil).
+
+See [Connecting a device](/sami/sami-documentation/developer-user-portals.html#connecting-a-device) to learn how to connect a device with this device type to SAMI. 
+
+### Manifests that support actions
+
+An application/device working with SAMI can send an *action* (command) to a specific device. For example: A mobile app sends a "Turn On" command to a smart light connected to SAMI. The light turns on by acting on the command from SAMI. A destination device (here, the smart light) must be [connected to SAMI via WebSocket](/sami/sami-documentation/sending-and-receiving-data.html#live-streaming-data-with-websocket-api) in order to receive actions.
+
+In order for your device type to support actions, you must provide a Manifest that defines actions. In addition, it is also your reponsibility to implement the functionality for a device to act on the actions defined in the device type's Manifest.
+
+Now enhance the above simple Manifest to the one that supports actions. Your Manifest is derived from the `Manifest` and `Actionable` interfaces. In that class, you must define a list of actions that your device can act on, as follows:
+
+~~~java
+import groovy.json.JsonSlurper
+
+import com.samsung.sami.manifest.Manifest
+import com.samsung.sami.manifest.fields.*
+import com.samsung.sami.manifest.actions.Action
+import com.samsung.sami.manifest.actions.Actionable
+
+public class ManifestWithAction implements Manifest, Actionable {
+
+  // Custom FieldDesc
+  // The device sends a single data point and it's a String that describes its status
+  static final STATUS = new FieldDescriptor("status", "light on or off", String.class)
+
+  @Override
+  List<Field> normalize(String input) {
+    // data is sent by the remote device as a JSON, so SAMI will need to use a library to understand it
+    def slurper = new JsonSlurper()
+    // If the device sent the data in a more complex format here developer can implement their String operations, loops, etc. In our case it's a single field, very easy.
+    def json = slurper.parseText(input)
+
+    // now we return the Field to the system
+    return [
+      new Field(STATUS, (String)json.status)
+    ]
+  }
+
+  @Override
+  List<FieldDescriptor> getFieldDescriptors() {
+    // This is a single field, if it was more than one it would be an Array
+    return [STATUS]
+  }
+
+  @Override
+  List<Action> getActions() {
+    return [
+      new Action("setOn", "Sets the light state to On"),
+      new Action("setOff", "Sets the light state to Off"),
+    ]
+  }
+
+}
+~~~
+
+The method `getActions` defines what actions that device type can take. In this specific example, the device defined by `ManifestWithAction` acts on the action it receives from SAMI, then sets `status` to the correct state in a message, and finally sends the messages back to SAMI. Again, it is your resonsibility to implement the correct logic on the device side.
+
+Below is an example of the message payload that contains the actions and can be correctly processed by the above Manifest. Also see [Posting a message with actions](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message-with-actions).
+
+~~~json
+{
+  "actions": [
+    {
+        "name": "setOn",
+        "parameters": {}
+    }
+  ]
+}
+~~~
+
+Applications and devices query SAMI to get the Manifest of targeted devices, and then learn the supported actions by parsing the Manifest properties.
+{:.info}
 
 ## Manifest certification
 

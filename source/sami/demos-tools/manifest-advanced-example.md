@@ -4,14 +4,14 @@ title: "Advanced Manifest examples"
 
 # Advanced Manifest examples
 
-You can use the APIs described in the [Manifest SDK API specification](/sami/demos-tools/manifest-sdk-javadoc/) and [Groovy utilities][1] to conveniently write advanced Manifests to handle complicated data. Below, we give two Manifest examples to illustrate how powerful the Groovy utilities can be.
+You can use the APIs described in the [Manifest SDK API specification](/sami/demos-tools/manifest-sdk-javadoc/) and [Groovy utilities][1] to conveniently write advanced Manifests to handle complicated data. Below, we give two Manifest examples to illustrate how powerful the Groovy utilities can be, and one example of the [Manifest supporting actions][4].
 
 Make sure you have read the basics of the [**Manifest**](/sami/sami-documentation/the-manifest.html) and [**Validate your Manifest**](/sami/demos-tools/manifest-sdk.html) before you proceed.
 {:.info}
 
 ## Manifest example using JsonUtil
 
-This example shows how to use the [`JsonUtil`][2] methods of [Groovy utilities][1]. As mentioned in [Peek into the basics](/sami/sami-documentation/the-manifest.html#peek-into-the-basics), this Manifest is for sample device type "Manifest SDK Sample Device". The data to be processed by the Manifest looks like:
+This example shows how to use the [`JsonUtil`][2] methods of [Groovy utilities][1]. As mentioned [earlier](/sami/sami-documentation/the-manifest.html#peek-into-the-basics), this Manifest is for the sample device type "Manifest SDK Sample Device". The data to be processed by the Manifest looks like:
 
 ~~~json
 {
@@ -260,6 +260,88 @@ public class TestXmlUtilGroovyManifest implements Manifest {
 }
 ~~~
 
+## Manifest supporting actions
+
+This Manifest example defines the actions that the device type can support. Below is an example of a message payload that includes actions. Once the target device receives such a message, it should perform `setOn` and `setColorAsRGB` using the corresponding parameters.
+
+~~~json
+{
+  "actions": [
+    {
+        "name": "setOn",
+        "parameters": {}
+    },
+    {
+        "name": "setColorAsRGB",
+        "parameters": {
+            "colorRGB": {
+                "r": 192,
+                "g": 180,
+                "b": 45
+            },
+            "intensity": 55
+        }
+    }
+  ]
+}
+~~~
+
+Here is the Manifest that defines the actions: 
+
+~~~java
+import com.samsung.sami.manifest.Manifest
+import com.samsung.sami.manifest.actions.*
+import com.samsung.sami.manifest.fields.*
+import static com.samsung.sami.manifest.fields.StandardFields.*
+import static com.samsung.sami.manifest.groovy.JsonUtil.*
+import groovy.json.JsonSlurper
+import javax.measure.unit.SI
+ 
+public class SmartLightManifest implements Manifest, Actionable {
+    public final static FieldDescriptor INTENSITY = new FieldDescriptor("intensity", "Changes the intensity of the hue light (value in percent)", Integer.class);
+
+    @Override
+    List<Field> normalize(String input) {
+        def slurper = new JsonSlurper()
+        def json = slurper.parseText(input)
+        
+        def fields = []
+        
+        addToList(fields, json, STATE)
+
+        addToList(fields, json, INTENSITY)
+
+        if (json.containsKey("colorRGB")) {
+            def jsonColor = json.colorRGB
+            def cfields = []
+            addToList(cfields, jsonColor, COLOR_RED_COMPONENT)
+            addToList(cfields, jsonColor, COLOR_GREEN_COMPONENT)
+            addToList(cfields, jsonColor, COLOR_BLUE_COMPONENT)
+            fields.add(new Field(COLOR_AS_RGB, false, cfields))
+        }
+
+        return fields
+    }
+
+    @Override
+    List<FieldDescriptor> getFieldDescriptors() {
+        return [STATE, COLOR_AS_RGB, INTENSITY]
+    }
+    @Override
+    List<Action> getActions() {
+        return [
+            new Action("setOn", "Sets the light state to On"),
+            new Action("setOff", "Sets the light state to Off"),
+            new Action("setIntensity", "Changes the intensity of the hue light (value in percent)",
+                    INTENSITY),
+            new Action("setColorAsRGB", "Changes the light color with RGB values and set the intensity (value in percent)",
+                    COLOR_AS_RGB, INTENSITY),
+        ]
+    }
+}
+~~~
+
 [1]: /sami/sami-documentation/the-manifest.html#groovy-utilities "Groovy Utilities"
 [2]: /sami/sami-documentation/the-manifest.html#jsonutil "JsonUtil"
 [3]: /sami/sami-documentation/the-manifest.html#stringfieldutil "StringFieldUtil"
+[4]: /sami/sami-documentation/the-manifest.html#manifests-that-support-actions "Manifest supporting Actions"

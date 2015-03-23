@@ -1,4 +1,5 @@
 com.samsung.sami.manifest
+com.samsung.sami.manifest.actions
 com.samsung.sami.manifest.fields
 com.samsung.sami.manifest.test
 com.samsung.sami.manifest.tool
