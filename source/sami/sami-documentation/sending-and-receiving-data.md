@@ -16,7 +16,7 @@ With SAMI's REST API, you can send and retrieve historical data according to a s
 ## Posting a message
 
 ~~~
-POST /message
+POST /messages
 ~~~
 
 When sending a message that only contains data instead of actions, only the source device ID (`sdid`{:.param}) and payload are required. If you plan to send data to another device, you must also include the destination device ID (`ddid`{:.param}). There is `type`{:.param} field, whose value is `message` by default. However, we strongly suggest you to explicitly set `type`{:.param} to `message` so that your app is future-proof. 
@@ -50,7 +50,7 @@ You'll then receive a message ID (`mid`{:.param}) that you can use to query this
 ## Posting a message with actions
 
 ~~~
-POST /message
+POST /messages
 ~~~
 
 When sending a message with actions, you must include the destination device ID (`ddid`{:.param}) and a payload that contains actions. In addition, you must set the value of `type`{:.param} to "action". By default, its value is "message". The source device ID (`sdid`{:.param}) is optional.
