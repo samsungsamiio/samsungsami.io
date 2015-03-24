@@ -925,7 +925,19 @@ Sends a message or actions, using one of the following parameter combinations. I
 |Send action |`ddid`{:.param}, `type=action`{:.param}
 |Common parameters |`data`{:.param}, `ts`{:.param}
 
-**Example request**
+**Example request (message)**
+
+~~~
+{
+  "sdid": "4697f11336c540a69ffd6f445061215e",
+  "ddid": "9f06411ad3174a4f98444a374447fe10",
+  "ts": 1388179812427,
+  "type": "message",
+  "data": [payload]
+}         
+~~~
+
+**Example request (action)**
 
 ~~~
 {
@@ -962,7 +974,7 @@ Sends a message or actions, using one of the following parameter combinations. I
   |`data`{:.param}     |Data. Can be a simple text field, or a JSON document.
   |`ddid`{:.param}     |(Optional) Destination device ID. Can be used when sending a message to another device.
   |`ts`{:.param}       |(Optional) Message timestamp. Must be a valid time: past time, present or future up to the current server timestamp grace period. Current time if omitted.
-  |`type`{:.param} |Type of message. Can be `message` or `action`.
+  |`type`{:.param} |Type of message: `message` or `action` (default: `message`).
   |`token`{:.param}  |(Optional) Device token.
 
 **Example response**
@@ -1009,7 +1021,7 @@ Returns normalized messages, according to one of the following parameter combina
 | `filter`{:.param} | (Optional) Filter messages by fields (attributes) and values separated by colon. Fields defined in Manifests should be lowercased when using filters, e.g., ecg:80, ecg:>=80.
 | `mid`{:.param}   | (Optional) The SAMI message ID being searched.
 | `offset`{:.param} | (Optional) A string that represents the starting item; should be the value of 'next' field received in the last response (required for pagination).
-|`order`{:.param}     | (Optional) Desired sort order: `asc` or `desc` (default: `asc`)
+|`order`{:.param}     | (Optional) Desired sort order: `asc` or `desc` (default: `asc`).
 | `sdid`{:.param}      | (Optional) Source device ID of the messages being searched.
 | `startDate`{:.param} | (Optional) Time of earliest (oldest) item to return, in milliseconds since epoch.
 | `uid`{:.param}       | (Optional) The owner's user ID of the messages being searched. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to.
@@ -1222,7 +1234,7 @@ Returns raw (original format) messages.
   |`sdid`{:.param}           |Source device ID of the messages being searched.
   |`startDate`{:.param}      |(Optional) Time of earliest (oldest) item to return, in milliseconds since epoch.
   |`endDate`{:.param}        |(Optional) Time of latest (newest) item to return, in milliseconds since epoch.
-  |`order`{:.param}          |(Optional) Desired sort order: `asc` or `desc` (default: `asc`)
+  |`order`{:.param}          |(Optional) Desired sort order: `asc` or `desc` (default: `asc`).
   |`count`{:.param}          |Number of items to return per query. 
   |`offset`{:.param}         |(Optional) A string that represents the starting item, should be the value of 'next' field received in the last response (required for pagination). 
 
