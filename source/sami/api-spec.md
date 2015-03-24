@@ -368,6 +368,60 @@ Returns the device types owned by a user.
   |`offset`{:.param} |String required for pagination.
   |`count`{:.param} |Number of items returned on the page.
 
+### Get a user's trials
+
+~~~
+GET /users/<userID>/trials
+~~~
+
+Returns the trials of a participant or administrator.
+
+**Request parameters**
+
+  |Parameter         |Description
+  |----------------- |-----------
+  |`userID`{:.param}   |User ID.
+
+**Available URL query parameters**
+
+ |Parameter |Descrption
+  |--------- |-----------
+  |`count`{:.param} |(Optional) Number of items to return per query.
+  |`offset`{:.param} |(Optional) A string that represents the starting item, should be the value of 'next' field received in the last response (required for pagination).
+  |`role`{:.param} |Role of user. Can be `administrator` or `participant`.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "trials": [
+      {
+        "id": "924228cf373b4e6ebc343cdf1366209e",
+        "ownerId": "7b202300eb904149b36e9739574962a5",
+        "name": "My First Trial",
+        "description": "This is my first trial",
+        "startDate": 1426868135000,
+        "endDate": null
+      }
+    ]
+  },
+  "total": 1,
+  "offset": 0,
+  "count": 1
+}
+~~~
+
+**Response parameters**
+
+|Parameter         |Description
+|--------- |-----------
+|`id`{:.param} |Trial ID.
+|`ownerId`{:.param} |User ID of trial creator.
+|`name`{:.param} |Trial name.
+|`description`{:.param} |Trial description. String max 1500 characters.
+|`startDate`{:.param} |Start date of the trial (in milliseconds since epoch). Set to the current date-time when the trial is created.
+|`endDate`{:.param} |End date of the trial (in milliseconds since epoch). Set to the current date-time when the trial is stopped.
 
 ## Devices
 
@@ -678,7 +732,7 @@ Returns the device type of a device.
   |`latestVersion`{:.param}  |Device type latest Manifest version available.
   |`uniqueName`{:.param}     |Device type unique name in the system (will be used for Manifest package naming). Has to be a valid JAVA package name.
   |`vid`{:.param} | Vendor ID.
-  |`rsp`{:.param} | Boolean (true/false). Requires secure protocol.
+  |`rsp`{:.param} | Boolean (true/false). Requires secure protocol. Defaults to `false` if not specified.
   |`issuerDn`{:.param} | Issuer of the client certificate. Used in conjunction with `rsp`.
   |`description`{:.param} | Custom description of the device type. String max 1500 characters.
 
@@ -737,7 +791,7 @@ Returns a list of device types.
 |`latestVersion`{:.param}  |Device type latest Manifest version available.
 |`uniqueName`{:.param}     |Device type unique name in the system (will be used for Manifest package naming). Has to be a valid JAVA package name.
 |`vid`{:.param} | Vendor ID.
-|`rsp`{:.param} | Boolean (true/false). Requires secure protocol. If not specified, defaults to TK.
+|`rsp`{:.param} | Boolean (true/false). Requires secure protocol. Defaults to `false` if not specified.
 |`issuerDn`{:.param} | Issuer of the client certificate. Used in conjunction with `rsp`.
 |`description`{:.param} | Custom description of the device type. String max 1500 characters.
 |`total`{:.param} |Total number of items.
@@ -860,30 +914,55 @@ Returns the available Manifest versions for a device type.
 ### Post a message
 
 ~~~
-POST /message
+POST /messages
 ~~~
 
-Sends data with a timestamp to SAMI or another device.
+Sends a message or actions, using one of the following parameter combinations. If sending actions, only "actions" should be contained in the payload.
+
+|Combination |Required Parameters
+|------------|---------
+|Send message |`sdid`{:.param}, `type=message`{:.param}
+|Send action |`ddid`{:.param}, `type=action`{:.param}
+|Common parameters |`data`{:.param}, `ts`{:.param}
 
 **Example request**
 
-~~~~
+~~~
 {
-  "sdid": "HIuh2378jh",
-  "ddid": "298HUI210987",
+  "ddid": "9f06411ad3174a4f98444a374447fe10",
   "ts": 1388179812427,
-  "data": [payload]
-}           
-~~~~
+  "type": "action",
+  "data": {
+    "actions": [
+      {
+        "name": "setOn",
+        "parameters": {}
+      },
+      {
+        "name": "setColorAsRGB",
+        "parameters": {
+          "colorRGB": {
+              "r": 192,
+              "g": 180,
+              "b": 45
+          },
+          "intensity": 55
+        }
+      }
+    ]
+  }
+}
+~~~
 
 **Request parameters**
 
   |Parameter   |Description
-  |----------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  |`sdid`{:.param}     |Source device ID.
-  |`data`{:.param}     |Device data. Can be a simple text field, or a JSON document.
-  |`ddid`{:.param}     |(Optional) Destination device ID. Only use when sending a message to another device.
-  |`ts`{:.param}       |(Optional) Allows to specify a timestamp for the message. Must be a valid time: past time, present or future up to the current server timestamp grace period. Current time if omitted.
+  |----------- |-----------
+  |`sdid`{:.param}     |(Optional) Source device ID.
+  |`data`{:.param}     |Data. Can be a simple text field, or a JSON document.
+  |`ddid`{:.param}     |(Optional) Destination device ID. Can be used when sending a message to another device.
+  |`ts`{:.param}       |(Optional) Message timestamp. Must be a valid time: past time, present or future up to the current server timestamp grace period. Current time if omitted.
+  |`type`{:.param} |Type of message. Can be `message` or `action`.
   |`token`{:.param}  |(Optional) Device token.
 
 **Example response**
@@ -901,6 +980,7 @@ Sends data with a timestamp to SAMI or another device.
   |Parameter   |Description
   |----------- |-------------
   |`mid`{:.param}      |Message ID.
+
 
 ### Get normalized messages
 
@@ -987,7 +1067,7 @@ Returns normalized messages, according to one of the following parameter combina
 GET /messages/analytics/aggregates
 ~~~
 
-Returns the sum, minimum, maximum, count or average of message fields that are numerical. This call generates results only on messages that are at least 2 hours old.
+Returns the sum, minimum, maximum, mean and count of message fields that are numerical. This call generates results only on messages that are at least 2 hours old.
 
 **Available URL query parameters**
 
@@ -997,6 +1077,44 @@ Returns the sum, minimum, maximum, count or average of message fields that are n
   |`field`{:.param}    |Message field being queried for analytics.
   |`sdid`{:.param} |Source device ID of the messages being searched.
   |`startDate`{:.param} |Time of earliest (oldest) item to return, in milliseconds since epoch.
+
+**Example response**
+
+~~~
+{
+  "sdid": "deea2ca077b94d2db337722e28b41287",
+  "startDate": "1426441570303",
+  "endDate": "1427049970303",
+  "field": "stepcount",
+  "size": 1,
+  "data": [
+    {
+      "count": 83,
+      "min": 23,
+      "max": 17095,
+      "mean": 5649.989,
+      "sum": 468949.06,
+      "variance": 28158896
+    }
+  ]
+}
+~~~
+
+**Response parameters**
+
+|Parameter |Description
+|--------- |-----------
+|`sdid`{:.param} |Source device ID.
+|`startDate`{:.param} |Time of earliest message requested.
+|`endDate`{:.param} |Time of latest message requested.
+|`field`{:.param} |Message field.
+|`size`{:.param} |Number of items received.
+|`count`{:.param} |Number of items requested.
+|`min`{:.param} |Lowest-value item.
+|`max`{:.param} |Highest-value item.
+|`mean`{:.param} |Mean value of items.
+|`sum`{:.param} |Sum of items.
+|`variance`{:.param} |Variance of items.
 
 ### Get last normalized messages
 
@@ -1169,7 +1287,7 @@ Data can be exported in JSON or "simple" CSV. CSV exports sort the message metad
 |Get by users |`uids`{:.param}
 |Get by devices |`sdids`{:.param}
 |Get by device types |`uids`{:.param}, `sdtids`{:.param}
-|Get by trial |`trialId`{:.param}
+|Get by trial |`trialID`{:.param}
 |Get by combination of parameters |`uids`{:.param}, `sdids`{:.param}, `sdtids`{:.param}
 |Common parameters |`startDate`{:.param}, `endDate`{:.param}, `order`{:.param}, `format`{:.param}, `url`{:.param}, `csvHeaders`{:.param}
 
@@ -1183,9 +1301,9 @@ Data can be exported in JSON or "simple" CSV. CSV exports sort the message metad
 |`order`{:.param}     | (Optional) Desired sort order: `asc` or `desc` (default: `asc`).
 |`sdids`{:.param}      | (Optional) Comma-separated list of source device IDs. Max 30 device IDs.
 |`startDate`{:.param} | Time of earliest (oldest) item to return, in milliseconds since epoch.
-|`stdids`{:.param} |(Optional) Comma-separated list of source device type IDs.
-|`trialId`{:.param} |(Optional) Trial ID being searched for messages.
-|`uids`{:.param}       | (Optional) Comma-separated list of user IDs. The current authenticated user must have read access to each user in the list.
+|`sdtids`{:.param} |(Optional) Comma-separated list of source device type IDs. Max 30 device type IDs.
+|`trialID`{:.param} |(Optional) Trial ID being searched for messages.
+|`uids`{:.param}       | (Optional) Comma-separated list of user IDs. The current authenticated user must have read access to each user in the list. Max 30 user IDs.
 |`url`{:.param} |(Optional) URL to include in email confirmation message.
 
 **Example response**
@@ -1254,6 +1372,27 @@ Returns the result of the export query. The result call returns the response in 
   |----------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   |`exportID`{:.param}     |The Export ID of the export query.
 
+**Example response header**
+
+~~~
+{
+  "access-control-allow-origin": "*",
+  "x-rate-limit-limit": "100/1000",
+  "x-sami-total-messages": "133744",
+  "x-rate-limit-remaining": "96/984",
+  "content-length": "4508385",
+  "x-rate-limit-reset": "1426905929/1426982400",
+  "content-type": "application/x-compressed",
+  "content-disposition": "attachment; filename=\"84efe4d9030e490c9788ede466965011.tgz\""
+}
+~~~
+
+|Field |Description
+|----- |-----------
+|`x-sami-total-messages`{:.param} | Total number of messages fetched from the database.
+|`content-length`{:.param} | Size of the .tgz file in bytes.
+|`content-disposition`{:.param} | Suggested filename to save. (Does not work on curl or older browsers.) 
+
 The tar file may contain one or more files in the following format:
 
 **Example response**
@@ -1263,11 +1402,19 @@ The tar file may contain one or more files in the following format:
   "size": 1,
   "data": [
     {
-    "ts": 1377206303000,
-    "cts": 1377206303000,
-    "sdid": "hueID_dev_2",
-    "mid": "20442c0b-70b5-4670-b712-32f8b78393bf",
-    "data": "{\"status\":{\"state\":{\"bri\":254}}}"
+      "mid": "b557fbb551f04987883e5b52fd589882",
+      "data": 
+        {
+          "dateMicro": 1415753126779000, 
+          "posture": 2, 
+          "ecg": -80
+        },
+      "ts":1423880755000,
+      "sdtid":"vitalconnect_module",
+      "cts":1423881187801,
+      "uid":"5533a9c7d2f84792a133328d1ddf713f",
+      "mv":1,
+      "sdid":"920937d451ec495e9aa869684d526e49"
     }
   ]
 }
