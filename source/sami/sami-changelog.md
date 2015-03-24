@@ -7,6 +7,14 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### March 23, 2015
+
+We have added new documentation on writing a [Manifest with actions](/sami/sami-documentation/the-manifest.html#manifests-that-support-actions) for devices. New "description" and "actions" parameters are returned when [getting Manifest properties](/sami/api-spec.html#get-manifest-properties) with the API.
+
+### March 20, 2015
+
+The API spec has been updated with [Trials APIs](/sami/api-spec.html#trials) and updates to the [Export API](/sami/api-spec.html#export), including "simple" CSV data exports. The [API Console](https://api-console.samsungsami.io) is also updated to reflect these changes and additions.
+
 ### January 31, 2015
 
 [WebSocket rate limits](/sami/sami-documentation/rate-limiting.html#websocket-limits) have been documented.
