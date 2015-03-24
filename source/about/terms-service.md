@@ -6,7 +6,7 @@ title: Terms of Service
 
 ##Samsung SAMIIO Platform Terms of Service
 
-**Last Updated: November 07, 2014**
+**Last Updated: March 2015**
 
 Welcome to the Samsung SAMIIO Platform (the “Platform”). Samsung Electronics Co., Ltd. and/or its subsidiaries and affiliates (collectively, “Samsung”, “we”, “us” or “our”) provides certain features, software, tools, and other products and services (“Services”) to you (“you”, “your” or “Users”) on or through our Platform. If you are using the Services on behalf of an organization, you agree to these Terms of Service for that organization and you represent and warrant that you have the authority to bind that organization to these Terms of Service (in which case, “you”, “your” and “User” will refer to that organization).
 
@@ -236,11 +236,11 @@ any software licensed from a third party, or
 
 4. **Your Licenses to Use the Developer Kit and Its Components**
 
-    4.1 Developer Kit Components.  The Developer Kit contains proprietary components (consisting of closed source components and reference source components), and Open Source Software components, as further described below:
+    4.1 Developer Kit Components.  The Developer Kit contains proprietary components (consisting of closed source components and reference source components), and may contain Open Source Software components, as further described below:
       
       * Closed Source Components. The closed source components of the Developer Kit are those Samsung-proprietary components that you may reference as you create a Developer Product, and are subject to the license granted by Samsung in Section 4.2 (“Proprietary Components”).
       * Reference Source Components. The reference source components are those Samsung-proprietary components that contain code that you may distribute along with your Developer Product, and are subject to the license granted by Samsung in Section 4.3.
-      * Open Source Software Components. The Open Source Software components or those components of the Developer Kit that Samsung is making available in accordance with the LGPL v2 license (which you may view at [https://www.gnu.org/licenses/lgpl-2.1-standalone.html](https://www.gnu.org/licenses/lgpl-2.1-standalone.html)).
+      * If any Open Source Software Components are offered, they will be made available in accordance with the LGPL v2 license (which you may view at [https://www.gnu.org/licenses/lgpl-2.1-standalone.html](https://www.gnu.org/licenses/lgpl-2.1-standalone.html)).
 
     A list of the components of the Developer Kit and the license associated with each component is available in Exhibit A to this Agreement. 
 
@@ -400,8 +400,8 @@ The table below lists the components of the Developer Kit along with the applica
 
 | Component                              | License                                                       |
 |--------------------------------------------------------------------------------------------------------
-| M4 Algorithms:                         | LGPLv2 ([https://www.gnu.org/licenses/lgpl-2.1-standalone.html](https://www.gnu.org/licenses/lgpl-2.1-standalone.html)) |
-| M4 framework                           | LGPLv2 ([https://www.gnu.org/licenses/lgpl-2.1-standalone.html](https://www.gnu.org/licenses/lgpl-2.1-standalone.html)) |
+| M4 Algorithms:                         | Closed Source Component(1)|
+| M4 framework                           | Closed Source Component(1)|
 | M4 SSIC Algorithms                     | Closed Source Component(1)|
 | M0 software:                           | Reference Source Component(2) |
 | Simband Apps on Tizen:                 | Reference Source Component(2) |
@@ -413,7 +413,7 @@ The table below lists the components of the Developer Kit along with the applica
 
 ###EXHIBIT B
 
-###Minimum Privacy Policy Terms and Conditions
+####Minimum Privacy Policy Terms and Conditions
 
 As provided in Section 8.2(d) of the Agreement, if a Developer Product engages in User Information Handling, your privacy policy for the Developer Product shall be clearly and conspicuously posted and shall include provisions notifying users of the following:
 
@@ -431,7 +431,7 @@ As provided in Section 8.2(d) of the Agreement, if a Developer Product engages i
 
 ###EXHIBIT C
 
-###Minimum End User Terms and Conditions
+####Minimum End User Terms and Conditions
 
 As provided in Section 8.2(p) of the Agreement, if a Developer Product is expected to be made available to end users through the Platform, your End User License Agreement (“EULA”) will include the following minimum terms and conditions. 
 
