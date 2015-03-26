@@ -1287,7 +1287,7 @@ Returns raw (original format) messages.
 ### Create an export request
 
 ~~~
-GET /messages/export
+POST /messages/export
 ~~~
 
 Exports normalized messages from up to 30 days, according to one of the following parameter combinations. The maximum duration between `startDate`{:.param} and `endDate`{:.param} is 31 days. A confirmation message is emailed when the export request has been processed.
@@ -1324,6 +1324,7 @@ Data can be exported in JSON or "simple" CSV. CSV exports sort the message metad
 {
   "data":{
     "exportId": "f2fcf3e0-4425-11e4-be99-0002a5d5c51b",
+    "uids": "7b202300eb904149b36e9739574962a5",
     "startDate": 1378425600000,
     "endDate": 2378425600000,
     "order": "asc",
