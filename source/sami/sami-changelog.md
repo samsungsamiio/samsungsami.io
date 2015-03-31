@@ -7,6 +7,12 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### March 31, 2015
+
+The article [Data collection with trials](/sami/sami-documentation/data-collection-with-trials.html) highlights some key APIs for conducting trials programmatically. 
+
+The [WebSockets APIs](/sami/api-spec.html#websockets) have also been added to the API spec.
+
 ### March 23, 2015
 
 We have added new documentation on writing a [Manifest with actions](/sami/sami-documentation/the-manifest.html#manifests-that-support-actions) for devices. New "description" and "actions" parameters are returned when [getting Manifest properties](/sami/api-spec.html#get-manifest-properties) with the API.
