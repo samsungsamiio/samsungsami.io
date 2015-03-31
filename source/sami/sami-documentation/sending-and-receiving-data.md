@@ -206,7 +206,7 @@ This is a read-only WebSocket that allows the developer to listen for any new me
 
 | Parameter | Description                                                |
 |-----------|------------------------------------------------------------|
-|`Authorization`{:.param} |User access token.
+|`Authorization`{:.param} |Access token.
 |`sdid`{:.param} |(Optional) Source device ID.
 |`sdtid`{:.param} |(Optional) Source device type ID.
 |`uid`{:.param} |(Optional) User ID of the target stream. If not specified, defaults to the user ID of the supplied access token.
@@ -219,14 +219,12 @@ You can use different URL query parameter combinations to get messages by user, 
 |Get by device | `sdid`{:.param}, `Authorization`{:.param}
 |Get by device type | `sdtid`{:.param}, `uid`{:.param}, `Authorization`{:.param}
 
-
-
 In the following example we use [Tyrus](https://tyrus.java.net/), a Java API for WebSocket suitable for web applications.
 
 **Example**
 
 ~~~
-java -jar tyrus-client-cli-1.3.3.jar "wss://api.samsungsami.io/v1.1/live?userId=2&Authorization=bearer+1c20060d9b9f4ad09ee16919a45c71b7"
+java -jar tyrus-client-cli-1.3.3.jar "wss://api.samsungsami.io/v1.1/live?uid=2&Authorization=bearer+1c20060d9b9f4ad09ee16919a45c71b7"
 ~~~
 
 **Example response**
@@ -244,30 +242,6 @@ java -jar tyrus-client-cli-1.3.3.jar "wss://api.samsungsami.io/v1.1/live?userId=
 }           
 ~~~
 
-### Setting up a bi-directional message pipe
-
-This call is for setting up a data connection between SAMI and a device or device list. Connected devices will receive messages containing the corresponding `ddid`{:.param} field.
-
-~~~
-WebSocket /websocket
-~~~
-
-#### Registration
-
-All client applications, including device proxies, must register after opening the WebSocket connection. Otherwise client messages will be discarded and clients will not be sent messages.
-
-In the below example, `Authorization`{:.param} refers to the authorization token with READ and WRITE access to `sdid`{:.param}.
-
-**Example registration message sent by client**
-
-~~~
-{
-  "sdid": "DFKK234-JJO5",
-  "Authorization": "bearer d77054a9b0874ba884499eef7768b7b9",
-  "type": "register"
-}         
-~~~
-
 #### Ping
 
 SAMI sends a ping every 30 seconds to the client. If a ping is not received, the connection has stalled and the client must reconnect.
@@ -280,13 +254,80 @@ SAMI sends a ping every 30 seconds to the client. If a ping is not received, the
 }         
 ~~~
 
+### Setting up a bi-directional message pipe
+
+This call sets up a data connection between SAMI and a device or device list. 
+
+~~~
+WebSocket /websocket
+~~~
+
+#### Registration
+
+All client applications, including device proxies, must register after opening the WebSocket connection. Otherwise client messages will be discarded and clients will not be sent messages.
+
+Setting `ack`{:.param} to "true" in the URL query string will cause SAMI to return an ACK message for each message sent. Otherwise, this defaults to "false" and you will not receive ACK messages. 
+
+The registration message `type`{:.param} must be "register". `Authorization`{:.param} refers to the authorization token with READ and WRITE access to `sdid`{:.param}. The `cid`{:.param} parameter is discussed in [Sending messages](#sending-messages).
+
+**Example registration message sent by client**
+
+~~~
+{
+  "sdid": "DFKK234-JJO5",
+  "Authorization": "bearer d77054a9b0874ba884499eef7768b7b9",
+  "type": "register",
+  "cid": "1234567890"
+}         
+~~~
+
+**Example ACK message**
+
+~~~
+{
+  "data":{
+    "message":"OK",
+    "code":"200",
+    "cid":"1234567890"
+  }
+}
+~~~
+
+#### Ping
+
+As with /live, SAMI sends a ping every 30 seconds to the client. If a ping is not received, the connection has stalled and the client must reconnect.
+
 ### Sending messages
 
-Sending a message to SAMI or another device works as it does in [Posting a message](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message) and [Posting a message with actions](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message-with-actions). 
+When sending a message to SAMI or another device, you may specify `type`{:.param} as "message" or "action". Additionally, if `ack`{:.param} was set to "true", you may optionally include `cid`{:.param}—the client ID. SAMI will return `cid`{:.param} (in addition to `mid`{:.param}) in its ACK messages to facilitate client side validations. This helps to clarify which response is for which message. 
+
+**Example request**
+
+~~~
+{
+  "sdid": "d597a8ffb3364f98a904515cbc574cb2", 
+  "cid":"1234567890", 
+  "type": "message",
+  "data":{
+    "someField": "someValue"
+  }
+}
+~~~
+
+**Example ACK message**
+
+~~~
+{
+  "data":{
+    "mid": "6d002024824746649766743582c9f005", 
+    "cid": "1234567890"
+  }
+}
+~~~
 
 ### Receiving messages
 
-In the below example, `ddid`{:.param} refers to the device ID of the device connected to the WebSocket. 
+In the below example, `ddid`{:.param} refers to the device ID of the device connected to the WebSocket. Connected devices will receive messages containing their corresponding `ddid`{:.param}.
 
 **Example message received by client**
 
@@ -301,17 +342,5 @@ In the below example, `ddid`{:.param} refers to the device ID of the device conn
 }       
 ~~~
 
-### WebSocket errors
-
-|Code |Error message |Condition
-|-----|-------|-----
-|400 | Bad Request |Invalid JSON
-|400 | Missing sdid value |Missing `sdid`
-|400 |Missing ddid value |Missing `ddid`
-|400 |Invalid ts value |Invalid timestamp or timestamp less than 0
-|400 |Invalid ts value (in future) |Timestamp greater than `FUTURE_GRACE_PERIOD`
-|401 |Please provide a valid authorization header |Missing auth token
-|401 |Device not registered |Unregistered sdid
-|403 |You do not have the right permission: devices |No WRITE permission
-|403 |Wrong cid |Mismatch `cid`
-|429 |Rate limit exceeded |Rate limit exceeded
+See the API spec for a table of [**WebSocket errors**](https://developer.samsungsami.io/sami/api-spec.html#websocket-errors).
+{:.info}
