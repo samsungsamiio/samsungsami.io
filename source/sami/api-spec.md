@@ -911,13 +911,13 @@ Returns the available Manifest versions for a device type.
 
 ## Messages
 
-### Post a message
+### Post a message or action
 
 ~~~
 POST /messages
 ~~~
 
-Sends a message or actions, using one of the following parameter combinations. If sending actions, only "actions" should be contained in the payload.
+Sends a message or action, using one of the following parameter combinations. If sending actions, only "actions" should be contained in the payload.
 
 |Combination |Required Parameters
 |------------|---------
@@ -1480,6 +1480,192 @@ Returns a list of export queries that have been performed.
 }
 ~~~
 
+
+## WebSockets
+
+See [**WebSocket errors**](#websocket-errors) for a list of error
+codes that can be returned for WebSockets.
+{:.info}
+
+### Read-only WebSocket
+
+~~~
+WebSocket /live
+~~~
+
+Read-only WebSocket that listens for new messages according to one of the following URL query parameter combinations:
+
+| Combination | Required Parameters|
+|-------------|-----------|
+|Get by user | `uid`{:.param}, `Authorization`{:.param}
+|Get by device | `sdid`{:.param}, `Authorization`{:.param}
+|Get by device type | `sdtid`{:.param}, `uid`{:.param}, `Authorization`{:.param}
+
+**Available URL query parameters**
+
+| Parameter | Description
+|-----------|--------------
+|`Authorization`{:.param} |Access token.
+|`sdid`{:.param} |(Optional) Source device ID.
+|`sdtid`{:.param} |(Optional) Source device type ID.
+|`uid`{:.param} |(Optional) User ID of the target stream. If not specified, defaults to the user ID of the supplied access token.
+
+The below example uses [Tyrus](https://tyrus.java.net/), a Java API for WebSocket suitable for Web applications.
+{:.info}
+
+**Example**
+
+~~~
+java -jar tyrus-client-cli-1.3.3.jar "wss://api.samsungsami.io/v1.1/live?uid=2&Authorization=bearer+1c20060d9b9f4ad09ee16919a45c71b7"
+~~~
+
+**Example response**
+
+~~~
+{
+  "sdtid":"nike_fuelband",
+  "data":{
+    "stepCount":5000
+  },
+  "mid":"c7f88d4367394fb696eee413666c83d9",
+  "ts":1377793344153,
+  "uid":"10022",
+  "sdid":"nike_fuelband_123"
+}           
+~~~
+
+#### Ping
+
+SAMI sends a ping every 30 seconds to the client. If a ping is not received, the connection has stalled and the client must reconnect.
+
+**Example ping message sent by server**
+
+~~~
+{
+  "type": "ping"
+}         
+~~~
+
+### Bi-directional message pipe
+  
+Establishes a data connection to SAMI and allows to register as a device or device list.
+
+~~~
+WebSocket /websocket
+~~~
+
+#### Registration
+
+All client applications, including device proxies, must register after opening the WebSocket connection. Otherwise client messages will be discarded and clients will not be sent messages. 
+
+Register messages can set `ack`{:.param} to "true" to receive an acknowledgment message from SAMI for each message sent.
+
+**Available URL query parameters**
+
+| Parameter | Description
+|-----------|--------------
+|`ack`{:.param} |(Optional) Boolean (true/false). WebSocket returns ACK messages for each message sent by client. If not specified, defaults to false.
+
+**Example registration message sent by client**
+
+~~~
+{
+  "sdid": "DFKK234-JJO5",
+  "Authorization": "bearer d77054a9b0874ba884499eef7768b7b9",
+  "type": "register",
+  "cid": "1234567890"
+}         
+~~~
+
+**Request parameters**
+
+| Parameter | Description
+|-----------|--------------
+|`sdid`{:.param} |Source device ID.
+|`Authorization`{:.param} |Access token. 
+|`type`{:.param} |Type of message: must be `register` for registration message.
+|`cid`{:.param} |(Optional) Client (application) ID. Can be used when `ack=true`.
+
+**Example ACK message**
+
+~~~
+{
+  "data":{
+    "message":"OK",
+    "code":"200",
+    "cid":"1234567890"
+  }
+}
+~~~
+
+#### Ping
+
+SAMI sends a ping every 30 seconds to the client. If a ping is not received, the connection has stalled and the client must reconnect.
+
+**Example ping message sent by server**
+
+~~~
+{
+  "type": "ping"
+}         
+~~~
+
+### Sending messages
+
+Posting a message via WebSockets differs from performing the REST call in that `cid`{:.param} can be included. Responses from SAMI include `cid`{:.param} to facilitate client side validations.
+
+**Example request**
+
+~~~
+{
+  "sdid": "d597a8ffb3364f98a904515cbc574cb2", 
+  "cid":"1234567890", 
+  "type": "message",
+  "data":{
+    "someField": "someValue"
+  }
+}
+~~~
+
+**Request parameters**
+
+ |Parameter   |Description
+  |----------- |-----------
+  |`sdid`{:.param}     |(Optional) Source device ID.
+  |`data`{:.param}     |Data. Can be a simple text field, or a JSON document.
+  |`ddid`{:.param}     |(Optional) Destination device ID. Can be used when sending a message to another device.
+  |`ts`{:.param}       |(Optional) Message timestamp. Must be a valid time: past time, present or future up to the current server timestamp grace period. Current time if omitted.
+  |`type`{:.param} |Type of message: `message` or `action` (default: `message`).
+  |`cid`{:.param} |(Optional) Client (application) ID. Can be used when `ack=true`.
+
+**Example ACK message**
+
+~~~
+{
+  "data":{
+    "mid": "6d002024824746649766743582c9f005", 
+    "cid": "1234567890"
+  }
+}
+~~~
+
+### Receiving messages
+
+Devices connected to the WebSocket receive messages that contain their corresponding `ddid`{:.param} (destination device ID).
+
+**Example message received by client**
+
+~~~
+{
+  "ddid": "<destination device ID = this client device ID>",
+  "mid": "<message ID>",
+  "data": {
+    "command": "unlock",
+    "level": 3
+  }
+}       
+~~~
+
 ## Trials
 
 ### Create a trial
@@ -1691,7 +1877,7 @@ The `status` field can be updated to `stop`. This sets the end date of the trial
 PUT /trials/<trialID>/application
 ~~~
 
-Updates the trial with a new application. This can be used if the client secret of the existing application is exposed. 
+Updates the trial with a new application. This can be used if the client secret of the existing application is exposed. A new `aid`{:.param} and `clientSecret`{:.param} will be generated.
 
 Can be called by a trial administrator only.
 
@@ -2376,3 +2562,18 @@ Can be called by trial administrators and participants. Only administrators may 
 | `409`{:.param}         | 1203 | Username already registered.                                                                                                                                                                                                                                                                                                                                                                                                                                                  |  You need to request a different username.
 
 
+## WebSocket errors
+
+|Code |Error message |Condition
+|-----|-------|-----
+|400 | Bad Request |Invalid JSON
+|400 | Missing sdid value |Missing `sdid`
+|400 |Missing ddid value |Missing `ddid`
+|400 |Registration timeout |Client connects and does not register
+|400 |Invalid ts value |Invalid timestamp or timestamp less than 0
+|400 |Invalid ts value (in future) |Timestamp greater than `FUTURE_GRACE_PERIOD`
+|401 |Please provide a valid authorization header |Missing auth token
+|401 |Device not registered |Unregistered sdid
+|403 |You do not have the right permission: devices |No WRITE permission
+|403 |Wrong cid |Mismatch `cid`
+|429 |DAILY rate limit exceeded |Rate limit exceeded
