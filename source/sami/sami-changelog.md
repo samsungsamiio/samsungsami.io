@@ -7,6 +7,10 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### April 1, 2015
+
+We just documented [secure device registration](/sami/sami-documentation/secure-your-devices.html) for creating secure device types and registering devices with SAMI for secure communication. (No joke!)
+
 ### March 31, 2015
 
 The article [Data collection with trials](/sami/sami-documentation/data-collection-with-trials.html) highlights some key APIs for conducting trials programmatically. 
