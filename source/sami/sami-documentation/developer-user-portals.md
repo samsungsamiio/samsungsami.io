@@ -39,8 +39,7 @@ The Developer Portal is located at [devportal.samsungsami.io.](http://devportal.
 
 You will need your application ID (called a client ID in the Developer Portal) to use in API calls. Here's how to locate it.
 
-- Click either "Applications" in the top menu or "View All" under the list of Applications on your dashboard.<br /><br />
-![SAMI architecture overview](/images/docs/sami/sami-documentation/dashboard-application.png)
+- Click either "Applications" in the top menu or "View All" under the list of Applications on your dashboard.
 - This brings up your list of applications.
 - Under the application, click "Show Client ID & Secret".
   - The application ID is the string found next to "Client ID".<br /><br />
@@ -64,15 +63,17 @@ You will also need to [learn how to write a Manifest](/sami/sami-documentation/t
   - The device type initially has a "Pending" status. Once we have reviewed your Manifest, you will be sent an email notifying you of a change in status.
     - If the device type is Approved, you can immediately Publish the device type.
       - From the dashboard, click the name of your device type.
-      - On the next page, click the "Publish" button.<br /><br />
-      ![SAMI architecture overview](/images/docs/sami/sami-documentation/device-type-publish.png)
-    - If the device type is Rejected, you will have to resubmit (see below).
+      - On the next page, click the "Publish" button.
+      - If the device type is Rejected, you will have to resubmit (see below).
 
 ### Updating a device type
 
-- From the dashboard, click the name of the device type you want to update.
-- On the next page, click the "Add New Version" button.<br /><br />
+<div  class="photo-grid" style="max-width: 512px;">
 ![SAMI architecture overview](/images/docs/sami/sami-documentation/device-type-update.png)
+</div>
+
+- From the dashboard, click the name of the device type you want to update.
+- On the next page, click the "Add New Version" button.
 - Paste your new Manifest into the box on the next page.
 - Click "Create Device Type Version".
   - On the dashboard, you will see a new version number and status for your device type.
@@ -83,8 +84,14 @@ The User Portal is located at [portal.samsungsami.io.](http://portal.samsungsami
 
 ### Connecting a device
 
-- Click "+ Connect another device..." in the User Portal.<br /><br />
+<div  class="photo-grid" style="max-width: 512px;">
 ![SAMI architecture overview](/images/docs/sami/sami-documentation/connect-another-device.png)
+</div>
+
+- Click "+ Connect another device..." in the User Portal.
 - In the box, start typing the name of your device. 
   - The available options will pop up. Select one.
 - Click the "Connect Device..." button.
+
+[**Read our blog**](https://blog.samsungsami.io/portals/datavisualization/2015/01/09/opening-the-user-portal.html) to learn about the User Portal's powerful Data Visualization feature.
+{:.info}
