@@ -7,9 +7,10 @@ nav:
    - 'oauth2-flow-examples'
    - 'administrative-apis'
    - 'sending-and-receiving-data'
-   - 'data-collection-with-trials'
-   - 'rate-limiting'
+   - 'secure-your-devices'
    - 'the-manifest'
+   - 'rate-limiting'
+   - 'data-collection-with-trials'
    - 'developer-user-portals'
 ---
 
