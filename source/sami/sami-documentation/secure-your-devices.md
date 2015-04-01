@@ -43,7 +43,7 @@ A registered device will appear in the [User Portal](https://portal.samsungsami.
 
 The following sequence diagram of secure device registration illustrates the interactions among a user, a secure device, the user's browser and SAMI. You will need to implement the functionalities performed by "Device" in this diagram. 
 
-![Secure Device Registration](/images/docs/sami/secure-device-reg-seq-diagram.png){:.lightbox}
+![Secure Device Registration](/images/docs/sami/sami-documentation/secure-device-reg-seq-diagram.png){:.lightbox}
 
 Below, we discuss the API calls made by the secure device. 
 
@@ -162,7 +162,7 @@ This excerpt shows how to make such an API call and the corresponding HTTP respo
 
 The below sequence diagram gives an overview of sending and receiving data securely to and from SAMI using WebSockets:
 
-![Secure Device Registration](/images/docs/sami/secure-device-send-data-via-socket.png){:.lightbox}
+![Secure Device Registration](/images/docs/sami/sami-documentation/secure-device-send-data-via-socket.png){:.lightbox}
 
 Below are the details.
 
