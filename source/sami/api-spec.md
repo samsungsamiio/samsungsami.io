@@ -268,31 +268,30 @@ Returns the devices registered to a user.
 
 ~~~~
 {
-    "data": {
-      "devices": [
-        {
-          "id": "SdP8UyrNdNBm",
-          "dtid": "polestar_locator_v2",
-          "name": "Polestar locator v2 Betty",
-          "manifestVersion":2,
-          "manifestVersionPolicy":"LATEST",
-          "needProviderAuth": false
-        },
-        {
-          "id": "e98fsEKW5cQp",
-          "dtid": "polestar_locator_coord",
-          "name": "Polestar Locator Coord Betty S2",
-          "manifestVersion":5,
-          "manifestVersionPolicy":"DEVICE",
-          "needProviderAuth": true
-        }
-      ]
-    },
-    "total": 2,
-    "offset": 0,
-    "count": 2
-}
-            
+  "data": {
+    "devices": [
+      {
+        "id": "SdP8UyrNdNBm",
+        "dtid": "polestar_locator_v2",
+        "name": "Polestar locator v2 Betty",
+        "manifestVersion":2,
+        "manifestVersionPolicy":"LATEST",
+        "needProviderAuth": false
+      },
+      {
+        "id": "e98fsEKW5cQp",
+        "dtid": "polestar_locator_coord",
+        "name": "Polestar Locator Coord Betty S2",
+        "manifestVersion":5,
+        "manifestVersionPolicy":"DEVICE",
+        "needProviderAuth": true
+      }
+    ]
+  },
+  "total": 2,
+  "offset": 0,
+  "count": 2
+}         
 ~~~~
 
 **Response parameters**
@@ -624,11 +623,11 @@ Returns the access token of a device.
 
 ~~~~
 {
-    "data": {
-        "accessToken": "ac4ed92410fa4c4b86d4d5d30f21be22",
-        "uid": "7b202300eb904149b36e9739574962a5",
-        "did": "03fd772ae34b4b2a81db909898506146",
-    }
+  "data": {
+    "accessToken": "ac4ed92410fa4c4b86d4d5d30f21be22",
+    "uid": "7b202300eb904149b36e9739574962a5",
+    "did": "03fd772ae34b4b2a81db909898506146",
+  }
 }
 ~~~~
 
@@ -650,11 +649,11 @@ Creates a new access token for a device.
 
 ~~~~
 {
-    "data": {
-        "accessToken": "0b312ca200cc47fbab80994262eb03ad",
-        "uid": "7b202300eb904149b36e9739574962a5",
-        "did": "9a020ce80acb47de93255607006908cf",
-    }
+  "data": {
+    "accessToken": "0b312ca200cc47fbab80994262eb03ad",
+    "uid": "7b202300eb904149b36e9739574962a5",
+    "did": "9a020ce80acb47de93255607006908cf",
+  }
 }
 ~~~~
 
@@ -676,11 +675,11 @@ Deletes the access token of a device.
 
 ~~~~
 {
-    "data": {
-        "accessToken": "ac4ed92410fa4c4b86d4d5d30f21be22",
-        "uid": "7b202300eb904149b36e9739574962a5",
-        "did": "03fd772ae34b4b2a81db909898506146",
-    }
+  "data": {
+    "accessToken": "ac4ed92410fa4c4b86d4d5d30f21be22",
+    "uid": "7b202300eb904149b36e9739574962a5",
+    "did": "03fd772ae34b4b2a81db909898506146",
+  }
 }
 ~~~~
 
@@ -1031,28 +1030,28 @@ Returns normalized messages, according to one of the following parameter combina
 
 ~~~~
 {
-    "uid": "7b202300eb904149b36e9739574962a5",
-    "sdid": "4697f11336c540a69ffd6f445061215e",
-    "startDate": 1421281794212,
-    "endDate": 1421281794230,
-    "count": 100,
-    "order": "asc",
-    "size": 1,
-    "data": [
-        {
-            "mid": "057a407d4f814cbc874f3f7a0485af3b",
-            "data": {
-                "dateMicro": 1421281794211000,
-                "ecg": -73
-            },
-            "ts": 1421281794212,
-            "sdtid": "vitalconnect_module",
-            "cts": 1421281794212,
-            "uid": "7b202300eb904149b36e9739574962a5",
-            "mv": 1,
-            "sdid": "4697f11336c540a69ffd6f445061215e"
-        }
-    ]
+  "uid": "7b202300eb904149b36e9739574962a5",
+  "sdid": "4697f11336c540a69ffd6f445061215e",
+  "startDate": 1421281794212,
+  "endDate": 1421281794230,
+  "count": 100,
+  "order": "asc",
+  "size": 1,
+  "data": [
+    {
+      "mid": "057a407d4f814cbc874f3f7a0485af3b",
+      "data": {
+        "dateMicro": 1421281794211000,
+        "ecg": -73
+      },
+      "ts": 1421281794212,
+      "sdtid": "vitalconnect_module",
+      "cts": 1421281794212,
+      "uid": "7b202300eb904149b36e9739574962a5",
+      "mv": 1,
+      "sdid": "4697f11336c540a69ffd6f445061215e"
+    }
+  ]
 }
 ~~~~
 
@@ -1148,37 +1147,37 @@ Returns the most recent normalized messages from a device or devices.
 
 ~~~~
 {
-    "sdids": "4697f11336c540a69ffd6f445061215e",
-    "count": 2,
-    "size": 2,
-    "data": [
-        {
-            "mid": "fc344af3869d40ffb856824bbb6ee92a",
-            "data": {
-                "dateMicro": 1414692018449000,
-                "ecg": -127
-            },
-            "ts": 1414692018448,
-            "sdtid": "vitalconnect_module",
-            "cts": 1414692018448,
-            "uid": "7b202300eb904149b36e9739574962a5",
-            "mv": 1,
-            "sdid": "4697f11336c540a69ffd6f445061215e"
-        },
-        {
-            "mid": "f70c58dd5d134d3095c6c796bc517d4e",
-            "data": {
-                "dateMicro": 1414692018439000,
-                "ecg": -98
-            },
-            "ts": 1414692018438,
-            "sdtid": "vitalconnect_module",
-            "cts": 1414692018438,
-            "uid": "7b202300eb904149b36e9739574962a5",
-            "mv": 1,
-            "sdid": "4697f11336c540a69ffd6f445061215e"
-        }
-    ]
+  "sdids": "4697f11336c540a69ffd6f445061215e",
+  "count": 2,
+  "size": 2,
+  "data": [
+    {
+      "mid": "fc344af3869d40ffb856824bbb6ee92a",
+      "data": {
+        "dateMicro": 1414692018449000,
+        "ecg": -127
+      },
+      "ts": 1414692018448,
+      "sdtid": "vitalconnect_module",
+      "cts": 1414692018448,
+      "uid": "7b202300eb904149b36e9739574962a5",
+      "mv": 1,
+      "sdid": "4697f11336c540a69ffd6f445061215e"
+    },
+    {
+      "mid": "f70c58dd5d134d3095c6c796bc517d4e",
+      "data": {
+        "dateMicro": 1414692018439000,
+        "ecg": -98
+      },
+      "ts": 1414692018438,
+      "sdtid": "vitalconnect_module",
+      "cts": 1414692018438,
+      "uid": "7b202300eb904149b36e9739574962a5",
+      "mv": 1,
+      "sdid": "4697f11336c540a69ffd6f445061215e"
+    }
+  ]
 }
 ~~~~
 
@@ -1243,28 +1242,28 @@ Returns raw (original format) messages.
 
 ~~~~
 {
-    "sdid": "4697f11336c540a69ffd6f445061215e",
-    "startDate": 1414691893755,
-    "endDate": 1414691893765,
-    "count": 100,
-    "order": "asc",
-    "size": 2,
-    "data": [
-        {
-            "cts": 1414691893755,
-            "ts": 1414691893755,
-            "mid": "566409a96ca64f5c9e04fbbc32eb5f6f",
-            "sdid": "4697f11336c540a69ffd6f445061215e",
-            "data": "{\"dateMicro\":1414691893753000,\"ecg\":-54}"
-        },
-        {
-            "cts": 1414691893765,
-            "ts": 1414691893765,
-            "mid": "2d6946758c5f43139d62e010e471194e",
-            "sdid": "4697f11336c540a69ffd6f445061215e",
-            "data": "{\"dateMicro\":1414691893762000,\"ecg\":-78}"
-        }
-    ]
+  "sdid": "4697f11336c540a69ffd6f445061215e",
+  "startDate": 1414691893755,
+  "endDate": 1414691893765,
+  "count": 100,
+  "order": "asc",
+  "size": 2,
+  "data": [
+    {
+      "cts": 1414691893755,
+      "ts": 1414691893755,
+      "mid": "566409a96ca64f5c9e04fbbc32eb5f6f",
+      "sdid": "4697f11336c540a69ffd6f445061215e",
+      "data": "{\"dateMicro\":1414691893753000,\"ecg\":-54}"
+    },
+    {
+      "cts": 1414691893765,
+      "ts": 1414691893765,
+      "mid": "2d6946758c5f43139d62e010e471194e",
+      "sdid": "4697f11336c540a69ffd6f445061215e",
+      "data": "{\"dateMicro\":1414691893762000,\"ecg\":-78}"
+    }
+  ]
 }
 ~~~~
 
@@ -1691,7 +1690,7 @@ Device types and invitations may be included in the call. See [Add a trial devic
     {
       "dtid": "vitalconnect_module"
     }
- ],
+  ],
   "invitations": [
     {
       "email": "john@email.com",
@@ -2047,22 +2046,22 @@ Can be called by a trial administrator only.
 
 ~~~
 { 
-   "data":{ 
-      "devices":[ 
-         { 
-            "id":"65ee0eae038b4f538d93faf97d044e12",
-            "uid":"90cb4ef84c7d41d3b691241c392b2e42",
-            "dtid":"dt11cfee3a5d294019b5e9afda11a93668",
-            "name":"Device d8cb1e09b6b04fb",
-            "manifestVersion":1,
-            "manifestVersionPolicy":"LATEST",
-            "connected_on":1411447202000
-         }
-      ]
-   },
-   "total":1,
-   "offset":0,
-   "count":1
+  "data":{ 
+    "devices":[ 
+      { 
+        "id":"65ee0eae038b4f538d93faf97d044e12",
+        "uid":"90cb4ef84c7d41d3b691241c392b2e42",
+        "dtid":"dt11cfee3a5d294019b5e9afda11a93668",
+        "name":"Device d8cb1e09b6b04fb",
+        "manifestVersion":1,
+        "manifestVersionPolicy":"LATEST",
+        "connected_on":1411447202000
+      }
+   ]
+ },
+ "total":1,
+ "offset":0,
+ "count":1
 }
 ~~~
 
@@ -2169,24 +2168,25 @@ Can be called by trial administrators and participants.
 
 ~~~
 { 
-   "data":{ 
-      "devices":[ 
-         { 
-            "id":"65ee0eae038b4f538d93faf97d044e12",
-            "uid":"90cb4ef84c7d41d3b691241c392b2e42",
-            "dtid":"dt11cfee3a5d294019b5e9afda11a93668",
-            "name":"Device d8cb1e09b6b04fb",
-            "manifestVersion":1,
-            "manifestVersionPolicy":"LATEST",
-            "connected_on":1411447202000
-         }
-      ]
-   },
-   "total":1,
-   "offset":0,
-   "count":1
+  "data":{ 
+    "devices":[ 
+      { 
+        "id":"65ee0eae038b4f538d93faf97d044e12",
+        "uid":"90cb4ef84c7d41d3b691241c392b2e42",
+        "dtid":"dt11cfee3a5d294019b5e9afda11a93668",
+        "name":"Device d8cb1e09b6b04fb",
+        "manifestVersion":1,
+        "manifestVersionPolicy":"LATEST",
+        "connected_on":1411447202000
+      }
+   ]
+ },
+ "total":1,
+ "offset":0,
+ "count":1
 }
 ~~~
+
 
 ## Trials - Members
 
