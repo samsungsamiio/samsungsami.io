@@ -70,6 +70,9 @@ The response will be the trial in JSON format, where `id`{:.param} is a unique t
 
 The response also includes `aid`{:.param} and `clientSecret`{:.param}. These are the application ID and client secret of the companion application that SAMI associates with each trial to allow you to access trial data programmatically (server side). This information may also be found through the [Trials Admin](https://trials-admin.samsungsami.io/) tool and in the response to [Find a specific trial](#find-a-specific-trial).
 
+Trials created before April 2015 do not have a companion application. You must [update the trial application](#update-the-trial-application) to generate a new companion app.
+{:.warning}
+
 ### Invite participants or administrators
 
 Your next step will be to invite SAMI users to become participants or administrators of the trial. You will need to include the trial ID in the path.
@@ -239,7 +242,9 @@ The response will be the updated trial in JSON format.
 PUT /trials/<trialID>/application
 ~~~
 
-If you need to generate a new client secret for your trial's companion application, you may use this call to change both the application ID and its client secret. Include the trial ID in the path. The response will include a new `aid`{:.param} (application ID) and a new `clientSecret`{:.param}.
+If you need to generate a new client secret for your trial's companion application, you may use this call to change both the application ID and its client secret. All previously created application tokens will become invalid.
+
+Include the trial ID in the path. The response will include a new `aid`{:.param} (application ID) and a new `clientSecret`{:.param}.
 
 ### Remove participants and administrators
 
