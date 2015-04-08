@@ -28,6 +28,9 @@ Get the source code of the [Objective-C/iOS SDK](https://github.com/samsungsamii
 1. Create an Application in devportal.samsungsami.io:
   * The Redirect URI is set to 'ios-app://redirect'.
   * Choose "Client credentials, auth code, implicit" for OAuth 2.0 flow.
+  * Under "PERMISSIONS", check "Read" for "Profile". 
+  * Click the "Add Device Type" button. Choose "SAMI Demo IPhonePedometer" as the device type. Check "Read" and "Write" permissions for this device type.
+  * Click the "Add Device Type" button again. Choose a few more device types that you want to play with using the demo app. Check "Read" permissions for these device types.
 2. Install CocoaPods. See [this page](http://guides.cocoapods.org/using/getting-started.html) for instructions. From a terminal window, locate the SAMIClient directory of the demo app, and run `pod install`. This installs all the prerequisites like AFNetworking.
 3. Double click `SAMIClient.xcworkspace` (not `SAMIClient.xcodeproj`) to open the Xcode project.
 4. Import the SAMI SDK into the Xcode project of the demo app. In the Xcode project, drag the `client` folder of SAMI iOS SDK from the Finder window into `SAMIClient` group in Xcode.
