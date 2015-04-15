@@ -10,12 +10,12 @@ SAMI uses what we call the **Manifest** to interpret the content so that it can 
 
 The [Developer Portal](https://devportal.samsungsami.io) offers two ways to create a Manifest. The **Simple Manifest** is ideal for standard data that does not need any processing. It can quickly be created via a Web form with a drag-and-drop interface, and no scripting or coding is involved. This Web form determines the structure of the JSON payload sent by your devices. Simple Manifests are automatically approved. See [this blog post](https://blog.samsungsami.io/portals/development/data/2015/03/26/the-simple-manifest-device-types-in-1-minute.html) for step-by-step instructions on creating a Simple Manifest.
 
-The Simple Manifest is the quickest path to production and the best option for fast prototyping. Use the Simple Manifest if you want the flexibility of structuring messages in JSON and the ease of a Web interface to define a new Manifest that is automatically approved. 
+The Simple Manifest is the quickest path to production and the best option for fast prototyping. It gives you the flexibility of structuring messages in JSON and a Web interface that requires no code, but less freedom to create sophisticated data formats. Every Simple Manifest is automatically approved.
 {:.info}
 
 The **Advanced Manifest** is what we cover on this page. This is a script written in [Groovy](http://groovy.codehaus.org/) to process messages as they come in one-by-one. Messages are structured to contain a single package of data (no batch uploads) that goes through the Manifest. This keeps data organization and processing straightforward. All Manifests written in Groovy must be [approved by our team](#Manifest-certification) before they can be used.
 
-The Advanced Manifest is your best option if you already have devices deployed, or you have an existing application and want to integrate SAMI. Do the work of defining an Advanced Manifest in Groovy that can deal with data in any format. [**Actions**](#manifests-that-support-actions) are only supported in the Advanced Manifest for now.
+The Advanced Manifest is your best option if you already have devices deployed, or you have an existing application and want to integrate SAMI. It requires the work of defining a Groovy script, testing your Manifest lcoally and submitting it for approval, but gives you the power to create highly sophisticated data formats. At this time [**Actions**](#manifests-that-support-actions) are only supported in the Advanced Manifest.
 {:.info}
 
 ## Peek into the basics
