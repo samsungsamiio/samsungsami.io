@@ -236,7 +236,7 @@ return [???]
 
 Units should be specified wherever appropriate. For example, specify units with distance or weight count, but not with step count, which is a quantity. 
 
-Standard units, defined in the `JScience` package or in the `StandardUnits` class, should be reused whenever possible. 
+Standard units, defined in the `JScience`([SI](http://jscience.org/api/javax/measure/unit/SI.html) or [NonSI](http://jscience.org/api/javax/measure/unit/NonSI.html)) package or in the [`StandardUnits`](https://developer.samsungsami.io/sami/demos-tools/manifest-sdk-javadoc/com/samsung/sami/manifest/fields/StandardUnits.html) class, should be reused whenever possible. 
 
 #### Conversions 
 
