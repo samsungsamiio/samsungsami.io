@@ -4,14 +4,14 @@ title: "Sending and receiving data"
 
 # Sending and receiving data
 
-This is an overview of how your devices and applications can send and receive messages on SAMI, using both REST and WebSocket APIs. Using this information, you will be able to post messages to SAMI, retrieve historical data, and use WebSockets to set up a real-time data stream. When posting messages, you could put actions in messages so that destination devices can perform the specified actions. 
+This is an overview of how your devices and applications can send and receive messages on SAMI, using both REST and WebSocket APIs. Using this information, you will be able to post messages to SAMI, retrieve historical data, and use WebSockets to set up a real-time data stream. When posting messages, you could put Actions in messages so that destination devices can perform the specified Actions. 
 
 Any message sent to SAMI may not be bigger than 10 KB.
 {:.info}
 
 ## REST API
 
-With SAMI's REST API, you can send and retrieve historical data according to a specific timestamp or range. This allows you to perform analytics on various scenarios and contexts. You also can send actions to SAMI, which will be routed to the destination device to perform these actions.
+With SAMI's REST API, you can send and retrieve historical data according to a specific timestamp or range. This allows you to perform analytics on various scenarios and contexts. You also can send Actions to SAMI, which will be routed to the destination device to perform these Actions.
 
 ## Posting a message
 
@@ -19,7 +19,7 @@ With SAMI's REST API, you can send and retrieve historical data according to a s
 POST /messages
 ~~~
 
-When sending a message that only contains data instead of actions, only the source device ID (`sdid`{:.param}) and payload are required. If you plan to send data to another device, you must also include the destination device ID (`ddid`{:.param}). There is `type`{:.param} field, whose value is `message` by default. However, we strongly suggest you to explicitly set `type`{:.param} to `message` so that your app is future-proof. 
+When sending a message that only contains data instead of Actions, only the source device ID (`sdid`{:.param}) and payload are required. If you plan to send data to another device, you must also include the destination device ID (`ddid`{:.param}). There is `type`{:.param} field, whose value is `message` by default. However, we strongly suggest you to explicitly set `type`{:.param} to `message` so that your app is future-proof. 
 
 Using the timestamp parameter (`ts`{:.param}), you can specify a timestamp for the message in milliseconds. Values up to the current server timestamp grace period are valid. If you omit `ts`{:.param}, the message defaults to the current time.
 
@@ -47,13 +47,13 @@ You'll then receive a message ID (`mid`{:.param}) that you can use to query this
 }     
 ~~~
 
-## Posting a message with actions
+## Posting a message with Actions
 
 ~~~
 POST /messages
 ~~~
 
-When sending a message with actions, you must include the destination device ID (`ddid`{:.param}) and a payload that contains actions. In addition, you must set the value of `type`{:.param} to "action". By default, its value is "message". The source device ID (`sdid`{:.param}) is optional.
+When sending a message with Actions, you must include the destination device ID (`ddid`{:.param}) and a payload that contains Actions. In addition, you must set the value of `type`{:.param} to "action". By default, its value is "message". The source device ID (`sdid`{:.param}) is optional.
 
 **Example Request**
 
@@ -84,9 +84,9 @@ When sending a message with actions, you must include the destination device ID 
 }
 ~~~
 
-In the above example, the message contains two actions, `setOn` and `setColorAsRGB`. You'll then receive a response that is similar to the response of a message that does not contain actions.
+In the above example, the message contains two Actions, `setOn` and `setColorAsRGB`. You'll then receive a response that is similar to the response of a message that does not contain Actions.
 
-Any message with actions should only contain "actions" in the payload.
+Any message with Actions should only contain "actions" in the payload.
 {:.info}
 
 ## Getting normalized messages

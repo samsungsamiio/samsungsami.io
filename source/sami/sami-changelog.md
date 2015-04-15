@@ -19,7 +19,7 @@ The [WebSockets APIs](/sami/api-spec.html#websockets) have also been added to th
 
 ### March 23, 2015
 
-We have added new documentation on writing a [Manifest with actions](/sami/sami-documentation/the-manifest.html#manifests-that-support-actions) for devices. New "description" and "actions" parameters are returned when [getting Manifest properties](/sami/api-spec.html#get-manifest-properties) with the API.
+We have added new documentation on writing a [Manifest with Actions](/sami/sami-documentation/the-manifest.html#manifests-that-support-actions) for devices. New "description" and "actions" parameters are returned when [getting Manifest properties](/sami/api-spec.html#get-manifest-properties) with the API.
 
 ### March 20, 2015
 

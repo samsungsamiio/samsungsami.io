@@ -910,13 +910,13 @@ Returns the available Manifest versions for a device type.
 
 ## Messages
 
-### Post a message or action
+### Post a message or Action
 
 ~~~
 POST /messages
 ~~~
 
-Sends a message or action, using one of the following parameter combinations. If sending actions, only "actions" should be contained in the payload.
+Sends a message or action, using one of the following parameter combinations. If sending Actions, only "actions" should be contained in the payload.
 
 |Combination |Required Parameters
 |------------|---------

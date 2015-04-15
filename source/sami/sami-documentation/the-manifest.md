@@ -102,13 +102,13 @@ We have created a sample device type "Manifest SDK Sample Device". If you just w
 
 See [Connecting a device](/sami/sami-documentation/developer-user-portals.html#connecting-a-device) to learn how to connect a device with this device type to SAMI. 
 
-### Manifests that support actions
+### Manifests that support Actions
 
-An application/device working with SAMI can send an *action* (command) to a specific device. For example: A mobile app sends a "Turn On" command to a smart light connected to SAMI. The light turns on by acting on the command from SAMI. A destination device (here, the smart light) must be [connected to SAMI via WebSockets](/sami/sami-documentation/sending-and-receiving-data.html#live-streaming-data-with-websocket-api) in order to receive actions.
+An application/device working with SAMI can send an *Action* (command) to a specific device. For example: A mobile app sends a "Turn On" command to a smart light connected to SAMI. The light turns on by acting on the command from SAMI. A destination device (here, the smart light) must be [connected to SAMI via WebSockets](/sami/sami-documentation/sending-and-receiving-data.html#live-streaming-data-with-websocket-api) in order to receive Actions.
 
-In order for your device type to support actions, you must provide a Manifest that defines actions. In addition, it is also your reponsibility to implement the functionality for a device to act on the actions defined in the device type's Manifest.
+In order for your device type to support Actions, you must provide a Manifest that defines Actions. In addition, it is also your reponsibility to implement the functionality for a device to act on the actions defined in the device type's Manifest.
 
-Now enhance the above Manifest to support actions. Your Manifest is derived from the `Manifest` and `Actionable` interfaces. In that class, you must define a list of actions that your device can act on, as follows:
+Now enhance the above Manifest to support Actions. Your Manifest is derived from the `Manifest` and `Actionable` interfaces. In that class, you must define a list of Actions that your device can act on, as follows:
 
 ~~~java
 import groovy.json.JsonSlurper
@@ -154,9 +154,9 @@ public class ManifestWithAction implements Manifest, Actionable {
 }
 ~~~
 
-The method `getActions` defines what actions that device type can take. In this specific example, the device defined by `ManifestWithAction` acts on the action it receives from SAMI, then sets `status` to the correct state in a message, and finally sends the messages back to SAMI. Again, it is your resonsibility to implement the correct logic on the device side.
+The method `getActions` defines what Actions that device type can take. In this specific example, the device defined by `ManifestWithAction` acts on the Action it receives from SAMI, then sets `status` to the correct state in a message, and finally sends the messages back to SAMI. Again, it is your resonsibility to implement the correct logic on the device side.
 
-Below is an example of the message payload that contains the actions and can be correctly processed by the above Manifest. Also see [Posting a message with actions](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message-with-actions).
+Below is an example of the message payload that contains the Actions and can be correctly processed by the above Manifest. Also see [Posting a message with Actions](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message-with-actions).
 
 ~~~json
 {
@@ -169,7 +169,7 @@ Below is an example of the message payload that contains the actions and can be 
 }
 ~~~
 
-Applications and devices query SAMI to get the Manifest of targeted devices, and then learn the supported actions by parsing the Manifest properties.
+Applications and devices query SAMI to get the Manifest of targeted devices, and then learn the supported Actions by parsing the Manifest properties.
 {:.info}
 
 ## Manifest certification
