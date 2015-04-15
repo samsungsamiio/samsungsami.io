@@ -4,9 +4,11 @@ title: "Advanced Manifest examples"
 
 # Advanced Manifest examples
 
-You can use the APIs described in the [Manifest SDK API specification](/sami/demos-tools/manifest-sdk-javadoc/) and [Groovy utilities][1] to conveniently write advanced Manifests to handle complicated data. Below, we give two Manifest examples to illustrate how powerful the Groovy utilities can be, and one example of the [Manifest supporting actions][4].
+You can use the APIs described in the [Manifest SDK API specification](/sami/demos-tools/manifest-sdk-javadoc/) and [Groovy utilities][1] to conveniently write Manifests to handle complicated data. Below, we give two examples of Advanced Manifests that illustrate how powerful the Groovy utilities can be, and one example of a [Manifest that supports actions][4].
 
-Make sure you have read the basics of the [**Manifest**](/sami/sami-documentation/the-manifest.html) and [**Validate your Manifest**](/sami/demos-tools/manifest-sdk.html) before you proceed.
+These examples pertain to **Advanced Manifest** creation. Make sure to read the basics of the [Manifest](/sami/sami-documentation/the-manifest.html) and [Validate your Manifest](/sami/demos-tools/manifest-sdk.html) before proceeding. 
+
+If you just want to quickly send data and skip the approval process, [**read these instructions**](https://blog.samsungsami.io/portals/development/data/2015/03/26/the-simple-manifest-device-types-in-1-minute.html) to create a Simple Manifest.
 {:.info}
 
 ## Manifest example using JsonUtil
@@ -260,7 +262,7 @@ public class TestXmlUtilGroovyManifest implements Manifest {
 }
 ~~~
 
-## Manifest supporting actions
+## Manifest that supports actions
 
 This Manifest example defines the actions that the device type can support. Below is an example of a message payload that includes actions. Once the target device receives such a message, it should perform `setOn` and `setColorAsRGB` using the corresponding parameters.
 
@@ -344,4 +346,4 @@ public class SmartLightManifest implements Manifest, Actionable {
 [1]: /sami/sami-documentation/the-manifest.html#groovy-utilities "Groovy Utilities"
 [2]: /sami/sami-documentation/the-manifest.html#jsonutil "JsonUtil"
 [3]: /sami/sami-documentation/the-manifest.html#stringfieldutil "StringFieldUtil"
-[4]: /sami/sami-documentation/the-manifest.html#manifests-that-support-actions "Manifest supporting Actions"
+[4]: /sami/sami-documentation/the-manifest.html#manifests-that-support-actions "Manifest that supports Actions"

@@ -6,16 +6,21 @@ title: "The Manifest"
 
 SAMI is designed to communicate with any device regardless of how data is structured. Devices can upload data to SAMI in any format that works for them, and can send data to targeted devices via SAMI in any format that works for the targeted devices. Data is contained in a [message.](/sami/sami-documentation/sami-basics.html#messages) 
 
-SAMI uses what we call the **Manifest** to interpret the content so that it can be stored properly, or be sent to targeted devices correctly. Once you define the Manifest for a given device type, SAMI can make its data available to other services and devices.
+SAMI uses what we call the **Manifest** to interpret the content so that it can be stored properly, or be sent to targeted devices correctly. When [defining or updating a device type](/sami/sami-documentation/developer-user-portals.html#creating-a-device-type), you must provide a Manifest that describes the device data. Once you define the Manifest for your device type, SAMI can then make its data available to other services and devices.
 
-Manifests are written in [Groovy](http://groovy.codehaus.org/) to process messages as they come in one-by-one. Messages are structured to contain a single package of data (no batch uploads) that goes through the Manifest. This keeps data organization and processing straightforward.
+The [Developer Portal](https://devportal.samsungsami.io) offers two ways to create a Manifest. The **Simple Manifest** is ideal for standard data that does not need any processing. It can quickly be created via a Web form with a drag-and-drop interface, and no scripting or coding is involved. This Web form determines the structure of the JSON payload sent by your devices. Simple Manifests are automatically approved. See [this blog post](https://blog.samsungsami.io/portals/development/data/2015/03/26/the-simple-manifest-device-types-in-1-minute.html) for step-by-step instructions on creating a Simple Manifest.
 
-When [**defining or updating a device type**](/sami/sami-documentation/developer-user-portals.html#creating-a-device-type), you must provide a Manifest that describes the data that will be stored in SAMI.
+The Simple Manifest is the quickest path to production and the best option for fast prototyping. Use the Simple Manifest if you want the flexibility of structuring messages in JSON and the ease of a Web interface to define a new Manifest that is automatically approved. 
+{:.info}
+
+The **Advanced Manifest** is what we cover on this page. This is a script written in [Groovy](http://groovy.codehaus.org/) to process messages as they come in one-by-one. Messages are structured to contain a single package of data (no batch uploads) that goes through the Manifest. This keeps data organization and processing straightforward. All Manifests written in Groovy must be [approved by our team](#Manifest-certification) before they can be used.
+
+The Advanced Manifest is your best option if you already have devices deployed, or you have an existing application and want to integrate SAMI. Do the work of defining an Advanced Manifest in Groovy that can deal with data in any format. [**Actions**](#manifests-that-support-actions) are only supported in the Advanced Manifest for now.
 {:.info}
 
 ## Peek into the basics
 
-### Simplest Manifest
+### Write a basic Manifest
 
 Manifests are created using the [Manifest SDK.](#about-the-manifest-sdk) Your Manifest is a derived class of the `Manifest` base class. In that class, you must define a list of fields that composes your data and complete two methods: `normalize`{:.param} and `getFieldDescriptors`{:.param}.
 
@@ -50,7 +55,7 @@ public class TestGroovyManifest1 implements Manifest {
 }
 ~~~
 
-Below is an example of the simple Manifest with the basic information filled in.
+Below is an example of a Manifest with the basic information filled in.
 
 ~~~java
 import groovy.json.JsonSlurper
@@ -58,7 +63,7 @@ import groovy.json.JsonSlurper
 import com.samsung.sami.manifest.Manifest
 import com.samsung.sami.manifest.fields.*
 
-public class SimpleManifest implements Manifest {
+public class BasicManifest implements Manifest {
 
   // Custom FieldDesc
   // The device sends a single data point and it's a String that describes its status
@@ -99,11 +104,11 @@ See [Connecting a device](/sami/sami-documentation/developer-user-portals.html#c
 
 ### Manifests that support actions
 
-An application/device working with SAMI can send an *action* (command) to a specific device. For example: A mobile app sends a "Turn On" command to a smart light connected to SAMI. The light turns on by acting on the command from SAMI. A destination device (here, the smart light) must be [connected to SAMI via WebSocket](/sami/sami-documentation/sending-and-receiving-data.html#live-streaming-data-with-websocket-api) in order to receive actions.
+An application/device working with SAMI can send an *action* (command) to a specific device. For example: A mobile app sends a "Turn On" command to a smart light connected to SAMI. The light turns on by acting on the command from SAMI. A destination device (here, the smart light) must be [connected to SAMI via WebSockets](/sami/sami-documentation/sending-and-receiving-data.html#live-streaming-data-with-websocket-api) in order to receive actions.
 
 In order for your device type to support actions, you must provide a Manifest that defines actions. In addition, it is also your reponsibility to implement the functionality for a device to act on the actions defined in the device type's Manifest.
 
-Now enhance the above simple Manifest to the one that supports actions. Your Manifest is derived from the `Manifest` and `Actionable` interfaces. In that class, you must define a list of actions that your device can act on, as follows:
+Now enhance the above Manifest to support actions. Your Manifest is derived from the `Manifest` and `Actionable` interfaces. In that class, you must define a list of actions that your device can act on, as follows:
 
 ~~~java
 import groovy.json.JsonSlurper
@@ -169,7 +174,7 @@ Applications and devices query SAMI to get the Manifest of targeted devices, and
 
 ## Manifest certification
 
-The process of certifying Manifests is in active development. Any changes to the process will be reflected here. 
+This section applies to Advanced Manifests only. The [**Simple Manifest**](https://blog.samsungsami.io/portals/development/data/2015/03/26/the-simple-manifest-device-types-in-1-minute.html) is automatically approved! 
 {:.info}
 
 Manifests are submitted when [creating new device types in the Developer Portal.](/sami/sami-documentation/developer-user-portals.html#creating-a-device-type) The SAMI team reviews your submitted Manifests. You should receive a response within 1 business day of submitting your Manifest. If the response is taking longer than expected, please use the Feedback link on the left to send us a message.
