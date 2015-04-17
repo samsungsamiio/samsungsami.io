@@ -83,7 +83,7 @@ The token obtained by refreshing a token can access data of a specific user. The
 
 #### Refresh a token
 
-The back-end server can obtain a new access token by exchanging a previously issued `refresh_token` during the flow of the Authorization Code method. The new token allows access to the data of a specific user. Please see [Refresh a token](/sami/sami-documentation/authentication.html#refresh-a-token) for more details.
+The back-end server can obtain a new access token by exchanging the `refresh_token` previously issued during the flow of the Authorization Code method. The new token allows access to the data of a specific user. Please see [Refresh a token](/sami/sami-documentation/authentication.html#refresh-a-token) for more details.
 
 #### Use Client Credentials method
 

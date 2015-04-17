@@ -113,10 +113,10 @@ grant_type=authorization_code&code=SplxlOBeZQQYbYS6WxSbIA&redirect_uri=https://m
 
   |Parameter         |Description
   |----------------- |-----------------------------------------------------------------------------------------------------------------------
-  |`access_token`{:.param}   |The final access token that can be used with API calls.
+  |`access_token`{:.param}   |Access token that can be used with API calls.
   |`token_type`{:.param}     |Always `bearer` for now.
   |`expires_in`{:.param}     |In seconds, indicates how long the access token will expire.
-  |`refresh_token`{:.param}  |A refresh token is used to obtain short-lived tokens. 
+  |`refresh_token`{:.param}  |Refresh token used to obtain a new access token. 
 
 ### Implicit method
 
@@ -155,10 +155,10 @@ Location: http://example.com/cb#expires_in=7200&token_type=bearer&refresh_token=
 
   |Parameter        |Description
   |---------------- |-----------------------------------------------------------------
-  |`access_token`{:.param}  |The final access token that can be used with API calls.
+  |`access_token`{:.param}  |Access token that can be used with API calls.
   |`token_type`{:.param}    |Always `bearer` for now.
   |`expires_in`{:.param}    |In seconds, indicates in how long the access token will expire.
-  |`refresh_token`{:.param}  |A refresh token is used to obtain short-lived tokens. 
+  |`refresh_token`{:.param}  |Refresh token used to obtain a new access token. 
 
 ### Client Credentials method
 
@@ -200,7 +200,7 @@ grant_type=client_credentials&scope=read,write
 
   |Parameter        |Description
   |---------------- |-----------------------------------------------------------------
-  |`access_token`{:.param}  |The final access token that can be used with API calls.
+  |`access_token`{:.param}  |Access token that can be used with API calls.
   |`token_type`{:.param}    |Always `bearer` for now.
   |`expires_in`{:.param}    |In seconds, indicates in how long the access token will expire.
 
@@ -210,7 +210,7 @@ If an application obtains an access token using the [Authorization Code method](
 
 #### Authorization Code method
 
-The application makes a POST call at the server side using a previously issued `refresh_token`. Among the request parameters below, `client_id and` `client_secret` should be included in an HTTP Authorization header, and the remaining parameters should be passed in the POST body. Consult [Sending client ID and client secret](#sending-clientid-and-clientsecret) for details on how to include them in an HTTP POST request.
+The application makes a POST call at the server side using a previously issued `refresh_token`. Among the request parameters below, `client_id` and `client_secret` should be included in an HTTP Authorization header, and the remaining parameters should be passed in the POST body. Consult [Sending client ID and client secret](#sending-clientid-and-clientsecret) for details on how to include them in an HTTP POST request.
 
 **Request parameters**
 
@@ -219,7 +219,7 @@ The application makes a POST call at the server side using a previously issued `
 |`client_id`{:.param}      |Your application ID.
 |`client_secret`{:.param}  |Your application secret.
 |`grant_type`{:.param} |Must be set to value `refresh_token`.
-|`refresh_token`{:.param} |The refresh token issued to the client.
+|`refresh_token`{:.param} |Refresh token used to obtain a new access token.
 
 **Example request**
 
@@ -257,7 +257,7 @@ The application makes a POST call using a previously issued `refresh_token`. Amo
 |Parameter |Description
 |---------|----------
 |`grant_type`{:.param} |Must be set to value `refresh_token`.
-|`refresh_token`{:.param} |The refresh token issued to the client.
+|`refresh_token`{:.param} |Refresh token used to obtain a new access token. 
 |`old_access_token`{:.param} |The old token issued to the client.
 
 **Example request**
