@@ -83,7 +83,7 @@ The token obtained by refreshing a token can access data of a specific user. The
 
 #### Refresh a token
 
-The back-end server can obtain a new access token by exchanging a previously issued `refresh_token` during the flow of the Authorization Code method. The new token allows access to the data of a specific user. Please see [Authentication](/sami/sami-documentation/authentication.html#refresh-a-token) for more details.
+The back-end server can obtain a new access token by exchanging a previously issued `refresh_token` during the flow of the Authorization Code method. The new token allows access to the data of a specific user. Please see [Refresh a token](/sami/sami-documentation/authentication.html#refresh-a-token) for more details.
 
 #### Use Client Credentials method
 
@@ -134,6 +134,8 @@ Location: http://example.com/cb#access_token=2YotnFZFEjr1zCsicMWpAA&state=xyz&to
 Instead of redirecting, the mobile app extracts the access token from the above response. Then it uses the token to make API calls to SAMI until the token is revoked or expires.
 
 Please consult [Your first Android app](/sami/demos-tools/your-first-android-app.html) and [iOS app demo](https://github.com/samsungsamiio/sami-ios-demo) for specific examples of using the Implicit method.
+
+The mobile app can refresh the token if the token expires. Please see [Refresh a token](/sami/sami-documentation/authentication.html#refresh-a-token) for more details.
 
 ## Mobile applications with back-end servers
 

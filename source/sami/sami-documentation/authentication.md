@@ -148,7 +148,7 @@ When the user clicks "Grant", your application will receive a `302` (redirection
 
 ~~~~ 
 HTTP/1.1 302 Found
-Location: http://example.com/cb#access_token=2YotnFZFEjr1zCsicMWpAA&state=xyz&token_type=bearer&expires_in=7200
+Location: http://example.com/cb#expires_in=7200&token_type=bearer&refresh_token=a04849e10a9e4205b1750225e901d699&access_token=2YotnFZFEjr1zCsicMWpAA&state=xyz
 ~~~~
 
 **Response parameters**
@@ -158,6 +158,7 @@ Location: http://example.com/cb#access_token=2YotnFZFEjr1zCsicMWpAA&state=xyz&to
   |`access_token`{:.param}  |The final access token that can be used with API calls.
   |`token_type`{:.param}    |Always `bearer` for now.
   |`expires_in`{:.param}    |In seconds, indicates in how long the access token will expire.
+  |`refresh_token`{:.param}  |A refresh token is used to obtain short-lived tokens. 
 
 ### Client Credentials method
 
@@ -205,12 +206,18 @@ grant_type=client_credentials&scope=read,write
 
 ### Refresh a token
 
-If an application obtains an access token using the [Authorization Code method](#authorization-code-method), it can refresh the token after the token expires. The application makes a POST call at the server side using a previously issued `refresh_token`. Among the request parameters below, `client_id` and `client_secret` should be included in an HTTP Authorization header, and the remaining parameters should be passed in the POST body. Consult [Sending client ID and client secret](#sending-clientid-and-clientsecret) for details on how to include them in an HTTP POST request.
+If an application obtains an access token using the [Authorization Code method](#authorization-code-method) or the [Implicit Method](#implicit-method), it can refresh the token after the token expires. 
+
+#### Authorization Code method
+
+The application makes a POST call at the server side using a previously issued `refresh_token`. Among the request parameters below, `client_id and` `client_secret` should be included in an HTTP Authorization header, and the remaining parameters should be passed in the POST body. Consult [Sending client ID and client secret](#sending-clientid-and-clientsecret) for details on how to include them in an HTTP POST request.
 
 **Request parameters**
 
 |Parameter |Description
 |---------|----------
+|`client_id`{:.param}      |Your application ID.
+|`client_secret`{:.param}  |Your application secret.
 |`grant_type`{:.param} |Must be set to value `refresh_token`.
 |`refresh_token`{:.param} |The refresh token issued to the client.
 
@@ -240,6 +247,29 @@ Pragma: no-cache
   "scope": "the_scope"
 }
 ~~~
+
+#### Implicit method
+
+The application makes a POST call using a previously issued `refresh_token`. Among the request parameters below, `old_access_token` should be included in an HTTP Authorization header and and the remaining parameters should be passed in the URL.
+
+**Request parameters**
+
+|Parameter |Description
+|---------|----------
+|`grant_type`{:.param} |Must be set to value `refresh_token`.
+|`refresh_token`{:.param} |The refresh token issued to the client.
+|`old_access_token`{:.param} |The old token issued to the client.
+
+**Example request**
+
+~~~
+POST /token?grant_type=refresh_token&refresh_token=tGzv3JOkF0XG5Qx2TlKWIA HTTP/1.1
+Host: accounts.samsungsami.io
+Authorization: Bearer czZCaGRSa3F0MzpnWDFmQmF0M2JW
+Content-Type: application/x-www-form-urlencoded
+~~~
+
+The response is the same as the one for the Authorization Code method.
 
 ### Sending client_id and client_secret
 
