@@ -3,9 +3,9 @@ title: "Python SDK"
 
 ---
 
-#Python SDK (alpha)
+#Python 2 SDK (alpha)
 
-This SDK helps you connect your Python scripts to SAMI. The SDK helps authenticating with SAMI, exposes a number of methods to easily execute REST API calls to SAMI and supports WebSockets.
+This SDK helps you connect your Python 2 scripts to SAMI. The SDK helps authenticating with SAMI, exposes a number of methods to easily execute REST API calls to SAMI and supports WebSockets.
 
 ## Prerequisites
 

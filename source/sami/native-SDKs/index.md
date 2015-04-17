@@ -24,4 +24,5 @@ These libraries are actively being worked on and will receive updates in the fut
 ## Alpha SDKs
 
 - [PHP](/sami/native-SDKs/php-SDK.html)
-- [Python](/sami/native-SDKs/python-SDK.html)
+- [Python 2](/sami/native-SDKs/python-SDK.html)
+- [Python 3](http://github.com/samsungsamiio/sami-python3)
