@@ -1,5 +1,5 @@
 ---
-title: "Python SDK"
+title: "Python 2 SDK"
 
 ---
 
