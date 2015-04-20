@@ -7,6 +7,14 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### April 18, 2015
+
+Some things for you to play with! A [JavaScript/Node.js demo](/sami/samples/) that shows user devices and device data, and our new [Python 3 SDK](/sami/native-SDKs/).
+
+### April 17, 2015
+
+Token refresh flow is now described in [Authentication](/sami/sami-documentation/authentication.html#refresh-a-token).
+
 ### April 1, 2015
 
 We just documented [secure device registration](/sami/sami-documentation/secure-your-devices.html) for creating secure device types and registering devices with SAMI for secure communication. (No joke!)
