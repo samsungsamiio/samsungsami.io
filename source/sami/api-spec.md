@@ -916,7 +916,7 @@ Returns the available Manifest versions for a device type.
 POST /messages
 ~~~
 
-Sends a message or action, using one of the following parameter combinations. If sending Actions, only "actions" should be contained in the payload.
+Sends a message or Action, using one of the following parameter combinations. If sending Actions, only "actions" should be contained in the payload.
 
 |Combination |Required Parameters
 |------------|---------
