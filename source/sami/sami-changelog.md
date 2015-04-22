@@ -7,6 +7,10 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### April 22, 2015
+
+The [Developer Portal](https://devportal.samsungsami.io/) got a major overhaul for managing applications and device types. We've updated the [Developer and User Portals](/sami/sami-documentation/developer-user-portals.html) documentation to reflect some of these changes, with a longer blog post forthcoming.
+
 ### April 18, 2015
 
 Some things for you to play with! A [JavaScript/Node.js demo](/sami/samples/) that shows user devices and device data, and our new [Python 3 SDK](/sami/native-SDKs/).
