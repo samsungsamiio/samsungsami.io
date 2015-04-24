@@ -9,6 +9,10 @@
     = partial :uservoice
     = stylesheet_link_tag "application"
     = stylesheet_link_tag "styleguide"
-    = javascript_include_tag  "manifest"
   %body{:class => page_classes}
-    ~ yield
+    %div.main.content{ data: {view: 'Content', 'no-toc' => page_data(current_page)['no_toc']}}
+      .main-content-interior
+        ~ yield
+
+    = partial "templates"
+    = javascript_include_tag  "manifest"
