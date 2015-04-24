@@ -1224,13 +1224,19 @@ Returns presence of normalized messages.
 GET /messages/raw
 ~~~
 
-Returns raw (original format) messages.
+Returns raw (original format) messages, according to one of the following parameter combinations.
+
+|Combination |Required Parameters
+|------------|---------
+|Get messages by source device |`sdid`{:.param}, `endDate`{:.param}, `startDate`{:.param}
+|Get Actions by destination device |`ddid`{:.param}, `endDate`{:.param}, `startDate`{:.param}
 
 **Available URL query parameters**
 
   |Parameter         |Description
-  |----------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  |`sdid`{:.param}           |Source device ID of the messages being searched.
+  |----------------- |-------------------------
+  |`sdid`{:.param}           |(Optional) Source device ID of the messages being searched.
+  |`ddid`{:.param}           |(Optional) Destination device ID of the Actions being searched.
   |`startDate`{:.param}      |(Optional) Time of earliest (oldest) item to return, in milliseconds since epoch.
   |`endDate`{:.param}        |(Optional) Time of latest (newest) item to return, in milliseconds since epoch.
   |`order`{:.param}          |(Optional) Desired sort order: `asc` or `desc` (default: `asc`).
