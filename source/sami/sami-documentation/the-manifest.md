@@ -106,6 +106,9 @@ See [Connecting a device](/sami/sami-documentation/developer-user-portals.html#c
 
 An application/device working with SAMI can send an *Action* (command) to a specific device. For example: A mobile app sends a "Turn On" command to a smart light connected to SAMI. The light turns on by acting on the command from SAMI. A destination device (here, the smart light) must be [connected to SAMI via WebSockets](/sami/sami-documentation/sending-and-receiving-data.html#live-streaming-data-with-websocket-api) in order to receive Actions.
 
+Read [**our blog**](https://blog.samsungsami.io/development/data/2015/04/21/send-actions-to-devices.html) for a step-by-step example of using Actions with a smart light.
+{:.info}
+
 In order for your device type to support Actions, you must provide a Manifest that defines Actions. In addition, it is also your reponsibility to implement the functionality for a device to act on the actions defined in the device type's Manifest.
 
 Now enhance the above Manifest to support Actions. Your Manifest is derived from the `Manifest` and `Actionable` interfaces. In that class, you must define a list of Actions that your device can act on, as follows:
