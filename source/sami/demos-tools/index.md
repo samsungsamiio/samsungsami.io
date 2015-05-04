@@ -23,4 +23,4 @@ Keep an eye on this page—more is on the way!
 *   [Validate your Manifest](/sami/demos-tools/manifest-sdk.html)
 *   [Advanced Manifest examples](/sami/demos-tools/manifest-advanced-example.html)
 *   [Device Simulator](/sami/demos-tools/device-simulator.html)
-*	[API console](/sami/demos-tools/api-console.html)
+*	[API Console](/sami/demos-tools/api-console.html)
