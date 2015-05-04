@@ -10,7 +10,7 @@ nav:
   - 'api-console'
  
 ---
-# Demos and tools
+# Tools and tutorials
 
 To help you get up and running, we've created some functional examples that demonstrate how to use SAMI. These code examples are designed to be simple and modular—ideal for you to take apart and reuse in a way that suits you. We also developed advanced sample applications in [Samples](/sami/samples/index.html).
 
@@ -23,3 +23,4 @@ Keep an eye on this page—more is on the way!
 *   [Validate your Manifest](/sami/demos-tools/manifest-sdk.html)
 *   [Advanced Manifest examples](/sami/demos-tools/manifest-advanced-example.html)
 *   [Device Simulator](/sami/demos-tools/device-simulator.html)
+*	[API console](/sami/demos-tools/api-console.html)
