@@ -1078,7 +1078,7 @@ Returns normalized messages, according to one of the following parameter combina
 GET /messages/analytics/aggregates
 ~~~
 
-Returns the sum, minimum, maximum, mean and count of message fields that are numerical. This call generates results only on messages that are at least 2 hours old.
+Returns the sum, minimum, maximum, mean and count of message fields that are numerical. This call generates results only on messages that are at least 1 hour old.
 
 **Available URL query parameters**
 
