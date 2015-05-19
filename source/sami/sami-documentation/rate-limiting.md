@@ -22,15 +22,15 @@ See [**Authentication**](/sami/sami-documentation/authentication.html) for instr
 
 ## User token
 
-Rate limiting is applied to an authenticated user in a single application. This means that rate limits on a user are considered separately for each application that calls the API. Remember that this will be the token your application will have once a user is logged in to your app. The limits will be applied to the user.
+The user token is defined [here](/sami/sami-documentation/authentication.html#user-token). Rate limiting is applied to an authenticated user in a single application. This means that rate limits on a user are considered separately for each application that calls the API. Remember that this will be the token your application will have once a user is logged in to your app. The limits will be applied to the user.
 
 ## Device token
 
-Rate limiting is applied to an authenticated device. Since device tokens are not linked to developer applications, each device sending data can be considered to have its own rate limit.
+The device token is define [here](/sami/sami-documentation/authentication.html#device-token). Rate limiting is applied to an authenticated device. Since device tokens are not linked to developer applications, each device sending data can be considered to have its own rate limit.
 
 ## Application token
 
-Rate limiting is applied to an authenticated application that can call the API without a user token.
+Rate limiting is applied to an authenticated application that can call the API without a user token. The application token is defined [here](/sami/sami-documentation/authentication.html#application-token).
 
 ## HTTP headers
 

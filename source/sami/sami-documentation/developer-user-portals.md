@@ -105,3 +105,11 @@ The User Portal is located at [portal.samsungsami.io.](http://portal.samsungsami
 
 [**Read our blog**](https://blog.samsungsami.io/portals/datavisualization/2015/01/09/opening-the-user-portal.html) to learn about the User Portal's powerful Data Visualization feature.
 {:.info}
+
+### Manage a device token
+
+Click the name of a connected device in the User Portal. The device information screen similar to the following is prompted. 
+<div  class="photo-grid" style="max-width: 512px;">
+![SAMI generate device token](/images/docs/sami/sami-documentation/generate-device-token.png)
+</div>
+Click "GENERATE DEVICE TOKEN..." to generate a device token for this device. After the token is generated, click "REVOKE TOKEN" to revoke the token.  
