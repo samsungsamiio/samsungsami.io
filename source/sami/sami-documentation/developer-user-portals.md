@@ -112,4 +112,4 @@ Click the name of a connected device in the User Portal. The device information 
 
 ![SAMI generate device token](/images/docs/sami/sami-documentation/generate-device-token.png)
 
-Click "GENERATE DEVICE TOKEN..." to generate a device token for this device. After the token is generated, click "REVOKE TOKEN" to revoke the token.  
+Click "GENERATE DEVICE TOKEN..." to generate a device token for this device. After the token is generated, click "REVOKE TOKEN" to revoke it.  
