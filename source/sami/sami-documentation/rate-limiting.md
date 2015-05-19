@@ -64,7 +64,7 @@ If the rate limit is exceeded on a given call, a 429 status code ("Too Many Requ
 
 ## REST limits
 
-| Method | Window | Requests (User token) | Requests (Device token) | Requests (Application token)
+| Method | Window | Requests ([User token](/sami/sami-documentation/authentication.html#user-token)) | Requests ([Device token](/sami/sami-documentation/authentication.html#device-token)) | Requests ([Application token](/sami/sami-documentation/authentication.html#application-token))
 |----- |---------- |---------------------------|-----------------------------|---------------------------------|
 | GET | Minute | 100 | 100 | 500
 |	| Daily | 1000 | 1000 | 5000
@@ -77,7 +77,7 @@ If the rate limit is exceeded on a given call, a 429 status code ("Too Many Requ
 
 ## WebSocket limits
 
-| Window | Requests (User token) | Requests (Device token) | Requests (Application token)
+| Window | Requests ([User token](/sami/sami-documentation/authentication.html#user-token)) | Requests ([Device token](/sami/sami-documentation/authentication.html#device-token)) | Requests ([Application token](/sami/sami-documentation/authentication.html#application-token))
 |----- |---------- |---------------------------|-----------------------------|---------------------------------|
 | Minute | 1000 | 1000 | 5000
 | Daily | 10,000 | 10,000 | 500,000

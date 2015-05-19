@@ -106,7 +106,7 @@ The User Portal is located at [portal.samsungsami.io.](http://portal.samsungsami
 [**Read our blog**](https://blog.samsungsami.io/portals/datavisualization/2015/01/09/opening-the-user-portal.html) to learn about the User Portal's powerful Data Visualization feature.
 {:.info}
 
-### Manage a device token
+### Managing a device token
 
 Click the name of a connected device in the User Portal. The device information screen similar to the following is prompted. 
 <div  class="photo-grid" style="max-width: 512px;">
