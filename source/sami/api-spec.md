@@ -1078,7 +1078,7 @@ Returns normalized messages, according to one of the following parameter combina
 GET /messages/analytics/aggregates
 ~~~
 
-Returns the sum, minimum, maximum, mean and count of message fields that are numerical. This call generates results only on messages that are at least 1 hour old.
+Returns the sum, minimum, maximum, mean and count of message fields that are numerical. This call generates results on messages that are at least 1 minute old. Values for `startDate`{:.param} and `endDate`{:.param} are rounded to start of minute, and the date range between `startDate`{:.param} and `endDate`{:.param} is restricted to 31 days max.
 
 **Available URL query parameters**
 
