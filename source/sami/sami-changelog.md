@@ -7,6 +7,10 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### May 20, 2015
+
+An update to the API specification. The call to [get normalized message aggregates](/sami/api-spec.html#get-normalized-message-aggregates) now returns values for messages up to 1 minute old. We updated the API specification to reflect the new functionality.
+
 ### April 22, 2015
 
 The [Developer Portal](https://devportal.samsungsami.io/) got a major overhaul for managing applications and device types. We've updated the [Developer and User Portals](/sami/sami-documentation/developer-user-portals.html) documentation to reflect some of these changes, with a longer blog post forthcoming.
