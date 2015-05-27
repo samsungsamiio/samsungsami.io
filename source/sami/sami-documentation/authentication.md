@@ -6,7 +6,7 @@ title: "Authentication"
 
 SAMI relies on OAuth2 to authenticate users. If you aren't familiar with OAuth2 and its authentication flow, the documentation and libraries at the [official homepage](http://oauth.net/2/) will make your life easier.
 
-A user or application must first obtain an access token from SAMI to make API calls. OAuth2 offers several methods of obtaining access tokens, and we support the following:
+A user or application must first obtain an access token from SAMI to make API calls. There are [three types of access tokens](#three-types-of-access-tokens). OAuth2 offers several methods of obtaining access tokens, and we support the following:
 
 -   [Authorization Code:](/sami/sami-documentation/authentication.html#authorization-code-method) The user is directed to a UI that allows him
     to sign in or create an account. A successful signin or signup
@@ -401,22 +401,22 @@ In order to completely invalidate the user sessions, you need to revoke the assi
 
 ## Three types of access tokens
 
-All of SAMI API calls require an access token. There are three types of tokens: user token, application token, and device token. Some [API calls](/sami/api-spec.html) may accept different combination of request parameters depending on the type of thse token provided. [Rate limits](/sami/sami-documentation/rate-limiting.html) are different for the different token types. Therefore, it is very important to understand the token types.
+Every SAMI API call requires an access token. There are three types of tokens: user token, application token, and device token. Some [API calls](/sami/api-spec.html) may accept different combinations of request parameters depending on the token type provided. [Rate limits](/sami/sami-documentation/rate-limiting.html) also differ between the three token types. Therefore, it is very important to understand when and how to use each token type.
 
 ### User token
 
-A user token is associated with a specific user. The token is obtained via [Authorization Code](/sami/sami-documentation/authentication.html#authorization-code-method) method or [Implicit](/sami/sami-documentation/authentication.html#implicit-method) method. During the process of obtaining the token, a login UI is presented to the user. Each user token has an expiration time, which is a response parameter of the authentication API call. After a user token expires, you can [refresh the token](#refresh-a-token).
+A *user token* is associated with a specific user. The token is obtained via the [Authorization Code](/sami/sami-documentation/authentication.html#authorization-code-method) method or [Implicit](/sami/sami-documentation/authentication.html#implicit-method) method. During the process of obtaining the token, a login UI is presented to the user. Each user token has an expiration time, the `expires_in` response parameter of the authentication API call. After a user token expires, you can [refresh the token](#refresh-a-token).
 
 ### Application token
 
-An application token is associated with an application (aka application ID). The token is obtained via [Client Credentials](/sami/sami-documentation/authentication.html#client-credentials-method) method. The application token is short lived compared to the user token. Its expiration time is a response parameter of the authentication API call. After an application token expires, you cannot refresh it. However, you can use Client Credentials method again to get a new application token. Since there is no login UI involved, it is convenient to obtain an application token.
+An *application token* is associated with an application (aka application ID). The token is obtained via the [Client Credentials](/sami/sami-documentation/authentication.html#client-credentials-method) method. An application token is short-lived compared to a user token. Its expiration time is the `expires_in` response parameter of the authentication API call. After an application token expires, you cannot refresh it. However, you can use the Client Credentials method again to get a new application token. Since there is no login UI involved, it is convenient to obtain an application token.
 
 A user token can access data of a specific user. A application token can access data of all users that have granted permissions to the application.
 {:.info}
 
 ### Device token
 
-A device token is associated with a specific device. There are two ways to obtain a device token:
+A *device token* is associated with a specific device. There are two ways to obtain a device token:
 
  - Make the API call to [create a device token](https://developer.samsungsami.io/sami/api-spec.html#create-device-token).
  - Access the User Portal to [generate a device token](/sami/sami-documentation/authentication.html#managing-a-device-token).

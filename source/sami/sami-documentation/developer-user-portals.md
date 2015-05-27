@@ -108,8 +108,8 @@ The User Portal is located at [portal.samsungsami.io.](http://portal.samsungsami
 
 ### Managing a device token
 
-Click the name of a connected device in the User Portal. The device information screen similar to the following is prompted. 
+Click the name of a connected device in the User Portal. A window like the following will appear. 
 
 ![SAMI generate device token](/images/docs/sami/sami-documentation/generate-device-token.png)
 
-Click "GENERATE DEVICE TOKEN..." to generate a device token for this device. After the token is generated, click "REVOKE TOKEN" to revoke it.  
+Click "GENERATE DEVICE TOKEN..." to get a device token for this device. When you are ready to revoke the token, click "REVOKE TOKEN".

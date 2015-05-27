@@ -6,11 +6,11 @@ title: "Rate limiting"
 
 This article provides information on how rate limiting is applied to REST and WebSocket API calls. To check the current rate limits, see the tables [REST limits](#rest-limits) and [WebSocket limits](#websocket-limits).
 
-Rate limits are considered separately for three actors that can call the SAMI API:
+Rate limits are considered separately for [three actors](#rate-limits-for-three-actors) that can call the SAMI API:
 
-- [Users](#user-token)
-- [Devices](#device-token)
-- [Applications](#application-token)
+- [Users](#per-user)
+- [Devices](#per-device)
+- [Applications](#per-application)
  
 One of two [limit windows](#limit-windows) may be considered per token:
 
@@ -20,17 +20,19 @@ One of two [limit windows](#limit-windows) may be considered per token:
 See [**Authentication**](/sami/sami-documentation/authentication.html) for instructions on obtaining and using OAuth2 tokens.
 {:.info}
 
-## User token
+## Rate limits for three actors
 
-The user token is defined [here](/sami/sami-documentation/authentication.html#user-token). Rate limiting is applied to an authenticated user in a single application. This means that rate limits on a user are considered separately for each application that calls the API. Remember that this will be the token your application will have once a user is logged in to your app. The limits will be applied to the user.
+### Per user
 
-## Device token
+Rate limiting is applied to an authenticated user in a single application. This means that rate limits on users are considered separately for each application that calls the API. Your application has this token once a user is logged in. [Read about user tokens.](/sami/sami-documentation/authentication.html#user-token)
 
-The device token is define [here](/sami/sami-documentation/authentication.html#device-token). Rate limiting is applied to an authenticated device. Since device tokens are not linked to developer applications, each device sending data can be considered to have its own rate limit.
+### Per device
 
-## Application token
+Rate limiting is applied to an authenticated device. Since device tokens are not linked to developer applications, each device sending data can be considered to have its own rate limit. [Read about device tokens.](/sami/sami-documentation/authentication.html#device-token)
 
-Rate limiting is applied to an authenticated application that can call the API without a user token. The application token is defined [here](/sami/sami-documentation/authentication.html#application-token).
+### Per application
+
+Rate limiting is applied to an authenticated application that can call the API without a user token. [Read about application tokens.](/sami/sami-documentation/authentication.html#application-token).
 
 ## HTTP headers
 
@@ -64,7 +66,7 @@ If the rate limit is exceeded on a given call, a 429 status code ("Too Many Requ
 
 ## REST limits
 
-| Method | Window | Requests ([User token](/sami/sami-documentation/authentication.html#user-token)) | Requests ([Device token](/sami/sami-documentation/authentication.html#device-token)) | Requests ([Application token](/sami/sami-documentation/authentication.html#application-token))
+| Method | Window | Requests per user | Requests per device | Requests per application
 |----- |---------- |---------------------------|-----------------------------|---------------------------------|
 | GET | Minute | 100 | 100 | 500
 |	| Daily | 1000 | 1000 | 5000
@@ -77,7 +79,7 @@ If the rate limit is exceeded on a given call, a 429 status code ("Too Many Requ
 
 ## WebSocket limits
 
-| Window | Requests ([User token](/sami/sami-documentation/authentication.html#user-token)) | Requests ([Device token](/sami/sami-documentation/authentication.html#device-token)) | Requests ([Application token](/sami/sami-documentation/authentication.html#application-token))
+| Window | Requests per user | Requests per device | Requests per application
 |----- |---------- |---------------------------|-----------------------------|---------------------------------|
 | Minute | 1000 | 1000 | 5000
 | Daily | 10,000 | 10,000 | 500,000
