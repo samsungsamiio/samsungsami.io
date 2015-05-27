@@ -9,7 +9,7 @@ title: "API specification"
 The SAMI API provides access to the SAMI platform.
 
 Every SAMI API call requires an access token. Read [**Authentication**](https://developer.samsungsami.io/sami/sami-documentation/authentication.html#use-an-access-token) to learn about obtaining and using access tokens.
-{.info}
+{:.info}
 
 The API is continually being developed and refined. Stay in touch with the SAMI team for any questions and updates.
  {: .warning}
