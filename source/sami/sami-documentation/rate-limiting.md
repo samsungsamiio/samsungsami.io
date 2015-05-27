@@ -6,7 +6,7 @@ title: "Rate limiting"
 
 This article provides information on how rate limiting is applied to REST and WebSocket API calls. To check the current rate limits, see the tables [REST limits](#rest-limits) and [WebSocket limits](#websocket-limits).
 
-Rate limits are considered separately for [three actors](#rate-limits-for-three-actors) that can call the SAMI API:
+Rate limits are considered separately for [three actors](#rate-limits-for-three-actors) that can call the SAMI APIs:
 
 - [Users](#per-user)
 - [Devices](#per-device)
@@ -66,7 +66,7 @@ If the rate limit is exceeded on a given call, a 429 status code ("Too Many Requ
 
 ## REST limits
 
-| Method | Window | Requests per user | Requests per device | Requests per application
+| Method | Window | Requests [per user](#per-user) | Requests [per device](#per-device) | Requests [per application](#per-application)
 |----- |---------- |---------------------------|-----------------------------|---------------------------------|
 | GET | Minute | 100 | 100 | 500
 |	| Daily | 1000 | 1000 | 5000
@@ -79,7 +79,7 @@ If the rate limit is exceeded on a given call, a 429 status code ("Too Many Requ
 
 ## WebSocket limits
 
-| Window | Requests per user | Requests per device | Requests per application
+| Window | Requests [per user](#per-user) | Requests [per device](#per-device) | Requests [per application](#per-application)
 |----- |---------- |---------------------------|-----------------------------|---------------------------------|
 | Minute | 1000 | 1000 | 5000
 | Daily | 10,000 | 10,000 | 500,000
