@@ -23,10 +23,13 @@ wss://api.samsungsami.io/v1.1
 https://accounts.samsungsami.io
 ~~~
 
-### Requests parameters and payload
+### Request parameters and payload
 
 All the `POST`{:.param} and `PUT`{:.param} calls expect a JSON payload as an input or a value
 in the path.
+
+Every SAMI API call requires an access token. Read [**Authentication**](https://developer.samsungsami.io/sami/sami-documentation/authentication.html#use-an-access-token) to learn about obtaining and using access tokens.
+{.info}
 
 ### Timestamps
 
