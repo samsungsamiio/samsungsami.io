@@ -421,7 +421,7 @@ A *device token* is associated with a specific device. There are two ways to obt
  - Make the API call to [create a device token](/sami/api-spec.html#create-device-token).
  - Access the User Portal to [generate a device token](/sami/sami-documentation/developer-user-portals.html#managing-a-device-token).
 
-API calls with the device token can only be used to access the information related to that device. The device token does not have a pre-set expiration time. It expires only if the token is revoked through the [API call](/sami/api-spec.html#delete-a-devices-token) or the [User Portal](/sami/sami-documentation/authentication.html#manage-a-device-token).
+API calls with the device token can only be used to access the information related to that device. The device token does not have a pre-set expiration time. It expires only if the token is revoked through the [API call](/sami/api-spec.html#delete-a-devices-token) or the [User Portal](/sami/sami-documentation/developer-user-portals.html#managing-a-device-token).
 
 ## Use an access token
 
