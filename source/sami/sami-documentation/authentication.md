@@ -418,8 +418,8 @@ A user token can access data of a specific user. A application token can access 
 
 A *device token* is associated with a specific device. There are two ways to obtain a device token:
 
- - Make the API call to [create a device token](https://developer.samsungsami.io/sami/api-spec.html#create-device-token).
- - Access the User Portal to [generate a device token](/sami/sami-documentation/authentication.html#managing-a-device-token).
+ - Make the API call to [create a device token](/sami/api-spec.html#create-device-token).
+ - Access the User Portal to [generate a device token](/sami/sami-documentation/developer-user-portals.html#managing-a-device-token).
 
 API calls with the device token can only be used to access the information related to that device. The device token does not have a pre-set expiration time. It expires only if the token is revoked through the [API call](/sami/api-spec.html#delete-a-devices-token) or the [User Portal](/sami/sami-documentation/authentication.html#manage-a-device-token).
 
