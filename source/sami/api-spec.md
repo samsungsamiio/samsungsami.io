@@ -8,7 +8,10 @@ title: "API specification"
 
 The SAMI API provides access to the SAMI platform.
 
- The API is continually being developed and refined. Stay in touch with the SAMI team for any questions and updates.
+Every SAMI API call requires an access token. Read [**Authentication**](https://developer.samsungsami.io/sami/sami-documentation/authentication.html#use-an-access-token) to learn about obtaining and using access tokens.
+{.info}
+
+The API is continually being developed and refined. Stay in touch with the SAMI team for any questions and updates.
  {: .warning}
 
 See [**Validation and errors**](#validation-and-errors) for a list of error
@@ -27,9 +30,6 @@ https://accounts.samsungsami.io
 
 All the `POST`{:.param} and `PUT`{:.param} calls expect a JSON payload as an input or a value
 in the path.
-
-Every SAMI API call requires an access token. Read [**Authentication**](https://developer.samsungsami.io/sami/sami-documentation/authentication.html#use-an-access-token) to learn about obtaining and using access tokens.
-{.info}
 
 ### Timestamps
 
