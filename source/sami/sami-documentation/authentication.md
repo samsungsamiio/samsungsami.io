@@ -411,7 +411,7 @@ A *user token* is associated with a specific user. The token is obtained via the
 
 An *application token* is associated with an application (aka application ID). The token is obtained via the [Client Credentials](/sami/sami-documentation/authentication.html#client-credentials-method) method. An application token is short-lived compared to a user token. Its expiration time is the `expires_in` response parameter of the authentication API call. After an application token expires, you cannot refresh it. However, you can use the Client Credentials method again to get a new application token. Since there is no login UI involved, it is convenient to obtain an application token.
 
-A user token can access data of a specific user. A application token can access data of all users that have granted permissions to the application.
+A user token can access data of a specific user. An application token can access data of all users that have granted permissions to the application.
 {:.info}
 
 ### Device token
