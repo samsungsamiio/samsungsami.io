@@ -43,6 +43,9 @@ For examples of how to build OAuth2 flows in your applications, see [**OAuth2 fl
 
 Every SAMI API call requires an access token. There are three types of tokens: user token, application token, and device token. Some [API calls](/sami/api-spec.html) may accept different combinations of request parameters depending on the token type provided. [Rate limits](/sami/sami-documentation/rate-limiting.html) also differ between the three token types. Therefore, it is very important to understand when and how to use each token type.
 
+A user token can access data of a specific user. An application token can access data of all users that have granted permissions to the application. A device token can access data of a specific device.
+{:.info}
+
 ### User token
 
 A *user token* is associated with a specific user. The token is obtained via the [Authorization Code](/sami/sami-documentation/authentication.html#authorization-code-method) method or [Implicit](/sami/sami-documentation/authentication.html#implicit-method) method. You will also need [the application ID](/sami/sami-documentation/developer-user-portals.html#how-to-find-your-application-id). During the process of obtaining the token, a login UI is presented to the user. Each user token has an expiration time, the `expires_in` response parameter of the authentication API call. After a user token expires, you can [refresh the token](#refresh-a-token).
@@ -50,9 +53,6 @@ A *user token* is associated with a specific user. The token is obtained via the
 ### Application token
 
 An *application token* is associated with an application (aka application ID). The token is obtained via the [Client Credentials](/sami/sami-documentation/authentication.html#client-credentials-method) method. You will also need [the application ID](/sami/sami-documentation/developer-user-portals.html#how-to-find-your-application-id). An application token is short-lived compared to a user token. Its expiration time is the `expires_in` response parameter of the authentication API call. After an application token expires, you cannot refresh it. However, you can use the Client Credentials method again to get a new application token. Since there is no login UI involved, it is convenient to obtain an application token.
-
-A user token can access data of a specific user. An application token can access data of all users that have granted permissions to the application.
-{:.info}
 
 ### Device token
 
