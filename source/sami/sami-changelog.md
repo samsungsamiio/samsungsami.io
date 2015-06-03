@@ -7,6 +7,10 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### May 27, 2015
+
+We expanded our documentation on the [three types of access tokens](/sami/sami-documentation/authentication.html#three-types-of-access-tokens) used in authentication and clarified permissions and [rate limiting](/sami/sami-documentation/rate-limiting.html#rate-limits-for-three-actors) for the token types.
+
 ### May 20, 2015
 
 An update to the API specification. The call to [get normalized message aggregates](/sami/api-spec.html#get-normalized-message-aggregates) now returns values for messages up to 1 minute old. We updated the API specification to reflect the new functionality.
