@@ -336,7 +336,7 @@ Now send an Action to the smart light. Use the command `tell` and pass in the de
 
 From the output, you see that the Action has been sent to SAMI to route to the target device and you get the message ID through which SAMI acknowledges the receipt. 
 
-Now start the second Device Simulator, where you can listen for the messages sent to the smart light. Run the command `lw` and pass in the device ID (`did`) of the smart light. The command sets up a [bi-directional WebSocket connection](https://developer.samsungsami.io/sami/sami-documentation/sending-and-receiving-data.html#setting-up-a-bi-directional-message-pipe) between SAMI and the simulated smart light in the Device Simulator. The output indicates that the simulator connects and registers the smart light in the WebSocket pipe, and starts getting pings.
+Now start the second Device Simulator, where you can listen for the messages sent to the smart light by the first Device Simulator. Run the command `lw` and pass in the device ID (`did`) of the smart light. The command sets up a [bi-directional WebSocket connection](https://developer.samsungsami.io/sami/sami-documentation/sending-and-receiving-data.html#setting-up-a-bi-directional-message-pipe) between SAMI and the simulated smart light in the Device Simulator. The output indicates that the simulator connects and registers the smart light in the WebSocket pipe, and starts getting pings.
 
     $ lw 713f4298132943df957e87c1d0e43d7a
     Using this token to connect: ea2208ea61d045d5844de5dd246f8e22
@@ -344,7 +344,7 @@ Now start the second Device Simulator, where you can listen for the messages sen
     Register {"Authorization":"bearer ea2208ea61d045d5844de5dd246f8e22","sdid":"713f4298132943df957e87c1d0e43d7a","type":"register","cid":1432935445622}
     $ WS -> {"data":{"message":"OK","code":"200","cid":"1432935445622"}}
 
-To listen to Actions or data messages received by a target device, you must use `lw`, **not** `ll`. The command `ll` is used to listen to messages sent to SAMI by a source device.
+To listen to Actions or data messages received by a target device, you must use `lw`, **not** `ll`. The command `ll` is used to listen to data messages sent to SAMI by a source device.
 {:.info}
 
 After sending an Action to the smart light in the first Device Simulator, you should see the Action received in the second Simulator as follows:
