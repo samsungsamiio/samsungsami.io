@@ -83,7 +83,7 @@ A scenario is used when the Device Simulator works in automated mode. This is ho
   |`deviceToken`{:.param}   |Access token for the selected device ID. |Force a specific token by providing it here. The Simulator will get a token if the field is empty.
   |`data`{:.param}   |A complex object that defines the default values for each data field that will be sent to SAMI.   |A set of key/value pairs for each data point you want to send.
   |`config`{:.param}   |A complex object describing how the Simulator should generate the data ([see below](#the-config-object)).   |A set of JSON objects.
-  |`api`{:.param}   | HTTP POST or WebSocket APIs for sending data. | "POST" or "WS".
+  |`api`{:.param}   | [HTTP POST](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message) or [WebSocket APIs](sami/sami-documentation/sending-and-receiving-data.html#setting-up-a-bi-directional-message-pipe) for sending data. Defaults to "POST" if not provided.| "POST" or "WS".
   |`period`{:.param}   |An Integer representing number of milliseconds between requests.   |A positive Integer.
 
   
@@ -288,8 +288,8 @@ You can use the Device Simulator to send data to SAMI via a [bi-directional WebS
 Execute the command to [run the scenario](#running-a-scenario) in the Device Simulator. You should be able to see that the simulator connects to a SAMI WebSocket, and then sends the data to SAMI on behalf of the device whose ID is specified in the command. Below is an example of the command and its output in the Device Simulator terminal:
 
     $ rs 6a5bb957531f4704a5e3509a727573a5 myGearFitSim
-    Loading scenario from /Users/yujing.w/work/SAMItechToDeveloper/device-simulator/device-simulator20150528/6a5bb957531f4704a5e3509a727573a5/myGearFitSim.json
-    Reading file: /Users/yujing.w/work/SAMItechToDeveloper/device-simulator/device-simulator20150528/6a5bb957531f4704a5e3509a727573a5/myGearFitSim.json
+    Loading scenario from /Users/someone/device-simulator/device-simulator20150528/6a5bb957531f4704a5e3509a727573a5/myGearFitSim.json
+    Reading file: /Users/someone/device-simulator/device-simulator20150528/6a5bb957531f4704a5e3509a727573a5/myGearFitSim.json
     $ Using this token to send the messages: c0bd117ae13243f092e45c93b59e33ff
     WS -> Connected to wss://api.samsungsami.io/v1.1/websocket?ack=true
     Register {"Authorization":"bearer c0bd117ae13243f092e45c93b59e33ff","sdid":"6a5bb957531f4704a5e3509a727573a5","type":"register","cid":1432861982567}
@@ -300,7 +300,7 @@ Execute the command to [run the scenario](#running-a-scenario) in the Device Sim
     WS -> {"data":{"mid":"068ed1e6726847599914bc074f36fa8c","cid":"1432861983572"}}
     Send #2 (+1000ms. Elapsed: 2001ms) {"description":"ddza","heartRate":24,"state":0,"activity":1}
 
-Using another Device Simulator instance, you can listen for messages that are sent to SAMI by the simulated device. You can use the same or a different access token to start the second Simulator instance. Below is an example of a second Device Simulator terminal displaying messages sent:
+Using another Device Simulator instance, you can listen for messages that are sent to SAMI by the simulated device. You can use the same or a different access token to start the second Simulator instance. Below is an example of a second Device Simulator terminal displaying the messages received in SAMI:
 
     $ ll 6a5bb957531f4704a5e3509a727573a5
     Using this token to connect: 3118b86da4c343b28da89a1c56f18c18
@@ -334,7 +334,7 @@ Now send an Action to the smart light. Use the command `tell` and pass in the de
     $ Sending : {"actions":[{"name":"setIntensity","parameters":{"intensity":10}}]}
     Got MID: 2713b144323c48ee8f7dd95044f31699
 
-From the output, you see that the Action has been sent to the target device and you get the message ID. 
+From the output, you see that the Action has been sent to SAMI to route to the target device and you get the message ID through which SAMI acknowledges the receipt. 
 
 Now start the second Device Simulator, where you can listen for the messages sent to the smart light. Run the command `lw` and pass in the device ID (`did`) of the smart light. The command sets up a [bi-directional WebSocket connection](https://developer.samsungsami.io/sami/sami-documentation/sending-and-receiving-data.html#setting-up-a-bi-directional-message-pipe) between SAMI and the simulated smart light in the Device Simulator. The output indicates that the simulator connects and registers the smart light in the WebSocket pipe, and starts getting pings.
 
@@ -344,7 +344,7 @@ Now start the second Device Simulator, where you can listen for the messages sen
     Register {"Authorization":"bearer ea2208ea61d045d5844de5dd246f8e22","sdid":"713f4298132943df957e87c1d0e43d7a","type":"register","cid":1432935445622}
     $ WS -> {"data":{"message":"OK","code":"200","cid":"1432935445622"}}
 
-To listen to Actions or data messages received by a target device, you must use `lw`, **not** `ll`. The command `ll` is used to listen to messages sent by a source device.
+To listen to Actions or data messages received by a target device, you must use `lw`, **not** `ll`. The command `ll` is used to listen to messages sent to SAMI by a source device.
 {:.info}
 
 After sending an Action to the smart light in the first Device Simulator, you should see the Action received in the second Simulator as follows:
