@@ -6,17 +6,14 @@ title: "Device Simulator"
 
 The SAMI Device Simulator is a command-line tool developed in Java. It is meant to help you send messages to SAMI on behalf of any device in the system. 
 
-The Device Simulator's primary goal is to make it easy to connect to SAMI and send pre-recorded data to simulate an actual device. It also can send [Actions](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message-with-actions) to a simulated device. The Device Simulator makes it very easy to execute commands easily, such as listing devices for a user, looking at device types, etc.
+The Device Simulator's primary goal is to make it easy to connect to SAMI and send pre-recorded data to simulate an actual device. It also can send [Actions](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message-with-actions) to a simulated device. The Device Simulator makes it very easy to quickly execute API calls, such as listing devices for a user, looking at device types, etc.
 
 ![device simulator start screen](/images/docs/sami/libraries-examples/DeviceSimulatorStart.png){:.lightbox}
 
+To use the commands in this article, [**download the Device Simulator.**](/sami/downloads/device-simulator.zip?raw=true)
 
-
-
-To use the commands in this article, [**download the Device Simulator.**](/sami/downloads/device-simulator.zip?raw=true) <br /><br />Java JDK v8 update 25 or higher is required.
+Java JDK v8 update 25 or higher is required.
 {:.info}
-
-
 
 ## Usage
 
@@ -28,16 +25,17 @@ java -jar device-simulator.jar -token=<access_token>
   |----------- |------------- 
   |`token`{:.param}   |The access token provided by SAMI after authentication. 
 
- The easiest way to capture an access token is by using our [API Console](https://api-console.samsungsami.io/sami) or creating a sample app or script (for example, with our [PHP SDK](/sami/native-SDKs/php-SDK.html)), authenticating with your Samsung Account credentials and capturing the token returned by SAMI.
+The easiest way to capture an access token is by using our [API Console](https://api-console.samsungsami.io/sami) or creating a sample app or script (for example, with our [PHP SDK](/sami/native-SDKs/php-SDK.html)), authenticating with your Samsung Account credentials and capturing the token returned by SAMI.
  
- **Never** share your access token. This is unique to you, and if you share it, malicious users will be able to read and write data on your behalf! (And it will be your fault!)
+**Never** share your access token. This is unique to you, and if you share it, malicious users will be able to read and write data on your behalf! (And it will be your fault!)
+{:.warning}
 
 The SAMI Device Simulator works in two main modes: 
 
 - An interactive mode, where you can execute commands (such as listing devices) and see the results.
-- An automated mode, in which pre-recorded scenarios are defined through a simple JSON configuration file and (when appropriate) pre-recorded data sets. Developers can enter real data or can use the Simulator to generate random data.
+- An automated mode, in which pre-recorded scenarios are defined through a simple JSON configuration file and (when appropriate) pre-recorded data sets. Developers can enter real data or use the Simulator to generate random data.
 
-Type the "?" command to get a full list of the available commands supported in the Device Simulator. Some comands are used in an interactive mode while others are used in an automated mode.
+Type the `?` command to get a full list of the available commands supported in the Device Simulator. Different commands are available in each Device Simulator mode.
 
 ![device simulator help screen](/images/docs/sami/demos-tools/device-simulator-help.png){:.lightbox}
 
@@ -55,7 +53,7 @@ In interactive mode, developers can execute individual commands in the simulator
 
 ## Scenarios
 
-A scenario is used when the Device Simulator works in an automated mode. This is how a very basic scenario looks:
+A scenario is used when the Device Simulator works in automated mode. This is how a very basic scenario looks:
 
 ~~~json
 {
@@ -81,22 +79,22 @@ A scenario is used when the Device Simulator works in an automated mode. This is
 
   |Field name   |Description   |Accepted values
   |----------- |------------- |---------------
-  |`sdid`{:.param}   |The device ID. use `ld` to get a list of your user's devices   |device ID 
-  |`deviceToken`{:.param}   |The access token for the selected device ID. |If you want to force a specific token type it here or leave empty and the Simulator will get one
-  |`data`{:.param}   |A complex object that defines the default values for each of the data fields that will be sent to SAMI   |A set of key/value pairs for each data point you want to send
-  |`config`{:.param}   |A complex object describing how the Simulator should generated the data. See below for more information   |A set of JSON objects
-  |`api`{:.param}   | HTTP POST or WebSocket APIs for sending data. | "POST" or "WS"
-  |`period`{:.param}   |An Integer describing the amount of ms between requests   |A positive Integer
+  |`sdid`{:.param}   |Device ID. use `ld` to get a list of your user's devices   |The device ID.
+  |`deviceToken`{:.param}   |Access token for the selected device ID. |Force a specific token by providing it here. The Simulator will get a token if the field is empty.
+  |`data`{:.param}   |A complex object that defines the default values for each data field that will be sent to SAMI.   |A set of key/value pairs for each data point you want to send.
+  |`config`{:.param}   |A complex object describing how the Simulator should generate the data ([see below](#the-config-object)).   |A set of JSON objects.
+  |`api`{:.param}   | HTTP POST or WebSocket APIs for sending data. | "POST" or "WS".
+  |`period`{:.param}   |An Integer representing number of milliseconds between requests.   |A positive Integer.
 
   
 ### Create an empty scenario
 
-The easiest way to create a scenario is to start with an empty one. The Simulator helps doing this with a simple command. See below how to create a new scenario called `mytest` associated with the device ID `89ac176847934e4384730d903ba28f2f`.
+The easiest way to create a scenario is to start with an empty one. This can be done in the Simulator with a simple command. The below example creates a new scenario called `mytest` associated with the device ID `89ac176847934e4384730d903ba28f2f`.
 
 	create scenario 89ac176847934e4384730d903ba28f2f mytest  
 	# (or the shortcut: cs 89ac176847934e4384730d903ba28f2f mytest)
 
-When executed, the command above creates a new JSON file on the computer and outputs the location. The file will look like this:
+When executed, the above command creates a new JSON file locally and outputs the location. The file will look like this:
 
 ~~~json
 {
@@ -113,7 +111,7 @@ When executed, the command above creates a new JSON file on the computer and out
 
 The `data`{:.param} object is pretty simple in concept. Here you define the fields that the Simulator should set when sending data to SAMI, and you define the default value.
 
-In the example below, we define five fields. Two are Integers for which we set a default value of `0`, two are Strings with an empty default value, and the last one is a String with a default text value.
+In the below example, we define five fields. Two are Integers for which we set a default value of `0`, two are Strings with an empty default value, and the last one is a String with a default text value.
 
 ~~~json
 {
@@ -132,9 +130,9 @@ In the example below, we define five fields. Two are Integers for which we set a
 
 ### The config object
 
-The `config`{:.param} object is a little more complex. This is where you define how you want the Simulator to generate the data to be sent to SAMI. The whole point of the Simulator is to generate and send data to SAMI at a defined pace, so you will usually want to configure it so that it sends data for a given amount of time and according to certain patterns that make sense to you.
+The `config`{:.param} object is a little more complex. This is where you define how you want the Simulator to generate the data to be sent to SAMI. Because the point of the Simulator is to generate and send data to SAMI at a defined pace, you will usually want to configure the config object so that the Simulator sends data for a given amount of time and according to certain patterns that make sense to you.
 
-The following example is a continuation of the sample fields we defined in the previous paragraph.
+The following example is a continuation of the sample fields we defined in the previous code block.
 
 ~~~json
 .... "config": {
@@ -150,33 +148,32 @@ Each object can have up to six properties:
 
   |Field name   |Description   |Accepted values
   |----------- |------------- |---------------
-  |`function`{:.param}   |Define how to generate data based on the other parameters |`random` (default), `constant`, `cycle`, `increment`
-  |`type`{:.param}   |Describes the data type, the same that you defined in the Manifest |Refer to the Types you configured in the Manifest
-  |`min`{:.param}   |If defined will set the minimum value for the generated data. If set **requires** that you also set the `max`{:.param} value. The default value is 0. |Any Integer
-  |`max`{:.param}   |If defined will set the maximum value for the generated data. If set **requires** that you also set the `min`{:.param} value. The default value is 10000. |Any Integer higher than the `min`{:.param} value
-  |`value`{:.param}   |Define one or more possible values, the actual values and use depend on the data type of the field and the `function`{:.param} you chose   |A set of values, can be numbers, strings, etc.
-  |`increment`{:.param}   |Used when `function`{:.param} is `increment`.  The value increases by this amount each time. The default value is 1 if not provided. |Any Integer
-  |`period`{:.param}   |Used when `function`{:.param} is `increment`. An Integer describing the minum amount of ms passed between consecutive increments. The default value is `period`{:.param} for the main simulation. |A positive Integer
+  |`function`{:.param}   |Defines how to generate data based on the other parameters (see below). |`random` (default), `constant`, `cycle`, `increment`.
+  |`type`{:.param}   |The data type you defined in the Manifest. |Refer to the data types you configured in the Manifest.
+  |`min`{:.param}   |If defined, sets the minimum value for the generated data and **requires** that you also set the `max`{:.param} value. The default value is 0. |Any Integer.
+  |`max`{:.param}   |If defined, sets the maximum value for the generated data and **requires** that you also set the `min`{:.param} value. The default value is 10000. |Any Integer higher than the `min`{:.param} value.
+  |`value`{:.param}   |One or more possible values. The actual values and use depend on the data type of the field and the `function`{:.param} you chose.   |A set of values; can be numbers, strings, etc.
+  |`increment`{:.param}   |Used when `function`{:.param} is `increment`.  The value of the field increases by this amount each time. Defaults to 1 if not provided. |Any Integer.
+  |`period`{:.param}   |Used when `function`{:.param} is `increment`. An Integer describing the minimum number of milliseconds passed between consecutive increments. Defaults to `period`{:.param} for the main simulation. |A positive Integer.
 
+As described in the above table, the Simulator currently supports four types of functions. These will generate the values to be sent to SAMI depending on the parameters you defined. The supported functions are:
 
-As described, the Simulator currently supports four types of functions. These will actually generate the values to be sent to SAMI depending on the parameters you defined. The supported functions are:
-
- * **random (default)**: Creates random numbers or words. For numbers makes use of additional fields `min`{:.param} and `max`{:.param}.
- * **constant**: Makes use of a field `value`{:.param} to specify the constant value.
- * **cycle**: Loops through the values defined in the `value`{:.param} field.
+ * **random (default)**: Creates random numbers or words. For numbers, makes use of `min`{:.param} and `max`{:.param}.
+ * **constant**: Uses `value`{:.param} to specify a constant value.
+ * **cycle**: Loops through the values defined by the `value`{:.param} parameter.
  * **increment**: Increases the value by the amount defined by `increment`{:.param} per time defined by `period`{:.param}.
 
- The Device Simulator assumes that you know what you are doing. There are VERY limited controls on how what you enter in the `config`{:.param} object, so be careful and refer to the Manifest when in doubt.
+The Device Simulator assumes that you know what you are doing! There are VERY limited controls on what you enter in the `config`{:.param} object, so be careful and refer to the Manifest when in doubt.
  {:.warning}
 
 ### Running a scenario
 
-You can execute a scenario at any point. To run a scenario, you can use the `run` command with the device ID and scenario name that you defined when creating it.
+You can execute a scenario at any point with the the `run` command, along with the device ID and scenario name you defined when creating it.
 
 	run scenario 89ac176847934e4384730d903ba28f2f mytest  
 	# (or the shortcut: rs 89ac176847934e4384730d903ba28f2f mytest)
 
- You can stop a scenario at any point pressing "s" or "stop" followed by the "Enter" key.
+You can stop a scenario at any point by pressing "s" or "stop" followed by the "Enter" key.
  {: .info}
 
 ### Guess scenario
@@ -282,13 +279,13 @@ Now all you have to do is open it in your favorite editor (ViM if you are old; S
 
 ## Simulate sending data via WebSocket
 
-You can use the Device Simulator to send data to SAMI via a [bi-directional WebSocket](https://developer.samsungsami.io/sami/sami-documentation/sending-and-receiving-data.html#setting-up-a-bi-directional-message-pipe) on behalf of a device. You just need to set `api`{:.param} to "WS" in the scenario JSON file of the simulated device as following:
+You can use the Device Simulator to send data to SAMI via a [bi-directional WebSocket](/sami/sami-documentation/sending-and-receiving-data.html#setting-up-a-bi-directional-message-pipe) on behalf of a device. You just need to set `api`{:.param} to "WS" in the scenario JSON file of the simulated device as follows:
 
 ~~~json
     "api": "WS",
 ~~~
 
-Execute [run the scenario](#running-a-scenario) command in the Device Simulator. You should be able to see that the simulator connects to SAMI WebSocket and then sends the data to SAMI on behalf of the device, which ID is specified in the command. The following shows the example of the command and its output in the Device Simulator terminal:
+Execute the command to [run the scenario](#running-a-scenario) in the Device Simulator. You should be able to see that the simulator connects to a SAMI WebSocket, and then sends the data to SAMI on behalf of the device whose ID is specified in the command. Below is an example of the command and its output in the Device Simulator terminal:
 
     $ rs 6a5bb957531f4704a5e3509a727573a5 myGearFitSim
     Loading scenario from /Users/yujing.w/work/SAMItechToDeveloper/device-simulator/device-simulator20150528/6a5bb957531f4704a5e3509a727573a5/myGearFitSim.json
@@ -303,7 +300,7 @@ Execute [run the scenario](#running-a-scenario) command in the Device Simulator.
     WS -> {"data":{"mid":"068ed1e6726847599914bc074f36fa8c","cid":"1432861983572"}}
     Send #2 (+1000ms. Elapsed: 2001ms) {"description":"ddza","heartRate":24,"state":0,"activity":1}
 
-Using another Device Simulator instance, you can listen to data messages that are sent to SAMI by the simulated device. You can use the same or different access token to start the second Simulator instance. The following gives the example of the command and its output in the second Device Simulator terminal:
+Using another Device Simulator instance, you can listen for messages that are sent to SAMI by the simulated device. You can use the same or a different access token to start the second Simulator instance. Below is an example of a second Device Simulator terminal displaying messages sent:
 
     $ ll 6a5bb957531f4704a5e3509a727573a5
     Using this token to connect: 3118b86da4c343b28da89a1c56f18c18
@@ -311,17 +308,19 @@ Using another Device Simulator instance, you can listen to data messages that ar
     WS -> Connected to wss://api.samsungsami.io/v1.1/live?Authorization=bearer+3118b86da4c343b28da89a1c56f18c18&?sdid=6a5bb957531f4704a5e3509a727573a5
     WS -> {"mid":"d5a23adbd36d4484af1a34d7ea568398","data":{"state":0,"description":"fuzczpswec","stepCount":1000,"heartRate":10,"activity":0},"ts":1432844166847,"sdtid":"sami_gear_fit","cts":1432844166846,"uid":"650a7c8b6ca44730b077ce849af64e90","mv":1,"sdid":"6a5bb957531f4704a5e3509a727573a5"}
 
-The command `ll` can be used to listen to messages that are sent using POST or WebSocket by the simulated device. To stop listening on the second Device Simulator, type `sll`.
+The command `ll` can be used to listen to messages sent via POST or WebSocket by the simulated device. To stop listening on the second Device Simulator, type `sll`.
 
 ## Simulate sending Actions
 
-You can use the Device Simulator to simulate sending Actions to a target device. Lets use an example to explain. Assume that you have a  "SAMI Example Smart Light" device. Again we use two Device Simulators. The first one is used to send Actions to the smart light while the second one is used to listen on behalf of the smart light. In the first simulator, type command `ld` to list the devices, where you find the information of the smart light like the following:
+You can use the Device Simulator to simulate sending [Actions](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message-with-actions) to a target device. Let's use an example to explain. 
+
+Assume that you have a "SAMI Example Smart Light" device. Again we use two Device Simulators: the first one is used to send Actions to the smart light, while the second one is used to listen on behalf of the smart light. In the first simulator, type command `ld` to list the devices, where you find the information of the smart light as follows:
 
   |did   |dtid   |name |manifestVersion   |manifestPolicy  |Token
   |----------- |------------- |--------------- |----------- |------------- |---------------
   |713f4298132943df957e87c1d0e43d7a |dt71c282d4fad94a69b22fa6d1e449fbbb  |My Smart Light | 1 | LATEST |
 
-Use the device type ID (`dtid`) listed above to query the Actions that the smart light supports. The following is the example of the command and the corresponding output:
+Use the device type ID (`dtid`) listed above to query the Actions that the smart light supports. The following example shows the command and the corresponding output:
 
     $ ga dt71c282d4fad94a69b22fa6d1e449fbbb
     setIntensity(Integer intensity)
@@ -329,13 +328,15 @@ Use the device type ID (`dtid`) listed above to query the Actions that the smart
     setColorAsRGB(Object colorRGB{Integer g, Integer b, Integer r}, Integer intensity)
     setOn
 
-Now send an Action to the smart light. Use the command `tell`, and pass in the device ID(`did`), the Action, and Action parameters (if applicable). The following is the example of the command and the output.
+Now send an Action to the smart light. Use the command `tell` and pass in the device ID (`did`), the Action, and [Action parameters](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message-with-actions) (if applicable). The following example shows the command and the output.
 
     $ tell 713f4298132943df957e87c1d0e43d7a setIntensity {"intensity":10}
     $ Sending : {"actions":[{"name":"setIntensity","parameters":{"intensity":10}}]}
     Got MID: 2713b144323c48ee8f7dd95044f31699
 
-From the output, you see that the Action has been sent to the target device and you get the message ID. Now start the second Device Simulator, where you can listen the messages sent to the smart light. Run the command `lw` and pass in the device ID of the smart light. The command sets up a [bi-directional WebSocket connection](https://developer.samsungsami.io/sami/sami-documentation/sending-and-receiving-data.html#setting-up-a-bi-directional-message-pipe) between SAMI and the simulated smart light in the Device Simulator. The output indicates that the simulator connects and registers the smart light in the websocket pipe, and starts getting pings.
+From the output, you see that the Action has been sent to the target device and you get the message ID. 
+
+Now start the second Device Simulator, where you can listen for the messages sent to the smart light. Run the command `lw` and pass in the device ID (`did`) of the smart light. The command sets up a [bi-directional WebSocket connection](https://developer.samsungsami.io/sami/sami-documentation/sending-and-receiving-data.html#setting-up-a-bi-directional-message-pipe) between SAMI and the simulated smart light in the Device Simulator. The output indicates that the simulator connects and registers the smart light in the WebSocket pipe, and starts getting pings.
 
     $ lw 713f4298132943df957e87c1d0e43d7a
     Using this token to connect: ea2208ea61d045d5844de5dd246f8e22
@@ -343,11 +344,11 @@ From the output, you see that the Action has been sent to the target device and 
     Register {"Authorization":"bearer ea2208ea61d045d5844de5dd246f8e22","sdid":"713f4298132943df957e87c1d0e43d7a","type":"register","cid":1432935445622}
     $ WS -> {"data":{"message":"OK","code":"200","cid":"1432935445622"}}
 
-To listen to Actions or data messages received by a target device, you must use `lw` command not `ll` command. Command `ll` is used to listen to data message sent by a source device.
+To listen to Actions or data messages received by a target device, you must use `lw`, **not** `ll`. The command `ll` is used to listen to messages sent by a source device.
 {:.info}
 
-After sending an Action to the smart light in the first Device Simulator. You should be able to see that that Action is received in the second simulator like the following output:
+After sending an Action to the smart light in the first Device Simulator, you should see the Action received in the second Simulator as follows:
 
     WS -> {"cts":1432936314494,"type":"action","ts":1432936314494,"mid":"82713b144323c48ee8f7dd95044f31699","sdid":"713f4298132943df957e87c1d0e43d7a","ddid":"713f4298132943df957e87c1d0e43d7a","data":{"actions":[{"name":"setIntensity","parameters":{"intensity":10}}]}}
 
-To stop listening to the bi-directional WebSocket on the second Device Simulator, type `slw`. Type `?` to learn other commands related to Actions and WebSocket.
+To stop listening to the bi-directional WebSocket on the second Device Simulator, type `slw`. Type `?` to learn other commands related to Actions and WebSockets.
