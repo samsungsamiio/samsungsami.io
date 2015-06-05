@@ -9,6 +9,9 @@ This is an overview of how your devices and applications can send and receive me
 Any message sent to SAMI may not be bigger than 10 KB.
 {:.info}
 
+You can use the [**Device Simulator**](/sami/demos-tools/device-simulator.html#simulate-sending-data-via-websocket) to simulate sending messages and Actions to SAMI via REST and WebSockets.
+{:.info}
+
 ## REST API
 
 With SAMI's REST API, you can send and retrieve historical data according to a specific timestamp or range. This allows you to perform analytics on various scenarios and contexts. You also can send Actions to SAMI, which will be routed to the destination device to perform these Actions.
