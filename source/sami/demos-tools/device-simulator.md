@@ -6,7 +6,7 @@ title: "Device Simulator"
 
 The SAMI Device Simulator is a command-line tool developed in Java. It is meant to help you send messages to SAMI on behalf of any device in the system. 
 
-The Device Simulator's primary goal is to make it easy to connect to SAMI and send pre-recorded data to simulate an actual device. It also can send [Actions](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message-with-actions) to a simulated device. The Device Simulator makes it very easy to quickly execute API calls, such as listing devices for a user, looking at device types, etc.
+The Device Simulator's primary goal is to make it easy to connect to SAMI and send pre-recorded data to simulate an actual device. It also can send [Actions](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message-with-actions) to a simulated device. With the Device Simulator, you can easily execute API calls, such as listing devices for a user, looking at device types, etc.
 
 ![device simulator start screen](/images/docs/sami/libraries-examples/DeviceSimulatorStart.png){:.lightbox}
 
@@ -150,18 +150,18 @@ Each object can have up to six properties:
   |----------- |------------- |---------------
   |`function`{:.param}   |Defines how to generate data based on the other parameters (see below). |`random` (default), `constant`, `cycle`, `increment`.
   |`type`{:.param}   |The data type you defined in the Manifest. |Refer to the data types you configured in the Manifest.
-  |`min`{:.param}   |If defined, sets the minimum value for the generated data and **requires** that you also set the `max`{:.param} value. The default value is 0. |Any Integer.
-  |`max`{:.param}   |If defined, sets the maximum value for the generated data and **requires** that you also set the `min`{:.param} value. The default value is 10000. |Any Integer higher than the `min`{:.param} value.
-  |`value`{:.param}   |One or more possible values. The actual values and use depend on the data type of the field and the `function`{:.param} you chose.   |A set of values; can be numbers, strings, etc.
-  |`increment`{:.param}   |Used when `function`{:.param} is `increment`.  The value of the field increases by this amount each time. Defaults to 1 if not provided. |Any Integer.
-  |`period`{:.param}   |Used when `function`{:.param} is `increment`. An Integer describing the minimum number of milliseconds passed between consecutive increments. Defaults to `period`{:.param} for the main simulation. |A positive Integer.
+  |`min`{:.param}   |If defined, sets the minimum value for the generated data and requires that you also set the `max` value. The default value is 0. |Any Integer.
+  |`max`{:.param}   |If defined, sets the maximum value for the generated data and requires that you also set the `min` value. The default value is 10000. |Any Integer higher than the `min` value.
+  |`value`{:.param}   |One or more possible values. The actual values and use depend on the data type of the field and the `function` you chose.   |A set of values; can be numbers, strings, etc.
+  |`increment`{:.param}   |Used when `function` is `increment`.  The value of the field increases by this amount each time. Defaults to 1 if not provided. |Any Integer.
+  |`period`{:.param}   |Used when `function` is `increment`. An Integer describing the minimum number of milliseconds passed between consecutive increments. Defaults to `period` for the main simulation. |A positive Integer.
 
 As described in the above table, the Simulator currently supports four types of functions. These will generate the values to be sent to SAMI depending on the parameters you defined. The supported functions are:
 
  * **random (default)**: Creates random numbers or words. For numbers, makes use of `min`{:.param} and `max`{:.param}.
  * **constant**: Uses `value`{:.param} to specify a constant value.
  * **cycle**: Loops through the values defined by the `value`{:.param} parameter.
- * **increment**: Increases the value by the amount defined by `increment`{:.param} per time defined by `period`{:.param}.
+ * **increment**: Increases the value by the amount defined by `increment`{:.param} per time defined by `period`{:.param} in the config object.
 
 The Device Simulator assumes that you know what you are doing! There are VERY limited controls on what you enter in the `config`{:.param} object, so be careful and refer to the Manifest when in doubt.
  {:.warning}
@@ -334,7 +334,7 @@ Now send an Action to the smart light. Use the command `tell` and pass in the de
     $ Sending : {"actions":[{"name":"setIntensity","parameters":{"intensity":10}}]}
     Got MID: 2713b144323c48ee8f7dd95044f31699
 
-From the output, you see that the Action has been sent to SAMI to route to the target device and you get the message ID through which SAMI acknowledges the receipt. 
+The output indicates that the Action has been sent from SAMI to the target device, and also returns the message ID to acknowledge receipt.
 
 Now start the second Device Simulator, where you can listen for the messages sent to the smart light by the first Device Simulator. Run the command `lw` and pass in the device ID (`did`) of the smart light. The command sets up a [bi-directional WebSocket connection](https://developer.samsungsami.io/sami/sami-documentation/sending-and-receiving-data.html#setting-up-a-bi-directional-message-pipe) between SAMI and the simulated smart light in the Device Simulator. The output indicates that the simulator connects and registers the smart light in the WebSocket pipe, and starts getting pings.
 
@@ -344,11 +344,11 @@ Now start the second Device Simulator, where you can listen for the messages sen
     Register {"Authorization":"bearer ea2208ea61d045d5844de5dd246f8e22","sdid":"713f4298132943df957e87c1d0e43d7a","type":"register","cid":1432935445622}
     $ WS -> {"data":{"message":"OK","code":"200","cid":"1432935445622"}}
 
-To listen to Actions or data messages received by a target device, you must use `lw`, **not** `ll`. The command `ll` is used to listen to data messages sent to SAMI by a source device.
+To listen to Actions or data messages received by a target device, you must use `lw`, not `ll`. The command `ll` is used to listen to messages sent to SAMI by a source device.
 {:.info}
 
 After sending an Action to the smart light in the first Device Simulator, you should see the Action received in the second Simulator as follows:
 
     WS -> {"cts":1432936314494,"type":"action","ts":1432936314494,"mid":"82713b144323c48ee8f7dd95044f31699","sdid":"713f4298132943df957e87c1d0e43d7a","ddid":"713f4298132943df957e87c1d0e43d7a","data":{"actions":[{"name":"setIntensity","parameters":{"intensity":10}}]}}
 
-To stop listening to the bi-directional WebSocket on the second Device Simulator, type `slw`. Type `?` to learn other commands related to Actions and WebSockets.
+To stop listening to the bi-directional WebSocket on the second Device Simulator, type `slw`. Type `?` to learn other commands related to Actions and WebSockets.vice Simulator, type `slw`. Type `?` to learn other commands related to Actions and WebSockets.
