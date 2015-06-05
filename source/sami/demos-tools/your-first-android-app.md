@@ -130,7 +130,7 @@ After obtaining the access token, `MainActivity.java` starts `MessageActivity.ja
 
 It performs the above operations by calling API methods of SAMI's SDK library in background threads.
 
-To faciliate using API methods of the SDK later, `MessageActivity.java` first performs the following setup:
+To facilitate using API methods of the SDK later, `MessageActivity.java` first performs the following setup:
 
 ~~~java
 private void setupSamihubApi() {
