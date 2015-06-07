@@ -334,7 +334,7 @@ Now send an Action to the smart light. Use the command `tell` and pass in the de
     $ Sending : {"actions":[{"name":"setIntensity","parameters":{"intensity":10}}]}
     Got MID: 2713b144323c48ee8f7dd95044f31699
 
-The output indicates that the Action has been sent from SAMI to the target device, and also returns the message ID to acknowledge receipt.
+The output indicates that the Simulator has sent the Action to SAMI and received the message ID as a receipt. Then SAMI will deliver the Action to the smart light in real time.
 
 Now start the second Device Simulator, where you can listen for the messages sent to the smart light by the first Device Simulator. Run the command `lw` and pass in the device ID (`did`) of the smart light. The command sets up a [bi-directional WebSocket connection](https://developer.samsungsami.io/sami/sami-documentation/sending-and-receiving-data.html#setting-up-a-bi-directional-message-pipe) between SAMI and the simulated smart light in the Device Simulator. The output indicates that the simulator connects and registers the smart light in the WebSocket pipe, and starts getting pings.
 

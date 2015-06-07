@@ -4,12 +4,12 @@ title: "Sending and receiving data"
 
 # Sending and receiving data
 
-This is an overview of how your devices and applications can send and receive messages on SAMI, using both REST and WebSocket APIs. Using this information, you will be able to post messages to SAMI, retrieve historical data, and use WebSockets to set up a real-time data stream. When posting messages, you could put Actions in messages so that destination devices can perform the specified Actions. 
+This is an overview of how your devices and applications can send and receive messages on SAMI, using both REST and WebSocket APIs. Using this information, you will be able to post messages to SAMI, retrieve historical data, and use WebSockets to set up a real-time data stream. When sending messages via REST or WebSocket, you could put Actions in messages so that destination devices can perform the specified Actions. 
 
 Any message sent to SAMI may not be bigger than 10 KB.
 {:.info}
 
-You can use the [**Device Simulator**](/sami/demos-tools/device-simulator.html#simulate-sending-data-via-websocket) to simulate sending messages and Actions to SAMI via REST and WebSockets.
+You can use the [**Device Simulator**](/sami/demos-tools/device-simulator.html) to simulate sending messages and Actions to SAMI via REST and WebSockets.
 {:.info}
 
 ## REST API
