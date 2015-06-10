@@ -7,6 +7,10 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### June 7, 2015
+
+We documented the new functionalities of the Device Simulator: simulate sending data via WeSocket and simulate sending Actions. Download the latest file from [Device Simulator](/sami/demos-tools/device-simulator.html).
+
 ### May 27, 2015
 
 We expanded our documentation on the [three types of access tokens](/sami/sami-documentation/authentication.html#three-types-of-access-tokens) used in authentication and clarified permissions and [rate limiting](/sami/sami-documentation/rate-limiting.html#rate-limits-for-three-actors) for the token types.
