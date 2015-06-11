@@ -4,7 +4,7 @@ title: "Hello, World!"
 
 # Hello, World!
 
-Time To First Hello World (TTFHW) is 5 minutes.
+Time To First Hello World (TTFHW) is 4 minutes.
 {:.info}
 
 This article is a hands-on introduction to several SAMI concepts we covered in [Basics](/sami/sami-documentation/sami-basics.html). We will connect a simulated device to SAMI that sends and receives data. In doing so, you'll get a tangible understanding of SAMI without writing a single line of code. 
