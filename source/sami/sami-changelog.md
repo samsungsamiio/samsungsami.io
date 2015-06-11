@@ -7,6 +7,10 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### June 10, 2015
+
+New to SAMI and eager to start? Our new [Hello, World!](/sami/sami-documentation/hello-world.html) quick-start guide walks through the basics of connecting a device to SAMI, sending data and looking at the results (thanks to the Device Simulator).
+
 ### June 7, 2015
 
 We documented the new functionalities of the Device Simulator: simulate sending data via WeSocket and simulate sending Actions. Download the latest file from [Device Simulator](/sami/demos-tools/device-simulator.html).
