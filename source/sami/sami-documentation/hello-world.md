@@ -61,7 +61,7 @@ gs 6fd48f79c02b41cf99f2bf8bbf29596d myGearFitSim
 The output will display the location of the created scenario file:
 ![Guess Gear Fit Scenario](/images/docs/sami/sami-documentation/ds_gs_gearfit.png){:.lightbox}
 
-You can peak into this JSON file to see how the data for each field is generated. Normally you want to edit this JSON file to tweak the fields based on your needes. For this exploration, we can skip this step. However, if you are still curious, you can look at [here](#how-to-edit-gearfit-scenario) and edit your JSON file based on the instructions. In this way, the generated data makes more sense for this device type.
+You can peak into this JSON file to see how the data for each field is generated. Normally you want to edit this JSON file to tweak the fields based on your needes. For this exploration, we can skip this step. However, if you are still curious, you can look at [here](/sami/sami-documentation/how-to-edit-gearfit-scenario.html) and edit your JSON file based on the instructions. In this way, the generated data makes more sense for this device type.
 
 We're ready to start the simulation!
 
