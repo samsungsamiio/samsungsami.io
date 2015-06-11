@@ -3,6 +3,7 @@ title: "Documentation"
 
 nav:
    - 'sami-basics'
+   - 'hello-world'
    - 'authentication'
    - 'oauth2-flow-examples'
    - 'administrative-apis'
