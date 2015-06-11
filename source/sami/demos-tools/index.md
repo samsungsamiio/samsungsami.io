@@ -14,6 +14,9 @@ nav:
 
 To help you get up and running, we've created some functional examples that demonstrate how to use SAMI. These code examples are designed to be simple and modular—ideal for you to take apart and reuse in a way that suits you. We also developed advanced sample applications in [Samples](/sami/samples/index.html).
 
+For a basic walkthrough of connecting a device and sending some data, see [**Hello, World!**](/sami/sami-documentation/hello-world.html)
+{:.info}
+
 Also included here is the Device Simulator, a development tool for sending messages to SAMI on behalf of devices.
 
 Keep an eye on this page—more is on the way!

@@ -92,6 +92,10 @@ If your Manifest for the device type was Rejected, you will first have to resubm
 
 The User Portal is located at [portal.samsungsami.io.](http://portal.samsungsami.io) This is where users can access their connected devices and view their data on SAMI. Here's how to add a new device.
 
+Our [**Hello, World!**](/sami/sami-documentation/hello-world.html) guide puts the User Portal functionality into context.
+{:.info}
+
+
 ### Connecting a device
 
 <div  class="photo-grid" style="max-width: 512px;">

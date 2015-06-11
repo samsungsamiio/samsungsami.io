@@ -32,8 +32,9 @@ SAMI defines a new paradigm for developers to create services and applications. 
 
 ## What this documentation covers
 
-- Important [SAMI concepts](/sami/sami-documentation/sami-basics.html), including messages, devices and device types, and data normalization.
+- Important [SAMI concepts](/sami/sami-documentation/sami-basics.html), including messages, devices and device types, and data normalization; along with a [Hello, World!](/sami/sami-documentation/hello-world.html) quick-start guide.
 - The [SAMI APIs](/sami/api-spec.html), including [authentication with OAuth2](/sami/sami-documentation/authentication.html), [managing users and their devices](/sami/sami-documentation/administrative-apis.html) in the cloud, [circulating data](/sami/sami-documentation/sending-and-receiving-data.html) between applications, devices and SAMI, and [writing the Manifest](/sami/sami-documentation/the-manifest.html) that normalizes your data.
 - Using the [Developer Portal and User Portal](/sami/sami-documentation/developer-user-portals.html) to manage devices, device types and applications.
+- Conducting your own research with [SAMI trials](/sami/sami-documentation/data-collection-with-trials.html).
 - [Native SDKs](/sami/native-SDKs/) designed to help you integrate SAMI with your language of choice.
-- Basic [SAMI code and developer tools](/sami/demos-tools/) you can play with to understand the platform.
+- Basic [SAMI code and developer tools](/sami/demos-tools/) you can play with to understand the platform, and [Samples](/sami/samples/) of more advanced SAMI applications available on GitHub.

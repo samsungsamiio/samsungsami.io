@@ -6,6 +6,9 @@ title: "Basics"
 
 SAMI is designed to be as easy as possible to integrate with existing devices and services. This article presents the basic concepts behind how SAMI recognizes users, devices, data and applications.
 
+The [**Hello, World!**](/sami/sami-documentation/hello-world.html) guide puts many of these concepts into practice.
+{:.info}
+
 ## Authorization
 
 The API's authorization model is based on a very simple set of permissions (READ and WRITE) on users and other entities in the system. These grant a user the right to perform activities in SAMI via the API calls.

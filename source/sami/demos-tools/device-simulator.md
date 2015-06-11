@@ -6,6 +6,9 @@ title: "Device Simulator"
 
 The SAMI Device Simulator is a command-line tool developed in Java. It is meant to help you send messages to SAMI on behalf of any device in the system. 
 
+We cover basic usage of the Device Simulator in the [**Hello, World!**](/sami/sami-documentation/hello-world.html) guide.
+{:.info}
+
 The Device Simulator's primary goal is to make it easy to connect to SAMI and send pre-recorded data to simulate an actual device. It also can send [Actions](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message-with-actions) to a simulated device. With the Device Simulator, you can easily execute API calls, such as listing devices for a user, looking at device types, etc.
 
 ![device simulator start screen](/images/docs/sami/libraries-examples/DeviceSimulatorStart.png){:.lightbox}
