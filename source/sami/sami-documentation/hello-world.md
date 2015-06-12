@@ -9,7 +9,7 @@ Time To First Hello World (TTFHW) is 4 minutes.
 
 This article is a hands-on introduction to several SAMI concepts we covered in [Basics](/sami/sami-documentation/sami-basics.html). We will connect a simulated device to SAMI that sends and receives data. In doing so, you'll get a tangible understanding of SAMI without writing a single line of code. 
 
-We will also demonstrate some SAMI tools that you'll be using often. This diagram shows how the SAMI entities interact in this Hello World exploration (click to enlarge).
+We will also demonstrate some SAMI tools that you'll be using often. This diagram shows how the SAMI entities interact in this Hello World exploration (click to expand).
 
 ![System diagram](/images/docs/sami/sami-documentation/diagramHelloWorld2.png){:.lightbox}
 
@@ -49,7 +49,7 @@ Download the [Device Simulator](/sami/downloads/device-simulator.zip?raw=true). 
 java -jar device-simulator.jar -token=1c49e70b628240cc22dde4c6b3f70e82
 ~~~
 
-Enter `list devices` (or its shortcut `ld`) to display the device list. The list, which includes your Gear Fit device, will look like this (click to enlarge):
+Enter `list devices` (or its shortcut `ld`) to display the device list. The list, which includes your Gear Fit device, will look like this (click to expand):
 ![List devices](/images/docs/sami/sami-documentation/ds_list_device_gearfit.png){:.lightbox}
 
 Create a [scenario template](/sami/demos-tools/device-simulator.html#guess-scenario) to configure the simulation of My GearFit Device data. In the following command, the first input argument is `did` (device ID of the device), which we obtained from the output of `ld` above.
@@ -61,7 +61,9 @@ gs 6fd48f79c02b41cf99f2bf8bbf29596d myGearFitSim
 The output will display the location of the created scenario file:
 ![Guess Gear Fit Scenario](/images/docs/sami/sami-documentation/ds_gs_gearfit.png){:.lightbox}
 
-You can peak into this JSON file to see how the data for each field is generated. Normally you want to edit this JSON file to tweak the fields based on your needes. For this exploration, we can skip this step. However, if you are still curious, you can look at [here](/sami/sami-documentation/how-to-edit-gearfit-scenario.html) and edit your JSON file based on the instructions. In this way, the generated data makes more sense for this device type.
+You can open the JSON file to see how the data for each field is generated. Normally you want to edit this JSON file to [tweak the fields based on your needs](/sami/demos-tools/device-simulator.html#the-config-object). For this exploration, we can skip this step.
+
+If you want to be thorough, [this](/sami/sami-documentation/editing-the-gearfit-scenario.html) is how you can edit the JSON file to generate data that makes the most sense for the Gear Fit device type.
 
 We're ready to start the simulation!
 
