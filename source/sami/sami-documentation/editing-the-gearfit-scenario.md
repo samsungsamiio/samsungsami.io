@@ -4,7 +4,7 @@ title: "Editing the Gear Fit Scenario"
 
 # Editing the Gear Fit scenario
 
-In Step 3 of the [**Hello, World!**](/sami/sami-documentation/hello-world.html) guide, you have used the `gs` command to create a scenario file for a "SAMI Gear Fit" device type. By default, the file uses random values to simulate data. You might, however, like the generated data to make sense for the device type (in this case, a Samsung Gear Fit).
+In Step 3 of the [**Hello, World!**](/sami/sami-documentation/hello-world.html) guide, you have used the `gs` command to create a scenario file for a "SAMI Gear Fit" device type. By default, the file uses random values to simulate data. You might, however, like the generated data to make sense for the device type.
 
 Open the JSON file using your preferred text editor and replace its contents with the below JSON code ***except for `sdid`***, which should be unchanged in your file. The `sdid` in your file is from the first input argument (`did`) of the command `gs` that you executed.
 

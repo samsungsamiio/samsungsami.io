@@ -63,7 +63,7 @@ The output will display the location of the created scenario file:
 
 You can open the JSON file to see how the data for each field is generated. Normally you want to edit this JSON file to [tweak the fields based on your needs](/sami/demos-tools/device-simulator.html#the-config-object). For this exploration, we can skip this step.
 
-If you want to be thorough, [this](/sami/sami-documentation/editing-the-gearfit-scenario.html) is how you can edit the JSON file to generate data that makes the most sense for the Gear Fit device type.
+If you want to be thorough, [this](/sami/sami-documentation/editing-the-gearfit-scenario.html) is how you can edit the JSON file to generate data that makes the most sense for the "SAMI Gear Fit" device type.
 
 We're ready to start the simulation!
 
