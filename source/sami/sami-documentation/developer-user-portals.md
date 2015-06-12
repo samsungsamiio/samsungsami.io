@@ -22,49 +22,56 @@ The Developer Portal is located at [devportal.samsungsami.io.](http://devportal.
 
 ### Creating an application
 
-- If this is your first application, click the "Create Application" button on the Developer dashboard.
-  - If you've already made an application, the button is accessed by clicking "Applications" in the top menu:<br /><br />
-![Developer Portal](/images/docs/sami/sami-documentation/developer-portal-header.png)
-- On the next page, fill out a name and redirect URL for your application.
-- Choose an OAuth2 grant type. (See [Authentication](/sami/sami-documentation/authentication.html) for more details.)
-- Choose "Read" and/or "Write" permissions for your application.
-- Click the "Add Device Type" button to associate a device type with your application.
-  - Select one of the published device types from the pulldown list.
-  - Choose "Read" and/or "Write" permissions for the device type.
-- You may click the "Add Device Type" button again to add more device types:<br /><br />
-![Create an application](/images/docs/sami/sami-documentation/create-application-form.png)
-- When you are done, click "Save Application". You will be returned to your list of applications.
+- Click "+ New Application" in the menu at the top of the Developer Portal.
+![Developer Portal](/images/docs/sami/sami-documentation/devportal-dashboard-createnew.png)
+- Fill out a name, short description, details (in rich text) and redirect URL for your application. Click "Save Application". 
+- This takes you to the Application Detail view, where you can enter and edit more information.
+  - **Permissions**: Choose an OAuth2 grant type (see [Authentication](/sami/sami-documentation/authentication.html) for more details) and "Read" and/or "Write" permissions.
+    - You can also "Set Permissions for a Specific Device" by clicking this option and selecting a published device type from the menu. Doing so will reveal the device type ID.
+    ![Developer Portal](/images/docs/sami/sami-documentation/devportal-application-adddevicetype.png)
+    - Click "+ Add Device Type" to add more device types.
+  - **App Store**: Your publisher name, publisher URL and support URL are required fields:
+    ![Developer Portal](/images/docs/sami/sami-documentation/devportal-application-pubinfo.png)
+    - You can also paste your privacy policy and Terms of Use (in rich text) and add install URLs. 
+    - Select relevant categories from the list and write tags (separated by spaces) to make your application more discoverable by other developers and users.
+  - **Images**: Upload relevant images for your application's entry (the specs are on the page).
+- When you are done on each page, be sure to click "Save".
 
 #### How to find your application ID
 
 You will need your application ID (also called a client ID) to use in API calls. Here's how to locate it.
 
-- Click either "Applications" in the top menu or "View All" under the list of Applications on your dashboard.
-- This brings up your list of applications, sorted by name.
-- Click the relevant application name. This brings up a submenu.
-- Click "Edit App Info".
-- Now click "Show Client ID & Secret" on the resulting page.
-  - The application ID is the string found next to "Client ID".<br /><br />
-![Reveal client ID](/images/docs/sami/sami-documentation/application-client-id-reveal-2.png)
-
+- Click the relevant application name on your dashboard.
+- This brings up the Application Detail view.
+- Click **App Info** in the left navigation bar.
+- Now click "Show Client ID & Secret".
+![Reveal client ID](/images/docs/sami/sami-documentation/devportal-application-clientid.png)
+  - The application ID is the string found next to "Client ID".
+![Reveal client ID](/images/docs/sami/sami-documentation/application-client-id-reveal-3.png)
 
 ### Creating a device type
 
-Creating and publishing a device type makes it available to all developers that want to store data in SAMI using a client of this device type.
+Creating and publishing a device type makes it available to all developers that want to store data in SAMI using a client with this device type.
 
 You will also need to [learn how to write a Manifest](/sami/sami-documentation/the-manifest.html) for your device type. 
 
-- Click "Device Types" in the menu at the top of the Developer Portal.<br /><br />
-![Developer Portal](/images/docs/sami/sami-documentation/developer-portal-header.png)
-- Click the "+ New Device Type" button.
-- Fill out the name, unique name and description for your device type. The form helps you format the unique name so that it is consistent with the other device types in SAMI. 
-- Choose whether to create a Simple Manifest or Advanced Manifest. [The Manifest](/sami/sami-documentation/the-manifest.html) explains the differences between them and how they are created.<br /><br />
-  ![Create a device type](/images/docs/sami/sami-documentation/create-device-type-form-2.png)
-- Click the "Create Device Type" button. You will be returned to the dashboard with your new device type on the list.
+- Click "+ New Device Type" in the menu at the top of the Developer Portal.
+![Developer Portal](/images/docs/sami/sami-documentation/devportal-dashboard-createnew.png)
+- Fill out the display name, unique name (a format example is given) and short description for your device type.
+  ![Create a device type](/images/docs/sami/sami-documentation/devportal_newdevicetype.png)
+- Click the "Create Device Type" button.
+- This takes you to the Device Type Detail view, where you can enter and edit more information.
+  - **Manifests**: Click "+ New Version" to create a Manifest for your device type.
+    - Choose whether to create a Simple Manifest or Advanced Manifest. [The Manifest](/sami/sami-documentation/the-manifest.html) explains the differences between them and what goes into creating one.
+  - **App Store**: Your manufacturer name, manufacturer URL and support URL are required fields.
+    ![Developer Portal](/images/docs/sami/sami-documentation/devportal-application-manuinfo.png)
+    - You can also paste your privacy policy and Terms of Use (in rich text) and add a purchase URL. 
+    - Select relevant categories from the list and write tags (separated by spaces) to make your device type more discoverable by other developers and users.
+  - **Images**: you can upload relevant images for your device type's entry (the specs are on the page).
 
 ### Publishing a device type
 
-All device types are created as "Private" by default. If you want other SAMI developers to be able to use your device type, you need to Publish it. If you used a Simple Manifest in the steps above, the device is immediately ready to be published. 
+All device types are created as "Private" by default. If you want other SAMI developers to be able to use your device type, you need to Publish it. If you used a Simple Manifest in the steps above, the device is automatically ready to be published. 
 
 If you used an Advanced Manifest, the device type initially has a "Pending" status. Once we have reviewed your Manifest, you will be sent an email notifying you of a change in status. If the device type is Approved, you can immediately Publish the device type:
 
@@ -78,9 +85,7 @@ If your Manifest for the device type was Rejected, you will first have to resubm
 
 ### Updating a device type
 
-<div  class="photo-grid" style="max-width: 512px;">
 ![SAMI architecture overview](/images/docs/sami/sami-documentation/device-type-update.png)
-</div>
 
 - From the dashboard, click the name of the device type you want to update.
 - On the next page, click "Manifests" on the left.
