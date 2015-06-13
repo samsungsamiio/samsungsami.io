@@ -96,7 +96,7 @@ Got MID: 8aa1a183895c42efb905223b3cb5f918
 
 ## Step 5: Visualize the data
 
-Go back to the [User Portal](https://portal.samsungsami.io) to visualize the data sent to SAMI by the Device Simulator. Since this data is sent on behalf of My GearFit Device, click the magnifying glass next to it on the dashboard. 
+Go back to the [User Portal](https://portal.samsungsami.io) to visualize the data sent to SAMI by the Device Simulator. Since this data is sent on behalf of My GearFit Device, click the device name on the dashboard. 
 
 ![device simulator quick start magnifying glass](/images/docs/sami/sami-documentation/ds_magnifying_glass.png)
 
@@ -108,7 +108,7 @@ Now you can view your simulation data in real-time!
 
  ![device simulator realtime data](/images/docs/sami/sami-documentation/ds_data_charts.png){:.lightbox}
 
-You can also click "VIEW TABLE" to view and sort the individual messages sent. 
+You can also click "DATA LOGS" to view and sort the individual messages sent. 
 
  ![device simulator data table](/images/docs/sami/sami-documentation/ds_data_table.png){:.lightbox}
 
