@@ -1503,28 +1503,33 @@ WebSocket /live
 
 Read-only WebSocket that listens for new messages according to one of the following URL query parameter combinations:
 
-| Combination | Required Parameters|
+| Combination | Required Parameters |
 |-------------|-----------|
+|Get by devices | `sdids`{:.param}, `uid`{:.param}, `Authorization`{:.param} |
+|Get by device type | `sdtids`{:.param}, `uid`{:.param}, `Authorization`{:.param}
 |Get by user | `uid`{:.param}, `Authorization`{:.param}
-|Get by device | `sdid`{:.param}, `Authorization`{:.param}
-|Get by device type | `sdtid`{:.param}, `uid`{:.param}, `Authorization`{:.param}
 
 **Available URL query parameters**
 
-| Parameter | Description
-|-----------|--------------
-|`Authorization`{:.param} |Access token.
-|`sdid`{:.param} |(Optional) Source device ID.
-|`sdtid`{:.param} |(Optional) Source device type ID.
-|`uid`{:.param} |(Optional) User ID of the target stream. If not specified, defaults to the user ID of the supplied access token.
+| Parameter | Description                                                |
+|-----------|------------------------------------------------------------|
+|`Authorization`{:.param} |Access token ([user](/sami/sami-documentation/authentication.html#user-token), [device](/sami/sami-documentation/authentication.html#device-token), or [application](/sami/sami-documentation/authentication.html#application-token) token)
+|`sdids`{:.param} |(Optional) A list of source device IDs seperated by commas. Accepts a single device ID.
+|`sdtids`{:.param} |(Optional) A list of source device type IDs seperated by commas. Accepts a single device type ID.
+|`uid`{:.param} | User ID of the target stream. 
 
-The below example uses [Tyrus](https://tyrus.java.net/), a Java API for WebSocket suitable for Web applications.
+We do not support "Get by device type" when a [device token](/sami/sami-documentation/authentication.html#device-token) is provided as the access token.
+{:.warning}
+
+For better performance, we suggest being as specific as possible when passing API call parameters. For example, the "Get by devices" combination returns the result more quickly than the "Get by user" combination.
 {:.info}
+
+The below example uses [Tyrus](https://tyrus.java.net/), a Java API for WebSocket suitable for Web applications. In this specific example, the provided access token could be an [application token](/sami/sami-documentation/authentication.html#application-token) or a [user token](/sami/sami-documentation/authentication.html#user-token).
 
 **Example**
 
 ~~~
-java -jar tyrus-client-cli-1.3.3.jar "wss://api.samsungsami.io/v1.1/live?uid=2&Authorization=bearer+1c20060d9b9f4ad09ee16919a45c71b7"
+java -jar tyrus-client-cli-1.3.3.jar "wss://api.samsungsami.io/v1.1/live?sdids=12345,6789&uid=10022&Authorization=bearer+1c20060d9b9f4ad09ee16919a45c71b7"
 ~~~
 
 **Example response**
@@ -1537,9 +1542,21 @@ java -jar tyrus-client-cli-1.3.3.jar "wss://api.samsungsami.io/v1.1/live?uid=2&A
   },
   "mid":"c7f88d4367394fb696eee413666c83d9",
   "ts":1377793344153,
+  "cts":1377793344153,
   "uid":"10022",
-  "sdid":"nike_fuelband_123"
-}           
+  "sdid":"12345"
+} 
+{
+  "sdtid":"fitbit",
+  "data":{
+    "stepCount":1917
+  },
+  "mid":"88a12e9d01364f2a89d852bfea4dbda8",
+  "ts":1434405388950,
+  "cts":1434405388954,
+  "uid":"10022",
+  "sdid":"6789"
+}
 ~~~
 
 #### Ping
