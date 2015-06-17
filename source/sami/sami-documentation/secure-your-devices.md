@@ -54,7 +54,7 @@ In our examples below, ‘curl’ must be built with OpenSSL v1.0.2 or higher to
 
 To initiate the registration process (Step 3 in the sequence diagram above), the device must pass a device type ID (`dtid`) and vendor device ID (`vdid`). The `vdid` is normally determined by the vendor, and must be unique for the device being registered. The API will return a 409 error if another device tries to register with the same `vdid` and `dtid`.
 
-The following example shows how to make the API call using a curl command and the corresponding response. The response includes `rid` (request ID), `pin` (user PIN) and `nonce` (secret string, obtained in Step 15), which will be used in the subsequent API calls.
+The following example shows how to make the API call using a curl command and the corresponding response. The response includes `rid` (request ID), `pin` (user PIN) and `nonce` (secret string, to be used in Step 15), which will be used in the subsequent API calls.
 
     localhost:~$ curl -X POST -k -i -H "Accept: application/json" -H "Content-Type: application/json" \
     -d '{"deviceTypeId":"dt430e40b477dd42ccb09cc83241ef9b99","vendorDeviceId":"a1b2c3d4"}' \
@@ -103,7 +103,7 @@ In the HTTP response, `status` could be one of the following strings:
 - "EXPIRED": Request is expired
 - "REVOKED": Request is revoked due to another request being created for the same device
 
-If "status" is "registered", the response will also contain `did`, the device ID.
+If "status" is "REGISTERED", the response will also contain `did`, the device ID.
 
 The following error codes may be returned in the HTTP response:
 
