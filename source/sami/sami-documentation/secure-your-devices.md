@@ -52,9 +52,9 @@ In our examples below, ‘curl’ must be built with OpenSSL v1.0.2 or higher to
 
 ### Initiate the registration
 
-To initiate the registration process (Step 3 in the sequence diagram), the device must pass a device type ID (`dtid`) and vendor device ID (`vdid`). The `vdid` is normally determined by the vendor, and must be unique for the device being registered. The API will return a 409 error if another device tries to register with the same `vdid` and `dtid`.
+To initiate the registration process (Step 3 in the sequence diagram above), the device must pass a device type ID (`dtid`) and vendor device ID (`vdid`). The `vdid` is normally determined by the vendor, and must be unique for the device being registered. The API will return a 409 error if another device tries to register with the same `vdid` and `dtid`.
 
-The following example shows how to make the API call using a curl command and the corresponding response. The response includes `pin` and `nonce`, which will be used in the subsequent API calls.
+The following example shows how to make the API call using a curl command and the corresponding response. The response includes `rid` (request ID), `pin` (user PIN) and `nonce` (secret string, obtained in Step 15), which will be used in the subsequent API calls.
 
     localhost:~$ curl -X POST -k -i -H "Accept: application/json" -H "Content-Type: application/json" \
     -d '{"deviceTypeId":"dt430e40b477dd42ccb09cc83241ef9b99","vendorDeviceId":"a1b2c3d4"}' \
@@ -68,7 +68,7 @@ The following example shows how to make the API call using a curl command and th
     Content-Type: application/json; charset=utf-8
     Content-Length: 96
     
-    {"data":{"pin":"QJ39NCBO","nonce":"01329450db1b4a2d8e17acb4449b0f70","expiresOn":1423197470000}}
+    {"data":{"rid":"01329450db1b4a2d8e17acb4449b0f70","pin":"QJ39NCBO","nonce":"35cc3b62c8a544788a696a652d63d8c5","expiresOn":1423197470000}}
 
 ### Check registration status
 
@@ -77,14 +77,13 @@ At Step 8 of secure device registration, the user is presented `pin` and a regis
 During this process, the device can make the following **optional** API call to query the registration status. (This step is not illustrated in the sequence diagram.)
 
 ~~~
-  POST /cert/devices/registrations/status
+  GET /cert/devices/registrations/:rid/status
 ~~~
 
 `nonce` is passed as data to this POST request. The below excerpt illustrates sending the HTTP request using curl, and the corresponding HTTP response.
 
-    localhost:~$ curl -X POST -k -i -H "Accept: application/json" -H "Content-Type: application/json" \
-    -d '{"nonce":"19d1d455417841d8bcc94d1357d8a0e2"}' \
-    --cert /path/to/client.cert --key /path/to/client-pri.key https://s-api.samsungsami.io/v1.1/cert/devices/registrations/status
+    localhost:~$ curl -k -i -H "Accept: application/json" \
+    --cert /path/to/client.cert --key /path/to/client-pri.key https://s-api.samsungsami.io/v1.1/cert/devices/registrations/01329450db1b4a2d8e17acb4449b0f70/status
     
     HTTP/1.1 200 OK
     Access-Control-Allow-Origin: *
@@ -94,15 +93,15 @@ During this process, the device can make the following **optional** API call to 
     Content-Type: application/json; charset=utf-8
     Content-Length: 29
     
-    {"data":{"status":"pending device completion"}}
+    {"data":{"status":"PENDING_DEVICE_COMPLETION"}}
 
 In the HTTP response, `status` could be one of the following strings:
 
-- "pending user confirmation": After initial registration; before user confirmation
-- "pending device completion": After user confirmation; before device registration completes
-- "registered": Device is registered
-- "expired": Request is expired
-- "revoked": Request is revoked due to another request being created for the same device
+- "PENDING_USER_CONFIRMATION": After initial registration; before user confirmation
+- "PENDING_DEVICE_COMPLETION": After user confirmation; before device registration completes
+- "REGISTERED": Device is registered
+- "EXPIRED": Request is expired
+- "REVOKED": Request is revoked due to another request being created for the same device
 
 If "status" is "registered", the response will also contain `did`, the device ID.
 
@@ -116,8 +115,8 @@ The following error codes may be returned in the HTTP response:
 When the user clicks the "Pair" button (Step 14), the device makes the final API call to complete the registration (Step 15). The following example shows sending the HTTP request via a curl command, and the corresponding reply:
 
     localhost:~$ curl -X PUT -k -i -H "Accept: application/json" -H "Content-Type: application/json" \
-    -d '{"nonce":"19d1d455417841d8bcc94d1357d8a0e2"}' --cert /path/to/client.cert --key /path/to/client-pri.key \
-    https://s-api.samsungsami.io/v1.1/cert/devices/registrations
+    -d '{"nonce":"35cc3b62c8a544788a696a652d63d8c5"}' --cert /path/to/client.cert --key /path/to/client-pri.key \
+    https://s-api.samsungsami.io/v1.1/cert/devices/registrations/01329450db1b4a2d8e17acb4449b0f70
     
     HTTP/1.1 200 OK
     Access-Control-Allow-Origin: *
