@@ -7,6 +7,14 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### June 17, 2015
+
+Made some updates to the [WebSockets specification](/sami/sami-documentation/sending-and-receiving-data.html#live-streaming-data-with-websocket-api) and to [secure device registration](/sami/sami-documentation/secure-your-devices.html).
+
+### June 13, 2015
+
+Updated the application and device creation flows in the [Developer Portal documentation](/sami/sami-documentation/developer-user-portals.html) to reflect design changes and additions.
+
 ### June 10, 2015
 
 New to SAMI and eager to start? Our new [Hello, World!](/sami/sami-documentation/hello-world.html) quick-start guide walks through the basics of connecting a device to SAMI, sending data and looking at the results (thanks to the Device Simulator).
