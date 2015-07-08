@@ -268,7 +268,7 @@ Pragma: no-cache
 
 #### Implicit method
 
-The application makes a POST call using a previously issued `refresh_token`. Among the request parameters below, `old_access_token` should be included in an HTTP Authorization header and and the remaining parameters should be passed in the URL.
+The application makes a POST call using a previously issued `refresh_token`. Among the request parameters below, `old_access_token` should be included in an HTTP Authorization header and the remaining parameters should be passed in the request body.
 
 **Request parameters**
 
@@ -278,12 +278,16 @@ The application makes a POST call using a previously issued `refresh_token`. Amo
 |`refresh_token`{:.param} |Refresh token used to obtain a new access token. 
 |`old_access_token`{:.param} |The old token issued to the client.
 
+Here is how the Authorization header looks like:
+
+    Authorization: bearer <old_access_token>
+
 **Example request**
 
 ~~~
 POST /token?grant_type=refresh_token&refresh_token=tGzv3JOkF0XG5Qx2TlKWIA HTTP/1.1
 Host: accounts.samsungsami.io
-Authorization: Bearer czZCaGRSa3F0MzpnWDFmQmF0M2JW
+Authorization: Bearer 990458b746e9433a8fd7696ec36577aa
 Content-Type: application/x-www-form-urlencoded
 ~~~
 
@@ -297,7 +301,7 @@ Sending `client_id` and `client_secret` is necessary when:
 - Obtaining an access token using the [Client Credentials method.](#client-credentials-method)
 - [Refreshing an access token.](#refresh-a-token) 
 
-HTTP Basic authentication is the recommended way. You can pass an Authorization header with Base64-encoded `client_id` and `client_secret` as follows:
+HTTP Basic authentication is the recommended way. You pass an Authorization header with Base64-encoded `client_id` and `client_secret`. Specifically, encode the two strings together with colon separating them. Below is the example of an Authroization header:
 
 **Example**
 
