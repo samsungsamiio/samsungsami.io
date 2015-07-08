@@ -278,12 +278,16 @@ The application makes a POST call using a previously issued `refresh_token`. Amo
 |`refresh_token`{:.param} |Refresh token used to obtain a new access token. 
 |`old_access_token`{:.param} |The old token issued to the client.
 
+Here is how the Authorization header looks like:
+
+    Authorization: bearer <old_access_token>
+
 **Example request**
 
-~~~json
+~~~
 POST /token HTTP/1.1
 Host: accounts.samsungsami.io
-Authorization: Bearer 990458b746e9433a8fd7696ec36577aa
+Authorization: bearer 990458b746e9433a8fd7696ec36577aa
 Content-Type: application/x-www-form-urlencoded
 
 grant_type=refresh_token&refresh_token=tGzv3JOkF0XG5Qx2TlKWIA
