@@ -285,10 +285,12 @@ Here is how the Authorization header looks like:
 **Example request**
 
 ~~~
-POST /token?grant_type=refresh_token&refresh_token=tGzv3JOkF0XG5Qx2TlKWIA HTTP/1.1
+POST /token HTTP/1.1
 Host: accounts.samsungsami.io
 Authorization: Bearer 990458b746e9433a8fd7696ec36577aa
 Content-Type: application/x-www-form-urlencoded
+
+grant_type=refresh_token&refresh_token=tGzv3JOkF0XG5Qx2TlKWIA
 ~~~
 
 The response is the same as the one for the Authorization Code method.
