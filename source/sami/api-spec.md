@@ -1546,17 +1546,6 @@ java -jar tyrus-client-cli-1.3.3.jar "wss://api.samsungsami.io/v1.1/live?sdids=1
   "uid":"10022",
   "sdid":"12345"
 } 
-{
-  "sdtid":"fitbit",
-  "data":{
-    "stepCount":1917
-  },
-  "mid":"88a12e9d01364f2a89d852bfea4dbda8",
-  "ts":1434405388950,
-  "cts":1434405388954,
-  "uid":"10022",
-  "sdid":"6789"
-}
 ~~~
 
 #### Ping
