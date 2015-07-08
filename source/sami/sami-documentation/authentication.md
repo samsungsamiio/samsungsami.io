@@ -278,10 +278,6 @@ The application makes a POST call using a previously issued `refresh_token`. Amo
 |`refresh_token`{:.param} |Refresh token used to obtain a new access token. 
 |`old_access_token`{:.param} |The old token issued to the client.
 
-Here is how the Authorization header looks like:
-
-    Authorization: bearer <old_access_token>
-
 **Example request**
 
 ~~~
