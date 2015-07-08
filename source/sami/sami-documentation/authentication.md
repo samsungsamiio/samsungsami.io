@@ -280,7 +280,7 @@ The application makes a POST call using a previously issued `refresh_token`. Amo
 
 **Example request**
 
-~~~
+~~~json
 POST /token HTTP/1.1
 Host: accounts.samsungsami.io
 Authorization: Bearer 990458b746e9433a8fd7696ec36577aa
@@ -299,7 +299,7 @@ Sending `client_id` and `client_secret` is necessary when:
 - Obtaining an access token using the [Client Credentials method.](#client-credentials-method)
 - [Refreshing an access token.](#refresh-a-token) 
 
-HTTP Basic authentication is the recommended way. You pass an Authorization header with Base64-encoded `client_id` and `client_secret`. Specifically, encode the two strings together with colon separating them. Below is the example of an Authroization header:
+HTTP Basic authentication is the recommended way. You pass an Authorization header with Base64-encoded `client_id` and `client_secret`. Specifically, encode the two strings together with colon separating them. Below is the example of an Authorization header:
 
 **Example**
 
