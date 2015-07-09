@@ -287,10 +287,10 @@ Here is how the Authorization header looks like:
 ~~~
 POST /token HTTP/1.1
 Host: accounts.samsungsami.io
-Authorization: bearer 990458b746e9433a8fd7696ec36577aa
+Authorization: bearer 990458b746e9433a8fd7696ec36577adda
 Content-Type: application/x-www-form-urlencoded
 
-grant_type=refresh_token&refresh_token=tGzv3JOkF0XG5Qx2TlKWIA
+grant_type=refresh_token&refresh_token=tGzv3JOkF0XdddG5Qx2TlddA
 ~~~
 
 The response is the same as the one for the Authorization Code method.
@@ -314,7 +314,7 @@ Put the encoded string of the above into the header. Below is the example of an 
 **Example**
 
 ~~~
-Authorization: Basic czZCaGRSa3F0Mzo3RmpmcDBaQnIxS3REUmJuZlZkbUl3
+Authorization: Basic cdddZCaGRSa3F0Mzo3RmpmcDBaQnIxS3REUmJuZlZkbUl3
 ~~~
 
 Alternatively, the credentials (`client_id` and `client_secret`) can be included in the request body (**not** the request URI). This should only be used when HTTP Basic authentication is not possible. 
@@ -336,7 +336,7 @@ In the following example, an HTTP request to refresh an access token includes `c
      Content-Type: application/x-www-form-urlencoded
 
      grant_type=refresh_token&refresh_token=tGzv3JOkF0XG5Qx2TlKWIA
-     &client_id=s6BhdRkqt3&client_secret=7Fjfp0ZBr1KtDRbnfVdmIw
+     &client_id=s6Bhddddqt3&client_secret=7Fggfpss0ZBr1KtDRbnfVdmIw
 ~~~
 
 ### /authorize errors
