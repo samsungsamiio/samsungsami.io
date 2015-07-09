@@ -309,7 +309,7 @@ HTTP Basic authentication is the recommended way. You pass an Authorization head
 client_id:client_secret
 ~~~
 
-Pass the encode string of the above to the header. Below is the example of an Authorization header. 
+Put the encoded string of the above into the header. Below is the example of an Authorization header. 
 
 **Example**
 
