@@ -336,7 +336,7 @@ In the following example, an HTTP request to refresh an access token includes `c
      Content-Type: application/x-www-form-urlencoded
 
      grant_type=refresh_token&refresh_token=tGzv3JOkF0XG5Qx2TlKWIA
-     &client_id=s6Bhddddqt3&client_secret=7Fggfpss0ZBr1KtDRbnfVdmIw
+     &client_id=s6BhdddXXdqt3&client_secret=7Fggfpss0ZBr1KXXtDRbnfVdmIw
 ~~~
 
 ### /authorize errors
