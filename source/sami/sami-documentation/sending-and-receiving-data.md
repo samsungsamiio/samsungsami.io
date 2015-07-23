@@ -100,14 +100,6 @@ For this call, you can use different URL query parameter combinations to get his
 GET /messages
 ~~~
 
-### Get by user
-
-| Parameter | Description                                                |
-|-----------|------------------------------------------------------------|
-| `uid`{:.param}       | user ID of the owner of the messages being searched.        |
-| `startDate`{:.param} | Time of earliest item to return (milliseconds since epoch). |
-| `endDate`{:.param}   | Time of latest item to return (milliseconds since epoch).   |
-
 ### Get by message ID
 
 | Parameter | Description                                                |
