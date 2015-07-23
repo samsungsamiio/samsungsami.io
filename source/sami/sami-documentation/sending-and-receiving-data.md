@@ -162,39 +162,6 @@ This is a simple way to retrieve the most recent messages sent by devices. You m
 GET /messages/last
 ~~~
 
-## Getting raw messages
-
-This call retrieves messages in their original format. You may filter the messages by querying `sdid`{:.param}, `startDate`{:.param} and `endDate`{:.param}.
-
-**Example response**
-
-~~~~
-{
-    "sdid": "4697f11336c540a69ffd6f445061215e",
-    "startDate": 1414691893755,
-    "endDate": 1414691893765,
-    "count": 100,
-    "order": "asc",
-    "size": 2,
-    "data": [
-        {
-            "cts": 1414691893755,
-            "ts": 1414691893755,
-            "mid": "566409a96ca64f5c9e04fbbc32eb5f6f",
-            "sdid": "4697f11336c540a69ffd6f445061215e",
-            "data": "{\"dateMicro\":1414691893753000,\"ecg\":-54}"
-        },
-        {
-            "cts": 1414691893765,
-            "ts": 1414691893765,
-            "mid": "2d6946758c5f43139d62e010e471194e",
-            "sdid": "4697f11336c540a69ffd6f445061215e",
-            "data": "{\"dateMicro\":1414691893762000,\"ecg\":-78}"
-        }
-    ]
-}
-~~~~
-
 ## Live-streaming data with WebSocket API
 
 By using WebSockets, you can set up a connection between the server and compatible devices to receive messages in real-time.

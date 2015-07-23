@@ -1006,7 +1006,6 @@ Returns normalized messages, according to one of the following parameter combina
 
 |Combination |Required Parameters
 |------------|---------
-|Get by user |`uid`{:.param}, `endDate`{:.param}, `startDate`{:.param}
 |Get by device |`sdid`{:.param}, `endDate`{:.param}, `startDate`{:.param}
 |Get by message ID |`mid`{:.param}
 |Get by device and field presence |`sdid`{:.param}, `fieldPresence`{:.param}
@@ -1220,75 +1219,6 @@ Returns presence of normalized messages.
   ]
 }
 ~~~~
-
-### Get raw messages
-
-~~~
-GET /messages/raw
-~~~
-
-Returns raw (original format) messages, according to one of the following parameter combinations.
-
-|Combination |Required Parameters
-|------------|---------
-|Get messages by source device |`sdid`{:.param}, `endDate`{:.param}, `startDate`{:.param}
-|Get Actions by destination device |`ddid`{:.param}, `endDate`{:.param}, `startDate`{:.param}
-
-**Available URL query parameters**
-
-  |Parameter         |Description
-  |----------------- |-------------------------
-  |`sdid`{:.param}           |(Optional) Source device ID of the messages being searched.
-  |`ddid`{:.param}           |(Optional) Destination device ID of the Actions being searched.
-  |`startDate`{:.param}      |(Optional) Time of earliest (oldest) item to return, in milliseconds since epoch.
-  |`endDate`{:.param}        |(Optional) Time of latest (newest) item to return, in milliseconds since epoch.
-  |`order`{:.param}          |(Optional) Desired sort order: `asc` or `desc` (default: `asc`).
-  |`count`{:.param}          |Number of items to return per query. 
-  |`offset`{:.param}         |(Optional) A string that represents the starting item, should be the value of 'next' field received in the last response (required for pagination). 
-
-
-**Example response**
-
-~~~~
-{
-  "sdid": "4697f11336c540a69ffd6f445061215e",
-  "startDate": 1414691893755,
-  "endDate": 1414691893765,
-  "count": 100,
-  "order": "asc",
-  "size": 2,
-  "data": [
-    {
-      "cts": 1414691893755,
-      "ts": 1414691893755,
-      "mid": "566409a96ca64f5c9e04fbbc32eb5f6f",
-      "sdid": "4697f11336c540a69ffd6f445061215e",
-      "data": "{\"dateMicro\":1414691893753000,\"ecg\":-54}"
-    },
-    {
-      "cts": 1414691893765,
-      "ts": 1414691893765,
-      "mid": "2d6946758c5f43139d62e010e471194e",
-      "sdid": "4697f11336c540a69ffd6f445061215e",
-      "data": "{\"dateMicro\":1414691893762000,\"ecg\":-78}"
-    }
-  ]
-}
-~~~~
-
-**Response parameters**
-
-|Parameter         |Description
-|----------------- |------------------
-|`sdid`{:.param} |Source device ID.
-|`startDate`{:.param} |Time of earliest message requested.
-|`endDate`{:.param} |Time of latest message requested.
-|`count`{:.param} |Number of items requested.
-|`order`{:.param} |Sort order.
-|`size`{:.param} |Number of items received.
-|`cts`{:.param} |Timestamp from SAMI.
-|`ts`{:.param} |Timestamp from source.
-|`mid`{:.param} |Message ID.
 
 ## Export
 
