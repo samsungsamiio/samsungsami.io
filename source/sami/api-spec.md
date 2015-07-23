@@ -1421,6 +1421,10 @@ Returns a list of export queries that have been performed.
 
 ## WebSockets
 
+By using WebSockets, you can set up a connection between SAMI and compatible devices or applications to receive and/or send messages in real time.
+
+There are two types of WebSockets: read-only and bi-directional ones. Your application uses a read-only WebSocket to listen to messages sent by the source devices that the application monitors. On the other hand, use a bi-directional WebSocket to receive the messages targeted to your applications or devices. The bi-directional WebSocket also allows the application or devices to send messages back to SAMI.
+
 See [**WebSocket errors**](#websocket-errors) for a list of error
 codes that can be returned for WebSockets.
 {:.info}
@@ -1431,15 +1435,9 @@ codes that can be returned for WebSockets.
 WebSocket /live
 ~~~
 
-Read-only WebSocket that listens for new messages according to one of the following URL query parameter combinations:
+This call sets up one directional data connection from SAMI to a WebSocket client. The read-only WebSocket is primarily used by applications with monitoring functionalities. The application, as the client, listen for any new messages sent to SAMI by the specified source devices in real-time.
 
-| Combination | Required Parameters |
-|-------------|-----------|
-|Get by devices | `sdids`{:.param}, `uid`{:.param}, `Authorization`{:.param} |
-|Get by device type | `sdtids`{:.param}, `uid`{:.param}, `Authorization`{:.param}
-|Get by user | `uid`{:.param}, `Authorization`{:.param}
-
-**Available URL query parameters**
+**Request Parameters**
 
 | Parameter | Description                                                |
 |-----------|------------------------------------------------------------|
@@ -1448,13 +1446,21 @@ Read-only WebSocket that listens for new messages according to one of the follow
 |`sdtids`{:.param} |(Optional) A list of source device type IDs seperated by commas. Accepts a single device type ID.
 |`uid`{:.param} | User ID of the target stream. 
 
+You can use different URL query parameter combinations to get messages by device, by device type, or by user.
+
+| Combination | Required Parameters |
+|-------------|-----------|
+|Get by devices | `sdids`{:.param}, `uid`{:.param}, `Authorization`{:.param} |
+|Get by device type | `sdtids`{:.param}, `uid`{:.param}, `Authorization`{:.param}
+|Get by user | `uid`{:.param}, `Authorization`{:.param}
+
 We do not support "Get by device type" when a [device token](/sami/sami-documentation/authentication.html#device-token) is provided as the access token.
 {:.warning}
 
 For better performance, we suggest being as specific as possible when passing API call parameters. For example, the "Get by devices" combination returns the result more quickly than the "Get by user" combination.
 {:.info}
 
-The below example uses [Tyrus](https://tyrus.java.net/), a Java API for WebSocket suitable for Web applications. In this specific example, the provided access token could be an [application token](/sami/sami-documentation/authentication.html#application-token) or a [user token](/sami/sami-documentation/authentication.html#user-token).
+In the following example we use [Tyrus](https://tyrus.java.net/), a Java API for WebSockets suitable for web applications. We listen to the messages sent to SAMI by the two source devices. In this specific example, the provided access token could be an [application token](/sami/sami-documentation/authentication.html#application-token) or a [user token](/sami/sami-documentation/authentication.html#user-token).
 
 **Example**
 
@@ -1462,7 +1468,9 @@ The below example uses [Tyrus](https://tyrus.java.net/), a Java API for WebSocke
 java -jar tyrus-client-cli-1.3.3.jar "wss://api.samsungsami.io/v1.1/live?sdids=12345,6789&uid=10022&Authorization=bearer+1c20060d9b9f4ad09ee16919a45c71b7"
 ~~~
 
-**Example response**
+In the below example, the client receives a copy of the message that one of the source devices sends to SAMI.
+
+**Example message received by client**
 
 ~~~
 {
@@ -1480,7 +1488,7 @@ java -jar tyrus-client-cli-1.3.3.jar "wss://api.samsungsami.io/v1.1/live?sdids=1
 
 #### Ping
 
-SAMI sends a ping every 30 seconds to the client. If a ping is not received, the connection has stalled and the client must reconnect.
+SAMI sends a ping every 30 seconds to the client. If a ping is not received, the connection has stalled and the WebSocket client must reconnect.
 
 **Example ping message sent by server**
 
@@ -1491,24 +1499,22 @@ SAMI sends a ping every 30 seconds to the client. If a ping is not received, the
 ~~~
 
 ### Bi-directional message pipe
-  
-Establishes a data connection to SAMI and allows to register as a device or device list.
+
+#### Setting up the pipe
+
+This call opens a data connection between SAMI and a device or device list. 
 
 ~~~
 WebSocket /websocket
 ~~~
-
-#### Registration
-
-All client applications, including device proxies, must register after opening the WebSocket connection. Otherwise client messages will be discarded and clients will not be sent messages. 
-
-Register messages can set `ack`{:.param} to "true" to receive an acknowledgment message from SAMI for each message sent.
 
 **Available URL query parameters**
 
 | Parameter | Description
 |-----------|--------------
 |`ack`{:.param} |(Optional) Boolean (true/false). WebSocket returns ACK messages for each message sent by client. If not specified, defaults to false.
+
+All client applications, including device proxies, must register after opening the connection. Otherwise client messages will be discarded and clients will not be sent messages.
 
 **Example registration message sent by client**
 
@@ -1526,7 +1532,7 @@ Register messages can set `ack`{:.param} to "true" to receive an acknowledgment 
 | Parameter | Description
 |-----------|--------------
 |`sdid`{:.param} |Source device ID.
-|`Authorization`{:.param} |Access token. 
+|`Authorization`{:.param} |Access token with READ and WRITE access to `sdid`{:.param}. 
 |`type`{:.param} |Type of message: must be `register` for registration message.
 |`cid`{:.param} |(Optional) Client (application) ID. Can be used when `ack=true`.
 
@@ -1542,7 +1548,10 @@ Register messages can set `ack`{:.param} to "true" to receive an acknowledgment 
 }
 ~~~
 
-#### Ping
+You could send multiple messages to register more than one devices. Then you can send and receive messages for these devices over one bi-directional WebSocket.
+{:.info}
+
+##### Ping
 
 SAMI sends a ping every 30 seconds to the client. If a ping is not received, the connection has stalled and the client must reconnect.
 
@@ -1554,7 +1563,7 @@ SAMI sends a ping every 30 seconds to the client. If a ping is not received, the
 }         
 ~~~
 
-### Sending messages
+#### Sending messages
 
 Posting a message via WebSockets differs from performing the REST call in that `cid`{:.param} can be included. Responses from SAMI include `cid`{:.param} to facilitate client side validations.
 
@@ -1562,7 +1571,8 @@ Posting a message via WebSockets differs from performing the REST call in that `
 
 ~~~
 {
-  "sdid": "d597a8ffb3364f98a904515cbc574cb2", 
+  "sdid": "d597a8ffb3364f98a904515cbc574cb2",
+  "ddid": "<destination device ID>",
   "cid":"1234567890", 
   "type": "message",
   "data":{
@@ -1575,12 +1585,12 @@ Posting a message via WebSockets differs from performing the REST call in that `
 
  |Parameter   |Description
   |----------- |-----------
-  |`sdid`{:.param}     |(Optional) Source device ID.
+  |`sdid`{:.param}     |(Optional) Source device ID. The ID of one of the devices registered on the bi-directional websocket.
   |`data`{:.param}     |Data. Can be a simple text field, or a JSON document.
-  |`ddid`{:.param}     |(Optional) Destination device ID. Can be used when sending a message to another device.
+  |`ddid`{:.param}     |(Optional) Destination device ID. Must be used when sending a message to another device. Otherwise, only sends to SAMI to store.
   |`ts`{:.param}       |(Optional) Message timestamp. Must be a valid time: past time, present or future up to the current server timestamp grace period. Current time if omitted.
   |`type`{:.param} |Type of message: `message` or `action` (default: `message`).
-  |`cid`{:.param} |(Optional) Client (application) ID. Can be used when `ack=true`.
+  |`cid`{:.param} |(Optional) Client (application) ID. Can be used when `ack=true`. SAMI will return `cid`{:.param} (in addition to `mid`{:.param}) in its ACK messages to facilitate client side validations. This helps to clarify which response is for which message.
 
 **Example ACK message**
 
@@ -1593,9 +1603,9 @@ Posting a message via WebSockets differs from performing the REST call in that `
 }
 ~~~
 
-### Receiving messages
+#### Receiving messages
 
-Devices connected to the WebSocket receive messages that contain their corresponding `ddid`{:.param} (destination device ID).
+Devices connected to the bi-directional WebSocket receive messages that contain their corresponding `ddid`{:.param} (destination device ID).
 
 **Example message received by client**
 

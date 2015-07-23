@@ -156,13 +156,17 @@ GET /messages/last
 
 ## Live-streaming data with WebSocket API
 
-By using WebSockets, you can set up a connection between the server and compatible devices to receive messages in real-time.
+By using WebSockets, you can set up a connection between SAMI and compatible devices or applications to receive and/or send messages in real time.
+
+There are two types of WebSockets: read-only and bi-directional ones. Your application uses a read-only WebSocket to listen to messages sent by the source devices that the application monitors. On the other hand, use a bi-directional WebSocket to receive the messages targeted to your applications or devices. The bi-directional WebSocket also allows the application or devices to send messages back to SAMI.
+
+### Read-only WebSocket
 
 ~~~
 WebSocket /live
 ~~~
 
-This is a read-only WebSocket that allows the developer to listen for any new messages sent to SAMI by the specified source devices.
+This call sets up one directional data connection from SAMI to a WebSocket client. The read-only WebSocket is primarily used by applications with monitoring functionalities. The application, as the client, listen for any new messages sent to SAMI by the specified source devices in real-time.
 
 **Request Parameters**
 
@@ -195,7 +199,9 @@ In the following example we use [Tyrus](https://tyrus.java.net/), a Java API for
 java -jar tyrus-client-cli-1.3.3.jar "wss://api.samsungsami.io/v1.1/live?sdids=12345,6789&uid=10022&Authorization=bearer+1c20060d9b9f4ad09ee16919a45c71b7"
 ~~~
 
-**Example response**
+In the below example, the client receives a copy of the message that one of the source devices sends to SAMI.
+
+**Example message received by client**
 
 ~~~
 {
@@ -213,7 +219,7 @@ java -jar tyrus-client-cli-1.3.3.jar "wss://api.samsungsami.io/v1.1/live?sdids=1
 
 #### Ping
 
-SAMI sends a ping every 30 seconds to the client. If a ping is not received, the connection has stalled and the client must reconnect.
+SAMI sends a ping every 30 seconds to the client. If a ping is not received, the connection has stalled and the WebSocket client must reconnect.
 
 **Example ping message sent by server**
 
@@ -223,19 +229,19 @@ SAMI sends a ping every 30 seconds to the client. If a ping is not received, the
 }         
 ~~~
 
-### Setting up a bi-directional message pipe
+### Bi-directional WebSocket
 
-This call sets up a data connection between SAMI and a device or device list. 
+#### Setting up a bi-directional message pipe
+
+This call opens a data connection between SAMI and a device or device list. 
 
 ~~~
 WebSocket /websocket
 ~~~
 
-#### Registration
+All client applications, including device proxies, must register after opening the connection. Otherwise client messages will be discarded and clients will not be sent messages.
 
-All client applications, including device proxies, must register after opening the WebSocket connection. Otherwise client messages will be discarded and clients will not be sent messages.
-
-Setting `ack`{:.param} to "true" in the URL query string will cause SAMI to return an ACK message for each message sent. Otherwise, this defaults to "false" and you will not receive ACK messages. 
+Setting `ack`{:.param} to "true" in the above URL query string will cause SAMI to return an ACK message for each message sent. Otherwise, this defaults to "false" and you will not receive ACK messages. 
 
 The registration message `type`{:.param} must be "register". `Authorization`{:.param} refers to the authorization token with READ and WRITE access to `sdid`{:.param}. The `cid`{:.param} parameter is discussed in [Sending messages](#sending-messages).
 
@@ -262,19 +268,21 @@ The registration message `type`{:.param} must be "register". `Authorization`{:.p
 }
 ~~~
 
-#### Ping
+You could send multiple messages to register more than one devices. Then you can send and receive messages for these devices over one bi-directional WebSocket.
+{:.info}
 
 As with /live, SAMI sends a ping every 30 seconds to the client. If a ping is not received, the connection has stalled and the client must reconnect.
 
-### Sending messages
+#### Sending messages
 
-When sending a message to SAMI or another device, you may specify `type`{:.param} as "message" or "action". Additionally, if `ack`{:.param} was set to "true", you may optionally include `cid`{:.param}—the client ID. SAMI will return `cid`{:.param} (in addition to `mid`{:.param}) in its ACK messages to facilitate client side validations. This helps to clarify which response is for which message. 
+When sending a message to SAMI or another device, you may specify `type`{:.param} as "message" or "action". Additionally, if `ack`{:.param} was set to "true", you may optionally include `cid`{:.param}—the client ID. SAMI will return `cid`{:.param} (in addition to `mid`{:.param}) in its ACK messages to facilitate client side validations. This helps to clarify which response is for which message. If sending a message to another device, you should specify `ddid`{:.param}. Otherwise, it only sends to SAMI to store. In the following example, `sdid`{:.param} refers to the device ID of the device registered on the bi-directional websocket.
 
 **Example request**
 
 ~~~
 {
-  "sdid": "d597a8ffb3364f98a904515cbc574cb2", 
+  "sdid": "DFKK234-JJO5",
+  "ddid": "<destination device ID>",
   "cid":"1234567890", 
   "type": "message",
   "data":{
@@ -294,7 +302,7 @@ When sending a message to SAMI or another device, you may specify `type`{:.param
 }
 ~~~
 
-### Receiving messages
+#### Receiving messages
 
 In the below example, `ddid`{:.param} refers to the device ID of the device connected to the WebSocket. Connected devices will receive messages containing their corresponding `ddid`{:.param}.
 
