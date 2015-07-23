@@ -94,7 +94,7 @@ Any message with Actions should only contain "actions" in the payload.
 
 ## Getting normalized messages
 
-For this call, you can use different URL query parameter combinations to get historical data by user, by message ID, or by device.
+For this call, you can use different URL query parameter combinations to get historical data by message ID or by device.
 
 ~~~
 GET /messages
