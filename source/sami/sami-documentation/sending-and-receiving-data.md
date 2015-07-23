@@ -239,9 +239,9 @@ This call opens a data connection between SAMI and a device or device list.
 WebSocket /websocket
 ~~~
 
-All client applications, including device proxies, must register after opening the connection. Otherwise client messages will be discarded and clients will not be sent messages.
+Setting `ack`{:.param} to "true" in the above URL query string will cause SAMI to return an ACK message for each message sent. Otherwise, this defaults to "false" and you will not receive ACK messages.
 
-Setting `ack`{:.param} to "true" in the above URL query string will cause SAMI to return an ACK message for each message sent. Otherwise, this defaults to "false" and you will not receive ACK messages. 
+All client applications, including device proxies, must register after opening the connection. Otherwise client messages will be discarded and clients will not be sent messages.
 
 The registration message `type`{:.param} must be "register". `Authorization`{:.param} refers to the authorization token with READ and WRITE access to `sdid`{:.param}. The `cid`{:.param} parameter is discussed in [Sending messages](#sending-messages).
 
@@ -275,7 +275,7 @@ As with /live, SAMI sends a ping every 30 seconds to the client. If a ping is no
 
 #### Sending messages
 
-When sending a message to SAMI or another device, you may specify `type`{:.param} as "message" or "action". Additionally, if `ack`{:.param} was set to "true", you may optionally include `cid`{:.param}—the client ID. SAMI will return `cid`{:.param} (in addition to `mid`{:.param}) in its ACK messages to facilitate client side validations. This helps to clarify which response is for which message. If sending a message to another device, you should specify `ddid`{:.param}. Otherwise, it only sends to SAMI to store. In the following example, `sdid`{:.param} refers to the device ID of the device registered on the bi-directional websocket.
+When sending a message to SAMI or another device, you may specify `type`{:.param} as "message" or "action". Additionally, if `ack`{:.param} was set to "true" when opening the WebSocket connection, you may optionally include `cid`{:.param}—the client ID. SAMI will return `cid`{:.param} (in addition to `mid`{:.param}) in its ACK messages to facilitate client side validations. This helps to clarify which response is for which message. If sending a message to another device, you should specify `ddid`{:.param}. Otherwise, it only sends to SAMI to store. In the following example, `sdid`{:.param} refers to the device ID of the device registered on the bi-directional websocket.
 
 **Example request**
 
