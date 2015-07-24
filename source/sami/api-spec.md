@@ -1421,9 +1421,9 @@ Returns a list of export queries that have been performed.
 
 ## WebSockets
 
-By using WebSockets, you can set up a connection between SAMI and compatible devices or applications to receive and/or send messages in real time.
+By using WebSockets, you can set up a connection between SAMI and compatible devices or applications to receive and/or send messages in real-time.
 
-There are two types of WebSockets: read-only and bi-directional ones. Your application uses a read-only WebSocket to listen to messages sent by the source devices that the application monitors. On the other hand, use a bi-directional WebSocket to receive the messages targeted to your applications or devices. The bi-directional WebSocket also allows the application or devices to send messages back to SAMI.
+There are two types of WebSockets: read-only and bi-directional. Your application uses a read-only WebSocket to listen to messages sent by the source devices that the application monitors. On the other hand, you would use a bi-directional WebSocket to receive messages targeted to your applications or devices. The bi-directional WebSocket also allows the applications or devices to send messages back to SAMI.
 
 See [**WebSocket errors**](#websocket-errors) for a list of error
 codes that can be returned for WebSockets.
@@ -1435,7 +1435,7 @@ codes that can be returned for WebSockets.
 WebSocket /live
 ~~~
 
-This call sets up one directional data connection from SAMI to a WebSocket client. The read-only WebSocket is primarily used by applications with monitoring functionalities. The application, as the client, listen for any new messages sent to SAMI by the specified source devices in real-time.
+This call sets up a one-directional data connection from SAMI to a WebSocket client. The read-only WebSocket is primarily used by applications with monitoring functionalities. The application, as the client, listens in real-time for any new messages sent to SAMI by the specified source devices.
 
 **Request Parameters**
 
@@ -1548,7 +1548,7 @@ All client applications, including device proxies, must register after opening t
 }
 ~~~
 
-You could send multiple messages to register more than one devices. Then you can send and receive messages for these devices over one bi-directional WebSocket.
+You could send multiple messages to register more than one device. Then you can send and receive messages for these devices over a single bi-directional WebSocket.
 {:.info}
 
 ##### Ping

@@ -22,7 +22,7 @@ With SAMI's REST API, you can send and retrieve historical data according to a s
 POST /messages
 ~~~
 
-When sending a message that only contains data instead of Actions, only the source device ID (`sdid`{:.param}) and payload are required. If you plan to send data to another device, you must also include the destination device ID (`ddid`{:.param}). There is `type`{:.param} field, whose value is `message` by default. However, we strongly suggest you to explicitly set `type`{:.param} to `message` so that your app is future-proof. 
+When sending a message that contains only data and no Actions, only the source device ID (`sdid`{:.param}) and payload are required. If you plan to send data to another device, you must also include the destination device ID (`ddid`{:.param}). The `type`{:.param} field defaults to value "message". However, we strongly suggest that you explicitly set `type`{:.param} to `message` so that your app is future-proof. 
 
 Using the timestamp parameter (`ts`{:.param}), you can specify a timestamp for the message in milliseconds. Values up to the current server timestamp grace period are valid. If you omit `ts`{:.param}, the message defaults to the current time.
 
@@ -156,9 +156,9 @@ GET /messages/last
 
 ## Live-streaming data with WebSocket API
 
-By using WebSockets, you can set up a connection between SAMI and compatible devices or applications to receive and/or send messages in real time.
+By using WebSockets, you can set up a connection between SAMI and compatible devices or applications to receive and/or send messages in real-time.
 
-There are two types of WebSockets: read-only and bi-directional ones. Your application uses a read-only WebSocket to listen to messages sent by the source devices that the application monitors. On the other hand, use a bi-directional WebSocket to receive the messages targeted to your applications or devices. The bi-directional WebSocket also allows the application or devices to send messages back to SAMI.
+There are two types of WebSockets: read-only and bi-directional. Your application uses a read-only WebSocket to listen to messages sent by the source devices that the application monitors. On the other hand, you would use a bi-directional WebSocket to receive messages targeted to your applications or devices. The bi-directional WebSocket also allows the applications or devices to send messages back to SAMI.
 
 ### Read-only WebSocket
 
@@ -166,7 +166,7 @@ There are two types of WebSockets: read-only and bi-directional ones. Your appli
 WebSocket /live
 ~~~
 
-This call sets up one directional data connection from SAMI to a WebSocket client. The read-only WebSocket is primarily used by applications with monitoring functionalities. The application, as the client, listen for any new messages sent to SAMI by the specified source devices in real-time.
+This call sets up a one-directional data connection from SAMI to a WebSocket client. The read-only WebSocket is primarily used by applications with monitoring functionalities. The application, as the client, listens in real-time for any new messages sent to SAMI by the specified source devices.
 
 **Request Parameters**
 
@@ -268,14 +268,14 @@ The registration message `type`{:.param} must be "register". `Authorization`{:.p
 }
 ~~~
 
-You could send multiple messages to register more than one devices. Then you can send and receive messages for these devices over one bi-directional WebSocket.
+You could send multiple messages to register more than one device. Then you can send and receive messages for these devices over a single bi-directional WebSocket.
 {:.info}
 
 As with /live, SAMI sends a ping every 30 seconds to the client. If a ping is not received, the connection has stalled and the client must reconnect.
 
 #### Sending messages
 
-When sending a message to SAMI or another device, you may specify `type`{:.param} as "message" or "action". Additionally, if `ack`{:.param} was set to "true" when opening the WebSocket connection, you may optionally include `cid`{:.param}—the client ID. SAMI will return `cid`{:.param} (in addition to `mid`{:.param}) in its ACK messages to facilitate client side validations. This helps to clarify which response is for which message. If sending a message to another device, you should specify `ddid`{:.param}. Otherwise, it only sends to SAMI to store. In the following example, `sdid`{:.param} refers to the device ID of the device registered on the bi-directional websocket.
+When sending a message to SAMI or another device, you may specify `type`{:.param} as "message" or "action". Additionally, if `ack`{:.param} was set to "true" when opening the WebSocket connection, you may optionally include `cid`{:.param}—the client ID. SAMI will return `cid`{:.param} (in addition to `mid`{:.param}) in its ACK messages to facilitate client side validations. This helps to clarify which response is for which message. When sending a message to another device, you should specify `ddid`{:.param}. Otherwise, the message is only sent to SAMI to be stored. In the following example, `sdid`{:.param} refers to the device ID of the device registered on the bi-directional WebSocket.
 
 **Example request**
 
