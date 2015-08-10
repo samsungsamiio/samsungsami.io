@@ -26,10 +26,9 @@ wss://api.samsungsami.io/v1.1
 https://accounts.samsungsami.io
 ~~~
 
-### Request parameters and payload
+### Request parameters
 
-All the `POST`{:.param} and `PUT`{:.param} calls expect a JSON payload as an input or a value
-in the path.
+For all the `POST`{:.param} and `PUT`{:.param} calls, pass request parameters as a JSON payload in the request body not as URL parameters.
 
 ### Timestamps
 
