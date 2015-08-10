@@ -50,6 +50,16 @@ Finally, in your Android project's `AndroidManifest.xml`, add the permissions re
 
 You're ready to go.
 
+## Usage
+
+The easiest way to start using the SAMI Android SDK is to look at our sample applications at:
+
+ - [Your first Android app](/sami/demos-tools/your-first-android-app.html)
+ - [https://github.com/samsungsamiio/sami-android-demo](https://github.com/samsungsamiio/sami-android-demo)
+ - [https://github.com/samsungsamiio/sample-android-SAMInBLE](https://github.com/samsungsamiio/sample-android-SAMInBLE)
+ - [https://github.com/samsungsamiio/sample-android-SAMInBLEws](https://github.com/samsungsamiio/sample-android-SAMInBLEws)
+ - [https://github.com/samsungsamiio/sample-android-SAMIRemoteControl](https://github.com/samsungsamiio/sample-android-SAMIRemoteControl)
+
 ## OAuth2 flow - Android
 
 Android apps require the use of Implicit Grant flows for authentication. This involves launching a `WebView` and submitting a `GET` request to the authorization endpoint. 
@@ -170,4 +180,4 @@ https://accounts.samsungsami.io/logout?redirect_uri
 
 Licensed under the APACHE license. See [LICENSE.](https://github.com/samsungsamiio/sami-android/blob/master/LICENSE)
 
-Copyright (c) Samsung Electronics Co., Ltd.
+Copyright (c) 2014 Samsung Electronics Co., Ltd.

@@ -3,7 +3,7 @@ title: "PHP SDK"
 
 ---
 
-#PHP SDK (alpha)
+#PHP SDK
 
 This SDK helps you connect your PHP scripts to SAMI. The SDK helps authenticating with SAMI, exposes a number of methods to easily execute REST API calls to SAMI and supports WebSockets.
 
@@ -24,7 +24,10 @@ No specific installation process is required. Add the scripts to your project an
 
 ## Usage
 
-The easiest way to start using the SAMI PHP SDK is to look at our demo scripts. These will give you a good overview of what you can do, and how to do it. Read more at [https://github.com/samsungsamiio/sami-php-demo](https://github.com/samsungsamiio/sami-php-demo).
+The easiest way to start using the SAMI PHP SDK is to look at our demo scripts. These will give you a good overview of what you can do, and how to do it. Read more at
+
+ * [Your first Web app](https://developer.samsungsami.io/sami/demos-tools/your-first-application.html#simplify-sami-helper-class-with-php-sdk) 
+ * [https://github.com/samsungsamiio/sami-php-demo](https://github.com/samsungsamiio/sami-php-demo).
 
 ## More about SAMI
 
@@ -33,6 +36,8 @@ If you are not familiar with SAMI, check out the [documentation.](/sami/sami-doc
 The full SAMI API specification with examples can be found [here.](/sami/api-spec.html)
 
 To create and manage your services and devices on SAMI, visit the [Developer Portal.](http://devportal.samsungsami.io)
+
+To see advanced ways to use SAMI in practice, visit [Samples.](https://developer.samsungsami.io/sami/samples/)
 
 ## Licence and copyright
 

@@ -3,7 +3,7 @@ title: "Python 2 SDK"
 
 ---
 
-#Python 2 SDK (alpha)
+#Python 2 SDK (beta)
 
 This SDK helps you connect your Python 2 scripts to SAMI. The SDK helps authenticating with SAMI, exposes a number of methods to easily execute REST API calls to SAMI and supports WebSockets.
 
@@ -27,7 +27,9 @@ The source code for the Python SDK is located [on GitHub.](https://github.com/sa
 
 Once you have installed the required libraries, add the scripts to your project.
 
-For a more complete list of examples, see our demo application at [https://github.com/samsungsamiio/sami-python-demo](https://github.com/samsungsamiio/sami-python-demo).
+## Usage
+
+The easiest way to start using the SAMI Python 2 SDK is to look at our demo application at [https://github.com/samsungsamiio/sami-python-demo](https://github.com/samsungsamiio/sami-python-demo).
 
 ## More about SAMI
 
@@ -36,6 +38,8 @@ If you are not familiar with SAMI, check out the [documentation.](/sami/sami-doc
 The full SAMI API specification with examples can be found [here.](/sami/api-spec.html)
 
 To create and manage your services and devices on SAMI, visit the [Developer Portal.](http://devportal.samsungsami.io)
+
+To see advanced ways to use SAMI in practice, visit [Samples.](https://developer.samsungsami.io/sami/samples/)
 
 ## Licence and copyright
 
