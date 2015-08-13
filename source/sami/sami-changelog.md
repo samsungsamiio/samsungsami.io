@@ -7,6 +7,10 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### August 13, 2015
+
+We've added documentation on [a new API](/sami/api-spec.html#get-normalized-message-histogram) that returns message aggregate data in intervals that can be used to draw histograms. 
+
 ### June 17, 2015
 
 Made some updates to the [WebSockets specification](/sami/sami-documentation/sending-and-receiving-data.html#live-streaming-data-with-websocket-api) and to [secure device registration](/sami/sami-documentation/secure-your-devices.html).
