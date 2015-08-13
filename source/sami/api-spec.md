@@ -1087,7 +1087,7 @@ Returns the sum, minimum, maximum, mean and count of message fields that are num
   |----------- |---------------------------------------------------------
   |`endDate`{:.param}    |Time of latest (newest) item to return, in milliseconds since epoch.
   |`field`{:.param}    |Message field being queried for analytics.
-  |`sdid`{:.param} |Source device ID of the messages being searched.
+  |`sdid`{:.param} |Source device ID of the messages being queried.
   |`startDate`{:.param} |Time of earliest (oldest) item to return, in milliseconds since epoch.
 
 **Example response**
@@ -1127,6 +1127,75 @@ Returns the sum, minimum, maximum, mean and count of message fields that are num
 |`mean`{:.param} |Mean value of items.
 |`sum`{:.param} |Sum of items.
 |`variance`{:.param} |Variance of items.
+
+### Get normalized message histogram
+
+~~~
+GET /messages/analytics/histogram
+~~~
+
+Returns message aggregates over equal intervals, which can be used to draw a histogram. For each `interval`, the sum, minimum, maximum, mean, count and variance of message fields are returned.
+
+**Available URL query parameters**
+
+  |Parameter   |Description
+  |----------- |---------------------------------------------------------
+  |`endDate`{:.param}    |End time of histogram in milliseconds. Should be beginning of the time `interval`.
+  |`field`{:.param}    |Message field being queried for histogram aggregation (histogram Y-axis).
+  |`sdid`{:.param} |Source device ID of the messages being queried.
+  |`interval`{:.param} |Interval on histogram X-axis. Can be: `minute` (1-hour limit), `hour` (1-day limit), `day` (31-day limit), `month` (1-year limit) or `year` (1-year limit).
+  |`startDate`{:.param} |Start time of histogram in milliseconds. Should be beginning of the time `interval`.
+
+**Example response**
+
+~~~
+{
+  "sdid": "1c1e46b708ff4cb5994e6332786adbc9",
+  "startDate": "1429315200000",
+  "endDate": "1429747200000",
+  "field": "datemicro",
+  "interval": "day",
+  "size": 2,
+  "data": [
+    {
+      "count": 12,
+      "min": 1429471890000,
+      "max": 1429471890000,
+      "mean": 1429471890000,
+      "sum": 17153663200000,
+      "variance": 0,
+      "ts": 1429401600000
+    },
+    {
+      "count": 2,
+      "min": 1429471890000,
+      "max": 1429471890000,
+      "mean": 1429471890000,
+      "sum": 2858943770000,
+      "variance": 0,
+      "ts": 1429574400000
+    }
+  ]
+}
+~~~
+
+**Response parameters**
+
+|Parameter |Description
+|--------- |-----------
+|`sdid`{:.param} |Source device ID.
+|`startDate`{:.param} |Time of earliest message requested.
+|`endDate`{:.param} |Time of latest message requested.
+|`field`{:.param} |Message field.
+|`interval`{:.param} |Interval of histogram X-axis.
+|`size`{:.param} |Number of histogram segments.
+|`count`{:.param} |Number of items.
+|`min`{:.param} |Lowest-value item.
+|`max`{:.param} |Highest-value item.
+|`mean`{:.param} |Mean value of items.
+|`sum`{:.param} |Sum of items.
+|`variance`{:.param} |Variance of items.
+|`ts`{:.param} |Timestamp of the histogram segment.
 
 ### Get last normalized messages
 
@@ -1196,7 +1265,7 @@ Returns presence of normalized messages.
   |Parameter         |Description
   |----------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   |`sdid`{:.param}           |(Optional) Source device ID of the messages being searched.
-  |`interval`{:.param}       |String representing grouping interval. One of: `minute` (1 hour limit), `hour` (1 day limit), `day` (31 days limit), `month` (1 year limit) or `year` (10 years limit).
+  |`interval`{:.param}       |String representing grouping interval. One of: `minute` (1-hour limit), `hour` (1-day limit), `day` (31-day limit), `month` (1-year limit) or `year` (10-year limit).
   |`fieldPresence`{:.param}  |(Optional) String representing a field from the specified device ID.
   |`startDate`{:.param}      |Time of earliest (oldest) item to return, in milliseconds since epoch.
   |`endDate`{:.param}        |Time of latest (newest) item to return, in milliseconds since epoch.
