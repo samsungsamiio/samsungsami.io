@@ -1134,7 +1134,7 @@ Returns the sum, minimum, maximum, mean and count of message fields that are num
 GET /messages/analytics/histogram
 ~~~
 
-Returns message aggregates over equal intervals, which can be used to draw a histogram. For each `interval`, the sum, minimum, maximum, mean, count and variance of message fields are returned.
+Returns message aggregates over equal intervals, which can be used to draw a histogram. This call generates results on messages that are at least 1 minute old. For each `interval`, the sum, minimum, maximum, mean, count and variance of message fields are returned.
 
 **Available URL query parameters**
 
