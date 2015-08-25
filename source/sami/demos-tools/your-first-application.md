@@ -99,7 +99,7 @@ const DEVICE_ID = "xxxxx";
 
 Before we dig in, here's a preview of how our simple Web app will work.
 
-- Load  [http://localhost:8000/samidemo/index.php](http://localhost:8000/samidemo/index.php) in your browser. You will see the following page:
+- Load [http://localhost:8000/samidemo/index.php](http://localhost:8000/samidemo/index.php) in your browser. You will see the following page:
 ![SAMI first Web app](/images/docs/sami/demos-tools/sampleWebAppLoginScreen.png)
 - Click "Login" and authenticate with the account you used so far.
 - Once you complete authentication, you will be redirected to `hello-sami.php`. Now you can play with SAMI.
