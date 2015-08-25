@@ -5,52 +5,68 @@ title: "Your first IoT device"
 
 # Your first IoT device
 
-Let's build an IoT device that sends flame sensor data to SAMI using SAMI's [WebSockets](/sami/api-spec.html#websockets). The IoT device is composed by an off-the-shelf sensor, Arduino Uno, and Raspberry Pi. balah.... (TODO by ryan: add introduction here, you may borrow words from https://blog-staging.samsungsami.io/development/iot/mobile/2015/08/20/monitor-an-iot-device-with-sami.html. Note that there is no Android app in this tutorial.)
+Let's build an IoT device that sends flame sensor data to SAMI using SAMI's [WebSockets](/sami/api-spec.html#websockets). The IoT device consists of an off-the-shelf sensor, Arduino UNO and Raspberry Pi. 
 
-You should be familiar with the [**basic SAMI APIs**](/sami/sami-documentation/sending-and-receiving-data.html) and have read [**Your first Web app.**](/sami/demos-tools/your-first-application.html) 
+In this implementation, a [Simple Manifest](https://blog.samsungsami.io/portals/development/data/2015/03/26/the-simple-manifest-device-types-in-1-minute.html) is used to quickly connect the IoT device to SAMI. You can then focus on building your application based on the contents of the Manifest.
+
+For this tutorial you should be familiar with the [**basic SAMI APIs**](/sami/sami-documentation/sending-and-receiving-data.html) and have read [**Your first Web app.**](/sami/demos-tools/your-first-application.html) 
 {:.info}
 
 ## Architecture
-
 The diagram below shows the high-level architecture:
 
 ![TODO replace the jpg by a modified one Architecture](/images/docs/sami/demos-tools/first-iot-architecture.jpg)
 
 We use the following hardware components:
 
-- Raspberry Pi with a network connection
-- Arduino Uno with a breadboard
-- [IR flame sensor](http://www.dx.com/p/arduino-flame-sensor-for-temperature-detection-blue-dc-3-3-5v-118075?tc=USD&gclid=CPX6sYCRrMACFZJr7AodewsA-Q#.VcAOUzBVhHy)
+- <a href="tk" target="_blank">Raspberry Pi</a> with a network connection
+- <a href="tk" target="_blank">Arduino UNO</a> with a breadboard
+- <a href="http://www.dx.com/p/arduino-flame-sensor-for-temperature-detection-blue-dc-3-3-5v-118075?tc=USD&gclid=CPX6sYCRrMACFZJr7AodewsA-Q#.VcAOUzBVhHy" target="_blank">IR flame sensor</a>
 - USB and power cables, plus wiring for the breadboard
 
 We will write the following software:
 
-- A [Sketch](https://www.arduino.cc/en/Guide/Environment#toc2) program running on the Arduino
+- A <a href="https://www.arduino.cc/en/Guide/Environment#toc2" target="_blank">Sketch</a> program running on the Arduino
 - A Node.js script running on the Raspberry Pi
 
-If you do not have a Raspberry Pi, you may still work through this tutorial. Connect your Arduino Uno to your computer that has an Internet connection and run the Node.js script on the computer instead of the Raspberry Pi.  
+If you do not have a Raspberry Pi, you may still work through this tutorial. Connect your Arduino UNO to your computer that has an Internet connection and run the Node.js script on the computer instead of the Raspberry Pi.  
 {:.info}
 
 ## Step 1: Connect a device in the SAMI User Portal
 
-Go to the Developer Portal to create a private device type. (TODO by ryan Similar to Step 3 at https://www.hackster.io/monica/getting-started-with-sami-grove-weather-station). (comments: device type: Flame Sensor; unique name: com.example.iot.flame) 
+Go to the Developer Portal to create a *private* device type. 
 
  1. First, sign into the SAMI [Developer Portal](https://portal.samsungsami.io). If you don't have a Samsung account, you can create one at this step.
- 2. blah....
- 3. blah.. (comments: do mention 'Do not publish the Manifest')
+ 1. Click "+ New Device Type".
+ 1. Name this device type "Flame Sensor" and give it the unique name "com.example.iot.flame".
+ 1. Click "Create Device Type". This creates the device type and takes you to the device types page.
+ 
+ Now let's create a Manifest for our "Flame Sensor" device type. 
+
+ 1. Click "Flame Sensor" in the left column.
+ 1. Click "Manifest" and then "+ New Version".
+ 1. Enter "onFire" as the Field Name and "Boolean" for Data Type.
+ ![Flame Sensor](/images/docs/sami/demos-tools/first-iot-manifest.png)
+ 1. Click "Save" and then "Next: Actions".
+ 1. Bypass [Actions](/sami/demos-tools/manifest-advanced-example.html#manifest-that-supports-actions) for this tutorial and click "Save New Manifest".
+
+A Simple Manifest is automatically approved.
+{:.info}
+
+Do *not* publish this Manifest since it is for tutorial purposes only.
+{:.warning}
 
 Then go to the User Portal to connect the device:
 
  1. Sign into the SAMI [User Portal](https://portal.samsungsami.io).
- 1. On the dashboard, click to connect a new device. Choose the device type created just now "Flame Sensor".
+ 1. On the dashboard, click to connect a new device. Choose the "Flame Sensor" device type you just created.
  1. Click "Connect Device...". You're taken back to the dashboard.
- 1. Click the Settings icon of the device you just added. In the pop-up, click "GENERATE DEVICE TOKEN…".
+ 1. Click the Settings icon of the device you just added. In the pop-up, click "GENERATE DEVICE TOKEN...".
  1. Copy the device ID and device token on this screen. You will use these in the code.
 
 ## Step 2: Set up the Arduino
 
 Now let's wire the sensors to the Arduino.
-(TODO by ryan: crop the image to remove the shadow and rotate the image)
 
 ![Arduino and sensors](/images/docs/sami/demos-tools/first-iot-arduino-breadboard.jpg)
 
@@ -58,7 +74,7 @@ The two sensors are wired as follows:
 
 ![Fritzing](/images/docs/sami/demos-tools/first-iot-sensors-connect-arduino.jpg)
 
-Next, upload the Sketch program (`read_flame_sensor.ino`) to the Arduino Uno using the [Arduino IDE](https://www.arduino.cc/en/Main/Software). This code reads one digital value from the IR flame sensor, and then sends it to the serial port every 5 seconds (you can change this parameter in the code later, since SAMI has [rate limits](https://developer.samsungsami.io/sami/sami-documentation/rate-limiting.html#websocket-limits) for the number of messages per day).  For the digital readings, "0" means that a fire is detected and "1" means no fire. 
+Next, upload the Sketch program (`read_flame_sensor.ino`) to the Arduino UNO using the [Arduino IDE](https://www.arduino.cc/en/Main/Software). This code reads one digital value from the IR flame sensor, and then sends it to the serial port every 5 seconds (you can change this parameter in the code later, since SAMI has [rate limits](https://developer.samsungsami.io/sami/sami-documentation/rate-limiting.html#websocket-limits) for the number of messages per day).  For the digital readings, "0" means that a fire is detected and "1" means no fire. 
 
 Here is the straightforward code:
 
@@ -95,7 +111,7 @@ $ sudo apt-get update
 $ sudo apt-get upgrade
 ~~~
 
-If not already installed, install [Node.js for ARM](https://github.com/nathanjohnson320/node_arm), then add the packages ‘serialport' and ‘ws' via npm:
+If not already installed, install <a href="https://github.com/nathanjohnson320/node_arm" target="_blank">Node.js for ARM</a>, then add the packages `serialport` and `ws` via npm:
 
 ~~~bash
 $ npm install serialport
@@ -103,13 +119,12 @@ $ npm install ws
 ~~~
 
 Now connect the serial port from the Arduino to the USB on the Raspberry Pi.
-(TODO by ryan: crop the image to make it nice if needed?)
 
 ![Arduino and Raspberry Pi](/images/docs/sami/demos-tools/first-iot-raspberrypi-arduino-breadboard.jpg)
 
 Finally, download the Node.js code (`send_data_to_sami.js`) to the Raspberry Pi. Replace the placeholders in the code with the device token and device ID you collected from the [User Portal](https://portal.samsungsami.io).
 
-The Node.js code below establishes a [bi-directional WebSocket](https://developer.samsungsami.io/sami/api-spec.html#bi-directional-message-pipe) connection between the Raspberry Pi and SAMI. Each time, it reads one data points from the serial port, and then wraps it in one message and sends the message to SAMI via WebSocket:
+The Node.js code below establishes a [bi-directional WebSocket](https://developer.samsungsami.io/sami/api-spec.html#bi-directional-message-pipe) connection between the Raspberry Pi and SAMI. Each time, it reads one data point from the serial port, and then wraps it in a message and sends the message to SAMI via WebSocket:
 
 ~~~javascript
 var webSocketUrl = "wss://api.samsungsami.io/v1.1/websocket?ack=true";
@@ -232,7 +247,4 @@ Log into the SAMI [User Portal](https://portal.samsungsami.io) once again.
 
 View your device data as it's generated by clicking the device name in the device box. This takes you to Data Visualization. From there, click the "+/- CHARTS" button and check "onFire" to visualize a chart for each field. ([Read this post](https://blog.samsungsami.io/portals/datavisualization/2015/01/09/opening-the-user-portal.html) for more information on Data Visualization.)
 
-![TODO replace only show onFire data visualization](/images/docs/sami/demos-tools/first-iot-userportal-chart.png)
-
-## Conclusion
-TODO by ryan: add any conclude words here (do we need?)
+![TODO replace only show onFire data visualization](/images/docs/sami/demos-tools/first-iot-userportal-chart.png){:.lightbox}
