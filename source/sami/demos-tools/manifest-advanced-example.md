@@ -262,9 +262,9 @@ public class TestXmlUtilGroovyManifest implements Manifest {
 }
 ~~~
 
-## Manifest that supports actions
+## Manifest that supports Actions
 
-This Manifest example defines the actions that the device type can support. Below is an example of a message payload that includes actions. Once the target device receives such a message, it should perform `setOn` and `setColorAsRGB` using the corresponding parameters.
+This Manifest example defines the Actions that the device type can support. Below is an example of a message payload that includes Actions. Once the target device receives such a message, it should perform `setOn` and `setColorAsRGB` using the corresponding parameters.
 
 ~~~json
 {
@@ -288,7 +288,7 @@ This Manifest example defines the actions that the device type can support. Belo
 }
 ~~~
 
-Here is the Manifest that defines the actions: 
+Here is the Manifest that defines the Actions: 
 
 ~~~java
 import com.samsung.sami.manifest.Manifest
