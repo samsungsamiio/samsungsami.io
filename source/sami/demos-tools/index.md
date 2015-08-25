@@ -6,6 +6,7 @@ nav:
   - 'api-console'
   - 'your-first-application' 
   - 'your-first-android-app'
+  - 'your-first-iot-device'
   - 'manifest-sdk'
   - 'manifest-advanced-example'
  

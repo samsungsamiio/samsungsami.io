@@ -7,6 +7,10 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### August 25, 2015
+
+Following our [SAMI Developer Meet-up on August 13](https://blog.samsungsami.io/data/development/iot/2015/08/25/sami-and-the-future-of-iot.html), we wrote a tutorial on [building an IoT device](/sami/demos-tools/your-first-iot-device.html) using SAMI, Android and open-source hardware.
+
 ### August 13, 2015
 
 We've added documentation on [a new API](/sami/api-spec.html#get-normalized-message-histogram) that returns message aggregate data in intervals that can be used to draw histograms. 

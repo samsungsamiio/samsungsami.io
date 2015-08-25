@@ -19,8 +19,8 @@ The diagram below shows the high-level architecture:
 
 We use the following hardware components:
 
-- <a href="tk" target="_blank">Raspberry Pi</a> with a network connection
-- <a href="tk" target="_blank">Arduino UNO</a> with a breadboard
+- Raspberry Pi with a network connection
+- Arduino UNO with a breadboard
 - <a href="http://www.dx.com/p/arduino-flame-sensor-for-temperature-detection-blue-dc-3-3-5v-118075?tc=USD&gclid=CPX6sYCRrMACFZJr7AodewsA-Q#.VcAOUzBVhHy" target="_blank">IR flame sensor</a>
 - USB and power cables, plus wiring for the breadboard
 
