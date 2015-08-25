@@ -15,7 +15,7 @@ For this tutorial you should be familiar with the [**basic SAMI APIs**](/sami/sa
 ## Architecture
 The diagram below shows the high-level architecture:
 
-![TODO replace the jpg by a modified one Architecture](/images/docs/sami/demos-tools/first-iot-architecture.jpg)
+![Architecture](/images/docs/sami/demos-tools/first-iot-architecture.png)
 
 We use the following hardware components:
 
@@ -76,7 +76,7 @@ The two sensors are wired as follows:
 
 Next, upload the Sketch program (`read_flame_sensor.ino`) to the Arduino UNO using the [Arduino IDE](https://www.arduino.cc/en/Main/Software). This code reads one digital value from the IR flame sensor, and then sends it to the serial port every 5 seconds (you can change this parameter in the code later, since SAMI has [rate limits](https://developer.samsungsami.io/sami/sami-documentation/rate-limiting.html#websocket-limits) for the number of messages per day).  For the digital readings, "0" means that a fire is detected and "1" means no fire. 
 
-Here is the straightforward code:
+Here is `read_flame_sensor.ino`. The code is straightforward.
 
 ~~~c
 // Delay between reads
@@ -122,9 +122,9 @@ Now connect the serial port from the Arduino to the USB on the Raspberry Pi.
 
 ![Arduino and Raspberry Pi](/images/docs/sami/demos-tools/first-iot-raspberrypi-arduino-breadboard.jpg)
 
-Finally, download the Node.js code (`send_data_to_sami.js`) to the Raspberry Pi. Replace the placeholders in the code with the device token and device ID you collected from the [User Portal](https://portal.samsungsami.io).
+Finally, download the [Node.js code](/sami/downloads/send_data_to_sami.js) (`send_data_to_sami.js`) to the Raspberry Pi. Replace the placeholders in the code with the device token and device ID you collected from the [User Portal](https://portal.samsungsami.io).
 
-The Node.js code below establishes a [bi-directional WebSocket](https://developer.samsungsami.io/sami/api-spec.html#bi-directional-message-pipe) connection between the Raspberry Pi and SAMI. Each time, it reads one data point from the serial port, and then wraps it in a message and sends the message to SAMI via WebSocket:
+The Node.js code is also given below. It establishes a [bi-directional WebSocket](https://developer.samsungsami.io/sami/api-spec.html#bi-directional-message-pipe) connection between the Raspberry Pi and SAMI. Each time, it reads one data point from the serial port, and then wraps it in a message and sends the message to SAMI via WebSocket:
 
 ~~~javascript
 var webSocketUrl = "wss://api.samsungsami.io/v1.1/websocket?ack=true";
