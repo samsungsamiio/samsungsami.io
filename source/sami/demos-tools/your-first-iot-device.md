@@ -63,8 +63,8 @@ Then go to the User Portal to connect a new Flame Sensor device:
  ![Connect SAMI device](/images/docs/sami/demos-tools/first-iot-connect-device.png)
  1. Click "Connect Device...". You're taken back to the dashboard.
  1. Click the Settings icon of the device you just added. In the pop-up, click "GENERATE DEVICE TOKEN...".
- ![Generate SAMI device token](/images/docs/sami/demos-tools/first-iot-device-token.png)
  1. Copy the device ID and device token on this screen. You will use these in the code.
+ ![Generate SAMI device token](/images/docs/sami/demos-tools/first-iot-device-token.png)
 
 ## Step 2: Set up the Arduino
 
@@ -157,7 +157,7 @@ function getTimeMillis(){
  */
 function start() {
     //Create the websocket connection
-        isWebSocketReady = false;
+    isWebSocketReady = false;
     ws = new WebSocket(webSocketUrl);
     ws.on('open', function() {
         console.log("Websocket connection is open ....");
@@ -175,7 +175,7 @@ function start() {
  * Sends a register message to the websocket and starts the message flooder
  */
 function register(){
-        console.log("Registering device on the websocket connection");
+    console.log("Registering device on the websocket connection");
     try{
         var registerMessage = '{"type":"register", "sdid":"'+device_id+'", "Authorization":"bearer '+device_token+'", "cid":"'+getTimeMillis()+'"}';
         console.log('Sending register message ' + registerMessage + '\n');
