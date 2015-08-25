@@ -26,5 +26,6 @@ Keep an eye on this page—more is on the way!
 *   [API Console](/sami/demos-tools/api-console.html)
 *   [Your first Web app](/sami/demos-tools/your-first-application.html "Your first Web app")
 *   [Your first Android app](/sami/demos-tools/your-first-android-app.html "Your first Android app")
+*	[Your first IoT device](/sami/demos-tools/your-first-iot-device.html "Your first IoT device")
 *   [Validate your Manifest](/sami/demos-tools/manifest-sdk.html)
 *   [Advanced Manifest examples](/sami/demos-tools/manifest-advanced-example.html)
