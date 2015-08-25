@@ -50,7 +50,7 @@ Then go to the User Portal to connect the device:
 ## Step 2: Set up the Arduino
 
 Now let's wire the sensors to the Arduino.
-(TODO by ryan: crop the image and remove the shadow)
+(TODO by ryan: crop the image to remove the shadow and rotate the image)
 
 ![Arduino and sensors](/images/docs/sami/demos-tools/first-iot-arduino-breadboard.jpg)
 
