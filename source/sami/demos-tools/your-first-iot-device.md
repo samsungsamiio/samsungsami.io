@@ -32,7 +32,7 @@ We will write the following software:
 If you do not have a Raspberry Pi, you may still work through this tutorial. Connect your Arduino UNO to your computer that has an Internet connection and run the Node.js script on the computer instead of the Raspberry Pi.  
 {:.info}
 
-## Step 1: Connect a device in the SAMI User Portal
+## Step 1: Create and connect a new device type
 
 Go to the Developer Portal to create a *private* device type. 
 
@@ -53,15 +53,17 @@ Go to the Developer Portal to create a *private* device type.
 A Simple Manifest is automatically approved.
 {:.info}
 
-Do *not* publish this Manifest since it is for tutorial purposes only.
+Do *not* publish this device type, since it is for tutorial purposes only.
 {:.warning}
 
-Then go to the User Portal to connect the device:
+Then go to the User Portal to connect a new Flame Sensor device:
 
  1. Sign into the SAMI [User Portal](https://portal.samsungsami.io).
  1. On the dashboard, click to connect a new device. Choose the "Flame Sensor" device type you just created.
+ ![Connect SAMI device](/images/docs/sami/demos-tools/first-iot-connect-device.png)
  1. Click "Connect Device...". You're taken back to the dashboard.
  1. Click the Settings icon of the device you just added. In the pop-up, click "GENERATE DEVICE TOKEN...".
+ ![Generate SAMI device token](/images/docs/sami/demos-tools/first-iot-device-token.png)
  1. Copy the device ID and device token on this screen. You will use these in the code.
 
 ## Step 2: Set up the Arduino
