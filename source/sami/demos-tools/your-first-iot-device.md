@@ -15,7 +15,7 @@ For this tutorial you should be familiar with the [**basic SAMI APIs**](/sami/sa
 ## Architecture
 The diagram below shows the high-level architecture:
 
-![Architecture](/images/docs/sami/demos-tools/first-iot-architecture.png)
+![Architecture](/images/docs/sami/demos-tools/first-iot-architecture.jpg)
 
 We use the following hardware components:
 
