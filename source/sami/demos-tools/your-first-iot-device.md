@@ -180,7 +180,7 @@ function register(){
         var registerMessage = '{"type":"register", "sdid":"'+device_id+'", "Authorization":"bearer '+device_token+'", "cid":"'+getTimeMillis()+'"}';
         console.log('Sending register message ' + registerMessage + '\n');
         ws.send(registerMessage, {mask: true});
-                isWebSocketReady = true;
+        isWebSocketReady = true;
     }
     catch (e) {
         console.error('Failed to register messages. Error in registering message: ' + e.toString());
