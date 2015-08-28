@@ -126,7 +126,7 @@ Now connect the serial port from the Arduino to the USB on the Raspberry Pi.
 
 ![Arduino and Raspberry Pi](/images/docs/sami/demos-tools/first-iot-raspberrypi-arduino-breadboard.jpg)
 
-Finally, download the [Node.js code](/sami/downloads/send_data_to_sami.js) (`send_data_to_sami.js`) to the Raspberry Pi. Replace the placeholders in the code with the device token and device ID you collected from the [User Portal](https://portal.samsungsami.io).
+Finally, download the Node.js program `send_data_to_sami.js` to the Raspberry Pi. Replace the placeholders in the code with the device token and device ID you collected from the [User Portal](https://portal.samsungsami.io).
 
 The Node.js code is also given below. It establishes a [bi-directional WebSocket](https://developer.samsungsami.io/sami/api-spec.html#bi-directional-message-pipe) connection between the Raspberry Pi and SAMI. After the WebSocket connection is open, `register()` method registers the device with the WebSocket. Each time, the code reads one data point from the serial port, and then wraps it in a message and sends the message to SAMI via WebSocket. 
 
