@@ -9,7 +9,7 @@ Let's build an IoT device that sends flame sensor data to SAMI using SAMI's [Web
 
 In this implementation, a [Simple Manifest](https://blog.samsungsami.io/portals/development/data/2015/03/26/the-simple-manifest-device-types-in-1-minute.html) is used to create a new device type quickly. Then you can easily connect the IoT device to SAMI, and start to send sensor data from the device to SAMI. 
 
-For this tutorial you should be familiar with the [**basic SAMI APIs**](/sami/sami-documentation/sending-and-receiving-data.html) and have read [**Your first Web app.**](/sami/demos-tools/your-first-application.html) 
+For this tutorial you should be familiar with the [**basic SAMI APIs**](/sami/sami-documentation/sending-and-receiving-data.html).
 {:.info}
 
 ## Architecture
@@ -28,6 +28,8 @@ We will write the following software:
 
 - A <a href="https://www.arduino.cc/en/Guide/Environment#toc2" target="_blank">Sketch</a> program running on the Arduino
 - A Node.js script running on the Raspberry Pi
+
+Download the [software](/sami/downloads/sami-tutorial-first-iot-device.zip) now.
 
 If you do not have a Raspberry Pi, you may still work through this tutorial. Connect your Arduino UNO to your computer that has an Internet connection and run the Node.js script on the computer instead of the Raspberry Pi.  
 {:.info}
