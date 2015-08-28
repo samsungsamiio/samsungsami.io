@@ -7,9 +7,13 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### August 27, 2015
+
+Over [in the blog](https://blog.samsungsami.io/development/iot/mobile/2015/08/27/monitor-fire-and-temperature-using-an-arduino-raspberry-pi-and-sami.html), we expanded our IoT device below to add a temperature sensor. You can check out the source code on [the Samples page](/sami/samples/).
+
 ### August 25, 2015
 
-Following our [SAMI Developer Meet-up on August 13](https://blog.samsungsami.io/data/development/iot/2015/08/25/sami-and-the-future-of-iot.html), we wrote a tutorial on [building an IoT device](/sami/demos-tools/your-first-iot-device.html) using SAMI, Android and open-source hardware.
+Following our [SAMI Developer Meet-up on August 13](https://blog.samsungsami.io/data/development/iot/2015/08/25/sami-and-the-future-of-iot.html), we wrote a tutorial on [building an IoT device](/sami/demos-tools/your-first-iot-device.html) for flame detection using SAMI, Android and open-source hardware.
 
 ### August 13, 2015
 
