@@ -95,11 +95,10 @@ If your Manifest for the device type was Rejected, you will first have to resubm
 
 ## Inside the User Portal
 
-The User Portal is located at [portal.samsungsami.io.](http://portal.samsungsami.io) This is where users can access their connected devices and view their data on SAMI. Here's how to add a new device.
+The User Portal is located at [portal.samsungsami.io.](http://portal.samsungsami.io) This is where users can access their connected devices, view their data on SAMI and create Rules for devices. 
 
 Our [**Hello, World!**](/sami/sami-documentation/hello-world.html) guide puts the User Portal functionality into context.
 {:.info}
-
 
 ### Connecting a device
 
@@ -122,3 +121,28 @@ Click the name of a connected device in the User Portal. A window like the follo
 ![SAMI generate device token](/images/docs/sami/sami-documentation/generate-device-token.png)
 
 Click "GENERATE DEVICE TOKEN..." to get a device token for this device. When you are ready to revoke the token, click "REVOKE TOKEN".
+
+### Creating a Rule
+
+With this feature, you can create Rules for triggering device [Actions](/sami/sami-documentation/the-manifest.html#manifests-that-support-actions) based on the contents of SAMI messages. 
+
+![SAMI Rules](/images/docs/sami/sami-documentation/SAMI_Rules.png){:.lightbox}
+
+You define a Rule by selecting device fields and values, conditionals, and commands to send. The process looks like this:
+
+![SAMI Rules](/images/docs/sami/sami-documentation/rulesnav.png)
+
+- Click "Rules" in the User Portal navigation menu.
+- This will take you to the Rule creation page.
+- In the IF pane, select a device from your device list. This will bring up the fields defined in its Manifest.
+![SAMI Rules](/images/docs/sami/sami-documentation/ifdevice.png)
+  - Now select a field to use.
+- In the next dialog, choose a statement such as "is equal to" or "is more than", and then specify a value.
+- In the THEN pane, select a device and a corresponding command. This may be a standard Action or a custom command you write in JSON.
+![SAMI Rules](/images/docs/sami/sami-documentation/thendevice.png)
+- Click "Save Rule". Note the description auto-populates from your choices.
+- You will be taken to your Rules dashboard. Here you can edit, clone, test, enable/disable and delete your Rules.
+![SAMI Rules](/images/docs/sami/sami-documentation/allrules.png)
+
+Read [**our blog post**](https://blog.samsungsami.io/data/rules/iot/2015/09/23/sami-rules-make-your-devices-work-together.html) to learn more about Rules.
+{:.info}

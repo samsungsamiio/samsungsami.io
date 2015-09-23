@@ -7,6 +7,10 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### September 23, 2015
+
+You can now write Rules for your SAMI devices, right from the User Portal! A Rule is a way to trigger device Actions based on SAMI messages. Learn more about the major new feature [here](/sami/sami-documentation/developer-user-portals.html#creating-a-rule) and in our [blog post](https://blog.samsungsami.io/data/rules/iot/2015/09/23/sami-rules-make-your-devices-work-together.html).
+
 ### August 27, 2015
 
 Over [in the blog](https://blog.samsungsami.io/development/iot/mobile/2015/08/27/monitor-fire-and-temperature-using-an-arduino-raspberry-pi-and-sami.html), we expanded our IoT device below to add a temperature sensor and Android for monitoring. You can check out the source code on [the Samples page](/sami/samples/).
