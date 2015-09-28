@@ -15,7 +15,7 @@ The Simple Manifest is the quickest path to production and the best option for f
 
 The **Advanced Manifest** is what we cover on this page. This is a script written in [Groovy](http://groovy.codehaus.org/) to process messages as they come in one-by-one. Messages are structured to contain a single package of data (no batch uploads) that goes through the Manifest. This keeps data organization and processing straightforward. All Manifests written in Groovy must be [approved by our team](#Manifest-certification) before they can be used.
 
-The Advanced Manifest is your best option if you already have devices deployed, or you have an existing application and want to integrate SAMI. It requires more work and must be certified, but gives you the power to create highly sophisticated data formats. At this time [**Actions**](#manifests-that-support-actions) are only supported in the Advanced Manifest.
+The Advanced Manifest is your best option if you already have devices deployed, or you have an existing application and want to integrate SAMI. It requires more work and must be certified, but gives you the power to create highly sophisticated data formats.
 {:.info}
 
 ## Peek into the basics
