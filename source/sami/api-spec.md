@@ -1584,6 +1584,9 @@ WebSocket /websocket
 
 All client applications, including device proxies, must register after opening the connection. Otherwise client messages will be discarded and clients will not be sent messages.
 
+If the client app does not register within 30 seconds of opening the connection, the WebSocket will be closed automatically.
+{:.warning}
+
 **Example registration message sent by client**
 
 ~~~

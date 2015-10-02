@@ -243,6 +243,9 @@ Setting `ack`{:.param} to "true" in the above URL query string will cause SAMI t
 
 All client applications, including device proxies, must register after opening the connection. Otherwise client messages will be discarded and clients will not be sent messages.
 
+If the client app does not register within 30 seconds of opening the connection, the WebSocket will be closed automatically.
+{:.warning}
+
 The registration message `type`{:.param} must be "register". `Authorization`{:.param} refers to the authorization token with READ and WRITE access to `sdid`{:.param}. The `cid`{:.param} parameter is discussed in [Sending messages](#sending-messages).
 
 **Example registration message sent by client**
