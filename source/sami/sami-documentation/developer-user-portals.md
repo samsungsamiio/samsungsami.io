@@ -142,7 +142,7 @@ You define a Rule by selecting device fields and values, conditionals, and comma
 ![SAMI Rules](/images/docs/sami/sami-documentation/thendevice.png)
 - Click "Save Rule". Note the description auto-populates from your choices.
 - You will be taken to your Rules dashboard. Here you can edit, clone, test, enable/disable and delete your Rules.
-![SAMI Rules](/images/docs/sami/sami-documentation/tworules2.png)
+![SAMI Rules](/images/docs/sami/sami-documentation/tworules2.png){:.lightbox}
 
 Read [**our blog post**](https://blog.samsungsami.io/data/rules/iot/2015/09/23/sami-rules-make-your-devices-work-together.html) to learn more about Rules.
 {:.info}
