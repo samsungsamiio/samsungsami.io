@@ -105,16 +105,20 @@ mWebView.setWebViewClient(new WebViewClient() {
     if ( uri.startsWith(REDIRECT_URL) ) {
       // Redirect URL has format http://localhost:81/samidemo/index.php#expires_in=1209600&token_type=bearer&access_token=xxxx
       // Extract OAuth2 access_token in URL
-      if( uri.indexOf("access_token=") != -1 ) {
-        String[] sArray = uri.split("access_token=");
-        String accessToken = sArray[1];
-        startMessageActivity(accessToken);
+      String[] sArray = uri.split("&");
+      for (String paramVal : sArray) {
+        if (paramVal.indexOf("access_token=") != -1) {
+            String[] paramValArray = paramVal.split("access_token=");
+            String accessToken = paramValArray[1];
+            startMessageActivity(accessToken);
+            break;
         }
-        return true;
+      }
+      return true;
     }
     // Load the web page from URL (login and grant access)
     return super.shouldOverrideUrlLoading(view, uri);
-    }
+  }
 });
 ~~~
 
