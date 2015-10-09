@@ -226,7 +226,8 @@ grant_type=client_credentials&scope=read,write
 
 If an application obtains an access token using the [Authorization Code method](#authorization-code-method) or the [Implicit Method](#implicit-method), it can refresh the token up to 14 days after the token has expired. 
 
-After 14 days, the original access token cannot be refreshed anymore and the application must get a new access token.{:.warning}
+After 14 days, the original access token cannot be refreshed anymore and the application must get a new access token.
+{:.warning}
 
 #### Authorization Code method
 
