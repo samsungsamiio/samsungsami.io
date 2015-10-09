@@ -1317,11 +1317,11 @@ Data can be exported in JSON or "simple" CSV. CSV exports sort the message metad
 |`endDate`{:.param}   | Time of latest (newest) item to return, in milliseconds since epoch.
 |`format`{:.param}     | (Optional) Format the export will be returned as: `json` (JSON) or `csv1` (simple CSV). Defaults to `json` if not specified.
 |`order`{:.param}     | (Optional) Desired sort order: `asc` or `desc` (default: `asc`).
-|`sdids`{:.param}      | (Optional) Comma-separated list of source device IDs. Max 30 device IDs.
+|`sdids`{:.param}      | (Optional) Comma-separated list of source device IDs. Max 30 device IDs. For example, "egabbb,ffbcd87" for two device IDs.
 |`startDate`{:.param} | Time of earliest (oldest) item to return, in milliseconds since epoch.
-|`sdtids`{:.param} |(Optional) Comma-separated list of source device type IDs. Max 30 device type IDs.
+|`sdtids`{:.param} |(Optional) Comma-separated list of source device type IDs. Max 30 device type IDs. For example, "dtegabbb,dtffbcd87" for two device type IDs.
 |`trialID`{:.param} |(Optional) Trial ID being searched for messages.
-|`uids`{:.param}       | (Optional) Comma-separated list of user IDs. The current authenticated user must have read access to each user in the list. Max 30 user IDs.
+|`uids`{:.param}       | (Optional) Comma-separated list of user IDs. The current authenticated user must have read access to each user in the list. Max 30 user IDs. For example, "egabbb,ffbcd87" for two user IDs.
 |`url`{:.param} |(Optional) URL to include in email confirmation message.
 
 **Example response**
