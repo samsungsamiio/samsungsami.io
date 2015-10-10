@@ -15,20 +15,20 @@ In addition, please refer to the [Manifest SDK API specification](/sami/demos-to
 To use the command-line tool, you will need the following:
 
  * Java 7
- * [Manifest SDK](/sami/downloads/sami-manifest-sdk-1.8.jar)
+ * [Manifest SDK](/sami/downloads/sami-manifest-sdk-1.9.jar)
 
 The Manifest SDK is a JAR file that you can manually execute from the command line. The binary expects two files: the Manifest you want to test, and a file containing your sample data.
 
 The binary can be executed in two ways. Longform:
 
 ~~~
-java -jar sami-manifest-sdk-1.8.jar --manifest=<path_to_manifest_file> -data=<path_to_test_data_file>
+java -jar sami-manifest-sdk-1.9.jar --manifest=<path_to_manifest_file> -data=<path_to_test_data_file>
 ~~~
 
 And with more compact parameters:
 
 ~~~
-java -jar sami-manifest-sdk-1.8.jar -m <path_to_manifest_file> -d <path_to_test_data_file>
+java -jar sami-manifest-sdk-1.9.jar -m <path_to_manifest_file> -d <path_to_test_data_file>
 ~~~
 
 The SDK will print straight to standard output. The output will include information on the file you tested, information on the `FieldDescriptors`  and a description of each processed field, including any conversions. You can catch Manifest errors by checking if any errors are recorded in the output and if all the fields look right to you.
@@ -36,7 +36,7 @@ The SDK will print straight to standard output. The output will include informat
 Below is the sample output when executing the tool to validate the sample Manifest against the sample data file.
 
 ~~~
-C:\manifest_learning>java -jar sami-manifest-sdk-1.8.jar -m MyDeviceManifest.groovy -d myDeviceData.csv
+C:\manifest_learning>java -jar sami-manifest-sdk-1.9.jar -m MyDeviceManifest.groovy -d myDeviceData.csv
 ==============================================================================
 Manifest File: MyDeviceManifest.groovy
 Modified On: 11/06/2014 15:42:26
@@ -68,7 +68,7 @@ Let's use a sample Maven project to walk through the process of testing the Mani
  * Java 7
  * [Eclipse](https://www.eclipse.org/)
  * [Maven Integration for Eclipse](https://www.eclipse.org/m2e/)
- * [Manifest SDK](/sami/downloads/sami-manifest-sdk-1.8.jar)
+ * [Manifest SDK](/sami/downloads/sami-manifest-sdk-1.9.jar)
  * [Sample Maven project](/sami/downloads/sami-manifest-demo.zip)
 
 ### Quick start
@@ -77,13 +77,13 @@ In Eclipse, import the downloaded sample Maven project as "Existing Maven Projec
 
 To use the downloaded Manifest SDK in the Maven project, you need to install the SDK JAR in the Maven repository. In Eclipse, click `Run` -> `Run Configurations` -> `Maven Build`. Then fill in the following information at the new configuration window:
 
-- **Base directory:** The directory that Eclipse uses to search for SDK JAR file 
+- **Base directory:** The directory that Eclipse uses to search for the sample Maven project 
 - **Goals:** install:install-file 
 - Add the following parameters as "Parameter Name" and "Value" pairs:
-  - **file:** path and name of SDK JAR file e.g. sami-manifest-sdk-1.8.jar
+  - **file:** path and name of SDK JAR file e.g. sami-manifest-sdk-1.9.jar
   - **groupId:** com.samsung.sami.manifest
   - **artifactId:** sami-manifest-sdk
-  - **version:** the version of SDK JAR file e.g. 1.8
+  - **version:** the version of SDK JAR file e.g. 1.9
   - **packaging:** jar
 
 ![Alt Add Manifest SDK to Maven repository in Eclipse](/images/docs/sami/demos-tools/manifestsdk_install_to_maven_repository_eclipse.png){:.lightbox}
@@ -112,7 +112,7 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time: 1.875 s
+[INFO] Total time: 1.375 s
 [INFO] Finished at: 2014-11-06T15:42:39-08:00
 [INFO] Final Memory: 7M/154M
 [INFO] ------------------------------------------------------------------------~~~
@@ -192,7 +192,7 @@ To add the dependency, open your project's `pom` and add the following lines:
 <dependency>
     <groupId>com.samsung.sami.manifest</groupId>
     <artifactId>sami-manifest-sdk</artifactId>
-    <version>1.8</version>
+    <version>1.9</version>
 </dependency>
 ~~~
 
@@ -204,7 +204,7 @@ To add the dependency, open your project's `pom` and add the following lines:
 Next, install Manifest SDK to the Maven repository. If you have [Eclipse](https://www.eclipse.org/) and [Maven Integration for Eclipse](https://www.eclipse.org/m2e/), you can follow the [installation steps detailed earlier](/sami/demos-tools/manifest-sdk.html#quick-start) to install the SDK to the repository. Otherwise, execute the following Maven command in the command-line to install:
 
 ~~~bash
-mvn install:install-file -Dfile=sami-manifest-sdk-1.8.jar -DgroupId=com.samsung.sami.manifest -DartifactId=sami-manifest-sdk -Dversion=1.8 -Dpackaging=jar
+mvn install:install-file -Dfile=sami-manifest-sdk-1.9.jar -DgroupId=com.samsung.sami.manifest -DartifactId=sami-manifest-sdk -Dversion=1.9 -Dpackaging=jar
 ~~~
 
 Finally, you write your Manifest, a sample data file and unit tests. Add them to your project at the location similar to that in the above [sample Maven project.](#the-sample-maven-project-in-detail)
