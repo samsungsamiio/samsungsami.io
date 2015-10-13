@@ -278,7 +278,12 @@ As with /live, SAMI sends a ping every 30 seconds to the client. If a ping is no
 
 #### Sending messages
 
-When sending a message to SAMI or another device, you may specify `type`{:.param} as "message" or "action". Additionally, if `ack`{:.param} was set to "true" when opening the WebSocket connection, you may optionally include `cid`{:.param}—the client ID. SAMI will return `cid`{:.param} (in addition to `mid`{:.param}) in its ACK messages to facilitate client side validations. This helps to clarify which response is for which message. When sending a message to another device, you should specify `ddid`{:.param}. Otherwise, the message is only sent to SAMI to be stored. In the following example, `sdid`{:.param} refers to the device ID of the device registered on the bi-directional WebSocket.
+When sending a message to SAMI or another device, you may specify `type`{:.param} as "message" or "action". Additionally, if `ack`{:.param} was set to "true" when opening the WebSocket connection, you may optionally include `cid`{:.param}—the client ID. SAMI will return `cid`{:.param} (in addition to `mid`{:.param}) in its ACK messages to facilitate client side validations. This helps to clarify which response is for which message. 
+
+When sending a message to another device, you should specify `ddid`{:.param}. Otherwise, the message is only sent to SAMI to be stored. In the following example, `sdid`{:.param} refers to the device ID of the device registered on the bi-directional WebSocket. 
+
+The example request at [**Posting a message with Actions**](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message-with-actions) shows how Actions are formatted in a message.
+{:.info}
 
 **Example request**
 
@@ -308,6 +313,9 @@ When sending a message to SAMI or another device, you may specify `type`{:.param
 #### Receiving messages
 
 In the below example, `ddid`{:.param} refers to the device ID of the device connected to the WebSocket. Connected devices will receive messages containing their corresponding `ddid`{:.param}.
+
+A destination device must be connected to SAMI via WebSockets in order to receive Actions in real-time.
+{:.info}
 
 **Example message received by client**
 
