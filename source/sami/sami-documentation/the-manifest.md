@@ -109,7 +109,11 @@ An application/device working with SAMI can send an *Action* (command) to a spec
 Read [**our blog**](https://blog.samsungsami.io/development/data/2015/04/21/send-actions-to-devices.html) for a step-by-step example of using Actions with a smart light.
 {:.info}
 
-In order for your device type to support Actions, you must provide a Manifest that defines Actions. In addition, it is also your reponsibility to implement the functionality for a device to act on the actions defined in the device type's Manifest.
+<<<<<<< HEAD
+In order for your device type to support Actions, you must provide a Manifest that defines Actions. In addition, it is also your responsibility to implement the functionality for a device to act on the Actions defined in the device type's Manifest.
+=======
+In order for your device type to support Actions, you must provide a Manifest that defines Actions. In addition, it is also your responsibility to implement the functionality for a device to act on the actions defined in the device type's Manifest.
+>>>>>>> origin/master
 
 Now enhance the above Manifest to support Actions. Your Manifest is derived from the `Manifest` and `Actionable` interfaces. In that class, you must define a list of Actions that your device can act on, as follows:
 
@@ -190,7 +194,7 @@ Some typical reasons a Manifest can be rejected:
 
 - Not processing or returning data, due to being incomplete.
 - Having a name that is too generic to be published, or uses the names "Samsung" or "SAMI."
-- Including `printIn` or log.
+- Including `println` or log.
 - Attempting anything malicious.
 - Attempting to use local resources (files) or remote resources (network calls).
 - Consuming too much memory or generating memory leaks (unreleased references).
@@ -203,7 +207,7 @@ The following is a list of best practices to keep in mind when writing your Mani
 
 #### printout
 
-Avoid including standard output such as `printIn` or logs in your Manifest.
+Avoid including standard output such as `println` or logs in your Manifest.
 
 #### Field descriptors
 
