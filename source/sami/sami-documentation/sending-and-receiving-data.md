@@ -314,7 +314,7 @@ The example request at [**Posting a message with Actions**](/sami/sami-documenta
 
 In the below example, `ddid`{:.param} refers to the device ID of the device connected to the WebSocket. Connected devices will receive messages containing their corresponding `ddid`{:.param}.
 
-A destination device must be connected to SAMI via WebSockets in order to receive Actions in real-time.
+A destination device must be connected to SAMI via a bi-directional WebSocket in order to receive Actions in real-time.
 {:.info}
 
 **Example message received by client**
