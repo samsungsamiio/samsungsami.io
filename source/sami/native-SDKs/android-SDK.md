@@ -26,9 +26,11 @@ The source code for the Java/Android SDK is located [on GitHub.](https://github.
 You can generate the SDK libraries using one of the following ways. 
 
 If using Maven command line,
+ 
  - run "mvn package" in the root directory of the repository
 
 If using Eclipse, 
+ 
  - import the SDK library project as "Existing Maven Projects".
  - right click the project, and choose "Run As" then "Maven install"
 
