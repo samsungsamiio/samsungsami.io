@@ -26,15 +26,15 @@ The source code for the Java/Android SDK is located [on GitHub.](https://github.
 You can generate the SDK libraries using one of the following ways. 
 
 If using Maven command line,
-- run "mvn package" in the root directory of the repository
+ - run "mvn package" in the root directory of the repository
 
 If using Eclipse, 
-- import the SDK library project as "Existing Maven Projects".
-- right click the project, and choose "Run As" then "Maven install"
+ - import the SDK library project as "Existing Maven Projects".
+ - right click the project, and choose "Run As" then "Maven install"
 
 After the generation succeeds, you can use the generated libraries in one of the following ways depending on your scenario:
 
-- To use them in an Android Studio project, copy libraries under `target` and `target/lib` directories of the imported Maven project to `app/libs` directory in your Android Studio project. In the `build.gradle` of `app` module, declare the dependency of your Android application on the libraries as following.
+ - To use them in an Android Studio project, copy libraries under `target` and `target/lib` directories of the imported Maven project to `app/libs` directory in your Android Studio project. In the `build.gradle` of `app` module, declare the dependency of your Android application on the libraries as follows:
 
 ~~~
 dependencies {
@@ -43,7 +43,7 @@ dependencies {
 }
 ~~~
 
-- To use them in your Maven project, modify `pom.xml` file in your project to add dependency to `sami-android-xxx.jar` under `target` of the imported Maven project as follows:
+ - To use them in your Maven project, modify `pom.xml` file in your project to add dependency to `sami-android-xxx.jar` under `target` of the imported Maven project as follows:
 
 ~~~
 <dependency>
