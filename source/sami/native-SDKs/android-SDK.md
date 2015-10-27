@@ -3,7 +3,7 @@ title: "Java/Android SDK"
 
 ---
 
-# Java/Android SDK (beta)
+# Java/Android SDK
 
 This SDK helps you connect your Android apps to SAMI. The SDK helps authenticating with SAMI, exposes a number of methods to easily execute REST API calls to SAMI, and supports a WebSockets controller.
 
@@ -26,11 +26,11 @@ The source code for the Java/Android SDK is located [on GitHub.](https://github.
 You can generate the SDK libraries using one of the following ways. 
 
 If using Maven command line,
- - run "mvn package" in the root directory of the repository
+- run "mvn package" in the root directory of the repository
 
 If using Eclipse, 
- - import the SDK library project as "Existing Maven Projects".
- - right click the project, and choose "Run As" then "Maven install"
+- import the SDK library project as "Existing Maven Projects".
+- right click the project, and choose "Run As" then "Maven install"
 
 After the generation succeeds, you can use the generated libraries in one of the following ways depending on your scenario:
 
