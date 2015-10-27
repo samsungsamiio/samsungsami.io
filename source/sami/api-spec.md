@@ -2510,8 +2510,6 @@ Can be called by a trial administrator only.
 
 **Response parameters**
 
-**Response parameters**
-
 |Parameter         |Description
 |----------------- |------------------
 |`id`{:.param} |User ID.
