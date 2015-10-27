@@ -12,8 +12,6 @@ You should be familiar with the [**basic SAMI APIs**](/sami/sami-documentation/s
 
 ## Prerequisites
 
-- Eclipse
-- Maven Integration for Eclipse
 - Wordnik
 - Jackson JSON Processor 2.1.4
 - JUnit 4.8.1
@@ -33,10 +31,9 @@ The end goal of the above steps is to create an application with the redirect UR
 
 ### Set up your Android project
 
-- Download the [sample application Android project.](/sami/downloads/sami-demo-first-android-app.zip)
+- Download the [sample application Android Studio project.](/sami/downloads/sami-demo-first-android-app.zip)
 - Build SAMI's [Java/Android SDK libraries.](/sami/native-SDKs/android-SDK.html) The library JAR files are generated under the `target` and `target/lib` directories of the SDK Maven project.
-- Add the above library JAR files to the Android project. For example, to do it in [Eclipse](https://www.eclipse.org/): 
-  - Create a directory `/libs` in the root of the Andriod application project. Copy all JAR files of the libraries into that directory.
+- Copy all above library JAR files to the directory `/app/libs` in the Android Studio project.
 - Change `CLIENT_ID`{:.param} to your client ID (application ID) at the following line in `MainActivity.java` of the sample application:
 
 ~~~html
@@ -51,7 +48,7 @@ public static final String DEVICE_ID = "xxxx";
 
 - Build the Android project of the sample application.
 
-The sample application uses Android SDK with API level 21.
+The sample application uses Android SDK with API level 22.
 {:.info}
 
 ## Demo
