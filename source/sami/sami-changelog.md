@@ -7,6 +7,10 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### October 27, 2015
+
+We gave the [Developer Portal](https://devportal.samsungsami.io/) a big overhaul to streamline and enhance application and device type creation. See the refreshed [Developer and User Portals](/sami/sami-documentation/developer-user-portals.html) article to learn about the update.
+
 ### September 23, 2015
 
 You can now write Rules for your SAMI devices, right from the User Portal! A Rule is a way to trigger device Actions based on SAMI messages. Learn more about the major new feature [here](/sami/sami-documentation/developer-user-portals.html#creating-a-rule) and in our [blog post](https://blog.samsungsami.io/data/rules/iot/2015/09/23/sami-rules-make-your-devices-work-together.html).
