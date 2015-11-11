@@ -328,7 +328,7 @@ Use the device type ID (`dtid`) listed above to query the Actions that the smart
     $ ga dt71c282d4fad94a69b22fa6d1e449fbbb
     setIntensity(Integer intensity)
     setOff()
-    setColorAsRGB(Object colorRGB{Integer g, Integer b, Integer r}, Integer intensity)
+    setColorRGB(Object colorRGB{Integer g, Integer b, Integer r}, Integer intensity)
     setOn
 
 Now send an Action to the smart light. Use the command `tell` and pass in the device ID (`did`), the Action, and [Action parameters](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message-with-actions) (if applicable). The following example shows the command and the output.

@@ -72,7 +72,7 @@ When sending a message with Actions, you must include the destination device ID 
         "parameters": {}
       },
       {
-        "name": "setColorAsRGB",
+        "name": "setColorRGB",
         "parameters": {
           "colorRGB": {
               "r": 192,
@@ -87,7 +87,7 @@ When sending a message with Actions, you must include the destination device ID 
 }
 ~~~
 
-In the above example, the message contains two Actions, `setOn` and `setColorAsRGB`. You'll then receive a response that is similar to the response of a message that does not contain Actions.
+In the above example, the message contains two Actions, `setOn` and `setColorRGB`. You'll then receive a response that is similar to the response of a message that does not contain Actions.
 
 Any message with Actions should only contain "actions" in the payload.
 {:.info}

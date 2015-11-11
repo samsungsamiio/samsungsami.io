@@ -952,7 +952,7 @@ Sends a message or Action, using one of the following parameter combinations. If
         "parameters": {}
       },
       {
-        "name": "setColorAsRGB",
+        "name": "setColorRGB",
         "parameters": {
           "colorRGB": {
               "r": 192,

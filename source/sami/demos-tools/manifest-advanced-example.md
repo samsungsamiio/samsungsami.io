@@ -264,7 +264,7 @@ public class TestXmlUtilGroovyManifest implements Manifest {
 
 ## Manifest that supports Actions
 
-This Manifest example defines the Actions that the device type can support. Below is an example of a message payload that includes Actions. Once the target device receives such a message, it should perform `setOn` and `setColorAsRGB` using the corresponding parameters.
+This Manifest example defines the Actions that the device type can support. Below is an example of a message payload that includes Actions. Once the target device receives such a message, it should perform `setOn` and `setColorRGB` using the corresponding parameters.
 
 ~~~json
 {
@@ -274,7 +274,7 @@ This Manifest example defines the Actions that the device type can support. Belo
         "parameters": {}
     },
     {
-        "name": "setColorAsRGB",
+        "name": "setColorRGB",
         "parameters": {
             "colorRGB": {
                 "r": 192,
@@ -336,7 +336,7 @@ public class SmartLightManifest implements Manifest, Actionable {
             new Action("setOff", "Sets the light state to Off"),
             new Action("setIntensity", "Changes the intensity of the hue light (value in percent)",
                     INTENSITY),
-            new Action("setColorAsRGB", "Changes the light color with RGB values and set the intensity (value in percent)",
+            new Action("setColorRGB", "Changes the light color with RGB values and set the intensity (value in percent)",
                     COLOR_AS_RGB, INTENSITY),
         ]
     }
