@@ -324,10 +324,14 @@ A destination device must be connected to SAMI via a bi-directional WebSocket in
   "ddid": "<destination device ID = this client device ID>",
   "mid": "<message ID>",
   "data": {
-    "command": "unlock",
-    "level": 3
+    "actions": [
+      {
+        "name": "setOn",
+        "parameters": {}
+      }
+    ]
   }
-}       
+}     
 ~~~
 
 See the API spec for a table of [**WebSocket errors**](https://developer.samsungsami.io/sami/api-spec.html#websocket-errors).
