@@ -80,7 +80,7 @@ During this process, the device can make the following **optional** API call to 
   GET /cert/devices/registrations/:rid/status
 ~~~
 
-`nonce` is passed as data to this POST request. The below excerpt illustrates sending the HTTP request using curl, and the corresponding HTTP response.
+`nonce` is passed as data to this GET request. The below excerpt illustrates sending the HTTP request using curl, and the corresponding HTTP response.
 
     localhost:~$ curl -k -i -H "Accept: application/json" \
     --cert /path/to/client.cert --key /path/to/client-pri.key https://s-api.samsungsami.io/v1.1/cert/devices/registrations/01329450db1b4a2d8e17acb4449b0f70/status
