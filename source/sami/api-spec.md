@@ -53,9 +53,7 @@ After authentication, you can test each of the below calls using parameters retu
 
 ### Get the current user's profile
 
-~~~
-  GET /users/self
-~~~
+`GET /users/self`{:.pa.param.http}
 
 Returns the current user's profile. The user must be authenticated with a bearer access token.
 
@@ -76,9 +74,8 @@ Returns the current user's profile. The user must be authenticated with a bearer
 
 ### Get a user's application properties
 
-~~~
-  GET /users/<userID>/properties
-~~~
+`GET /users/<userID>/properties`
+{:.pa.param.http}
 
 Returns the properties of a user's application.
 
@@ -105,15 +102,13 @@ The call must be authenticated with a valid Authorization header. The applicatio
     "aid":"181a0d34621f4a4d80a43444a4658150",
     "properties":"custom"
   }
-}
-          
+}      
 ~~~~
 
 ### Create a user's application properties
 
-~~~
-  POST /users/<userID>/properties
-~~~
+`POST /users/<userID>/properties`
+{:.pa.param.http}
 
 Specifies the properties of a user's application.
 
@@ -128,18 +123,17 @@ parameter sent in the JSON Payload.
   |----------- |-------------|
   |`userID`{:.param}   |User ID. |
 
-**Example Request**
+**Example request**
 
 ~~~~
 {
   "uid":"03c99e714b78420ea836724cedcebd49",
   "aid":"9628eef2a00d43d89b757b8d34373588",
   "properties":"{\"some\":[\"custom\",\"properties\"]}"
-}
-          
+}   
 ~~~~
 
-**Request parameters**
+**Request body parameters**
 
   |Parameter      |Description |
   |-------------- |--------------------------------------------------------------------------------------------------------|
@@ -161,9 +155,8 @@ parameter sent in the JSON Payload.
 
 ### Update a user's application properties
 
-~~~
-  PUT /users/<userID>/properties
-~~~
+`PUT /users/<userID>/properties`
+{:.pa.param.http}
 
 Modifies the properties of a user's application.
 
@@ -177,7 +170,7 @@ linked to the Authorization token and MUST be the same as the `aid`{:.param} par
   |----------- |-------------
   |`userID`{:.param}   |User ID.
 
-**Example Request**
+**Example request**
 
 ~~~~
 {
@@ -187,7 +180,7 @@ linked to the Authorization token and MUST be the same as the `aid`{:.param} par
 }
 ~~~~
 
-**Request parameters**
+**Request body parameters**
 
   |Parameter      |Description
   |-------------- |---------------------------------------------------------------------------------------------------------------
@@ -209,9 +202,8 @@ linked to the Authorization token and MUST be the same as the `aid`{:.param} par
 
 ### Delete a user's application properties
 
-~~~
-  DELETE /users/<userID>/properties
-~~~
+`DELETE /users/<userID>/properties`
+{:.pa.param.http}
 
 Deletes the properties of a user's application.
 
@@ -240,15 +232,13 @@ linked to the Authorization token.
     "aid":"9628eef2a00d43d89b757b8d34373588",
     "properties":""
   }
-}
-          
+}          
 ~~~~
 
 ### Get a user's devices
 
-~~~
-GET /users/<userID>/devices
-~~~
+`GET /users/<userID>/devices`
+{:.pa.param.http}
 
 Returns the devices registered to a user.
 
@@ -312,9 +302,8 @@ Returns the devices registered to a user.
 
 ### Get a user's device types
 
-~~~
-GET /users/<userID>/devicetypes
-~~~
+`GET /users/<userID>/devicetypes`
+{:.pa.param.http}
 
 Returns the device types owned by a user.
 
@@ -371,9 +360,8 @@ Returns the device types owned by a user.
 
 ### Get a user's trials
 
-~~~
-GET /users/<userID>/trials
-~~~
+`GET /users/<userID>/trials`
+{:.pa.param.http}
 
 Returns the trials of a participant or administrator.
 
@@ -428,9 +416,8 @@ Returns the trials of a participant or administrator.
 
 ### Get a device
 
-~~~
-GET /devices/<deviceID>
-~~~
+`GET /devices/<deviceID>`
+{:.pa.param.http}
 
 Returns a specific device.
 
@@ -479,9 +466,8 @@ Returns a specific device.
 
 ### Create a device
 
-~~~
-POST /devices
-~~~
+`POST /devices`
+{:.pa.param.http}
 
 Adds a device.
 
@@ -498,7 +484,7 @@ Adds a device.
           
 ~~~~
 
-**Request parameters**
+**Request body parameters**
 
 |Parameter   |Description
   |----------- |-------------
@@ -526,9 +512,8 @@ Adds a device.
 
 ### Update a device
 
-~~~
-PUT /devices/<deviceID>
-~~~
+`PUT /devices/<deviceID>`
+{:.pa.param.http}
 
 Modifies a device's parameters.
 
@@ -551,7 +536,7 @@ Modifies a device's parameters.
           
 ~~~~
 
-**Request parameters**
+**Request body parameters**
 
 |Parameter   |Description
   |----------- |-------------
@@ -579,9 +564,8 @@ Modifies a device's parameters.
 
 ### Delete a device
 
-~~~
-DELETE /devices/<deviceID>
-~~~
+`DELETE /devices/<deviceID>`
+{:.pa.param.http}
 
 Deletes a device.
 
@@ -609,9 +593,8 @@ Deletes a device.
 
 ### Get a device's token
 
-~~~
-GET /devices/<deviceID>/tokens
-~~~
+`GET /devices/<deviceID>/tokens`
+{:.pa.param.http}
 
 Returns the access token of a device.
 
@@ -635,9 +618,8 @@ Returns the access token of a device.
 
 ### Create device token
 
-~~~
-PUT /devices/<deviceID>/tokens
-~~~
+`PUT /devices/<deviceID>/tokens`
+{:.pa.param.http}
 
 Creates a new access token for a device.
 
@@ -661,9 +643,8 @@ Creates a new access token for a device.
 
 ### Delete a device's token
 
-~~~
-DELETE /devices/<deviceID>/tokens
-~~~
+`DELETE /devices/<deviceID>/tokens`
+{:.pa.param.http}
 
 Deletes the access token of a device.
 
@@ -689,9 +670,8 @@ Deletes the access token of a device.
 
 ### Get a device type
 
-~~~
-GET /devicetypes/<deviceTypeID>
-~~~
+`GET /devicetypes/<deviceTypeID>`
+{:.pa.param.http}
 
 Returns the device type of a device.
 
@@ -739,9 +719,8 @@ Returns the device type of a device.
 
 ### Get device types
 
-~~~
-GET /devicetypes/
-~~~
+`GET /devicetypes/`
+{:.pa.param.http}
 
 Returns a list of device types.
 
@@ -801,9 +780,8 @@ Returns a list of device types.
 
 ### Get latest Manifest properties
 
-~~~
-GET /devicetypes/<deviceTypeID>/manifests/latest/properties
-~~~
+`GET /devicetypes/<deviceTypeID>/manifests/latest/properties`
+{:.pa.param.http}
 
 Returns the properties for the latest Manifest version. This will return metadata about the Manifest, such as the fields and the units they are expressed in.
 
@@ -843,9 +821,8 @@ Returns the properties for the latest Manifest version. This will return metadat
 
 ### Get Manifest properties
 
-~~~
-GET /devicetypes/<deviceTypeID>/manifests/<version>/properties
-~~~
+`GET /devicetypes/<deviceTypeID>/manifests/<version>/properties`
+{:.pa.param.http}
 
 Returns the properties for a specific Manifest version. This will return metadata about the Manifest, such as the fields and the units they are expressed in.
 
@@ -886,9 +863,8 @@ Returns the properties for a specific Manifest version. This will return metadat
 
 ### Get available Manifest version numbers
 
-~~~
-GET /devicetypes/<deviceTypeID>/availablemanifestversions
-~~~
+`GET /devicetypes/<deviceTypeID>/availablemanifestversions`
+{:.pa.param.http}
 
 Returns the available Manifest versions for a device type.
 
@@ -914,9 +890,8 @@ Returns the available Manifest versions for a device type.
 
 ### Post a message or Action
 
-~~~
-POST /messages
-~~~
+`POST /messages`
+{:.pa.param.http}
 
 Sends a message or Action, using one of the following parameter combinations. If sending Actions, only "actions" should be contained in the payload.
 
@@ -938,7 +913,7 @@ Sends a message or Action, using one of the following parameter combinations. If
 }         
 ~~~
 
-**Example request (action)**
+**Example request (Action)**
 
 ~~~
 {
@@ -967,7 +942,7 @@ Sends a message or Action, using one of the following parameter combinations. If
 }
 ~~~
 
-**Request parameters**
+**Request body parameters**
 
   |Parameter   |Description
   |----------- |-----------
@@ -997,9 +972,8 @@ Sends a message or Action, using one of the following parameter combinations. If
 
 ### Get normalized messages
 
-~~~
-GET /messages
-~~~
+`GET /messages`
+{:.pa.param.http}
 
 Returns normalized messages, according to one of the following parameter combinations:
 
@@ -1075,9 +1049,8 @@ Returns normalized messages, according to one of the following parameter combina
 
 ### Get normalized message aggregates
 
-~~~
-GET /messages/analytics/aggregates
-~~~
+`GET /messages/analytics/aggregates`
+{:.pa.param.http}
 
 Returns the sum, minimum, maximum, mean and count of message fields that are numerical. This call generates results on messages that are at least 1 minute old. Values for `startDate`{:.param} and `endDate`{:.param} are rounded to start of minute, and the date range between `startDate`{:.param} and `endDate`{:.param} is restricted to 31 days max.
 
@@ -1130,9 +1103,8 @@ Returns the sum, minimum, maximum, mean and count of message fields that are num
 
 ### Get normalized message histogram
 
-~~~
-GET /messages/analytics/histogram
-~~~
+`GET /messages/analytics/histogram`
+{:.pa.param.http}
 
 Returns message aggregates over equal intervals, which can be used to draw a histogram. This call generates results on messages that are at least 1 minute old. For each `interval`, the sum, minimum, maximum, mean, count and variance of message fields are returned.
 
@@ -1199,9 +1171,8 @@ Returns message aggregates over equal intervals, which can be used to draw a his
 
 ### Get last normalized messages
 
-~~~
-GET /messages/last
-~~~
+`GET /messages/last`
+{:.pa.param.http}
 
 Returns the most recent normalized messages from a device or devices.
 
@@ -1254,9 +1225,8 @@ Returns the most recent normalized messages from a device or devices.
 
 ### Get normalized messages presence
 
-~~~
-GET /messages/presence
-~~~
+`GET /messages/presence`
+{:.pa.param.http}
 
 Returns presence of normalized messages.
 
@@ -1292,9 +1262,8 @@ Returns presence of normalized messages.
 
 ### Create an export request
 
-~~~
-POST /messages/export
-~~~
+`POST /messages/export`
+{:.pa.param.http}
 
 Exports normalized messages from up to 30 days, according to one of the following parameter combinations. The maximum duration between `startDate`{:.param} and `endDate`{:.param} is 31 days. A confirmation message is emailed when the export request has been processed.
 
@@ -1309,7 +1278,7 @@ Data can be exported in JSON or "simple" CSV. CSV exports sort the message metad
 |Get by combination of parameters |`uids`{:.param}, `sdids`{:.param}, `sdtids`{:.param}
 |Common parameters |`startDate`{:.param}, `endDate`{:.param}, `order`{:.param}, `format`{:.param}, `url`{:.param}, `csvHeaders`{:.param}
 
-**Request parameters**
+**Request body parameters**
 
 |Parameter |Description
 |----------|------------
@@ -1341,9 +1310,8 @@ Data can be exported in JSON or "simple" CSV. CSV exports sort the message metad
 
 ### Check export status
 
-~~~
-GET /messages/export/<exportID>/status
-~~~
+`GET /messages/export/<exportID>/status`
+{:.pa.param.http}
 
 Returns the status of the messages export.
 
@@ -1379,9 +1347,8 @@ Returns the status of the messages export.
 
 ### Get export result
 
-~~~
-GET /messages/export/<exportID>/result
-~~~
+`GET /messages/export/<exportID>/result`
+{:.pa.param.http}
 
 Returns the result of the export query. The result call returns the response in tgz format. 
 
@@ -1443,9 +1410,8 @@ Each file in the tar file has the following format:  `id-date.json` or `id-date.
 
 ### Get export history
 
-~~~
-GET /messages/export/history
-~~~
+`GET /messages/export/history`
+{:.pa.param.http}
 
 Returns a list of export queries that have been performed.
 
@@ -1499,13 +1465,12 @@ codes that can be returned for WebSockets.
 
 ### Read-only WebSocket
 
-~~~
-WebSocket /live
-~~~
+`WebSocket /live`
+{:.pa.param.http}
 
 This call sets up a one-directional data connection from SAMI to a WebSocket client. The read-only WebSocket is primarily used by applications with monitoring functionalities. The application, as the client, listens in real-time for any new messages sent to SAMI by the specified source devices.
 
-**Request Parameters**
+**Request parameters**
 
 | Parameter | Description                                                |
 |-----------|------------------------------------------------------------|
@@ -1572,9 +1537,8 @@ SAMI sends a ping every 30 seconds to the client. If a ping is not received, the
 
 This call opens a data connection between SAMI and a device or device list. 
 
-~~~
-WebSocket /websocket
-~~~
+`WebSocket /websocket`
+{:.pa.param.http}
 
 **Available URL query parameters**
 
@@ -1598,7 +1562,7 @@ If the client app does not register within 30 seconds of opening the connection,
 }         
 ~~~
 
-**Request parameters**
+**Request body parameters**
 
 | Parameter | Description
 |-----------|--------------
@@ -1652,7 +1616,7 @@ Posting a message via WebSockets differs from performing the REST call in that `
 }
 ~~~
 
-**Request parameters**
+**Request body parameters**
 
  |Parameter   |Description
   |----------- |-----------
@@ -1695,13 +1659,287 @@ Devices connected to the bi-directional WebSocket receive messages that contain 
 }    
 ~~~
 
+
+## Rules
+
+### Get Rules
+
+`GET /rules`
+{:.pa.param.http}
+
+Returns the user's Rules created by the current application. 
+
+**Available URL query parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`uid`{:.param} | (Optional) User ID. Can be used to specify user if not specified by the token.
+
+**Example response**
+
+~~~
+{
+  "total": 119,
+  "offset": 0,
+  "count": 100,
+  "data": {
+    "rules": [...]
+  }
+}
+~~~
+
+### Get a Rule
+
+`GET /rules/<ruleId>`
+{:.pa.param.http}
+
+Returns a Rule.
+
+**Request parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`ruleId`{:.param} | Rule ID.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "uid":"f0a3057950384215acf8ba25c2fbfcb7",
+    "id":"f0a3057950384215acf8ba25c2fbfcb7",
+    "name":"Test Rule",
+    "description": "This is a test Rule",
+    "languageVersion": 1,
+    "rule": {"if":{"and":[{"sdid":"<BASIS_WATCH_ID>","field":"heartRate","operator":">=","operand":{"value":180}}]},"then":[{"ddid":"<SMART_THINGS_ON_OFF_CONTROL_ID>","action":"setState","parameters":{"state":{"value":"on"}}}]},
+    "enabled":true,
+    "createdOn": 1234567890,
+    "modifiedOn": 1234567890
+  }
+}
+~~~
+
+**Response parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`uid`{:.param} |User ID.
+|`id`{:.param} |Rule ID.
+|`name`{:.param} |Rule name. String max 64 characters.
+|`description`{:.param} |Rule description. String max 1400 characters.
+|`languageVersion`{:.param} |Version of the Rule body specification. 
+|`rule`{:.param} |JSON-formatted Rule.
+|`enabled`{:.param} |Boolean (true/false). Indicates whether Rule is enabled.
+|`createdOn`{:.param} |Date Rule was created.
+|`modifiedOn`{:.param} |Date Rule was last modified.
+
+### Create a Rule
+
+`POST /rules`
+{:.pa.param.http}
+
+Adds a Rule.
+
+**Example request**
+
+~~~
+{
+  "name":"Test Rule",
+  "description": "This is a test Rule",
+  "rule": {"if":{"and":[{"sdid":"<BASIS_WATCH_ID>","field":"heartRate","operator":">=","operand":{"value":180}}]},"then":[{"ddid":"<SMART_THINGS_ON_OFF_CONTROL_ID>","action":"setState","parameters":{"state":{"value":"on"}}}]},
+  "enabled":true
+}
+~~~
+
+**Request body parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`name`{:.param} |Rule name. String max 64 characters.
+|`description`{:.param} |(Optional) Rule description. String max 1400 characters.
+|`rule`{:.param} |JSON-formatted Rule.
+|`enabled`{:.param} |(Optional) Boolean (true/false). Indicates whether Rule is enabled.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "uid":"f0a3057950384215acf8ba25c2fbfcb7",
+    "id":"f0a3057950384215acf8ba25c2fbfcb7",
+    "name":"Test Rule",
+    "description": "This is a test Rule",
+    "languageVersion": 1,
+    "rule": {"if":{"and":[{"sdid":"<BASIS_WATCH_ID>","field":"heartRate","operator":">=","operand":{"value":180}}]},"then":[{"ddid":"<SMART_THINGS_ON_OFF_CONTROL_ID>","action":"setState","parameters":{"state":{"value":"on"}}}]},
+    "enabled":true,
+    "createdOn": 1234567890,
+    "modifiedOn": 1234567890
+  }
+}
+~~~
+
+### Update a Rule
+
+`PUT /rules/<ruleId>`
+{:.pa.param.http}
+
+Modifies a Rule's parameters.
+
+**Request parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`ruleId`{:.param} | Rule ID.
+
+**Example request**
+
+~~~
+{
+  "name":"Test Rule",
+  "description": "This is a test Rule",
+  "rule": {"if":{"and":[{"sdid":"<BASIS_WATCH_ID>","field":"heartRate","operator":">=","operand":{"value":180}}]},"then":[{"ddid":"<SMART_THINGS_ON_OFF_CONTROL_ID>","action":"setState","parameters":{"state":{"value":"on"}}}]},
+  "enabled":true
+}
+~~~
+
+**Request body parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`name`{:.param} |(Optional) Rule name. String max 64 characters.
+|`description`{:.param} |(Optional) Rule description. String max 1400 characters.
+|`rule`{:.param} |(Optional) JSON-formatted Rule.
+|`enabled`{:.param} |(Optional) Boolean (true/false). Indicates whether Rule is enabled.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "uid":"f0a3057950384215acf8ba25c2fbfcb7",
+    "id":"f0a3057950384215acf8ba25c2fbfcb7",
+    "name":"Test Rule",
+    "description": This is a test Rule",
+    "languageVersion": 1,
+    "rule": {"if":{"and":[{"sdid":"<BASIS_WATCH_ID>","field":"heartRate","operator":">=","operand":{"value":180}}]},"then":[{"ddid":"<SMART_THINGS_ON_OFF_CONTROL_ID>","action":"setState","parameters":{"state":{"value":"on"}}}]},
+    "enabled":true,
+    "createdOn": 1234567890,
+    "modifiedOn": 1234567890
+  }
+}
+~~~
+
+### Delete a Rule
+
+`DELETE /rules/<ruleId>`
+{:.pa.param.http}
+
+Deletes a Rule.
+
+**Request parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`ruleId`{:.param} | Rule ID.
+
+**Example response**
+
+~~~
+ {
+  "data": {
+    "uid": "eee2fb1e88f245458520ed23661dead4",
+    "id": "096ba7b27db54f73bbbe724d6c0bca22",
+    "aid": "d18f11efb5244c8f99f1ac7aa4fb9bbc",
+    "name": "Example rule",
+    "languageVersion": 1,
+    "rule": {"if":{"and":[{"sdid":"<BASIS_WATCH_ID>","field":"heartRate","operator":">=","operand":{"value":180}}]},"then":[{"ddid":"<SMART_THINGS_ON_OFF_CONTROL_ID>","action":"setState","parameters":{"state":{"value":"on"}}}]},
+    "enabled": true,
+    "createdOn": 1445440561132,
+    "modifiedOn": 1445440561132,
+    "description": "IF Basis Watch heartRate is more than or equal to 180\nTHEN send to SmartThingsOnOffControl the action setState with state=\"on\"‌"
+  }
+}
+~~~
+
+### Get a Rule's execution statistics
+
+`GET /rules/<ruleId>/executions`
+{:.pa.param.http}
+
+Returns statistics for executions of a Rule.
+
+**Request parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`ruleId`{:.param} | Rule ID.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "countApply": 3,
+    "lastApply": 123456789,
+  }
+}
+~~~
+
+**Response parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`countApply`{:.param} | Number of times Rule was triggered and sent Actions.
+|`lastApply`{:.param} | Last time Rule was triggered, in milliseconds since epoch. Does not appear if Rule was not triggered.
+
+### Test Actions
+
+`POST /rules/<ruleId>/actions`
+{:.pa.param.http}
+
+Runs an Action.
+
+**Request parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`ruleId`{:.param} | Rule ID.
+
+### Test Actions available
+
+`GET /rules/<ruleId>/actions`
+{:.pa.param.http}
+
+Checks whether at least one Action can be run for test.
+
+**Request parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`ruleId`{:.param} | Rule ID.
+
+**Example response**
+
+~~~
+{ 
+  "data": { 
+    "testable": true 
+  }
+}
+~~~
+
+**Response parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`testable`{:.param} | Boolean (true/false). Indicates whether it is possible to run an Action for the test.
+
 ## Trials
 
 ### Create a trial
 
-~~~
-POST /trials
-~~~
+`POST /trials`
+{:.pa.param.http}
 
 Adds a trial. 
 
@@ -1730,7 +1968,7 @@ Device types and invitations may be included in the call. See [Add a trial devic
 }
 ~~~
 
-**Request parameters**
+**Request body parameters**
 
 |Parameter         |Description
 |----------------- |------------------
@@ -1771,9 +2009,8 @@ Device types and invitations may be included in the call. See [Add a trial devic
 
 ### Delete a trial
 
-~~~
-DELETE /trials/<trialID>
-~~~
+`DELETE /trials/<trialID>`
+{:.pa.param.http}
 
 Deletes a trial and its invitations, administrators, participants and connected devices. 
 
@@ -1804,9 +2041,8 @@ Can be called by a trial administrator only.
 
 ### Find a trial
 
-~~~
-GET /trials/<trialID>
-~~~
+`GET /trials/<trialID>`
+{:.pa.param.http}
 
 Returns a trial.
 
@@ -1837,9 +2073,8 @@ Can be called by trial administrators and participants. Only administrators will
 
 ### Update a trial
 
-~~~
-PUT /trials/<trialID>
-~~~
+`PUT /trials/<trialID>`
+{:.pa.param.http}
 
 Modifies the parameters of a trial. 
 
@@ -1860,7 +2095,7 @@ Can be called by a trial administrator only.
 }
 ~~~
 
-**Request parameters**
+**Request body parameters**
 
 |Parameter         |Description
 |----------------- |------------------
@@ -1877,7 +2112,7 @@ The `status` field can be updated to `stop`. This sets the end date of the trial
 }
 ~~~
 
-**Request parameters**
+**Request body parameters**
 
 |Parameter         |Description
 |----------------- |------------------
@@ -1902,9 +2137,8 @@ The `status` field can be updated to `stop`. This sets the end date of the trial
 
 ### Update trial application
 
-~~~
-PUT /trials/<trialID>/application
-~~~
+`PUT /trials/<trialID>/application`
+{:.pa.param.http}
 
 Updates the trial with a new application. This can be used if the client secret of the existing application is exposed. A new `aid`{:.param} and `clientSecret`{:.param} will be generated.
 
@@ -1937,9 +2171,8 @@ Can be called by a trial administrator only.
 
 ### Add a trial device type
 
-~~~
-POST /trials/<trialID>/devicetypes
-~~~
+`POST /trials/<trialID>/devicetypes`
+{:.pa.param.http}
 
 Add a device type to the trial device types list. 
 
@@ -1959,7 +2192,7 @@ Can be called by a trial administrator only.
 }
 ~~~
 
-**Request parameters**
+**Request body parameters**
 
 |Parameter         |Description
 |----------------- |------------------
@@ -1978,9 +2211,8 @@ Can be called by a trial administrator only.
 
 ### Connect a user device
 
-~~~
-POST /trials/<trialID>/participants/<userID>/devices
-~~~
+`POST /trials/<trialID>/participants/<userID>/devices`
+{:.pa.param.http}
 
 Connects a participant device to the trial.
 
@@ -2001,7 +2233,7 @@ Can be called by a trial participant only.
 }
 ~~~
 
-**Request parameters**
+**Request body parameters**
 
 |Parameter         |Description
 |----------------- |------------------
@@ -2021,9 +2253,8 @@ Can be called by a trial participant only.
 
 ### Disconnect a user device
 
-~~~
-DELETE /trials/<trialID>/participants/<userID>/devices/<deviceID>
-~~~
+`DELETE /trials/<trialID>/participants/<userID>/devices/<deviceID>`
+{:.pa.param.http}
 
 Disconnects a participant device from the trial.
 
@@ -2051,9 +2282,8 @@ Can be called by a trial participant only.
 
 ### Get trial connected devices
 
-~~~
-GET /trials/<trialID>/devices
-~~~
+`GET /trials/<trialID>/devices`
+{:.pa.param.http}
 
 Returns all devices connected to a trial.
 
@@ -2112,9 +2342,8 @@ Can be called by a trial administrator only.
 
 ### Get trial device types
 
-~~~
-GET /trials/<trialID>/devicetypes
-~~~
+`GET /trials/<trialID>/devicetypes`
+{:.pa.param.http}
 
 Returns all device types in a trial.
 
@@ -2172,9 +2401,8 @@ Can be called by trial administrators and participants.
 
 ### Get user connected devices
 
-~~~
-GET /trials/<trialID>/participants/<userID>/devices
-~~~
+`GET /trials/<trialID>/participants/<userID>/devices`
+{:.pa.param.http}
 
 Returns all devices connected by a participant to a trial.
 
@@ -2222,9 +2450,8 @@ Can be called by trial administrators and participants.
 
 ### Create a trial invitation
 
-~~~
-POST /trials/<trialID>/invitations
-~~~
+`POST /trials/<trialID>/invitations`
+{:.pa.param.http}
 
 Sends a new trial invitation. The invitation will be active for 24 hours. 
 
@@ -2245,7 +2472,7 @@ Can be called by a trial administrator only.
 }
 ~~~
 
-**Request parameters**
+**Request body parameters**
 
 |Parameter         |Description
 |----------------- |------------------
@@ -2286,9 +2513,8 @@ Can be called by a trial administrator only.
 
 ### Delete a trial administrator
 
-~~~
-DELETE /trials/<trialID>/administrators/<userID>
-~~~
+`DELETE /trials/<trialID>/administrators/<userID>`
+{:.pa.param.http}
 
 Removes an administrator from a trial.
 
@@ -2314,9 +2540,8 @@ Can be called by a trial administrator only.
 
 ### Delete a trial invitation
 
-~~~
-DELETE /trials/<trialID>/invitations/<invitationID>
-~~~
+`DELETE /trials/<trialID>/invitations/<invitationID>`
+{:.pa.param.http}
 
 Removes an invitation from a trial. This only applies to invitations with a `status` of `sent`. 
 
@@ -2349,9 +2574,8 @@ Can be called by a trial administrator only.
 
 ### Delete a trial participant
 
-~~~
-DELETE /trials/<trialID>/participants/<userID>
-~~~
+`DELETE /trials/<trialID>/participants/<userID>`
+{:.pa.param.http}
 
 Removes a participant from a trial and disconnects their devices. Participant's data can no longer be accessed by trial administrators. 
 
@@ -2377,9 +2601,8 @@ Can be called by a trial administrator only.
 
 ### Get trial administrators
 
-~~~
-GET /trials/<trialID>/administrators
-~~~
+`GET /trials/<trialID>/administrators`
+{:.pa.param.http}
 
 Returns all the administrators of a trial.
 
@@ -2429,9 +2652,8 @@ Can be called by a trial administrator only.
 
 ### Find trial invitations
 
-~~~
-GET /trials/<trialID>/invitations
-~~~
+`GET /trials/<trialID>/invitations`
+{:.pa.param.http}
 
 Returns invitations for a trial that match a status. 
 
@@ -2473,9 +2695,8 @@ Can be called by a trial administrator only.
 
 ### Get trial participants
 
-~~~
-GET /trials/<trialID>/participants
-~~~
+`GET /trials/<trialID>/participants`
+{:.pa.param.http}
 
 Returns all the participants of a trial. 
 
@@ -2525,9 +2746,8 @@ Can be called by a trial administrator only.
 
 ### Update a trial invitation
 
-~~~
-PUT /trials/<trialID>/invitations/<invitationID>
-~~~
+`PUT /trials/<trialID>/invitations/<invitationID>`
+{:.pa.param.http}
 
 Modifies an invitation status.
 
@@ -2548,7 +2768,7 @@ Can be called by trial administrators and participants. Only administrators may 
 }
 ~~~
 
-**Request parameters**
+**Request body parameters**
 
 |Parameter         |Description
 |----------------- |------------------
