@@ -70,7 +70,7 @@ Creating and publishing a device type makes it available to all developers that 
 
 - Once your device type has a Manifest, you may want to publish the device to make it available to all SAMI developers. By default, it has a status of Private.
 ![SAMI Developer and User Portals](/images/docs/sami/sami-documentation/privatestatus.png){:.retain-width}
-- To publish the device type, you must populate the Device Info page. Click the "Device Info" link to the left.
+- To publish the device type, you must populate the Device Info page. Click the "Device Info" link to the left.  
 ![SAMI Developer and User Portals](/images/docs/sami/sami-documentation/deviceinfolink.png){:.retain-width}
 - Add a description and choose at least one category and tag. Click "Save Changes".
 - You may now change the Private status by clicking the pulldown and then the "Publish..." button.

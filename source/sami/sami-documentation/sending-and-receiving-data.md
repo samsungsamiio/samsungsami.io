@@ -168,7 +168,7 @@ WebSocket /live
 
 This call sets up a one-directional data connection from SAMI to a WebSocket client. The read-only WebSocket is primarily used by applications with monitoring functionalities. The application, as the client, listens in real-time for any new messages sent to SAMI by the specified source devices.
 
-The order of the messages received at this type of WebSocket is not guaranteed.
+Messages received at this WebSocket endpoint are not necessarily ordered based on the `ts` field.
 {:.warning}
 
 **Request Parameters**
