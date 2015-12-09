@@ -119,7 +119,7 @@ The following methods are optional. Override a method only when it is necessary.
 
 At the bottom of the Connector Code tab, there is a **Custom Parameters** table. You can store key-value pairs in this table and then access them in [your Cloud Connector Groovy code](#about-the-cloud-connector-groovy-code). 
 
-You do not hardcode the values of the custom parameters in the Groovy code. Instead, you read the values from the table. 
+In the Groovy code, you do not hardcode the values of the custom parameters. Read the values from the table instead. 
 {:.info}
 
 Later on, if you decide to change the value of a parameter, you only need to change its value in the table instead of changing the Groovy code. That is the benefit of using custom parameters—your Groovy code becomes more flexible. 
