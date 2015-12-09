@@ -117,7 +117,7 @@ The following methods are optional. Override a method only when it is necessary.
 
 #### About custom parameters
 
-In Connector Code tab, there is a CUSTOM PARAMETER table. You can store key-value pairs in the table, and then access them in [your Cloud Connector Groovy code](#about-the-cloud-connector-groovy-code). Since the parameter values are not hardcoded in the Groovy code, you can use the same Groovy code for different usages by changing the values in the table only. For example, you can have an entry with key "myUrl" in the table. Then you assign it to different URLs in the table for each of different usages such as development, testing, or production environments. Every time you change the usage, you just change the value of "myUrl" in the table and you do not need to change the Groovy code.
+In Connector Code tab, there is a CUSTOM PARAMETER table. You can store key-value pairs in the table, and then access them in [your Cloud Connector Groovy code](#about-the-cloud-connector-groovy-code). The parameter values are not hardcoded in the Groovy code. Instead you read the values from the table. Later on, if you decide to change the value of a parameter, you only need to change its value in the table instead of changing the Groovy code. That is the benifit of using the custom parameters - your Groovy code becomes more flexible. 
 
 To access key-value pairs in the parameter table, use the object of `com.samsung.sami.cloudconnector.api.Context`{:.param} trait in the Groovy code.
 `Context`{:.param} has the following interface per [Cloud Connector API doc](https://github.com/samsungsamiio/sami-cloudconnector-sdk/tree/master/apidoc):
@@ -136,7 +136,7 @@ trait Context extends scala.AnyRef {
 }
 ~~~
 
-Lets use an example to explain how to access the parameters in the table. Add two key value pairs in the parameter table as shown in the screenshot below:
+Lets use an example to explain how to access the parameters in the table. Add two key value pairs in the CUSTOM PARAMETERS table as shown in the screenshot below:
 
 ![SAMI Cloud Connector Custom Parameter table](/images/docs/sami/sami-documentation/CC_custom-param-table.png)
 
@@ -165,7 +165,7 @@ Or<List<RequestDef>, Failure> subscribe(Context ctx, DeviceInfo info) {
 }
 ~~~
 
-Your Groovy code can not only access all parameters in CUSTOM TABLE but also some of parameters in [Cloud Authentication](#set-authentication-parameters) tab in the Developer Portal. Per `com.samsung.sami.cloudconnector.api.Context`{:.param} interface above, you can read three parameters value as following
+Your Groovy code can access not only all parameters in CUSTOM PARAMETERS table but also some of the parameters in [Cloud Authentication](#set-authentication-parameters) tab in the Developer Portal. Based on `com.samsung.sami.cloudconnector.api.Context`{:.param} interface above, you can read the values of the three parameters of Cloud Authentication as follows:
 
 ~~~java
 @Override
