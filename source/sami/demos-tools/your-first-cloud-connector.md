@@ -342,7 +342,7 @@ import groovy.transform.CompileStatic
 import groovy.transform.ToString
 import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
-import com.samsung.sami.cloudconnector.api.*
+import com.samsung.sami.cloudconnector.api_v1.*
 import static java.net.HttpURLConnection.*
 //@CompileStatic
 class MyCloudConnector extends CloudConnector {
@@ -449,7 +449,7 @@ import org.scalactic.*
 import scala.Option
 import org.joda.time.format.DateTimeFormat
 import org.joda.time.*
-import com.samsung.sami.cloudconnector.api.*
+import com.samsung.sami.cloudconnector.api_v1.*
 import groovy.json.JsonSlurper
 import utils.FakeContext
 import static utils.Tools.*
