@@ -196,7 +196,7 @@ Now configure and run Cloud Connector on the local server:
 * The device type ID in the redirect URI is hardcoded to "0000".
 * Temporarily update the configuration in the Moves developer portal to use your local server for authentication and notification.
 	* Redirect URI: `http://localhost:9080/cloudconnectors/0000/auth`{:.param}
-	* Notification URI: `http://YOUR_SERVER_ADDRESS:9080/cloudconnectors/0000/thirdpartynotifications`{:.param}, replacing `YOUR_SERVER_ADDRESS`{:.param} with your server's external address.
+	* Notification URI: `http://ADDR:9080/cloudconnectors/0000/thirdpartynotifications`{:.param}, replacing `ADDR`{:.param} with your server's external address.
 * In the terminal, run the test server `../gradlew runTestServer`{:.param}.
 * Start subscribing to a device by loading `http://localhost:9080/cloudconnectors/0000/start_subscription`{:.param} in your Web browser.
 * Follow instructions displayed on the Web page.
