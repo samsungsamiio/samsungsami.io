@@ -333,7 +333,7 @@ Generate new data in your Moves app and synchronize your app to Moves cloud. In 
 
 ### MyCloudConnector.groovy
 
-~~~
+~~~java
 package com.sample
 import org.scalactic.*
 import org.joda.time.format.DateTimeFormat
@@ -439,7 +439,7 @@ class MyCloudConnector extends CloudConnector {
 
 ### MyCloudConnectorSpec.groovy
 
-~~~
+~~~java
 package com.sample
 import static java.net.HttpURLConnection.*
 import utils.FakeContext
