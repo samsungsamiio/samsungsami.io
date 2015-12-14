@@ -6,6 +6,8 @@ title: "Using Cloud Connectors"
 
 SAMI can [accept data from any device](/sami/sami-documentation/sending-and-receiving-data.html), but some devices already send data to a third-party cloud. In this case, SAMI can use the device's cloud, rather than the device, as the data source. You can build what we call a *Cloud Connector* to bridge SAMI to the third-party cloud. SAMI can then retrieve the device's data sent to that cloud.
 
+A Cloud Connector brings a third-party device into the SAMI ecosystem. Once there, it can communicate with other devices through features like <a href="https://blog.samsungsami.io/data/rules/iot/2015/09/23/sami-rules-make-your-devices-work-together.html" target="_blank">SAMI Rules</a>, which uses SAMI messages to trigger device commands. SAMI enables cloud-connected devices to benefit from data aggregation and analytics <a href="https://blog.samsungsami.io/iot/events/2015/11/20/your-questions-about-sami-continued.html" target="_blank">across silos</a>.
+
 This article gives a high-level overview on how to build a Cloud Connector. After reading this article, you should read our tutorial [Your First Cloud Connector](/sami/demos-tools/your-first-cloud-connector.html) to see an example.
 
 ![SAMI Cloud Connectors](/images/docs/sami/sami-documentation/CC_Figure1.png){:.lightbox}
@@ -20,12 +22,12 @@ You can build a Cloud Connector for the third-party cloud if it:
 
 ## Building Cloud Connectors as a developer
 
-There are two parts when building a Cloud Connector:
+There are two parts to building a Cloud Connector:
 
-1. Create and config a SAMI device type [configured to receive data from a cloud service](#configuring-a-device-type-as-a-cloud-connector) on SAMI.
-1. Create and config a "SAMI connector" application on the third-party cloud. This enables the SAMI device to interact with that cloud.
+1. Create and configure a SAMI device type [configured to receive data from a cloud service](#configuring-a-device-type-as-a-cloud-connector) on SAMI.
+1. Create and configure a "SAMI Connector" application on the third-party cloud. This enables the SAMI device to interact with that cloud.
 
-For the second part, you should consult the developer documentation of the third party cloud to learn how to create an application. [Our tutorial](/sami/demos-tools/your-first-cloud-connector.html) also gives an example. The rest of this section will focus on the first part only.
+For the second part, you should consult the developer documentation of the third-party cloud to learn how to create an application. [Our Cloud Connector tutorial](/sami/demos-tools/your-first-cloud-connector.html) also gives an example. The rest of this section will focus on the first part only.
 
 ![SAMI Cloud Connectors](/images/docs/sami/sami-documentation/CC_Figure2.png){:.lightbox}
 
@@ -34,6 +36,9 @@ For the second part, you should consult the developer documentation of the third
 Follow the steps to [create a new device type](/sami/sami-documentation/developer-user-portals.html#creating-a-device-type) in the SAMI <a href="https://devportal.samsungsami.io/" target="_blank">Developer Portal</a>.
 
 You will be prompted to [**define a Manifest**](/sami/sami-documentation/the-manifest.html) for your device type. In doing so, you should reference the documentation for the third-party cloud. See [**Create device type Manifest**](/sami/demos-tools/your-first-cloud-connector.html#create-device-type-manifest) in our Cloud Connector tutorial to learn how third-party documentation formed the basis of our Manifest.
+{:.info}
+
+See [**SAMI Basics**](/sami/sami-documentation/sami-basics.html) for a refresher on how device types and Manifests work in SAMI.
 {:.info}
 
 At the bottom of the Device Info tab, change the data source from "device" to "cloud service". This will unfold two additional tabs for configuring the Cloud Connector:
@@ -51,7 +56,7 @@ In the **Cloud Authentication** tab, you tell SAMI how to authenticate itself to
 
 The following tables describe the parameters displayed in the Developer Portal that correspond to each authentication protocol.
 
-Some parameters are obtained from third-party documentation. Other parameters, such as *Client ID* and *Client Secret*, cannot be obtained until you [**create a SAMI Connector application**](/sami/demos-tools/your-first-cloud-connector.html#create-a-moves-app) on the third-party cloud.
+Some parameters are obtained from third-party documentation. Other parameters, such as *Client ID* and *Client Secret*, are provided only once you define an application on the third-party cloud. See our tutorial to [**create a SAMI Connector application**](/sami/demos-tools/your-first-cloud-connector.html#create-a-moves-app) on the third-party cloud.
 {:.info}
 
 #### OAuth 1 parameters<br><br>
@@ -88,7 +93,7 @@ The **Connector Code** tab is the final step of building a SAMI Cloud Connector.
 
 ![SAMI Cloud Connectors](/images/docs/sami/sami-documentation/CC_groovy.png)
 
-You implement a Cloud Connector Groovy code using the <a href="https://github.com/samsungsamiio/sami-cloudconnector-sdk" target="_blank">Cloud Connector SDK</a>. The SDK GitHub repository contains libraries, API reference documentation, sample codes, and a template project. You can perform unit and integration testing using the SDK.
+You implement a Cloud Connector Groovy code using the <a href="https://github.com/samsungsamiio/sami-cloudconnector-sdk" target="_blank">Cloud Connector SDK</a>. The SDK's GitHub repository contains libraries, API reference documentation, sample codes, and a template project. You can perform unit and integration testing using the SDK.
 
 #### About the Cloud Connector Groovy code
 
