@@ -7,6 +7,7 @@ nav:
   - 'your-first-application' 
   - 'your-first-android-app'
   - 'your-first-iot-device'
+  - 'your-first-cloud-connector'
   - 'manifest-sdk'
   - 'manifest-advanced-example'
  
@@ -27,5 +28,6 @@ Keep an eye on this page—more is on the way!
 *   [Your first Web app](/sami/demos-tools/your-first-application.html "Your first Web app")
 *   [Your first Android app](/sami/demos-tools/your-first-android-app.html "Your first Android app")
 *	[Your first IoT device](/sami/demos-tools/your-first-iot-device.html "Your first IoT device")
+*	[Your first Cloud Connector](/sami/demos-tools/your-first-cloud-connector.html "Your first Cloud Connector")
 *   [Validate your Manifest](/sami/demos-tools/manifest-sdk.html)
 *   [Advanced Manifest examples](/sami/demos-tools/manifest-advanced-example.html)
