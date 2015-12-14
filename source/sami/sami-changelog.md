@@ -7,6 +7,10 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### December 14, 2015
+
+Published new documentation that explains [how Cloud Connectors work](/sami/sami-documentation/using-cloud-connectors.html) and guides you in [building a Cloud Connector](/sami/demos-tools/your-first-cloud-connector.html), using the Moves activity app as a case study.
+
 ### October 27, 2015
 
 We gave the [Developer Portal](https://devportal.samsungsami.io/) a big overhaul to streamline and enhance application and device type creation. See the refreshed [Developer and User Portals](/sami/sami-documentation/developer-user-portals.html) article to learn about the update.
