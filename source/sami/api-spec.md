@@ -1603,7 +1603,12 @@ SAMI sends a ping every 30 seconds to the client. If a ping is not received, the
 
 #### Sending messages
 
-Posting a message via WebSockets differs from performing the REST call in that `cid`{:.param} can be included. Responses from SAMI include `cid`{:.param} to facilitate client side validations.
+You can send a message with
+
+ * `type`{:.param} as "message" to SAMI. 
+ * `type`{:.param} as "action" to another device. You must specify `ddid`{:.param} in your request.
+
+Sending a message via WebSockets differs from performing the REST call in that `cid`{:.param} can be included. Responses from SAMI include `cid`{:.param} to facilitate client side validations.
 
 **Example request**
 
