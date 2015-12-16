@@ -1651,6 +1651,7 @@ Devices connected to the bi-directional WebSocket receive messages that contain 
 {
   "ddid": "<destination device ID = this client device ID>",
   "mid": "<message ID>",
+  "type": "action",
   "data": {
     "actions": [
       {
