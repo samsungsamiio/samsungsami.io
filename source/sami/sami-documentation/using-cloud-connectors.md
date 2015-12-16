@@ -27,7 +27,7 @@ There are two parts to building a Cloud Connector:
 1. Create and configure a SAMI device type [configured to receive data from a cloud service](#configuring-a-device-type-as-a-cloud-connector) on SAMI.
 1. Create and configure a "SAMI Connector" application on the third-party cloud. This enables the SAMI device to interact with that cloud.
 
-For the second part, you should consult the developer documentation of the third-party cloud to learn how to create an application. [Our Cloud Connector tutorial](/sami/demos-tools/your-first-cloud-connector.html) also gives an example. The rest of this section will focus on the first part only.
+For the second part, refer to the developer documentation of the third-party cloud to learn how to create an application. [Our Cloud Connector tutorial](/sami/demos-tools/your-first-cloud-connector.html) also gives an example. The rest of this section will focus on the first part only.
 
 ![SAMI Cloud Connectors](/images/docs/sami/sami-documentation/CC_Figure2.png){:.lightbox}
 
