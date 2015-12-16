@@ -1610,7 +1610,6 @@ Posting a message via WebSockets differs from performing the REST call in that `
 ~~~
 {
   "sdid": "d597a8ffb3364f98a904515cbc574cb2",
-  "ddid": "<destination device ID>",
   "cid":"1234567890", 
   "type": "message",
   "data":{
@@ -1625,7 +1624,7 @@ Posting a message via WebSockets differs from performing the REST call in that `
   |----------- |-----------
   |`sdid`{:.param}     |(Optional) Source device ID. The ID of one of the devices registered on the bi-directional websocket.
   |`data`{:.param}     |Data. Can be a simple text field, or a JSON document.
-  |`ddid`{:.param}     |(Optional) Destination device ID. Must be used when sending a message to another device. Otherwise, only sends to SAMI to store.
+  |`ddid`{:.param}     |(Optional) Destination device ID. Must be used when sending an Action to another device. Otherwise, only sends to SAMI to store.
   |`ts`{:.param}       |(Optional) Message timestamp. Must be a valid time: past time, present or future up to the current server timestamp grace period. Current time if omitted.
   |`type`{:.param} |Type of message: `message` or `action` (default: `message`).
   |`cid`{:.param} |(Optional) Client (application) ID. Can be used when `ack=true`. SAMI will return `cid`{:.param} (in addition to `mid`{:.param}) in its ACK messages to facilitate client side validations. This helps to clarify which response is for which message.
@@ -1643,7 +1642,7 @@ Posting a message via WebSockets differs from performing the REST call in that `
 
 #### Receiving messages
 
-Devices connected to the bi-directional WebSocket receive messages that contain their corresponding `ddid`{:.param} (destination device ID).
+Devices connected to the bi-directional WebSocket receive messages that contain their corresponding `ddid`{:.param} (destination device ID) and have `type`{:.param} as "action".
 
 **Example message received by client**
 

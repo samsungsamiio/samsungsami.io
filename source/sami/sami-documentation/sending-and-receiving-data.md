@@ -49,7 +49,7 @@ You'll then receive a message ID (`mid`{:.param}) that you can use to query this
 }     
 ~~~
 
-You cannot send a message with `type`{:.param} being "message" to another device even if you include the destination device ID (`ddid`{:.param}). The destination device won't receive this message. However you can send a message with Actions to an device. 
+You cannot send a message with `type`{:.param} as "message" to another device even if you include the destination device ID (`ddid`{:.param}). The destination device won't receive this message. However you can send a message with Actions to an device. 
 {:.warning}
 
 ## Posting a message with Actions
@@ -283,9 +283,10 @@ As with /live, SAMI sends a ping every 30 seconds to the client. If a ping is no
 
 #### Sending messages
 
-You can send a message
-* with `type`{:.param} as "message" to SAMI. 
-* with `type`{:.param} as "action" to another device. You must specify `ddid`{:.param} in your request.
+You can send a message with
+
+ * `type`{:.param} as "message" to SAMI. 
+ * `type`{:.param} as "action" to another device. You must specify `ddid`{:.param} in your request.
 
 Additionally, if `ack`{:.param} was set to "true" when opening the WebSocket connection, you may optionally include `cid`{:.param}—the client ID. SAMI will return `cid`{:.param} (in addition to `mid`{:.param}) in its ACK messages to facilitate client side validations. This helps to clarify which response is for which message. 
 
