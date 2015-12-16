@@ -220,7 +220,7 @@ Once you submit it, your Cloud Connector code is in approval state. You should h
 
 ## Create device type Manifest
 
-As with all device types, you should create [the Manifest](/sami/sami-documentation/the-manifest.html) for the Cloud Connector device type. 
+As with all device types, you should create the Manifest for the Cloud Connector device type using either the <a href="https://blog.samsungsami.io/portals/development/data/2015/03/26/the-simple-manifest-device-types-in-1-minute.html" target="_blank">Simple Manifest</a> or [Advanced Manifest](/sami/sami-documentation/the-manifest.html) workflow. For this particular example, you can upload **manifest.json** (see below), which we have written and included with the SDK for your convenience.
 
 In the SAMI Developer Portal, navigate to the Manifest page for your device type. Click on the dropdown icon next to the "+ New Manifest" button:
 

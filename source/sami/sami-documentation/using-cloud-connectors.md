@@ -4,7 +4,7 @@ title: "Using Cloud Connectors"
 
 # Using Cloud Connectors
 
-SAMI can [accept data from any device](/sami/sami-documentation/sending-and-receiving-data.html), but some devices already send data to a third-party cloud. In this case, SAMI can use the device's cloud, rather than the device, as the data source. You can build what we call a *Cloud Connector* to bridge SAMI to the third-party cloud. SAMI can then retrieve the device's data sent to that cloud.
+SAMI can [accept data from any device](/sami/sami-documentation/sending-and-receiving-data.html), but some devices already send data to a third-party cloud. In this case, SAMI can connect to the third-party cloud and use it as the data source for a device type. We have built an infrastructure called *Cloud Connectors* that enables you to connect the third-party cloud to SAMI. SAMI can then retrieve the device's data sent to that cloud.
 
 A Cloud Connector brings a third-party device into the SAMI ecosystem. Once there, it can communicate with other devices through features like <a href="https://blog.samsungsami.io/data/rules/iot/2015/09/23/sami-rules-make-your-devices-work-together.html" target="_blank">SAMI Rules</a>, which uses SAMI messages to trigger device commands. SAMI enables cloud-connected devices to benefit from data aggregation and analytics <a href="https://blog.samsungsami.io/iot/events/2015/11/20/your-questions-about-sami-continued.html" target="_blank">across silos</a>.
 
@@ -33,15 +33,15 @@ For the second part, you should consult the developer documentation of the third
 
 ### Configure a device type as a Cloud Connector
 
-Follow the steps to [create a new device type](/sami/sami-documentation/developer-user-portals.html#creating-a-device-type) in the SAMI <a href="https://devportal.samsungsami.io/" target="_blank">Developer Portal</a>.
+To connect a third-party cloud to SAMI, we first need to define a device type. All data coming in from the third-party cloud will be associated with this device type. We do this by [creating a new device type](/sami/sami-documentation/developer-user-portals.html#creating-a-device-type) in the SAMI <a href="https://devportal.samsungsami.io/" target="_blank">Developer Portal</a>.
 
-You will be prompted to [**define a Manifest**](/sami/sami-documentation/the-manifest.html) for your device type. In doing so, you should reference the documentation for the third-party cloud. See [**Create device type Manifest**](/sami/demos-tools/your-first-cloud-connector.html#create-device-type-manifest) in our Cloud Connector tutorial to learn how third-party documentation formed the basis of our Manifest.
+Once you have entered the basic information, you will [**define a Manifest**](/sami/sami-documentation/the-manifest.html) for your device type. In doing so, reference the documentation for the third-party cloud. See [**Create device type Manifest**](/sami/demos-tools/your-first-cloud-connector.html#create-device-type-manifest) in our Cloud Connector tutorial to learn how third-party documentation formed the basis of our Manifest.
 {:.info}
 
 See [**SAMI Basics**](/sami/sami-documentation/sami-basics.html) for a refresher on how device types and Manifests work in SAMI.
 {:.info}
 
-At the bottom of the Device Info tab, change the data source from "device" to "cloud service". This will unfold two additional tabs for configuring the Cloud Connector:
+For a Cloud Connector, we take a different path than usual. We first tell SAMI that the source is not a physical device but a cloud service. At the bottom of the Device Info tab, change the Device Data Source from "sends directly to SAMI" to "sends data to a cloud that SAMI will subscribe to". This will unfold two additional tabs for configuring the Cloud Connector:
 
 ![SAMI Cloud Connectors](/images/docs/sami/sami-documentation/devicedatasource.png)
 
