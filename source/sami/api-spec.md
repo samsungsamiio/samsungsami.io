@@ -2525,6 +2525,1030 @@ Can be called by trial administrators and participants. Only administrators may 
 } 
 ~~~
 
+## Sessions
+
+### Add session to trial
+
+`POST /trials/sessions`
+{:.pa.param.http}
+
+Adds a session to a trial.
+
+**Example request**
+
+~~~
+{
+  "trialId": "b936c867117a4ae9a40bfb482682c1a8",
+  "participantId": "b379322f43e641bd9ad6ee7787043fad",
+  "devices": "a5c1cb6a35dc4387b722487982bcd6bc"
+}
+~~~
+
+**Request body parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialId`{:.param} |Trial ID to associate with the session.
+|`participantId`{:.param} |Trial participant user ID to associate with the session.
+|`devices`{:.param} |Comma-separated list of device IDs to associate with the session.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "uuid": "03bb0612-4e10-4e20-b70a-c7d9b5f23489",
+    "id": "03bb06124e104e20b70ac7d9b5f23489",
+    "trialId": "b936c867117a4ae9a40bfb482682c1a8",
+    "participantId": "b379322f43e641bd9ad6ee7787043fad",
+    "devices": [
+      {
+        "uuid": "a8eeaeb5-7d2a-4cb1-b8ee-0327b8a9d52d",
+        "id": "a8eeaeb57d2a4cb1b8ee0327b8a9d52d",
+        "deviceId": "a5c1cb6a35dc4387b722487982bcd6bc"
+      }
+    ],
+    "start": null,
+    "end": null,
+    "metadatas": [
+      
+    ],
+    "exports": [
+      
+    ],
+    "status": 200
+  }
+}
+~~~
+
+**Response parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`uuid`{:.param} |Universally unique identifier.
+|`id`{:.param} |String representation of `uuid`{:.param}.
+|`trialId`{:.param} |Trial ID.
+|`participantId`{:.param} |Participant user ID.
+|`devices`{:.param} |List of session devices.
+|`start`{:.param} |Start date of the session (in milliseconds since epoch). 
+|`end`{:.param} |End date of the session (in milliseconds since epoch). 
+|`metadatas`{:.param} |List of session metadata.
+|`exports`{:.param} |List of SAMI exports created for session.
+
+### Delete session
+
+`DELETE /trials/sessions/<sessionId>`
+{:.pa.param.http}
+
+Deletes a session.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`sessionId`{:.param} |Session ID.
+
+**Example response**
+
+~~~
+{
+  "uuid": null,
+  "id": null,
+  "trialId": "",
+  "participantId": "",
+  "devices": [
+    
+  ],
+  "start": null,
+  "end": null,
+  "metadatas": [
+    null
+  ],
+  "exports": [
+    
+  ],
+  "status": null
+}
+~~~
+
+### Get session
+
+`GET /trials/sessions/<sessionId>`
+{:.pa.param.http}
+
+Returns a trial session.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`sessionId`{:.param} |Session ID.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "uuid": "323952e7-e62b-4b55-970f-223ab85dc08d",
+    "id": "323952e7e62b4b55970f223ab85dc08d",
+    "trialId": "bea520d4c211447c8d1cc043429e380f",
+    "participantId": "23b4853a78ba4490aabe709955834d4f",
+    "devices": [
+      {
+        "uuid": "a2bea1b9-1f75-496e-a6b8-dc73e8092734",
+        "id": "a2bea1b91f75496ea6b8dc73e8092734",
+        "deviceId": "fdeeb6dc808045cbac7fe28b9d23a64b"
+      }
+    ],
+    "start": null,
+    "end": null,
+    "metadatas": [
+      
+    ],
+    "exports": [
+      
+    ],
+    "status": null
+  }
+}
+~~~
+
+### Update session
+
+`PUT /trials/sessions/<sessionId>`
+{:.pa.param.http}
+
+Updates an existing session.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`sessionId`{:.param} |Session ID.
+
+**Example request**
+
+~~~
+{
+  "start": 1438581333000,
+  "end": 1444833634387
+}
+~~~
+
+**Request body parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`start`{:.param} |(Optional) Start date of the session (in milliseconds since epoch).
+|`end`{:.param} |(Optional) End date of the session (in milliseconds since epoch).
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "uuid": "ecb987af-a140-491b-b1df-c0f5c4821b47",
+    "id": "ecb987afa140491bb1dfc0f5c4821b47",
+    "trialId": "b936c867117a4ae9a40bfb482682c1a8",
+    "participantId": "b379322f43e641bd9ad6ee7787043fad",
+    "devices": [
+      {
+        "uuid": "f31e7967-6f3d-4121-8baa-cf4fbb3fa9b5",
+        "id": "f31e79676f3d41218baacf4fbb3fa9b5",
+        "deviceId": "a5c1cb6a35dc4387b722487982bcd6bc"
+      }
+    ],
+    "start": 1438581333000,
+    "end": 1444833634387,
+    "metadatas": [
+      {
+        "uuid": "3a315261-2a24-4411-b7eb-1ca5c1a938cc",
+        "id": "3a3152612a244411b7eb1ca5c1a938cc",
+        "key": "subject",
+        "value": "b"
+      },
+      {
+        "uuid": "a33b0348-48b2-4c43-bddd-8dad15791ba5",
+        "id": "a33b034848b24c43bddd8dad15791ba5",
+        "key": "age",
+        "value": "45"
+      }
+    ],
+    "exports": [
+      
+    ],
+    "status": null
+  }
+}
+~~~
+
+### Find all ongoing sessions for this trial
+
+`GET /trials/<trialId>/sessions/ongoing`
+{:.pa.param.http}
+
+Returns ongoing sessions for the trial.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialId`{:.param} |Trial ID.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "sessions": [
+      {
+        "uuid": "ceb6c5e3-6cd7-47b5-a386-e3d318c1ac2e",
+        "id": "ceb6c5e36cd747b5a386e3d318c1ac2e",
+        "trialId": "b936c867117a4ae9a40bfb482682c1a8",
+        "participantId": "b379322f43e641bd9ad6ee7787043fad",
+        "devices": [
+          {
+            "uuid": "9400ebd8-666e-4692-b42d-79567c6505f8",
+            "id": "9400ebd8666e4692b42d79567c6505f8",
+            "deviceId": "a5c1cb6a35dc4387b722487982bcd6bc"
+          }
+        ],
+        "start": 1447875816000,
+        "end": null,
+        "metadatas": [
+          {
+            "uuid": "8590276c-3e5d-4b86-ab4e-27d31a6b7fa3",
+            "id": "8590276c3e5d4b86ab4e27d31a6b7fa3",
+            "key": "subject",
+            "value": "a"
+          }
+        ],
+        "exports": [
+          
+        ],
+        "status": null
+      }
+    ]
+  },
+  "total": 1,
+  "offset": 0,
+  "count": 1
+}
+~~~
+
+### Find all trial's sessions
+
+`GET /trials/<trialId>/sessions`
+{:.pa.param.http}
+
+Returns all sessions for the trial.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialId`{:.param} |Trial ID.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "sessions": [
+      {
+        "uuid": "ceb6c5e3-6cd7-47b5-a386-e3d318c1ac2e",
+        "id": "ceb6c5e36cd747b5a386e3d318c1ac2e",
+        "trialId": "b936c867117a4ae9a40bfb482682c1a8",
+        "participantId": "b379322f43e641bd9ad6ee7787043fad",
+        "devices": [
+          {
+            "uuid": "9400ebd8-666e-4692-b42d-79567c6505f8",
+            "id": "9400ebd8666e4692b42d79567c6505f8",
+            "deviceId": "a5c1cb6a35dc4387b722487982bcd6bc"
+          }
+        ],
+        "start": 1447875816000,
+        "end": null,
+        "metadatas": [
+          {
+            "uuid": "8590276c-3e5d-4b86-ab4e-27d31a6b7fa3",
+            "id": "8590276c3e5d4b86ab4e27d31a6b7fa3",
+            "key": "subject",
+            "value": "a"
+          }
+        ],
+        "exports": [
+          
+        ],
+        "status": null
+      }
+    ]
+  },
+  "total": 1,
+  "offset": 0,
+  "count": 1
+}
+~~~
+
+## Sessions - Metadata
+
+### Get metadata key's values
+
+`GET /trials/<trialId>/sessions/metadata/key/<key>`
+{:.pa.param.http}
+
+Returns all values given to the metadata key.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialId`{:.param} |Trial ID.
+|`key`{:.param} |Metadata key.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "metadata": [
+      {
+        "uuid": "21a243b9-aa5f-43d1-8287-dee4eda42907",
+        "id": "21a243b9aa5f43d18287dee4eda42907",
+        "key": "subject",
+        "value": "1"
+      }
+    ]
+  },
+  "total": 1,
+  "offset": 0,
+  "count": 1
+}
+~~~
+
+**Response parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`uuid`{:.param} |Universally unique identifier.
+|`id`{:.param} |String representation of `uuid`{:.param}.
+|`key`{:.param} |Metadata's key.
+|`value`{:.param} |Metadata's value.
+
+### Create metadata
+
+`POST /trials/<trialId>/sessions/metadata`
+{:.pa.param.http}
+
+Creates metadata for a trial session.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialId`{:.param} |Trial ID.
+
+**Example request**
+
+~~~
+{
+  "trialSession": {
+    "id": "4be6caec17e948dc9b2e02506422ea96"
+  },
+  "key": "age",
+  "value": "50"
+}
+~~~
+
+**Example response**
+
+~~~
+{
+  "trialSession": "4be6caec17e948dc9b2e02506422ea96",
+  "key": "age",
+  "value": "50"
+}
+~~~
+
+### Get metadata
+
+`GET /trials/<trialId>/sessions/metadata`
+{:.pa.param.http}
+
+Returns all metadata for the trial session.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialId`{:.param} |Trial ID.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "metadata": [
+      {
+        "uuid": "075ca963-5eb8-4f0f-8abe-be0bfc8cb600",
+        "id": "075ca9635eb84f0f8abebe0bfc8cb600",
+        "key": "age",
+        "value": "50"
+      },
+      {
+        "uuid": "0c71ff37-84ea-439b-8c35-cd945ba4746a",
+        "id": "0c71ff3784ea439b8c35cd945ba4746a",
+        "key": "test",
+        "value": "1"
+      },
+      {
+        "uuid": "21a243b9-aa5f-43d1-8287-dee4eda42907",
+        "id": "21a243b9aa5f43d18287dee4eda42907",
+        "key": "subject",
+        "value": "1"
+      },
+      {
+        "uuid": "7934c4c0-794d-4397-8202-e274ef82e034",
+        "id": "7934c4c0794d43978202e274ef82e034",
+        "key": "12",
+        "value": "12"
+      }
+    ]
+  },
+  "total": 4,
+  "offset": 0,
+  "count": 4
+}
+~~~
+
+### Update metadata
+
+`PUT /trials/<trialId>/sessions/metadata/<metadataId>`
+{:.pa.param.http}
+
+Updates a session's metadata.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialId`{:.param} |Trial ID.
+|`metadataId`{:.param} |Metadata ID.
+
+**Example request**
+
+~~~
+{
+ "key": "a", 
+ "value": "c", 
+ "trialSession": "b936c867117a4ae9a40bfb482682c1a8" 
+}
+~~~
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "uuid": "075ca963-5eb8-4f0f-8abe-be0bfc8cb600",
+    "id": "075ca9635eb84f0f8abebe0bfc8cb600",
+    "key": "a",
+    "value": "c"
+  }
+}
+~~~
+
+### Remove metadata
+
+`DELETE /trials/<trialId>/sessions/metadata/<metadataId>`
+{:.pa.param.http}
+
+Removes a session's metadata.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialId`{:.param} |Trial ID.
+|`metadataId`{:.param} |Metadata ID.
+
+**Example response**
+
+~~~
+{
+  "uuid": null,
+  "id": null,
+  "key": "",
+  "value": ""
+}
+~~~
+
+## Sessions - Rules
+
+### Add session rules to trial
+
+`POST /rules`
+{:.pa.param.http}
+
+Adds session rules to the trial.
+
+Session rules define restrictions for metadata. They are different from the [**Rules**](/sami/sami-documentation/developer-user-portals.html#creating-a-rule) created in the User Portal for sending commands to devices.
+{:.info}
+
+**Example request**
+
+~~~
+{
+  "trialId": "96f710575e01405fb67a8f1c7a4f8d61",
+  "metadatas": [
+    {
+      "key": "subject",
+      "type": "STRING",
+      "choices": [
+        
+      ],
+      "numericRangeStart": null,
+      "numericRangeEnd": null,
+      "required": true
+    }
+  ]
+}
+~~~
+
+**Request body parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialId`{:.param} |Trial ID.
+|`metadatas`{:.param} |List of rule metadata.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "uuid": "c7cefd7f-7383-49b3-9391-1007bfd8e72f",
+    "id": "c7cefd7f738349b393911007bfd8e72f",
+    "trialId": "96f710575e01405fb67a8f1c7a4f8d61",
+    "metadatas": [
+      {
+        "uuid": "63c05c43-4a32-4d22-9b18-0420c6de6d5f",
+        "id": "63c05c434a324d229b180420c6de6d5f",
+        "key": "subject",
+        "value": null,
+        "type": "STRING",
+        "numericRangeStart": null,
+        "numericRangeEnd": null,
+        "required": true,
+        "choices": [
+          
+        ],
+        "created": 1444851017086
+      }
+    ],
+    "primeKey": null
+  }
+}
+~~~
+
+**Response parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`uuid`{:.param} |Universally unique identifier.
+|`id`{:.param} |String representation of `uuid`{:.param}.
+|`trialId`{:.param} |Trial ID.
+|`metadatas`{:.param} |List of metadata (see below).
+|`metadata.uuid`{:.param} |Metadata universally unique identifier.
+|`metadata.id`{:.param} |String representation of `uuid`{:.param}.
+|`metadata.key`{:.param} |Metadata's key.
+|`metadata.value`{:.param} |Metadata's value.
+|`metadata.type`{:.param} |Metadata's type. Can be `STRING`, `NUMERIC` or `CHOICES`.
+|`metadata.numericRangeStart`{:.param} |Represents the minimum allowed value (if `metadata.type`{:.param} is `NUMERIC`).
+|`metadata.numericRangeEnd`{:.param} |Represents the maximum allowed value (if `metadata.type`{:.param} is `NUMERIC`).
+|`required`{:.param} |Boolean (true/false). Indicates whether this metadata must be added to a session.
+|`choices`{:.param} |List of values that can be given for this metadata (if empty, any value can be given).
+|`primeKey`{:.param} |"true" indicates this rule metadata is the prime key for all metadata that belong to the rule.
+
+### Find session rules for trial
+
+`GET /trials/<trialId>/sessions/rules`
+{:.pa.param.http}
+
+Returns session rules for the trial.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialId`{:.param} |Trial ID.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "uuid": "5f46754e-aeeb-49aa-837b-2d7270258d9c",
+    "id": "5f46754eaeeb49aa837b2d7270258d9c",
+    "trialId": "b936c867117a4ae9a40bfb482682c1a8",
+    "metadatas": [
+      {
+        "uuid": "ae3f1afa-7fe1-4217-911b-70809af4f57f",
+        "id": "ae3f1afa7fe14217911b70809af4f57f",
+        "key": "test",
+        "value": null,
+        "type": "STRING",
+        "numericRangeStart": null,
+        "numericRangeEnd": null,
+        "required": false,
+        "choices": [
+          
+        ],
+        "created": 1441377414000
+      },
+      {
+        "uuid": "aed1eb41-7e01-4a65-ba79-60791cea7260",
+        "id": "aed1eb417e014a65ba7960791cea7260",
+        "key": "subject",
+        "value": null,
+        "type": "STRING",
+        "numericRangeStart": null,
+        "numericRangeEnd": null,
+        "required": true,
+        "choices": [
+          
+        ],
+        "created": 1444851000000
+      }
+    ],
+    "primeKey": null
+  }
+}
+~~~
+
+### Export session rules
+
+`GET /trials/<trialId>/sessions/rules/<ruleId>/sharing`
+{:.pa.param.http}
+
+Exports the session rules as a simplified JSON object (that can be imported to another trial).
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialId`{:.param} |Trial ID.
+|`ruleId`{:.param} |Rule ID.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "trialId": "",
+    "metadatas": [
+      {
+        "key": "subject",
+        "value": null,
+        "type": "STRING",
+        "numericRangeStart": null,
+        "numericRangeEnd": null,
+        "required": false,
+        "choices": null
+      }
+    ]
+  }
+}
+~~~
+
+### Import session rules
+
+`POST /trials/<trialId>/sessions/rules/<ruleId>/sharing`
+{:.pa.param.http}
+
+Replaces the session rules with the given imported rules JSON.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialId`{:.param} |Trial ID.
+|`ruleId`{:.param} |Rule ID.
+
+**Example request**
+
+~~~
+{
+  "data": {
+    "trialId": "",
+    "metadatas": [
+      {
+        "key": "subject",
+        "value": null,
+        "type": "STRING",
+        "numericRangeStart": null,
+        "numericRangeEnd": null,
+        "required": false,
+        "choices": null
+      }
+    ]
+  }
+}
+~~~
+
+### Retrieve session rules
+
+`GET /trials/sessions/rules/<ruleId>`
+{:.pa.param.http}
+
+Returns session rules by ID.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`ruleId`{:.param} |Rule ID.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "uuid": "5f46754e-aeeb-49aa-837b-2d7270258d9c",
+    "id": "5f46754eaeeb49aa837b2d7270258d9c",
+    "trialId": "b936c867117a4ae9a40bfb482682c1a8",
+    "metadatas": [
+      {
+        "uuid": "ae3f1afa-7fe1-4217-911b-70809af4f57f",
+        "id": "ae3f1afa7fe14217911b70809af4f57f",
+        "key": "test",
+        "value": null,
+        "type": "STRING",
+        "numericRangeStart": null,
+        "numericRangeEnd": null,
+        "required": false,
+        "choices": [
+          
+        ],
+        "created": 1441377414000
+      },
+      {
+        "uuid": "aed1eb41-7e01-4a65-ba79-60791cea7260",
+        "id": "aed1eb417e014a65ba7960791cea7260",
+        "key": "subject",
+        "value": null,
+        "type": "STRING",
+        "numericRangeStart": null,
+        "numericRangeEnd": null,
+        "required": true,
+        "choices": [
+          
+        ],
+        "created": 1444851000000
+      }
+    ],
+    "primeKey": null
+  }
+}
+~~~
+
+### Add session rule metadata
+
+`POST /trials/sessions/rules/metadata`
+{:.pa.param.http}
+
+Adds metadata to rule.
+
+**Example request**
+
+~~~
+{
+  "key": "age",
+  "type": "NUMERIC",
+  "choices": "1,2,3",
+  "numericRangeStart": null,
+  "numericRangeEnd": null,
+  "required": true,
+  "trialSessionRules": "c7cefd7f738349b393911007bfd8e72f"
+}
+~~~
+
+**Request body parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`key`{:.param} |Metadata's key.
+|`type`{:.param} |Metadata's type. Can be `STRING`, `NUMERIC` or `CHOICES`.
+|`choices`{:.param} |Comma-separated string of allowed values (required if type is `CHOICES`).
+|`numericRangeStart`{:.param} |Minimum number allowed for value (optionally needed if type is `NUMERIC`).
+|`numericRangeEnd`{:.param} |Maximum number allowed for value (optionally needed if type is `NUMERIC`).
+|`required`{:.param} |Boolean (true/false). Specifies whether metadata rule must be given a value.
+|`trialSessionRules`{:.param} |Session rule ID.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "uuid": "f66ec9fe-2792-4657-a389-aaf1a3dd4418",
+    "id": "f66ec9fe27924657a389aaf1a3dd4418",
+    "key": "age",
+    "value": null,
+    "type": "NUMERIC",
+    "numericRangeStart": null,
+    "numericRangeEnd": null,
+    "required": false,
+    "choices": [
+      {
+        "uuid": "6e0a034e-125c-4b5f-b177-a7df861224bd",
+        "id": "6e0a034e125c4b5fb177a7df861224bd",
+        "order": 0,
+        "value": "1",
+        "created": 1450453104471
+      },
+      {
+        "uuid": "44b3da41-aba0-46a2-a82b-d591a82701e7",
+        "id": "44b3da41aba046a2a82bd591a82701e7",
+        "order": 1,
+        "value": "2",
+        "created": 1450453104472
+      },
+      {
+        "uuid": "35570f55-77ff-4a0d-888d-1551dd888f82",
+        "id": "35570f5577ff4a0d888d1551dd888f82",
+        "order": 2,
+        "value": "3",
+        "created": 1450453104474
+      }
+    ],
+    "created": 1450453104470
+  }
+}
+~~~
+
+### Remove session rule metadata
+
+`DELETE /trials/sessions/rules/metadata/<metadataId>`
+{:.pa.param.http}
+
+Deletes the specified rule metadata.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`metadataId`{:.param} |Metadata ID.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "uuid": null,
+    "id": null,
+    "key": null,
+    "value": null,
+    "type": "STRING",
+    "numericRangeStart": 0,
+    "numericRangeEnd": 1,
+    "required": false,
+    "choices": [
+      
+    ],
+    "created": null
+  }
+}
+~~~
+
+### Update session rule metadata
+
+`PUT /trials/sessions/rules/metadata/<metadataId>`
+{:.pa.param.http}
+
+Updates the specified rule metadata.
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`metadataId`{:.param} |Metadata ID.
+
+**Example request**
+
+~~~
+{
+  "key": "subject",
+  "value": null,
+  "type": "NUMERIC",
+  "numericRangeStart": null,
+  "numericRangeEnd": null,
+  "required": true,
+  "choices": "",
+  "trialSessionRules": "c7cefd7f738349b393911007bfd8e72f"
+}
+~~~
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "uuid": "b10b4a6a-a7dc-40a9-8fa5-f2d5e39007d0",
+    "id": "b10b4a6aa7dc40a98fa5f2d5e39007d0",
+    "key": "age",
+    "value": null,
+    "type": "NUMERIC",
+    "numericRangeStart": null,
+    "numericRangeEnd": null,
+    "required": true,
+    "choices": [
+      
+    ],
+    "created": 1444851955211
+  }
+}
+~~~
+
+## Sessions - Search
+
+### Search sessions
+
+`GET /trials/sessions/search`
+{:.pa.param.http}
+
+Returns sessions according to the specified parameters.
+
+**Example request**
+
+~~~
+/trials/sessions/search?trialIds=b936c867117a4ae9a40bfb482682c1a8&participantIds=&start=1436681060043&end=1439186660043&deviceIds=&metadata=%22%22&count=10&offset=0
+~~~
+
+**Request parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`trialId`{:.param} | (Optional) Comma-separated string of trial IDs.
+|`participantIds`{:.param} |(Optional) Comma-separated string of participant user IDs.
+|`start`{:.param} |(Optional) Start date of the session (in milliseconds since epoch).
+|`end`{:.param} |(Optional) End date of the session (in milliseconds since epoch).
+|`deviceIds`{:.param} |(Optional) Comma-separated string of device IDs.
+|`metadata`{:.param} |(Optional) JSON string of metadata (e.g., [{"key":"test key","value":"test value"}].
+|`count`{:.param} |(Optional) Desired count of items in the result set.
+|`offset`{:.param} |(Optional) Offset for pagination.
+
+**Example response**
+
+~~~
+{
+  "data": {
+    "sessions": [
+      {
+        "uuid": "b9be25a0-764a-49ef-890f-5cb0a0e10d0c",
+        "id": "b9be25a0764a49ef890f5cb0a0e10d0c",
+        "trialId": "b936c867117a4ae9a40bfb482682c1a8",
+        "participantId": "b379322f43e641bd9ad6ee7787043fad",
+        "devices": [
+          {
+            "uuid": "f941157d-eca1-4230-bf5e-5a394b15607d",
+            "id": "f941157deca14230bf5e5a394b15607d",
+            "deviceId": "a5c1cb6a35dc4387b722487982bcd6bc"
+          }
+        ],
+        "start": 1447875729000,
+        "end": 1447875740000,
+        "metadatas": [
+          {
+            "uuid": "cfee16c4-4942-4345-888e-af034acacb12",
+            "id": "cfee16c449424345888eaf034acacb12",
+            "key": "age",
+            "value": "33"
+          },
+          {
+            "uuid": "f23290f9-41e1-41ef-9755-289df2f875e6",
+            "id": "f23290f941e141ef9755289df2f875e6",
+            "key": "subject",
+            "value": "1"
+          }
+        ],
+        "exports": [
+          {
+            "uuid": "e8738377-b486-40b7-acb2-e843e4175aa8",
+            "id": "e8738377b48640b7acb2e843e4175aa8",
+            "exportId": "2636607af8de46a492a6a2764b4dcce2",
+            "created": 1447875749000
+          }
+        ],
+        "status": null
+      }
+    ]
+  },
+  "total": 1,
+  "offset": 0,
+  "count": 1
+}
+~~~
+
 ## Validation and errors
 
 
