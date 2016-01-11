@@ -11,4 +11,4 @@ The following chapters describe how SAMI enables powerful new ways of analyzing 
 
 Keep an eye on this page—more is on the way!
 
-- [Writing Rules](/sami/advanced-features/define-rules-for-devices.html) that make devices work together.
+- [Writing Rules](/sami/advanced-features/develop-rules-for-devices.html) that make devices work together.
