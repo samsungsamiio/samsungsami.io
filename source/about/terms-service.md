@@ -6,7 +6,7 @@ title: Terms of Service
 
 ##Samsung SAMIIO Platform Terms of Service
 
-**Last Updated: March 2015**
+**Last Updated: November 07, 2014**
 
 Welcome to the Samsung SAMIIO Platform (the “Platform”). Samsung Electronics Co., Ltd. and/or its subsidiaries and affiliates (collectively, “Samsung”, “we”, “us” or “our”) provides certain features, software, tools, and other products and services (“Services”) to you (“you”, “your” or “Users”) on or through our Platform. If you are using the Services on behalf of an organization, you agree to these Terms of Service for that organization and you represent and warrant that you have the authority to bind that organization to these Terms of Service (in which case, “you”, “your” and “User” will refer to that organization).
 
@@ -193,7 +193,7 @@ Welcome to the Samsung SAMIIO Platform (the “Platform”). Samsung Electronics
     22.6 These Terms of Service shall be governed by and construed in accordance with the laws of the State of California, USA, without regard to any conflict-of-laws rules. All disputes, controversies or claims between the parties arising out of or in connection with these Terms of Service (including its existence, validity or termination) will be finally resolved by arbitration to be held in Santa Clara, California and conducted in English under the Rules of Arbitration of the International Chamber of Commerce. The arbitral award shall be final and binding on the parties. Except to the extent entry of judgment and any subsequent enforcement may require disclosure, all matters relating to the arbitration, including the award, shall be held in confidence. Regardless of arbitration requirement above, you and Samsung may enforce your and our respective intellectual property rights in any court of competent jurisdiction, including but not limited to equitable relief. 
 
 ## Samsung Simband/SAMIIO Research Platform Developer License Agreement
-**Last Updated: November 07, 2014**
+**Last Updated: March 2015**
 
 Thank you for your interest in the Samsung Simband/SAMIIO Platform Developer License. Samsung is offering software, development tools, hardware, specifications and other products and services for the development of products and services that are compatible with the Simband/SAMIIO Platform to you, as an individual or an authorized representative of a corporate or other entity (“you” or “your), so long as you (a) agree to be bound by this Developer License Agreement (the “Agreement”); (b) represent that you are of the legal age of majority in the jurisdiction in which you reside (at least 18 years of age in many countries); and (c) have the right and authority to enter into this agreement on your own behalf, or if you are entering into this agreement on behalf of a corporate or other entity, you have the authority to bind the entity that you represent.  “Samsung”, “we”, “us” or “our” means Samsung Electronics Co., Ltd., together with any affiliates that license materials for the Simband/SAMIIO Platform.
 
