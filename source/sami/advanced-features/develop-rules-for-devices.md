@@ -50,6 +50,9 @@ The same request body parameters used to [create a Rule](#creating-a-rule) can b
 
 With this call you can test-run the [Actions](#actions) associated with the Rule, using the Rule ID (`ruleId`{:.param}).
 
+Any testable Actions will actually be sent to your device, so be prepared!
+{:.warning}
+
 An Action is testable if the definition of the Action is static. This means:
 
 * There is no device [defined by a "matched" selector](#define-a-source-device) (i.e., the device is defined dynamically by a condition matched).

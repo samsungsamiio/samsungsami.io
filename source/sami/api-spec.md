@@ -1909,6 +1909,9 @@ Returns statistics for executions of a Rule.
 
 Runs an Action.
 
+Any testable Actions will actually be sent to your device, so be prepared!
+{:.warning}
+
 An Action is testable if the definition of the Action is static. See [this article](/sami/advanced-features/develop-rules-for-devices.html#testing-an-action) for more information.
 
 In case any Action is not testable, the POST request returns a 400 error and no Action will be executed (including those which are testable).
