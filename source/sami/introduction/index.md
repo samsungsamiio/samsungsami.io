@@ -1,22 +1,15 @@
 ---
-title: "Documentation"
+title: "Introduction"
 
 nav:
    - 'sami-basics'
    - 'hello-world'
    - 'authentication'
-   - 'oauth2-flow-examples'
    - 'administrative-apis'
-   - 'sending-and-receiving-data'
-   - 'secure-your-devices'
    - 'the-manifest'
-   - 'using-cloud-connectors'
-   - 'rate-limiting'
-   - 'data-collection-with-trials'
-   - 'developer-user-portals'
 ---
 
-# Documentation
+# Introduction
 
 SAMI is a data exchange platform that enables any device or sensor to push its data to the cloud. Applications, services and devices can then use that data through [simple APIs.](/sami/api-spec.html)
 
@@ -34,9 +27,10 @@ SAMI defines a new paradigm for developers to create services and applications. 
 ## What this documentation covers
 
 - Important [SAMI concepts](/sami/sami-documentation/sami-basics.html), including messages, devices and device types, and data normalization; along with a [Hello, World!](/sami/sami-documentation/hello-world.html) quick-start guide.
-- The [SAMI APIs](/sami/api-spec.html), including [authentication with OAuth2](/sami/sami-documentation/authentication.html), [managing users and their devices](/sami/sami-documentation/administrative-apis.html) in the cloud, and [circulating data](/sami/sami-documentation/sending-and-receiving-data.html) between applications, devices and SAMI. 
-- [Writing the Manifest](/sami/sami-documentation/the-manifest.html) to interpret and normalize your device data, and building a [Cloud Connector](/sami/sami-documentation/using-cloud-connectors.html) to enable SAMI to communicate with third-party clouds.
-- Using the [Developer Portal and User Portal](/sami/sami-documentation/developer-user-portals.html) to manage devices, device types and applications.
-- Conducting your own research with [SAMI trials](/sami/sami-documentation/data-collection-with-trials.html).
-- [Native SDKs](/sami/native-SDKs/) designed to help you integrate SAMI with your language of choice.
-- Basic [SAMI code and developer tools](/sami/demos-tools/) you can play with to understand the platform, and [Samples](/sami/samples/) of more advanced SAMI applications available on GitHub.
+- The full [SAMI API specification](/sami/api-spec.html). 
+- [Authentication with OAuth2](/sami/sami-documentation/authentication.html) and [managing users and their devices](/sami/sami-documentation/administrative-apis.html) in the cloud.
+- [Writing the Manifest](/sami/sami-documentation/the-manifest.html) to interpret and normalize your device data.
+- How to begin [connecting data](/sami/connect-the-data/) between devices, clouds and SAMI.
+- [Advanced SAMI features](/sami/advanced-features/) like Rules and trials.
+- [Developer tools](/sami/tools/) to help you work with the platform. 
+- [Tutorials](/sami/tutorials/) for developing basic SAMI applications, and [Samples](/sami/samples/) of more advanced SAMI applications available on GitHub.

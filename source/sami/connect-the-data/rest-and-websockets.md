@@ -1,8 +1,8 @@
 ---
-title: "Sending and receiving data"
+title: "REST and WebSockets"
 ---
 
-# Sending and receiving data
+# REST and WebSockets
 
 This is an overview of how your devices and applications can send and receive messages on SAMI, using both REST and WebSocket APIs. Using this information, you will be able to post messages to SAMI, retrieve historical data, and use WebSockets to set up a real-time data stream. When sending messages via REST or WebSocket, you could put Actions in messages so that destination devices can perform the specified Actions. 
 
