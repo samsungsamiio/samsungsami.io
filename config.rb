@@ -28,35 +28,35 @@ activate :dotenv
 #
 # With no layout
 # page "/path/to/file.html", :layout => false
-#page "/sami/sami-documentation/", :layout => false
+page "/sami/sami-documentation/index.html", :layout => false
 page "/sami/sami-documentation/sami-basics.html", :layout => false
-#page "/sami/sami-documentation/hello-world.html", :layout => false
-#page "/sami/sami-documentation/authentication.html", :layout => false
-#page "/sami/sami-documentation/administrative-apis.html", :layout => false
-#page "/sami/sami-documentation/the-manifest.html", :layout => false
-#page "/sami/sami-documentation/secure-your-devices.html", :layout => false
-#page "/sami/sami-documentation/sending-and-receiving-data.html", :layout => false
-#page "/sami/sami-documentation/rate-limiting.html", :layout => false
-#page "/sami/sami-documentation/using-cloud-connectors.html", :layout => false
-#page "/sami/sami-documentation/data-collection-with-trials.html", :layout => false
-#page "/sami/sami-documentation/developer-user-portals.html", :layout => false
-#page "/sami/demos-tools/api-console.html", :layout => false
-#page "/sami/native-SDKs/", :layout => false
-#page "/sami/native-SDKs/android-SDK.html", :layout => false
-#page "/sami/native-SDKs/objectivec-SDK.html", :layout => false
-#page "/sami/native-SDKs/php-SDK.html", :layout => false
-#page "/sami/native-SDKs/ruby-SDK.html", :layout => false
-#page "/sami/native-SDKs/python-SDK.html", :layout => false
-#page "/sami/native-SDKs/python-3-SDK.html", :layout => false
-#page "/sami/demos-tools/device-simulator.html", :layout => false
-#page "/sami/demos-tools/", :layout => false
-#page "/sami/sami-documentation/oauth2-flow-examples.html", :layout => false
-#page "/sami/demos-tools/your-first-application.html", :layout => false
-#page "/sami/demos-tools/your-first-android-app.html", :layout => false
-#page "/sami/demos-tools/your-first-iot-device.html", :layout => false
-#page "/sami/demos-tools/your-first-cloud-connector.html", :layout => false
-#page "/sami/demos-tools/manifest-sdk.html", :layout => false
-#page "/sami/demos-tools/manifest-advanced-example.html", :layout => false
+page "/sami/sami-documentation/hello-world.html", :layout => false
+page "/sami/sami-documentation/authentication.html", :layout => false
+page "/sami/sami-documentation/administrative-apis.html", :layout => false
+page "/sami/sami-documentation/the-manifest.html", :layout => false
+page "/sami/sami-documentation/secure-your-devices.html", :layout => false
+page "/sami/sami-documentation/sending-and-receiving-data.html", :layout => false
+page "/sami/sami-documentation/rate-limiting.html", :layout => false
+page "/sami/sami-documentation/using-cloud-connectors.html", :layout => false
+page "/sami/sami-documentation/data-collection-with-trials.html", :layout => false
+page "/sami/sami-documentation/developer-user-portals.html", :layout => false
+page "/sami/sami-documentation/oauth2-flow-examples.html", :layout => false
+page "/sami/demos-tools/api-console.html", :layout => false
+page "/sami/native-SDKs/index.html", :layout => false
+page "/sami/native-SDKs/android-SDK.html", :layout => false
+page "/sami/native-SDKs/objectivec-SDK.html", :layout => false
+page "/sami/native-SDKs/php-SDK.html", :layout => false
+page "/sami/native-SDKs/ruby-SDK.html", :layout => false
+page "/sami/native-SDKs/python-SDK.html", :layout => false
+page "/sami/native-SDKs/python-3-SDK.html", :layout => false
+page "/sami/demos-tools/device-simulator.html", :layout => false
+page "/sami/demos-tools/index.html", :layout => false
+page "/sami/demos-tools/your-first-application.html", :layout => false
+page "/sami/demos-tools/your-first-android-app.html", :layout => false
+page "/sami/demos-tools/your-first-iot-device.html", :layout => false
+page "/sami/demos-tools/your-first-cloud-connector.html", :layout => false
+page "/sami/demos-tools/manifest-sdk.html", :layout => false
+page "/sami/demos-tools/manifest-advanced-example.html", :layout => false
 
 #
 # With alternative layout
