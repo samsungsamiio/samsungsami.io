@@ -37,9 +37,7 @@
               = display_current children
             .nav-list-container
               %ul.nav-list
-                - children.each do |child|
-                  - page = page_or_index("/#{child}")
-                  = nav_link_to page_title(page), page.url
+                %li.nav-item{class: ("active" if current_page.url.match(".*\/sami.*\/"))} 
               %ul.offsite-nav-list
                 %li
                   %a{href: "https://blog.samsungsami.io/"} Blog
