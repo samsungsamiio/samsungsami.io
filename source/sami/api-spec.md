@@ -1667,6 +1667,315 @@ Devices connected to the bi-directional WebSocket receive messages that contain 
 }    
 ~~~
 
+## Subscriptions
+
+### Create a subscription
+
+`POST /subscriptions`
+{:.pa.param.http}
+
+Subscribes a client to receive notifications of messages for a user's devices. The devices are specified according to one of the following parameter combinations.
+
+|Combination |Required Parameters |Message Type
+|------------|---------|--------
+|All user devices |`uid`{:.param} |`message`
+|All user devices of a device type |`uid`{:.param}, `sdtid`{:.param}|`message`
+|Specific user device |`uid`{:.param}, `sdid`{:.param}|`message`
+|Destination device |`uid`{:.param}, `ddid`{:.param}|`action`
+
+This call accepts application and user tokens as the access token.
+
+**Example request**
+
+~~~
+{ 
+   "messageType":"message",
+   "uid":"5beb4e30be9145cb89742d0b315d391",
+   "description":"This is a subscription to a user's devices",
+   "callbackUrl":"https://api.example.com/messages?user=earl1234"
+}
+~~~
+
+**Request body parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`messageType`{:.param} | Message type to subscribe to. Can be `message` or `action`.
+|`uid`{:.param} | User ID to subscribe to. Client will be notified for devices owned by this user.
+|`sdtid`{:.param} | (Optional) Source device type ID to subscribe to. Client will be notified for all user-owned devices of this device type. Applicable when `messageType`{:.param} = `message`.
+|`sdid`{:.param} | (Optional) Source device ID to subscribe to. Applicable when `messageType`{:.param} = `message`.
+|`ddid`{:.param} | Destination device ID to subscribe to. Required when `messageType`{:.param} = `action`.
+|`description`{:.param} | (Optional) Description of the subscription. String max 256 characters.
+|`callbackUrl`{:.param} | Callback URL to be used (must be HTTPS). Can include query parameters.
+
+**Example response**
+
+~~~
+{ 
+  "data":{ 
+    "id":"1673d7394737480d847023accc50c9d",
+    "aid":"f9c81f2eb69343efb336ba2b7b7b7e2",
+    "messageType":"message",
+    "uid":"5beb4e30be9145cb89742d0b3f15d391",
+    "description":"This is a subscription to a user's devices",
+    "callbackUrl":"https://api.example.com/messages?user=earl1234",
+    "status":"ACTIVE",
+    "createdOn":1435191843948,
+    "modifiedOn":1439489593485
+  }
+}
+~~~
+
+**Response parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`id`{:.param} | Subscription ID.
+|`aid`{:.param} | Application ID associated with the subscription. Derived from the access token.
+|`messageType`{:.param} | Message type. Can be `message` or `action`.
+|`uid`{:.param} | User ID.
+|`sdtid`{:.param} | Source device type ID.
+|`sdid`{:.param} | Source device ID.
+|`ddid`{:.param} | Destination device ID.
+|`description`{:.param} | Description of the subscription.
+|`callbackUrl`{:.param} | Callback URL.
+|`status`{:.param} | Status of the subscription.
+|`createdOn`{:.param} | Timestamp that the subscription was created, in milliseconds since epoch. 
+|`modifiedOn`{:.param} | Timestamp that the subscription was last modified, in milliseconds since epoch.
+
+The subscription fields are further explained [**here**](/sami/connect-the-data/subscribe-and-notify.html#subscription-fields).
+{:.info}
+
+### Delete a subscription
+
+`DELETE /subscriptions/<subscriptionID>`
+{:.pa.param.http}
+
+Removes a subscription.
+
+This call accepts application and user tokens as the access token.
+
+**Request parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`subscriptionID`{:.param} | Subscription ID.
+
+**Example response**
+
+~~~
+{ 
+  "data":{ 
+    "id":"1673d7394737480d847023acfcc509d",
+    "aid":"f9c81f2eb69343efb336ba2b97bb7e2",
+    "messageType":"message",
+    "uid":"5beb4e30be9145cb89742d0b315d391",
+    "description":"This is a subscription to a user's devices",
+    "callbackUrl":"https://api.example.com/messages?user=earl1234",
+    "status":"ACTIVE",
+    "createdOn":1435191843948,
+    "modifiedOn":1439489593485
+  }
+}
+~~~
+
+The call returns the subscription object, which is explained [**here**](/sami/connect-the-data/subscribe-and-notify.html#the-subscription-object).
+{:.info}
+
+### Get subscriptions
+
+`GET /subscriptions`
+{:.pa.param.http}
+
+Returns all subscriptions for the current application.
+
+This call accepts application tokens as the access token.
+
+**Available URL query parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`uid`{:.param} | (Optional) User ID.
+|`offset`{:.param} | (Optional) Offset of results to start with. Used for pagination (default: `0`).
+|`count`{:.param} | (Optional) Number of items to return per query. Can be `1`-`100` (default: `100`).
+
+**Example response**
+
+~~~
+{
+   "data":[
+      {
+         "id":"1673d7394737480d847023acfc50c9d",
+         ...
+      },
+      {
+         "id":"7dfb1e6290e848d9b798079651df11d",
+         ...
+      }
+   ],
+   "total":2,
+   "offset":0,
+   "count":2
+}
+~~~
+
+### Get a subscription
+
+`GET /subscriptions/<subscriptionID>`
+{:.pa.param.http}
+
+Returns a subscription.
+
+This call accepts application and user tokens as the access token.
+
+**Request parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`subscriptionID`{:.param} | Subscription ID.
+
+**Example response**
+
+~~~
+{ 
+  "data":{ 
+    "id":"1673d7394737480d847023acfc50c9d",
+    "aid":"f9c81f2eb69343efb336ba297b7b7e2",
+    "messageType":"message",
+    "uid":"5beb4e30be9145cb89742db3f15d391",
+    "description":"This is a subscription to a user's devices",
+    "callbackUrl":"https://api.example.com/messages?user=earl1234",
+    "status":"ACTIVE",
+    "createdOn":1435191843948,
+    "modifiedOn":1439489593485
+  }
+}
+~~~
+
+The call returns the subscription object, which is explained [**here**](/sami/connect-the-data/subscribe-and-notify.html#subscription-fields).
+{:.info}
+
+### Confirm a subscription
+
+`POST /subscriptions/<subscriptionID>/validate`
+{:.pa.param.http}
+
+Validates a subscription with SAMI. If successful, subscription will be set to active status.
+
+This call does not require an access token.
+
+**Request parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`subscriptionID`{:.param} | Subscription ID.
+
+**Example request**
+
+~~~
+{
+   "aid": "f9c82b97b78888b7e2",
+   "nonce": "<nonce>"
+}
+~~~
+
+**Request body parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`aid`{:.param} | Application ID associated with the subscription.
+|`nonce`{:.param} | Nonce for authentication.
+
+**Example response**
+
+~~~
+{ 
+   "data":{ 
+      "id":"1673d888883acfcc50c9d",
+      "aid":"f9c82b97b88888b7e2",
+      "messageType":"message",
+      "uid":"2455g888888",
+      "description":"This is a subscription to a user's devices",
+      "callbackUrl":"https://api.example.com/messages?user=earl1234",
+      "status":"ACTIVE",
+      "createdOn":1435191843948,
+      "modifiedOn":1439489593485
+   }
+}
+~~~
+
+The call returns the subscription object, which is explained [**here**](/sami/connect-the-data/subscribe-and-notify.html#subscription-fields).
+{:.info}
+
+## Notifications
+
+### Get messages in notification
+
+`GET /notifications/<notificationID>/messages`
+{:.pa.param.http}
+
+Returns messages associated with a notification.
+
+The notification ID is obtained from the [notification payload](/sami/connect-the-data/subscribe-and-notify.html#handle-notification-payload) sent to the client's callback URL.
+
+This call accepts application and user tokens as the access token.
+
+**Request parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`notificationID`{:.param} | Notification ID.
+
+**Request body parameters**
+
+|Parameter   |Description
+|----------- |-------------
+|`order`{:.param} | (Optional) Desired sort order based on timestamp: `asc` or `desc` (default: `asc`).
+|`offset`{:.param} | (Optional) Offset of results to start with. Used for pagination (default: `0`).
+|`count`{:.param} | (Optional) Number of items to return per query. Can be `1`-`100` (default: `100`).
+
+**Example response**
+
+~~~
+{ 
+  "order":"asc",
+  "total":1,
+  "offset":0,
+  "count":1,
+  "data":[ 
+    { 
+       "mid":"057a407d4f814cbc87f3f7a0485af3b",
+       "data":{ 
+         "dateMicro":1421281794211000,
+         "ecg":-73
+       },
+       "ts":1421281794212,
+       "sdtid":"dtaeaf898b4db948ba",
+       "cts":1421281794212,
+       "uid":"7b202300eb90414936e9739574962a5",
+       "mv":1,
+       "sdid":"4697f11336c54069ffd6f445061215e"
+    }
+  ] 
+}
+~~~
+
+**Response parameters**
+
+|Parameter         |Description
+|----------------- |------------------
+|`order`{:.param} |Sort order.
+|`total`{:.param} |Total number of items.
+|`offset`{:.param} |String required for pagination. Default is "0".
+|`count`{:.param} |Number of items requested.
+|`mid`{:.param} |Message ID.
+|`ts`{:.param} |Timestamp from source.
+|`sdtid`{:.param} |Source device type ID.
+|`cts`{:.param} |Timestamp from SAMI.
+|`uid`{:.param} |User ID.
+|`mv`{:.param} |Manifest version.
+|`sdid`{:.param} |Source device ID.
+
 ## Rules
 
 [**Develop Rules for devices**](/sami/advanced-features/develop-rules-for-devices.html) provides a description of the JSON Rule body.
