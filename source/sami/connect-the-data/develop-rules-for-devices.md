@@ -122,7 +122,7 @@ You can define the source device `sdid`{:.param} that triggers a Rule condition 
 }
 ~~~
 
-Alternatively, a Rule condition can trigger if "any" device of a [device type](/sami/sami-documentation/sami-basics.html#device-id-and-device-type) matches the condition. Use `dtid`{:.param} to specify the device type ID.
+Alternatively, a Rule condition can trigger if "any" device (owned by the user) of a [device type](/sami/sami-documentation/sami-basics.html#device-id-and-device-type) matches the condition. Use `dtid`{:.param} to specify the device type ID.
 
 ~~~json
 { 
@@ -134,7 +134,7 @@ Alternatively, a Rule condition can trigger if "any" device of a [device type](/
 }
 ~~~
 
-A Rule condition can also trigger if "every" device of a device type matches the condition.
+A Rule condition can also trigger if "every" device (owned by the user) of a device type matches the condition.
 
 ~~~json
 { 
