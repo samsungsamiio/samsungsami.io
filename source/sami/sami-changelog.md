@@ -7,6 +7,14 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### January 27, 2016
+
+SAMI's subscription and notification services allow a client to listen for pertinent messages and receive notifications when SAMI receives them. We have documented the process [here](/sami/connect-the-data/subscribe-and-notify.html) and describe the APIs [here](/sami/api-spec.html#subscriptions).
+
+### January 11, 2016
+
+Today we've published new documentation on writing Rules programmatically using the APIs. [This article](/sami/connect-the-data/develop-rules-for-devices.html) summarizes the major APIs and describes the JSON structure of the Rule body. The APIs are documented [here](/sami/api-spec.html#rules).
+
 ### December 14, 2015
 
 Published new documentation that explains [how Cloud Connectors work](/sami/sami-documentation/using-cloud-connectors.html) and guides you in [building a Cloud Connector](/sami/demos-tools/your-first-cloud-connector.html), using the Moves activity app as a case study.
