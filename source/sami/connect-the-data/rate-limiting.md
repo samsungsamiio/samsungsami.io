@@ -83,3 +83,10 @@ If the rate limit is exceeded on a given call, a 429 status code ("Too Many Requ
 |----- |---------- |---------------------------|-----------------------------|---------------------------------|
 | Minute | 1000 | 1000 | 5000
 | Daily | 10,000 | 10,000 | 500,000
+
+## MQTT limits
+
+| Window | Requests [per device](#per-device) 
+|----- |---------- |
+| Minute | 1000
+| Daily | 10,000 
