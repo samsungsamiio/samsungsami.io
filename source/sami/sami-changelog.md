@@ -7,6 +7,10 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### February 10, 2016
+
+SAMI now supports MQTT sessions by acting as a message broker for connected devices. [Here](/sami/connect-the-data/mqtt.html) are the implementation details and an example.
+
 ### January 27, 2016
 
 SAMI's subscription and notification services allow a client to listen for pertinent messages and receive notifications when SAMI receives them. We have documented the process [here](/sami/connect-the-data/subscribe-and-notify.html) and describe the APIs [here](/sami/api-spec.html#subscriptions).
