@@ -26,6 +26,8 @@ wss://api.samsungsami.io/v1.1
 https://accounts.samsungsami.io
 ~~~
 
+MQTT endpoints are described [here](#mqtt).
+
 ### Request parameters
 
 For all the `POST`{:.param} and `PUT`{:.param} calls, pass request parameters as a JSON payload in the request body not as URL parameters.
@@ -41,6 +43,60 @@ The rate limits for the API calls are documented [here.](/sami/sami-documentatio
 ### Message limits
 
 Any message sent to SAMI may not be bigger than 10 KB.
+
+## MQTT
+
+For implementation details, please refer to [this page](/sami/connect-the-data/mqtt.html).
+
+### Establish MQTT session
+
+|MQTT Components   |Required Value | Notes
+|------|-----------|---------------------------------
+|Security    |SSL                | SAMI device must be SSL-capable so that it can validate server certificate.
+|Broker URL  |api.samsungsami.io | Needed for opening the connection to the broker.
+|Broker port |8883 | Needed for opening the connection to the broker.
+|username    |Device ID | A valid SAMI device ID used to login to establish a session.
+|password    |Device Token |A valid SAMI device token used to login to establish a session.
+
+A device uses the above MQTT parameters to connect to the SAMI MQTT broker, and then logs in to establish an MQTT session. The device can publish data-only messages and/or subscribe to receive Actions targeted to it within this session.
+
+### Publish a message
+
+`/messages/<DEVICE ID>`{:.pa.param.http}
+
+A device uses this path to publish a data-only message (a message with type `message`). An MQTT message contains only the value of the `data`{:.param} field in a [message sent via POST](#post-a-message-or-action). 
+
+**Request parameters**
+
+  |Parameter   |Description   |
+  |----------- |--------------|
+  |`DEVICE ID`{:.param}   | ID of the device publishing an MQTT message.|
+
+**Example MQTT message**
+
+~~~
+{"onFire":false,"temperature":50}
+~~~
+
+### Subscribe to receive Actions
+
+`/actions/<DEVICE ID>`{:.pa.param.http}
+
+A device subscribes at this path to receive Actions (a message with type `action`) that are targeted to it. When a source device or an application sends an Action to the subscribed device via REST or WebSocket, the device receives the Action. 
+
+**Request parameters**
+
+  |Parameter   |Description   |
+  |----------- |--------------|
+  |`DEVICE ID`{:.param}   | ID of the subscribing device.|
+
+**Example recieved Action**
+
+~~~
+[{"name":"setOn","parameters":{}}]
+~~~
+
+The received Action only contains the value of the `actions` field in the `data` JSON object of a typical [SAMI message](#post-a-message-or-action).
 
 ## API Console
 

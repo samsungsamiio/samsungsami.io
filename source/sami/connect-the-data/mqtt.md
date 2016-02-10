@@ -52,7 +52,7 @@ The content of an MQTT message differs from that of a message sent to SAMI [via 
 }           
 ~~~
 
-An MQTT message contains only the value of the `data`{:.param} payload. The above message's corresponding MQTT message would be:
+An MQTT message contains only the value of the `data`{:.param} field. The above message's corresponding MQTT message would be:
 
 ~~~
 {"onFire":false,"temperature":50}
