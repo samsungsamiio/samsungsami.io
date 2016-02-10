@@ -43,6 +43,7 @@ The rate limits for the API calls are documented [here.](/sami/sami-documentatio
 ### Message limits
 
 Any message sent to SAMI may not be bigger than 10 KB.
+Any message sent to SAMI via MQTT may not be bigger than 1 KB.
 
 ## MQTT
 
