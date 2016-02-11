@@ -4,7 +4,7 @@ title: "Rate limiting"
 
 # Rate limiting
 
-This article provides information on how rate limiting is applied to REST and WebSocket API calls. To check the current rate limits, see the tables [REST limits](#rest-limits) and [WebSocket limits](#websocket-limits).
+This article provides information on how rate limiting is applied to API calls. To check the current rate limits, see the tables [REST limits](#rest-limits), [WebSocket limits](#websocket-limits), and [MQTT limits](#mqtt-limits).
 
 Rate limits are considered separately for [three actors](#rate-limits-for-three-actors) that can call the SAMI APIs:
 
