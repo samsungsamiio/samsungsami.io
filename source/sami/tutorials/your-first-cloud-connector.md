@@ -91,8 +91,8 @@ Below we explain the major methods of `MyCloudConnector.groovy`{:.param}. Take n
 `onNotification`{:.param}: This callback method is triggered when the Moves cloud sends a notification to SAMI. This function extracts parameters within the notification. Read the <a href="https://github.com/samsungsamiio/sami-cloudconnector-sdk/tree/master/apidoc" target="_blank">Cloud Connector API documentation</a> to understand the format of the notification parameters.
 
 ~~~
-def Or<NotificationResponse, Failure> onNotification(Context ctx, RequestDef inReq) {
-        def json = slurper.parseText(inReq.content)
+def Or<NotificationResponse, Failure> onNotification(Context ctx, RequestDef req) {
+        def json = slurper.parseText(req.content)
         def extId = json.userId.toString()
         def storyLineFiltered = json.storylineUpdates.findAll{ reasonToFetchSummaryData.contains(it.reason) }
         def datesFromStoryLines = storyLineFiltered.collect { e ->
@@ -356,8 +356,8 @@ class MyCloudConnector extends CloudConnector {
         "https://api.moves-app.com/api/1.1/user/summary/daily/" + date
     }
     @Override
-    def Or<NotificationResponse, Failure> onNotification(Context ctx, RequestDef inReq) {
-        def json = slurper.parseText(inReq.content)
+    def Or<NotificationResponse, Failure> onNotification(Context ctx, RequestDef req) {
+        def json = slurper.parseText(req.content)
         def extId = json.userId.toString()
         def storyLineFiltered = json.storylineUpdates.findAll{ reasonToFetchSummaryData.contains(it.reason) }
         def datesFromStoryLines = storyLineFiltered.collect { e ->
