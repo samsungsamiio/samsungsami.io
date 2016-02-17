@@ -331,7 +331,7 @@ Use the device type ID (`dtid`) listed above to query the Actions that the smart
     setColorRGB(Object colorRGB{Integer g, Integer b, Integer r}, Integer intensity)
     setOn
 
-Now send an Action to the smart light. Use the command `tell` and pass in the device ID (`did`), the Action, and [Action parameters](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message-with-actions) (if applicable). The following example shows the command and the output.
+Now send an Action to the smart light. Use the command `tell` and pass in the device ID (`did`), the Action, and [Action parameters](/sami/connect-the-data/rest-and-websockets.html#posting-a-message-with-actions) (if applicable). The following example shows the command and the output.
 
     $ tell 713f4298132943df957e87c1d0e43d7a setIntensity {"intensity":10}
     $ Sending : {"actions":[{"name":"setIntensity","parameters":{"intensity":10}}]}
@@ -339,7 +339,7 @@ Now send an Action to the smart light. Use the command `tell` and pass in the de
 
 The output indicates that the Simulator has sent the Action to SAMI and received the message ID as a receipt. Then SAMI will deliver the Action to the smart light in real time.
 
-Now start the second Device Simulator, where you can listen for the messages sent to the smart light by the first Device Simulator. Run the command `lw` and pass in the device ID (`did`) of the smart light. The command sets up a [bi-directional WebSocket connection](https://developer.samsungsami.io/sami/sami-documentation/sending-and-receiving-data.html#setting-up-a-bi-directional-message-pipe) between SAMI and the simulated smart light in the Device Simulator. The output indicates that the simulator connects and registers the smart light in the WebSocket pipe, and starts getting pings.
+Now start the second Device Simulator, where you can listen for the messages sent to the smart light by the first Device Simulator. Run the command `lw` and pass in the device ID (`did`) of the smart light. The command sets up a [bi-directional WebSocket connection](/sami/connect-the-data/rest-and-websockets.html#bi-directional-websocket) between SAMI and the simulated smart light in the Device Simulator. The output indicates that the simulator connects and registers the smart light in the WebSocket pipe, and starts getting pings.
 
     $ lw 713f4298132943df957e87c1d0e43d7a
     Using this token to connect: ea2208ea61d045d5844de5dd246f8e22
