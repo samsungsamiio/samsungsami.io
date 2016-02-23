@@ -77,16 +77,25 @@ If the rate limit is exceeded on a given call, a 429 status code ("Too Many Requ
 | DELETE | Minute | 100 | 100 | 500
 |	| Daily | 1000 | 1000 | 5000
 
+
+## REST limits (messages)
+
+| Method | Window | Requests [per user](#per-user) | Requests [per device](#per-device) | Requests [per application](#per-application)
+|----- |---------- |---------------------------|-----------------------------|---------------------------------|
+| POST [/messages](/sami/api-spec.html#messages) | Minute | 100 | 100 | 500
+|  |Daily |100,000 | 100,000 | 100,000
+
+
 ## WebSocket limits
 
 | Window | Requests [per user](#per-user) | Requests [per device](#per-device) | Requests [per application](#per-application)
 |----- |---------- |---------------------------|-----------------------------|---------------------------------|
 | Minute | 1000 | 1000 | 5000
-| Daily | 10,000 | 10,000 | 500,000
+| Daily | 100,000 | 100,000 | 500,000
 
 ## MQTT limits
 
 | Window | Requests [per device](#per-device) 
 |----- |---------- |
 | Minute | 1000
-| Daily | 10,000 
+| Daily | 100,000 
