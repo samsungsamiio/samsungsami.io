@@ -7,6 +7,10 @@ title: Changelog
 
 Here we'll be posting regular updates about SAMI and updates to the documentation.
 
+### February 24, 2016
+
+Today sees a new tutorial about building an Android remote control for an IoT device. [See it here!](/sami/tutorials/an-iot-remote-control.html)
+
 ### February 10, 2016
 
 SAMI now supports MQTT sessions by acting as a message broker for connected devices. [Here](/sami/connect-the-data/mqtt.html) are the implementation details and an example.
