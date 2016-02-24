@@ -19,7 +19,7 @@ By following this tutorial, you will learn how to develop with SAMI **Actions** 
 Before proceeding, you should be familar with the following Action basics:
 
 - <a href="https://blog.samsungsami.io/development/data/2015/04/21/send-actions-to-devices.html" target="_blank">Send Actions to remote devices</a>
-- [Posting an Action](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message-with-actions)
+- [Posting an Action](/sami/connect-the-data/rest-and-websockets.html#posting-a-message-with-actions)
 - [Sending an Action via WebSocket](/sami/connect-the-data/rest-and-websockets.html#sending-messages)
 - [Receiving an Action via WebSocket](/sami/connect-the-data/rest-and-websockets.html#receiving-messages)
 
@@ -95,7 +95,7 @@ Finally go to the User Portal to connect a new "Smart Light" device:
  1. Copy the device ID and device token on this screen. You will use these in the code.
  ![Generate SAMI device token](/images/docs/sami/demos-tools/first-control-system-device-token.png)
 
-Every SAMI API call requires an access token. The device token is one of [**three types of access tokens**](/sami/sami-documentation/authentication.html#three-types-of-access-tokens). For the sake of simplicity, we use the device token in this tutorial.
+Every SAMI API call requires an access token. The device token is one of [**three types of access tokens**](/sami/introduction/authentication.html#three-types-of-access-tokens). For the sake of simplicity, we use the device token in this tutorial.
 {:.info}
 
 ## Develop a smart LED light
@@ -341,7 +341,7 @@ You should be able to build and run the Android application. We'll explain the c
 
 ### Send Actions
 
-The Android application sends Actions to the light via WebSocket 1, per the [architecture diagram](#design-overview). WebSocket 1 uses the [`/websocket` endpoint](/sami/sami-documentation/sending-and-receiving-data.html#bi-directional-websocket). The code snippet below shows the creation of such a WebSocket and the corresponding event handling:
+The Android application sends Actions to the light via WebSocket 1, per the [architecture diagram](#design-overview). WebSocket 1 uses the [`/websocket` endpoint](/sami/connect-the-data/rest-and-websockets.html#bi-directional-websocket). The code snippet below shows the creation of such a WebSocket and the corresponding event handling:
 
 ~~~java
 private void createWSWebSockets() {
@@ -416,7 +416,7 @@ private void createWSWebSockets() {
 ~~~
 After the WebSocket connection is open, `mWS.registerChannel()`{:.param} registers the application with the WebSocket. Upon receiving ACK messages, the message displays in the second region on the [Android screen](#develop-an-android-app).
 
-Construct an [Action JSON object](/sami/sami-documentation/sending-and-receiving-data.html#posting-a-message-with-actions) and then send it over the WebSocket:
+Construct an [Action JSON object](/sami/sconnect-the-data/rest-and-websockets.html#posting-a-message-with-actions) and then send it over the WebSocket:
 
 ~~~java
 /*
@@ -463,7 +463,7 @@ private void sendActionInDeviceChannelWS(String actionName) {
 
 ### Monitor light state
 
-The Android application listens to the state change of the light via WebSocket 3, per the [architecture diagram](#design-overview). WebSocket 3 uses the [`/live` endpoint](/sami/sami-documentation/sending-and-receiving-data.html#read-only-websocket) to monitor each message sent by the smart light. The code snippet below shows the creation of such a WebSocket and the corresponding event handling:
+The Android application listens to the state change of the light via WebSocket 3, per the [architecture diagram](#design-overview). WebSocket 3 uses the [`/live` endpoint](/sami/connect-the-data/rest-and-websockets.html#read-only-websocket) to monitor each message sent by the smart light. The code snippet below shows the creation of such a WebSocket and the corresponding event handling:
 
 ~~~java
 private void createLiveWebsocket() {
