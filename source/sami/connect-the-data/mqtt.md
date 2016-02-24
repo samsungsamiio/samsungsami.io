@@ -20,8 +20,8 @@ A device ID and device token are used to connect to SAMI via MQTT. A device ID i
 |Broker port |8883 | Needed for opening the connection to the broker.
 |username    |Device ID | A valid SAMI device ID used to login to establish a session.
 |password    |Device token |A valid SAMI device token used to login to establish a session.
-|Publish Path|/messages/<code>&lt;</code>DEVICE ID<code>&gt;</code>|Publish "data" to SAMI for the specified device.
-|Subscription Path|/actions/<code>&lt;</code>DEVICE ID<code>&gt;</code>|Subscribe to receive "action" sent to the specified device.
+|Publish Path|/v1.1/messages/<code>&lt;</code>DEVICE ID<code>&gt;</code>|Publish "data" to SAMI for the specified device.
+|Subscription Path|/v1.1/actions/<code>&lt;</code>DEVICE ID<code>&gt;</code>|Subscribe to receive "action" sent to the specified device.
 
 To establish an MQTT session, a SAMI device must use a **device token** (one of the three [token types](/sami/introduction/authentication.html#three-types-of-access-tokens) normally used to transfer messages [via REST or WebSockets](/sami/connect-the-data/rest-and-websockets.html)). 
 
@@ -38,7 +38,7 @@ An MQTT session is now established between this device and SAMI. The device can 
 Data-only messages have type "message". A SAMI device uses the following publish path:
 
 ~~~
-/messages/<DEVICE ID>
+/v1.1/messages/<DEVICE ID>
 ~~~
 
 The content of an MQTT message differs from that of a message sent to SAMI [via REST or WebSockets](/sami/connect-the-data/rest-and-websockets.html#posting-a-message). Normally a SAMI message is a JSON object with multiple fields indicating values such as source device ID, message type, and timestamp:
@@ -73,7 +73,7 @@ Any message sent to SAMI may not be bigger than 1 KB.
 A SAMI device can subscribe to the SAMI MQTT broker to receive Actions targeted to it using the following subscription path:
 
 ~~~
-/actions/<DEVICE ID>
+/v1.1/actions/<DEVICE ID>
 ~~~
 
 When another device or an application sends an Action to the subscribed device via REST or WebSocket, this device receives the Action as follows:

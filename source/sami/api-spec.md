@@ -64,7 +64,7 @@ A device uses the above MQTT parameters to connect to the SAMI MQTT broker, and 
 
 ### Publish a message
 
-`/messages/<DEVICE ID>`{:.pa.param.http}
+`/v1.1/messages/<DEVICE ID>`{:.pa.param.http}
 
 A device uses this path to publish a data-only message (a message with type `message`). An MQTT message contains only the value of the `data`{:.param} field in a [message sent via POST](#post-a-message-or-action). 
 
@@ -82,7 +82,7 @@ A device uses this path to publish a data-only message (a message with type `mes
 
 ### Subscribe to receive Actions
 
-`/actions/<DEVICE ID>`{:.pa.param.http}
+`/v1.1/actions/<DEVICE ID>`{:.pa.param.http}
 
 A device subscribes at this path to receive Actions (a message with type `action`) that are targeted to it. When a source device or an application sends an Action to the subscribed device via REST or WebSocket, the device receives the Action. 
 
