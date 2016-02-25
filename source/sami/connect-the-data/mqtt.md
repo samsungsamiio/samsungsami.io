@@ -20,8 +20,8 @@ A device ID and device token are used to connect to SAMI via MQTT. A device ID i
 |Broker port |8883 | Needed for opening the connection to the broker.
 |username    |Device ID | A valid SAMI device ID used to login to establish a session.
 |password    |Device token |A valid SAMI device token used to login to establish a session.
-|Publish Path|/v1.1/messages/<code>&lt;</code>DEVICE ID<code>&gt;</code>|Publish "data" to SAMI for the specified device.
-|Subscription Path|/v1.1/actions/<code>&lt;</code>DEVICE ID<code>&gt;</code>|Subscribe to receive "action" sent to the specified device.
+|Publish Path (MQTT topic)|/v1.1/messages/<code>&lt;</code>DEVICE ID<code>&gt;</code>|Publish "data" to SAMI for the specified device.
+|Subscription Path (MQTT topic)|/v1.1/actions/<code>&lt;</code>DEVICE ID<code>&gt;</code>|Subscribe to receive "action" sent to the specified device.
 
 To establish an MQTT session, a SAMI device must use a **device token** (one of the three [token types](/sami/introduction/authentication.html#three-types-of-access-tokens) normally used to transfer messages [via REST or WebSockets](/sami/connect-the-data/rest-and-websockets.html)). 
 
