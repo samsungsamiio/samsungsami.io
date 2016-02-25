@@ -167,13 +167,15 @@ In the Device Simulator, type the command `tell <DEVICE ID>` (the device ID is t
 Then you should see the corresponding MQTT message received by MQTT.fx as follows:
 ![MQTT fx receive action](/images/docs/sami/connect-the-data/mqtt-fx-receive-actions.png){:.lightbox}
 
-## Best practice
+## Best practices
 
-A MQTT client cannot send Actions to SAMI. To support the use case where an MQTT client triggers actions on another MQTT client, we suggest to set up SAMI Rules using  <a href="https://blog.samsungsami.io/data/rules/iot/2015/09/23/sami-rules-make-your-devices-work-together.html" target="_blank">Rules UI in the User Portal</a> or [programmatically calling Rules APIs](/sami/connect-the-data/develop-rules-for-devices.html). 
+A MQTT client cannot send Actions to SAMI. To support a use case where an MQTT client triggers Actions on another MQTT client, we suggest that you set up SAMI Rules using the <a href="https://blog.samsungsami.io/data/rules/iot/2015/09/23/sami-rules-make-your-devices-work-together.html" target="_blank">Rules UI in the User Portal</a> or by [programmatically calling Rules APIs](/sami/connect-the-data/develop-rules-for-devices.html). 
 
-Lets use an example to illustrate the point. The source MQTT client is a fire detector. It sends boolean data "onFire" to SAMI. The destination MQTT client is a smart light that can [receive on/off actions](#subscribe-to-receive-onoff-actions). You create a pair of rules in SAMI. The "TURN ON" rule is to turn on the smart light if the fire detector detects the flame (AKA "onFire" is true). The "TURN OFF" rule is opposite. Then the MQTT fire detector can trigger actions on the MQTT light when sending a new piece of data.
+Let's illustrate the point with example MQTT source and destination clients. The source MQTT client is a fire detector. It sends Boolean data "onFire" to SAMI. The destination MQTT client is a smart light that can [receive on/off actions](#subscribe-to-receive-onoff-actions). 
 
-If the source device is not limited to MQTT, you have more options. For example, the source device can send Actions directly to the destination MQTT client using [REST](/sami/connect-the-data/rest-and-websockets.html#posting-a-message-with-actions) or [WebSockets](https://developer.samsungsami.io/sami/connect-the-data/rest-and-websockets.html#sending-messages).
+To send Actions from the fire detector to the light, you would create a pair of Rules in SAMI. The "TURN ON" Rule turns on the smart light if the fire detector detects the flame (i.e., "onFire" is true). The "TURN OFF" rule does the opposite. Then the MQTT fire detector can trigger Actions on the MQTT light when sending a new piece of data.
+
+If the source device is not limited to MQTT, you have more options. For example, the source device can send Actions directly to the destination MQTT client using [REST](/sami/connect-the-data/rest-and-websockets.html#posting-a-message-with-actions) or [WebSockets](/sami/connect-the-data/rest-and-websockets.html#sending-messages).
 
 ## Limitations
 
