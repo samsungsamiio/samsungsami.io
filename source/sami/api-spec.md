@@ -2068,12 +2068,14 @@ This call accepts application and user tokens as the access token.
 }
 ~~~
 
+Each element in `data`{:.param} is a Rule object (e.g., example response for [Get a Rule](#get-a-rule)) that contains a [Rule body](/sami/connect-the-data/develop-rules-for-devices.html).
+
 ### Get a Rule
 
 `GET /rules/<ruleId>`
 {:.pa.param.http}
 
-Returns a Rule.
+Returns a Rule created by the application.
 
 This call accepts application and user tokens as the access token.
 
@@ -2108,6 +2110,7 @@ This call accepts application and user tokens as the access token.
 |----------------- |------------------
 |`uid`{:.param} |User ID.
 |`id`{:.param} |Rule ID.
+|`aid`{:.param} |Application ID. Rule is associated with only this application.
 |`name`{:.param} |Rule name. String max 64 characters.
 |`description`{:.param} |Rule description. String max 1400 characters.
 |`languageVersion`{:.param} |Version of the Rule body specification. 
@@ -2170,7 +2173,7 @@ This call accepts application and user tokens as the access token.
 `PUT /rules/<ruleId>`
 {:.pa.param.http}
 
-Modifies a Rule's parameters.
+Modifies parameters of a Rule created by the application.
 
 This call accepts application and user tokens as the access token.
 
@@ -2224,7 +2227,7 @@ This call accepts application and user tokens as the access token.
 `DELETE /rules/<ruleId>`
 {:.pa.param.http}
 
-Deletes a Rule.
+Deletes a Rule created by the application.
 
 This call accepts application and user tokens as the access token.
 
@@ -2258,7 +2261,7 @@ This call accepts application and user tokens as the access token.
 `GET /rules/<ruleId>/executions`
 {:.pa.param.http}
 
-Returns statistics for executions of a Rule.
+Returns statistics for executions of a Rule created by the application. 
 
 This call accepts application and user tokens as the access token.
 
@@ -2291,7 +2294,7 @@ This call accepts application and user tokens as the access token.
 `POST /rules/<ruleId>/actions`
 {:.pa.param.http}
 
-Runs an Action.
+Runs an Action in a Rule created by the application.
 
 This call accepts application and user tokens as the access token.
 
@@ -2314,7 +2317,7 @@ In case any Action is not testable, the POST request returns a 400 error and no 
 `GET /rules/<ruleId>/actions`
 {:.pa.param.http}
 
-Checks whether at least one Action can be run for test.
+Checks whether at least one Action can be run for test. Applies only to Rules created by the application.
 
 This call accepts application and user tokens as the access token.
 
