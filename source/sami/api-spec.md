@@ -2046,11 +2046,13 @@ This call accepts application and user tokens as the access token.
 
 Returns the user's Rules created by the current application. 
 
+This call accepts application and user tokens as the access token.
+
 **Available URL query parameters**
 
 |Parameter   |Description
 |----------- |-------------
-|`uid`{:.param} | (Optional) User ID. Can be used to specify user if not specified by the token.
+|`uid`{:.param} | (Optional) User ID. Must provide if using an application token as an access token.
 
 **Example response**
 
@@ -2059,9 +2061,10 @@ Returns the user's Rules created by the current application.
   "total": 119,
   "offset": 0,
   "count": 100,
-  "data": {
-    "rules": [...]
-  }
+  "data": [
+    {...},
+    {...}
+  ]
 }
 ~~~
 
@@ -2071,6 +2074,8 @@ Returns the user's Rules created by the current application.
 {:.pa.param.http}
 
 Returns a Rule.
+
+This call accepts application and user tokens as the access token.
 
 **Request parameters**
 
@@ -2085,6 +2090,7 @@ Returns a Rule.
   "data": {
     "uid":"f0a3057950384215acf8ba25c2fbfcb7",
     "id":"f0a3057950384215acf8ba25c2fbfcb7",
+    "aid": "b6951bf387b84f63b38911ae35d65e28",
     "name":"Test Rule",
     "description": "This is a test Rule",
     "languageVersion": 1,
@@ -2117,6 +2123,8 @@ Returns a Rule.
 
 Adds a Rule.
 
+This call accepts application and user tokens as the access token.
+
 **Example request**
 
 ~~~
@@ -2133,9 +2141,10 @@ Adds a Rule.
 |Parameter         |Description
 |----------------- |------------------
 |`name`{:.param} |Rule name. String max 64 characters.
+|`uid`{:.param} |(Optional) User ID. Must provide if using an application token as an access token.
 |`description`{:.param} |(Optional) Rule description. String max 1400 characters.
 |`rule`{:.param} |JSON-formatted Rule.
-|`enabled`{:.param} |(Optional) Boolean (true/false). Indicates whether Rule is enabled.
+|`enabled`{:.param} |(Optional) Boolean (true/false). Indicates whether Rule is enabled. If not specified, defaults to enabled.
 
 **Example response**
 
@@ -2144,6 +2153,7 @@ Adds a Rule.
   "data": {
     "uid":"f0a3057950384215acf8ba25c2fbfcb7",
     "id":"f0a3057950384215acf8ba25c2fbfcb7",
+    "aid": "b6951bf387b84f63b38911ae35d65e28",
     "name":"Test Rule",
     "description": "This is a test Rule",
     "languageVersion": 1,
@@ -2161,6 +2171,8 @@ Adds a Rule.
 {:.pa.param.http}
 
 Modifies a Rule's parameters.
+
+This call accepts application and user tokens as the access token.
 
 **Request parameters**
 
@@ -2195,6 +2207,7 @@ Modifies a Rule's parameters.
   "data": {
     "uid":"f0a3057950384215acf8ba25c2fbfcb7",
     "id":"f0a3057950384215acf8ba25c2fbfcb7",
+    "aid": "b6951bf387b84f63b38911ae35d65e28",
     "name":"Test Rule",
     "description": This is a test Rule",
     "languageVersion": 1,
@@ -2212,6 +2225,8 @@ Modifies a Rule's parameters.
 {:.pa.param.http}
 
 Deletes a Rule.
+
+This call accepts application and user tokens as the access token.
 
 **Request parameters**
 
@@ -2245,6 +2260,8 @@ Deletes a Rule.
 
 Returns statistics for executions of a Rule.
 
+This call accepts application and user tokens as the access token.
+
 **Request parameters**
 
 |Parameter   |Description
@@ -2276,6 +2293,8 @@ Returns statistics for executions of a Rule.
 
 Runs an Action.
 
+This call accepts application and user tokens as the access token.
+
 Any testable Actions will actually be sent to your device, so be prepared!
 {:.warning}
 
@@ -2296,6 +2315,8 @@ In case any Action is not testable, the POST request returns a 400 error and no 
 {:.pa.param.http}
 
 Checks whether at least one Action can be run for test.
+
+This call accepts application and user tokens as the access token.
 
 **Request parameters**
 

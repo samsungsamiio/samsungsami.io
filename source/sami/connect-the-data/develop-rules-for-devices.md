@@ -83,7 +83,7 @@ SAMI checks all incoming messages against the conditions specified in each Rule.
 In order to trigger a Rule, *all* conditions must be met.
 {:.info}
 
-Rule conditions are defined in an "if" structure wrapped by an "and" operator.
+Rule conditions are defined in an "if" structure wrapped by an "and" operator. 
 
 ~~~json
 { 
@@ -93,6 +93,9 @@ Rule conditions are defined in an "if" structure wrapped by an "and" operator.
   } 
 }
 ~~~
+
+Rules do not support "or" operators. To accomplish this logic, you can create two Rules.
+{:.info}
 
 A condition is defined with at least one SAMI device `field`{:.param}. An `operator`{:.param} compares the field value from the incoming message to a user-specified `operand`{:.param} value.
 
@@ -108,6 +111,9 @@ A condition is defined with at least one SAMI device `field`{:.param}. An `opera
   } 
 }
 ~~~
+
+Conditions linked by the "and" operator do not need to be met synchronically.
+{:.info}
 
 Now let's look at each piece of the Rule condition.
 
