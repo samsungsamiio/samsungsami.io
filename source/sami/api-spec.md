@@ -2039,6 +2039,9 @@ This call accepts application and user tokens as the access token.
 [**Develop Rules for devices**](/sami/advanced-features/develop-rules-for-devices.html) provides a description of the JSON Rule body.
 {:.info}
 
+A Rule created by an application is not visible to another application.
+{:.info}
+
 ### Get Rules
 
 `GET /rules`
@@ -2075,7 +2078,7 @@ Each element in `data`{:.param} is a Rule object (e.g., example response for [Ge
 `GET /rules/<ruleId>`
 {:.pa.param.http}
 
-Returns a Rule created by the application.
+Returns a Rule.
 
 This call accepts application and user tokens as the access token.
 
@@ -2173,7 +2176,7 @@ This call accepts application and user tokens as the access token.
 `PUT /rules/<ruleId>`
 {:.pa.param.http}
 
-Modifies parameters of a Rule created by the application.
+Modifies parameters of a Rule.
 
 This call accepts application and user tokens as the access token.
 
@@ -2227,7 +2230,7 @@ This call accepts application and user tokens as the access token.
 `DELETE /rules/<ruleId>`
 {:.pa.param.http}
 
-Deletes a Rule created by the application.
+Deletes a Rule.
 
 This call accepts application and user tokens as the access token.
 
@@ -2261,7 +2264,7 @@ This call accepts application and user tokens as the access token.
 `GET /rules/<ruleId>/executions`
 {:.pa.param.http}
 
-Returns statistics for executions of a Rule created by the application. 
+Returns statistics for executions of a Rule. 
 
 This call accepts application and user tokens as the access token.
 
@@ -2294,7 +2297,7 @@ This call accepts application and user tokens as the access token.
 `POST /rules/<ruleId>/actions`
 {:.pa.param.http}
 
-Runs an Action in a Rule created by the application.
+Runs an Action in a Rule.
 
 This call accepts application and user tokens as the access token.
 
@@ -2317,7 +2320,7 @@ In case any Action is not testable, the POST request returns a 400 error and no 
 `GET /rules/<ruleId>/actions`
 {:.pa.param.http}
 
-Checks whether at least one Action can be run for test. Applies only to Rules created by the application.
+Checks whether at least one Action can be run for test.
 
 This call accepts application and user tokens as the access token.
 
