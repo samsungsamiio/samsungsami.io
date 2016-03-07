@@ -26,8 +26,6 @@ If this is your first time using SAMI, you will need to [create a Samsung accoun
 
 - Regular users of SAMI (and your apps) can manage permissions, connect devices and review their data at the [User Portal.](https://portal.samsungsami.io)
 
-- The [API Console](https://api-console.samsungsami.io/sami) lets you execute API calls and see the results straight from your browser.
-
 For the sake of simplicity in this tutorial, you take the role of both the application developer and the SAMI user. You will use the sample app to access your own device.
 {:.info}
 
@@ -36,7 +34,7 @@ For the sake of simplicity in this tutorial, you take the role of both the appli
 Follow [these instructions](/sami/sami-documentation/developer-user-portals.html#creating-an-application) to create an application using the Developer Portal. For this tutorial, select the following:
 
 - Set "Redirect URL" for your application to `http://localhost:8000/samidemo/index.php`.
-- Choose "Client Credentials Flow & Implicit Flow".
+- Choose "Client credentials, auth code, implicit".
 - Under "PERMISSIONS", click "Add Device Type" button. Choose "Sami Gear Fit" as the device type. Check both "Read" and "Write" permissions for this device type.
 
 [Make a note of your client ID.](/sami/sami-documentation/developer-user-portals.html#how-to-find-your-application-id) This is your application ID, which you will need later.
@@ -49,23 +47,13 @@ Follow [these instructions](/sami/sami-documentation/developer-user-portals.html
 
 Now as a SAMI user, you have a device. The sample app will access your data on this device.
 
-### Use the API Console
+### Get the device ID
 
-The purpose of using the API Console is to get the ID of your device created above. In the real world, your application should call a SAMI API to get the device ID of a user. For the sake of simplicity when using the sample app, you will use the API Console to do the same.
+In the User Portal, click the settings icon of the device you just connected. A window like the following will appear. 
 
-- Go to the [API Console.](https://api-console.samsungsami.io/)
-- Click "Authenticate with SAMI".
-  - Log into your Samsung account if you haven't already. Then you are authenticated.
-- Now use the "Get Current User Profile" API call to get your user ID. 
-  - Click on the name of the call, then click "Try it!". 
-  - In the response body, find "id". This is your user ID:
-![Alt text sample](/images/docs/sami/demos-tools/getUserIdOnAPIconsole.png){:.lightbox}
-- Now use the "Get User Devices" API call to get your device ID. 
-  - Fill in the "userId" input field using the user ID obtained in the above step. Then click "Try it!". 
-  - In the response body, find the "Sami Gear Fit" device you created before. The device's "id" field is the device ID that we will use in the sample app:
-![Alt text sample](/images/docs/sami/demos-tools/getDeviceIdOnAPIconsole.png){:.lightbox}
+![device info screen](/images/docs/sami/sami-documentation/generate-device-token.png){:.retain-width}
 
-Great! You now have the client (application) ID and the device ID, which will be used in the sample app.
+Make a note of the device ID on the above screen. You will use it in the sample app.
 
 ### Setup your local machine 
 

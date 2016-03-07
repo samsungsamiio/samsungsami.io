@@ -26,7 +26,7 @@ Perform the following three steps outlined in the [initial setup][1] of "Your fi
 
 - [Create an application][2]
 - [Connect a device][3]
-- [Use the API Console][4]
+- [Get the device ID][4]
 
 The end goal of the above steps is to create an application with the redirect URL that works with this sample app, and get the client ID (application ID) and device ID to set up the Android project below.
 
@@ -59,6 +59,7 @@ Before we dig in, let's preview how our simple Android application will work.
 - Launch the app on the [Android Emulator.](http://developer.android.com/tools/help/emulator.html)
 - Login using your account. <br />
 ![SAMI first Android app](/images/docs/sami/demos-tools/firstAndroidAppLoginScreen.png)
+- If this is your first time to use this app, you will see a permssion screen that asks you to give the app the permission to read and write the data of "Sami Gear Fit" device type. Click "Allow" on that screen.
 - You are redirected to a new page where you can play with SAMI as follows:
 ![SAMI first Android app](/images/docs/sami/demos-tools/firstAndroidAppPlayWithSAMIScreen_1.png)
 - Click "Send a message" to send a message to SAMI on behalf of your device.
@@ -311,4 +312,4 @@ As shown above, to make the call to get the latest messages, pass the message co
 [1]: /sami/demos-tools/your-first-application.html#initial-setup "Initial setup to use sample apps"
 [2]: /sami/demos-tools/your-first-application.html#create-an-application "Create an application"
 [3]: /sami/demos-tools/your-first-application.html#connect-a-device "Connect a device"
-[4]: /sami/demos-tools/your-first-application.html#use-the-api-console "Use the API Console"
+[4]: /sami/demos-tools/your-first-application.html#get-the-device-id "Get the device ID"
