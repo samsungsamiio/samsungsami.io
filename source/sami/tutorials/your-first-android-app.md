@@ -59,7 +59,7 @@ Before we dig in, let's preview how our simple Android application will work.
 - Launch the app on the [Android Emulator.](http://developer.android.com/tools/help/emulator.html)
 - Login using your account. <br />
 ![SAMI first Android app](/images/docs/sami/demos-tools/firstAndroidAppLoginScreen.png)
-- If this is your first time to use this app, you will see a permssion screen that asks you to give the app the permission to read and write the data of "Sami Gear Fit" device type. Click "Allow" on that screen.
+- If this is your first time to use this app, you will see a permission screen that asks you to give the app the permission to read and write the data of "Sami Gear Fit" device type. Click "Allow" on that screen.
 - You are redirected to a new page where you can play with SAMI as follows:
 ![SAMI first Android app](/images/docs/sami/demos-tools/firstAndroidAppPlayWithSAMIScreen_1.png)
 - Click "Send a message" to send a message to SAMI on behalf of your device.
