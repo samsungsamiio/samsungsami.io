@@ -93,7 +93,7 @@ The **Connector Code** tab is the final step of building a SAMI Cloud Connector.
 
 ![SAMI Cloud Connectors](/images/docs/sami/sami-documentation/CC_groovy.png)
 
-You implement a Cloud Connector Groovy code using the <a href="https://github.com/samsungsamiio/sami-cloudconnector-sdk" target="_blank">Cloud Connector SDK</a>. The SDK's GitHub repository contains libraries, API reference documentation, sample codes, and a template project. You can perform unit and integration testing using the SDK.
+You implement a Cloud Connector Groovy code using the <a href="https://github.com/samsungsamiio/sami-cloudconnector-sdk" target="_blank">Cloud Connector SDK</a>. The SDK's GitHub repository contains libraries, API reference documentation, and a template project. You can perform unit and integration testing using the SDK. In addition, the <a href="https://github.com/samsungsamiio/sami-cloudconnector-samples" target="_blank">Cloud Connector Samples repository</a> includes example Cloud Connector code for a few clouds.
 
 #### About the Cloud Connector Groovy code
 
@@ -120,7 +120,7 @@ The following methods are optional. Override a method only when it is necessary.
 |`unsubscribe`{:.param} |Called by SAMI when the user disconnects the device.
 |`onUnsubscribeResponse`{:.param} |Called by SAMI for each response from the third-party cloud to the requests created in `unsubscribe`{:.param}.
 
-[Our tutorial](/sami/demos-tools/your-first-cloud-connector.html) and <a href="https://github.com/samsungsamiio/sami-cloudconnector-sdk" target="_blank">SDK sample code</a> give examples of how to implement the above methods for a few clouds. 
+[Our tutorial](/sami/demos-tools/your-first-cloud-connector.html) and <a href="https://github.com/samsungsamiio/sami-cloudconnector-samples" target="_blank">SDK sample code</a> give examples of how to implement the above methods for a few clouds. 
 
 #### About custom parameters
 

@@ -6,7 +6,7 @@ title: "Your first Cloud Connector"
 
 In this article we'll show you how to build a [Cloud Connector](/sami/sami-documentation/using-cloud-connectors.html) for the Moves cloud. <a href="https://www.moves-app.com/" target="_blank">Moves is an Android/iOS app</a> that tracks activity data. After reading this tutorial, you'll understand how to build a Cloud Connector for [any cloud](/sami/sami-documentation/using-cloud-connectors.html#eligibility) that interests you.
 
-You should read [Using Cloud Connectors](/sami/sami-documentation/using-cloud-connectors.html) before diving into this tutorial. The <a href="https://github.com/samsungsamiio/sami-cloudconnector-sdk" target="_blank">Cloud Connector SDK repository</a> includes example Cloud Connector code for other clouds.
+You should read [Using Cloud Connectors](/sami/sami-documentation/using-cloud-connectors.html) before diving into this tutorial. The <a href="https://github.com/samsungsamiio/sami-cloudconnector-samples" target="_blank">Cloud Connector Samples repository</a> includes example Cloud Connector code for other clouds. All examples use the <a href="https://github.com/samsungsamiio/sami-cloudconnector-sdk" target="_blank">Cloud Connector SDK</a>.
 
 ## Initial configuration
 
