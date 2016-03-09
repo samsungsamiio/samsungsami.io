@@ -3206,6 +3206,9 @@ Can be called by trial administrators and participants. Only administrators may 
 
 ## Sessions
 
+Read <a href="https://blog.samsungsami.io/data/trials/research/portals/2016/03/08/your-sami-trials-are-now-in-session.html" target="_blank">**this blog**</a> to learn more about the trial sessions feature.
+{:.info}
+
 ### Add session to trial
 
 `POST /trials/sessions`
