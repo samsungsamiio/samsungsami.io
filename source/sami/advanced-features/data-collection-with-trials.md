@@ -5,14 +5,17 @@ title: "Data collection with trials"
 
 # Data collection with trials
 
-This page covers the details of how you can interact with SAMI to manage trials. 
+This page covers the creation and management of SAMI trials using the [trials APIs](/sami/api-spec.html#trials).
 
 A SAMI **trial** is a way for a user (called a trial administrator) to invite other users to share their data for a controlled amount of time and set of device types. You can become a trial administrator by [creating a trial](#creating-a-trial). Each trial may have one or more administrators, who must define one or more [device types](/sami/sami-documentation/sami-basics.html#device-id-and-device-type) accepted for the trial. 
 
 Administrators can [invite users](#invite-participants-or-administrators) to become trial administrators or participants via email. Participants who accept their invitation must login to SAMI with their Samsung account credentials (or sign up for a new account) and select one or more of the device types that administrators have defined. When participants accept an invitation, they grant access to their data to trial administrators. Users may leave a trial at any time.
 
-SAMI offers two Web portals for managing trials: one [**for administrators**](https://trials-admin.samsungsami.io/) and one [**for participants**](https://trials.samsungsami.io/). Read [our blog post](https://blog.samsungsami.io/data/trials/research/portals/2015/03/20/do-your-own-research-with-sami-trials.html) to learn about using them. These applications, developed using the APIs described here, are also available [**on GitHub**](https://github.com/samsungsamiio/sami-trials-webapps). Feel free to use or adapt these tools and contribute to our open source repo.
+SAMI offers a Web portal [**for trial administrators**](https://trials-admin.samsungsami.io/) and a portal [**for trial participants**](https://trials.samsungsami.io/), covered in this [**blog post**](https://blog.samsungsami.io/data/trials/research/portals/2015/03/20/do-your-own-research-with-sami-trials.html). These applications, developed using the APIs described here, are also available [**on GitHub**](https://github.com/samsungsamiio/sami-trials-webapps).
 {:.info}
+
+The Trials Admin tool includes tools to set up a trial *session*, which allows the recording of metadata along with trial data. Read <a href="https://blog.samsungsami.io/data/trials/research/portals/2016/03/08/your-sami-trials-are-now-in-session.html" target="_blank">**this blog**</a> and see the [**API**](/sami/api-spec.html#sessions).
+{:.info} 
 
 For more information on the trials API, see the [API spec](/sami/api-spec.html#trials). Unless otherwise specified, the following API calls are intended *for trial administrators only.*
 
