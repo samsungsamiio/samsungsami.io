@@ -167,7 +167,7 @@ In the Device Simulator, type the command `tell <DEVICE ID>` (the device ID is t
 Then you should see the corresponding MQTT message received by MQTT.fx as follows:
 ![MQTT fx receive action](/images/docs/sami/connect-the-data/mqtt-fx-receive-actions.png){:.lightbox}
 
-Consult <a href="https://developer.artik.io/documentation/tutorials/color-mqtt-client.html" target="_blank">Publishing to SAMI </a> to learn how to send data from Artik board to SAMI via MQTT.
+The <a href="https://developer.artik.io/documentation/tutorials/color-mqtt-client.html" target="_blank">ARTIK documentation</a> describes how to send data from a Samsung ARTIK board to SAMI via MQTT.
 
 ## Best practices
 
