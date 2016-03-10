@@ -167,6 +167,8 @@ In the Device Simulator, type the command `tell <DEVICE ID>` (the device ID is t
 Then you should see the corresponding MQTT message received by MQTT.fx as follows:
 ![MQTT fx receive action](/images/docs/sami/connect-the-data/mqtt-fx-receive-actions.png){:.lightbox}
 
+Consult <a href="https://blog.samsungsami.io/data/rules/iot/2015/09/23/sami-rules-make-your-devices-work-together.html" target="_blank">Publishing to SAMI </a> to learn how to send data from Artik board to SAMI via MQTT.
+
 ## Best practices
 
 A MQTT client cannot send Actions to SAMI. To support a use case where an MQTT client triggers Actions on another MQTT client, we suggest that you set up SAMI Rules using the <a href="https://blog.samsungsami.io/data/rules/iot/2015/09/23/sami-rules-make-your-devices-work-together.html" target="_blank">Rules UI in the User Portal</a> or by [programmatically calling Rules APIs](/sami/connect-the-data/develop-rules-for-devices.html). 
