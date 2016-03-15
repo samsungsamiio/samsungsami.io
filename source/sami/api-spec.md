@@ -100,6 +100,45 @@ A device subscribes at this path to receive Actions (a message with type `action
 
 The received Action only contains the value of the `actions` field in the `data` JSON object of a typical [SAMI message](#post-a-message-or-action).
 
+### Subscribe to receive errors
+
+`/v1.1/errors/<DEVICE ID>`{:.pa.param.http}
+
+A device subscribes at this path to receive [publish errors](#mqtt-errors) associated with MQTT message publishing. Errors generated prior to subscribing to this endpoint will not be received. <br>
+
+**Request parameters**
+
+  |Parameter   |Description   |
+  |----------- |--------------|
+  |`DEVICE ID`{:.param}   | ID of the subscribing device.|
+
+**Example response**
+
+~~~
+{
+  "error":{
+    "code":429,
+    "message":"DEVICE MINUTE rate limit exceeded",
+    "X-Rate-Limit-Limit":"1/50000",
+    "X-Rate-Limit-Remaining":"0/49995",
+    "X-Rate-Limit-Reset":"1458072876/1458086400",
+    "id":"04642e813c9e416b96e3f05d131a84df"
+  }
+}
+~~~
+
+### MQTT errors
+
+|Code |Error message |Condition
+|-----|--------------|---------
+|403 | You do not have publish permission to topic |Attempt to publish to invalid path
+|403 | You do not have subscribe permission to topic |Attempt to subscribe to invalid path
+|403 | Source device is disconnected |Device has been disconnected and thus cannot send or receive messages
+|429 | DAILY rate limit exceeded<br><br>MINUTE rate limit exceeded |Rate of publishing has exceeded daily/minute rate limit
+|429 | Plan quota exceeded for device <DEVICE ID>. Reason: Daily messages limit  |Device's daily message quota exceeded
+|413 | Plan quota exceeded for device <DEVICE ID>. Reason: Max payload Size limit |Device's maximum message size exceeded
+|400 | Quota validation error for device <DEVICE ID>. Reason: Plan limits have not been set. |Device quota plan has not been configured
+
 ## API Console
 
 The SAMI API Console is found at [https://api-console.samsungsami.io/sami.](https://api-console.samsungsami.io/sami) In order to use the Console, you must first authenticate with your Samsung account. If you don’t have a Samsung account, you can create it during the process. 

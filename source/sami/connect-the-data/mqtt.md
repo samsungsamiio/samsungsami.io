@@ -22,6 +22,7 @@ A device ID and device token are used to connect to SAMI via MQTT. A device ID i
 |password    |Device token |A valid SAMI device token used to login to establish a session.
 |Publish Path (MQTT topic)|/v1.1/messages/<code>&lt;</code>DEVICE ID<code>&gt;</code>|Publish "data" to SAMI for the specified device.
 |Subscription Path (MQTT topic)|/v1.1/actions/<code>&lt;</code>DEVICE ID<code>&gt;</code>|Subscribe to receive "action" sent to the specified device.
+|Error Path |/v1.1/errors/<code>&lt;</code>DEVICE ID<code>&gt;</code>|Subscribe to receive errors for messages published by the specified device.
 
 To establish an MQTT session, a SAMI device must use a **device token** (one of the three [token types](/sami/introduction/authentication.html#three-types-of-access-tokens) normally used to transfer messages [via REST or WebSockets](/sami/connect-the-data/rest-and-websockets.html)). 
 
@@ -58,7 +59,12 @@ An MQTT message contains only the value of the `data`{:.param} field. The above 
 {"onFire":false,"temperature":50}
 ~~~
 
-Once an MQTT message is successfully published to SAMI, it will be stored as a normal SAMI message with fields such as `sdid`{:.param} (source device ID), `type`{:.param} (message type), and `ts`{:.param} (timestamp). You can view this message using the [Data Logs](https://blog.samsungsami.io/development/portals/2015/06/18/an-eye-toward-usability.html#data-logs) or [Charts](https://blog.samsungsami.io/development/portals/2015/06/18/an-eye-toward-usability.html#charts) features of the [User Portal](https://portal.samsungsami.io). Should the publish run into any error, the developer of the corresponding device can see the error in the <a href="https://devportal.samsungsami.io" target="_blank">Developer Portal</a>.
+Once an MQTT message is successfully published to SAMI, it will be stored as a normal SAMI message with fields such as `sdid`{:.param} (source device ID), `type`{:.param} (message type), and `ts`{:.param} (timestamp). You can view this message using the [Data Logs](https://blog.samsungsami.io/development/portals/2015/06/18/an-eye-toward-usability.html#data-logs) or [Charts](https://blog.samsungsami.io/development/portals/2015/06/18/an-eye-toward-usability.html#charts) features of the [User Portal](https://portal.samsungsami.io). 
+
+Should the publish run into any error, the developer of the corresponding device can see the error in the <a href="https://devportal.samsungsami.io" target="_blank">Developer Portal</a>. Publishing errors can also be seen by subscribing to [this path](/sami/api-spec.html#subscribe-to-receive-errors).
+
+MQTT errors are described in the [**API specification**](/sami/api-spec.html#mqtt-errors).
+{:.info}
 
 For publishing messages, the SAMI MQTT broker supports <a href="https://www-01.ibm.com/support/knowledgecenter/SSFKSJ_7.1.0/com.ibm.mq.doc/tt60340_.htm" target="_blank">Qualities of Service 0, 1, or 2</a> specified by a client.
 
