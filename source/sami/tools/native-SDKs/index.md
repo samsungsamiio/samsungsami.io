@@ -26,6 +26,6 @@ These libraries are actively being worked on and will receive updates in the fut
 
 ## Beta SDKs
 
-- [Ruby](/sami/native-SDKs/python-SDK.html)
+- [Ruby](/sami/native-SDKs/ruby-SDK.html)
 - [Python 2](/sami/native-SDKs/python-SDK.html)
 - [Python 3](/sami/native-SDKs/python-3-SDK.html)
