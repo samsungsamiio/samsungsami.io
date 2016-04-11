@@ -38,7 +38,7 @@ If you do not have a Raspberry Pi, you may still work through this tutorial. Con
 
 Go to the Developer Portal to create a *private* device type. 
 
- 1. First, sign into the SAMI [Developer Portal](https://portal.samsungsami.io). If you don't have a Samsung account, you can create one at this step.
+ 1. First, sign into the SAMI [Developer Portal](https://devportal.samsungsami.io). If you don't have a Samsung account, you can create one at this step.
  1. Click "+ New Device Type".
  1. Name this device type "Flame Sensor" and give it the unique name such as "com.example.iot.flame".
  1. Click "Create Device Type". This creates the device type and takes you to the device types page.
